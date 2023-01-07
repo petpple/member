@@ -1,0 +1,44 @@
+@font-face
+{
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+*
+{
+	font-family: Pretendard-Regular;
+	color: #434343;
+}
+
+.realOrangeBack
+{
+	background-color: #FE5C17;
+}
+
+.realOrangeFont
+{
+	color: #FE5C17;
+}
+
+.orangeBack
+{
+	background-color: #FF8C5B;
+}
+
+.orangeFont
+{
+	color: #FF8C5B;
+}
+
+.grayBack
+{
+	background-color: #D9D9D9;
+}
+
+.grayFont
+{
+	color: #D9D9D9;
+}
+
