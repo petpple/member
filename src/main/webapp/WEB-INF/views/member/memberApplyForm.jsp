@@ -76,7 +76,7 @@
             	<form>
             			<p>
 							방문 펫시터 지원을 해주셔서 감사합니다. 성실한 답변 부탁드립니다 : )<br>
-							<br> 키위는 펫시터를 지원 할 때 아래 사항을 모두 입력 해 주셔야 서비스를 의뢰 받을 수 있습니다!
+							<br> Kiwi는 펫시터를 지원 할 때 아래 사항을 모두 입력 해 주셔야 서비스를 의뢰 받을 수 있습니다!
 						</p>
 	
 				<div>
@@ -100,11 +100,11 @@
 						
 						<div class="form-check">
 							<input class="form-check-input" type="radio" name="petSize" id="size1"> <label
-								class="form-check-label" for="1"><span class="m_font">소형 : 7키로 미만(고양이 포함)</span></label><br>
+								class="form-check-label" for="size1"><span class="m_font">소형 : 7키로 미만(고양이 포함)</span></label><br>
 							<input class="form-check-input" type="radio" name="petSize" id="size2"> <label
-								class="form-check-label" for="2"><span class="m_font">중형 : 7 ~ 14.9키로</span></label><br>
+								class="form-check-label" for="size2"><span class="m_font">중형 : 7 ~ 14.9키로</span></label><br>
 							<input class="form-check-input" type="radio" name="petSize" id="size3"> <label
-								class="form-check-label" for="3"><span class="m_font">대형 : 15키로 이상</span></label><br>
+								class="form-check-label" for="size3"><span class="m_font">대형 : 15키로 이상</span></label><br>
 						</div>
 						<br>
 	
@@ -112,15 +112,21 @@
 							방문 펫시터로 지원하시는 예비 펫시터님의 흡연여부를 선택해주세요.<span class="sss_font"> *
 							</span>
 						</p>
+						
+						
 						<div class="form-check">
-							<input class="form-check-input" type="radio" name="smoking"
-								id="smoking1"> <label class="form-check-label"
-								for="smoking1"><span class="m_font">네, 흡연자예요. </span> </label> 
-							<input class="form-check-input" type="radio" name="smoking"
-								id="smoking2"> <label class="form-check-label"
-								for="smoking2"><span class="m_font">아니요, 흡연자가 아닙니다. </span> </label>
-	
+						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="smoking1">
+						  <label class="form-check-label" for="smoking1">
+						    <span class="m_font">네, 흡연자예요.</span>
+						  </label>
 						</div>
+						<div class="form-check">
+						  <input class="form-check-input" type="radio" name="flexRadioDefault" id="smoking2">
+						  <label class="form-check-label" for="smoking2">
+						    <span class="m_font">아니요, 흡연자가 아닙니다.</span>
+						  </label>
+						</div>
+						
 						<br>
 	
 						<p class="l_font">
@@ -128,7 +134,8 @@
 						</p>
 	
 						<select name="cert" size="8" multiple="multiple" id="cert"
-							class="m_font"><option value="0" selected> -- 자격증 선택 -- </option>
+							class="m_font form-select" aria-label="Default select example">
+							<option value="0" selected> -- 자격증 선택 -- </option>
 							<option value="1">반려견지도사</option>
 							<option value="2">도그쇼 심사위원</option>
 							<option value="3">핸들러</option>
@@ -159,41 +166,32 @@
 						<br>
 						<br>
 	
-						<p class="l_font">
-							프로필 한 줄 제목 <span class="sss_font"> * </span>
-						</p>
-						<input type="text" class="m_font" id="profile" name="profile"
-							size="40" maxlength="50" placeholder="표시 될 프로필 제목을 입력 해 주세요."
-							required="required"> <br>
+
+					    <label for="title" class="form-label m_font">프로필 한 줄 제목 <span class="sss_font"> * </span></label>
+					    <input type="text" class="form-control" id="title" placeholder="표시 될 프로필 제목을 입력 해 주세요." required>
 						<br>
+						
 	
 						<p class="l_font">
 							펫시터 소개글<span class="sss_font"> * 프로필에서 보여질 펫시터 소개글 입니다. 최대 300자 이내 작성 해주세요.</span>
 						</p>
 						<textarea class="form-control" id="profileContent" name="profileContent"
-							rows="10" cols="100"
-							placeholder="예) 반갑습니다~~♡ 저는 대학생 큰딸과 네살 반 된 늦둥이 말티츄 아들 하나를 키우고 있는 주부입니다." required="required"></textarea>
+							rows="5" cols="60"
+							placeholder="예) 반갑습니다~~♡ 저는 대학생 큰딸과 네살 반 된 늦둥이 말티츄 아들 하나를 키우고 있는 주부입니다." required></textarea>
 						<br>
 						<br>
 	
-<!-- 						<div class="input-group mb-3"> -->
-<!-- 						  <span class="input-group-text" id="inputGroup-sizing-default">예금주명<span class="sss_font"> * </span></span> -->
-<!-- 						  <input type="text" id="depositor" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="수익을 입금 받을 예금주 명을 입력 해 주세요."> -->
-<!-- 						</div> -->
-												
-	
-						<p class="l_font">
-							예금주명<span class="sss_font"> * </span>
-						</p>
-						<input type="text" class="m_font" id="depositor" name="depositor"
-							size="40" maxlength="50" placeholder="수익을 입금 받을 예금주 명을 입력 해 주세요."
-							required="required"> <br>
+
+					
+						<label for="depositor" class="form-label m_font">예금주명<span class="sss_font"> * </span></label>
+					    <input type="text" class="form-control" id="depositor" placeholder="수익을 입금 받을 예금주 명을 입력 해 주세요." required>
+							
 						<br>
 	
 						<p class="l_font">
 							은행<span class="sss_font"> * </span>
 						</p>
-						<select name="bank" class="m_font" id="bank">
+						<select name="bank" class="m_font form-select" id="bank" >
 							<option value="0" selected> -- 은행 선택 -- </option>
 							<option value="1">신한은행</option>
 							<option value="2">NH농협은행</option>
@@ -208,24 +206,23 @@
 						</select> <br>
 						<br>
 	
-	
-						<p class="l_font">
-							계좌번호<span class="sss_font">*</span>
-						</p>
-						<input type="text" class="m_font" id="accNumber" name="accNumber"
-							size="40" maxlength="50"
-							placeholder="수익을 입금 받을 계좌번호을 - 없이 입력 해 주세요." required="required"><br>
+		
+						<label for="accNumber" class="form-label m_font">계좌번호<span class="sss_font">*</span></label>
+					    <input type="text" class="form-control" id="accNumber" placeholder="수익을 입금 받을 계좌번호을 - 없이 입력 해 주세요." required>
+							
 					</div>
 				</div>
 	
-				<div class="text-center">
-					<button type="submit" class="btnB">최종제출</button>
-				</div>
+			
 			</form>
 	
 			</div>
        </div>
     </div>
+    
+    		<div class="text-center">
+					<button type="submit" class="btn" style="background-color:#FE5C17; color:white;" role="button" role="button">최종제출</button>
+			</div>
     <!-- 404 End -->
 
 	<div>
