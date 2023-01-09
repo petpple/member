@@ -160,7 +160,7 @@ margin: 370px;
 					<div class="box_mi_t">
 						<br>
 						<span class="">현재 등록된 펫이 없습니다.</span><br>
-						<a href="">펫 등록하러가기</a><br>
+						<a href="memberMyPetInsert">펫 등록하러가기</a><br>
 						<br>
 					
 					</div>

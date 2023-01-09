@@ -1,0 +1,24 @@
+.contract {
+    width: 700px; 
+    margin: 50px auto 80px; 
+    padding: 30px 40px 50px;
+    border-radius: 5px; 
+}
+.contract h1 {
+	text-align: center;
+	color: tomato;
+	}
+.contract .text {
+    height: 500px; border: 1px solid black; background-color: white;
+    white-space: pre-line; overflow-y: scroll; margin: 0 auto 20px;
+}
+.contract p {text-align: right; font-size: 20px; bottom: 1;}
+.contract p > span {
+	color: red;
+}
+.contract .box {width: 100px; height: 40px;  padding: 8px; margin: 0 3px;}
+
+.btn{
+	width: 200px;
+ 	height: 50px;
+}

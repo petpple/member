@@ -34,9 +34,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="/css/fsitter/fsitterMyInfo.css">
+<!-- 	<link rel="stylesheet" href="/css/fsitter/fsitterMyInfo.css"> -->
 	<link rel="stylesheet" href="/css/main.css">
-	
+
     
 </head>
 
@@ -57,8 +57,9 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row justify-content-center">
-            
-                <div class="col-lg-7">
+            	
+            	
+                <div class="col-lg-9">
                     <div class="IMG1" >
 				<img src="/images/member/2.svg" class="svgImg2">
 				<span class="font h_font">내정보 변경</span>
@@ -90,19 +91,19 @@
 						 	<br><br>
 						 	
 						 	
+							
 						</div>	
 						<div class="col text-center">
 		                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;">변경하기</button>
 		                </div> 
 							
 					</div>
+					</div>
         		</div>
-        	</div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 404 End -->
 
 	<div>
 		<c:import url="footer.jsp"></c:import>

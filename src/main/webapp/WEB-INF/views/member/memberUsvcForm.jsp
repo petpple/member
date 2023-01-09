@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>sitter-sample</title>
+    <title>긴급 요청 서비스 등록 폼</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -31,48 +31,88 @@
     <link rel="stylesheet" href="/css/member/sitter/sitterMain.css">
 	<link rel="stylesheet" href="/css/member/user/userLoginForm.css">
     
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!--     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/library/wow/wow.min.js"></script>
     <script src="/library/easing/easing.min.js"></script>
     <script src="/library/waypoints/waypoints.min.js"></script>
     <script src="/library/owlcarousel/owl.carousel.min.js"></script>
 
+	<!-- datepicker -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link rel="stylesheet" href="/css/member/user/uMain.css">
+
+
     <!-- Template Javascript -->
     <script src="/javascript/main.js"></script>
     
-    <script type="text/javascript">
-	function CountDownTimer(dt, id) {
-    var end = new Date(dt);
-    var _second = 1000;
-    var _minute = _second * 60;
-    var _hour = _minute * 60;
-    var _day = _hour * 24;
-    var timer;
-    function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-            clearInterval(timer);
-            $("#"+id).css('color','red');
-            return;
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor((distance % _day) / _hour);
-        var minutes = Math.floor((distance % _hour) / _minute);
-        var seconds = Math.floor((distance % _minute) / _second);
-        
-        var text = hours + '시간 '+minutes + '분 '+ seconds + '초';
-        document.getElementById(id).innerHTML = text;
-    }
-    timer = setInterval(showRemaining, 1000);
-}
-// 	$(function(){
-// 		CountDownTimer('01/07/2023 16:25:00', 'remainTime');
-// 	});
 
-</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $.datepicker.monthpicker = {
+    	minDate: 0,
+    	maxDate: 90,
+        closeText: '닫기',
+        nextText : '다음 달',
+        prevText : '이전 달',
+        currentText : "오늘",
+        changeMonth : true,
+        changeYear : true,
+        monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+        dayNames : [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
+        dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
+        dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'],
+        weekHeader : "주",
+        firstDay : 0,
+        isRTL : false,
+        showMonthAfterYear : true,
+        yearSuffix : "년",
+        showOn: 'both',
+        // buttonText: "달력",
+        showButtonPanel: false,
+        dateFormat: 'yy-mm-dd',          
+        yearRange: "-10:+0",
+};
+      
+$.datepicker.setDefaults($.datepicker.monthpicker);
 
+      var datepicker_default = {
+          showOn: 'both',
+          buttonText: "달력",
+          currentText: "이번달",
+          changeMonth: true,
+          changeYear: true,
+          showButtonPanel: true,
+          yearRange: 'c-99:c+99',
+          showOtherMonths: true,
+          selectOtherMonths: true
+      }
+      datepicker_default.closeText = "선택";
+      datepicker_default.dateFormat = "yy-mm-dd";
+      datepicker_default.onClose = function (dateText, inst) {
+          var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+          var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
+          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+          $(this).datepicker('setDate', new Date(year, month, 1));
+      }
+      datepicker_default.beforeShow = function () {
+          var selectDate = $("#sdate").val().split("-");
+          var year = Number(selectDate[0]);
+          var month = Number(selectDate[1]) - 1;
+          var day = Number(selectDate[0]);
+          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+      }
+      $(".month_picker").datepicker(datepicker_default);
+});
+
+
+</script> 
+    
 <style type="text/css">
 
 	.box_mi_t {
@@ -120,7 +160,13 @@
         <div class="container">
             <div class="row justify-content-center">
             
-            		<div class="col-lg-7">
+            		<div class="row">
+						<div class="col-lg-2" id="info">
+							<c:import url="http://localhost:8092/member/memberSide"></c:import>
+					</div>
+					
+            
+            		<div class="col-lg-9">
 						<div class="IMG1">
 							<img src="/images/member/sitting_on.svg" class="svgImg1"> 
 							<span class="font h_font">긴급 요청 서비스 등록</span>
@@ -146,22 +192,124 @@
 							 -->
 							
 							<tr>
-								<td class="l_font" style="text-align: center;">주소</td>
+								<td class="l_font" style="text-align: center;">
+								
+				                        <p>주소</p>
+				                        <input type="text" id="sample4_postcode" placeholder="우편번호">
+				                        <input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+				                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+				                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+				                        <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+				                        <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+				                        <input type="text" name="lat">
+				                        <input type="text" name="lng">
+									
+								</td>
 							</tr>
 
 							<tr>
 								<td>
  									<label for="addr" class="form-label">의뢰자님의 주소를 입력해주세요.<span class="sss_font"> * </span></label>
- 									<input type="text" class="form-control" id="addr" placeholder="예) api쓸것임">
+ 									<input type="text" class="form-control" id="addr1" placeholder=" api쓸것임">
  								</td>
 								
 							</tr>
+							
+							<tr>
+								<td>
+ 									<label for="addr" class="form-label">의뢰자님의 상세 주소를 입력해주세요.<span class="sss_font"> * </span></label>
+ 									<input type="text" class="form-control" id="addr2" placeholder="상세주소">
+ 								</td>
+ 							</tr>
 						
 							<tr>
 								<td class="l_font " style="text-align: center;">긴급 요청 서비스 일정</td>
 							</tr>
 							<tr>
-								<td> 서비스가 필요한 날짜를 선택 해 주세요 <span class="sss_font"> * </span></td>
+								<td>
+								
+				            <div class ="box_mypi2">
+				            <label for="addr" class="form-label">언제 펫시터가 필요한가요? 원하시는 일정을 선택 해 주세요.<span class="sss_font"> * </span></label>
+					            <form class=" lg-3 row inline"> 
+					            	
+					            	<div class="form-group col-lg-3">  
+								 		<input type="text"  id="datepicker" class="form-control">
+								 	</div> 
+
+
+									<div class="form-group col-lg-1">  
+										&emsp;&emsp;▶
+								 	</div>	
+						
+			
+								 	<div class="form-group col-lg-3">  
+								 		<input type="text"  id="datepicker2" class="form-control" style="margin-left: -20px;">
+								 	</div>	
+							           
+							            <!-- 체크인 datepicker  -->
+										<script type="text/javascript">
+											$("#datepicker").datepicker();
+										</script>
+							            <!-- 체크인 datepicker  -->
+										<script type="text/javascript">
+											$("#datepicker2").datepicker();
+										</script>
+							    </form>     
+				            <br><br>
+				            
+				            <span>체크인 시간&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;체크아웃 시간</span>
+				            <form class=" lg-3 row inline"> 
+					            	<div class="form-group col-lg-3">  
+								 		<!-- <input type="text"  id="checkIn" class="form-control"> -->
+								 			<select class="form-control" name="checkIn" id="checkIn" style="text-align: center;">
+								            	<option value="0" selected>--시간 선택--</option>
+								            	<option value="1">09:00 </option>
+								            	<option value="2">10:00 </option>
+								            	<option value="3">11:00 </option>
+								            	<option value="4">12:00 </option>
+								            	<option value="5">13:00 </option>
+								            	<option value="6">14:00 </option>
+								            	<option value="7">15:00 </option>
+								            	<option value="8">16:00 </option>
+								            	<option value="9">17:00 </option>
+								            	<option value="10">18:00 </option>
+								            	<option value="11">19:00 </option>
+								            	<option value="12">20:00 </option>
+								            	<option value="13">21:00 </option>
+								            </select>
+								 	</div> 
+
+									<div class="form-group col-lg-1">  
+										&emsp;&emsp;~
+								 	</div>	
+								 		
+								 	<div class="form-group col-lg-3">  
+								 		<!-- <input type="text"  id="checkOut" class="form-control" style="margin-left: -20px;"> -->
+								 			<select class="form-control" name="checkOut" id="checkOut" style="margin-left: -20px; text-align: center">
+								            	<option value="0" selected>--시간 선택--</option>
+								            	<option value="1">09:00 </option>
+								            	<option value="2">10:00 </option>
+								            	<option value="3">11:00 </option>
+								            	<option value="4">12:00 </option>
+								            	<option value="5">13:00 </option>
+								            	<option value="6">14:00 </option>
+								            	<option value="7">15:00 </option>
+								            	<option value="8">16:00 </option>
+								            	<option value="9">17:00 </option>
+								            	<option value="10">18:00 </option>
+								            	<option value="11">19:00 </option>
+								            	<option value="12">20:00 </option>
+								            	<option value="13">21:00 </option>
+								            </select>
+								 	</div><!-- <div class="form-group col-lg-5">  -->
+				            <br><br>
+				            </form>
+				            </div>
+				            	
+								
+								
+								
+								</td>
  								
 							</tr>
 							
@@ -193,23 +341,22 @@
 						</table>
 						
 					<div>
-					    <label for="agree"><span> 내 단골들에게 긴급 요청 서비스 등록 알람을 보내겠습니까?</span></label>
+					    <label for="agree"><span> 내 단골들에게 현재 긴급 요청 서비스 등록 알람을 보내겠습니까?</span></label>
 						<input type="checkbox" class="form-check-input" id="agree" name="agree" />					  
 					</div><br>
 					
-					<div role="group" aria-label="Basic example">
-						<button type="submit" class="btn btn-primary">위 내용이 맞습니다</button>
-						<button type="reset" class="btn btn-secondary">취소</button>
-					</div>
 						
 					</div>
 				</div>
 				<br>
             	
-            	
-	
+            	<div role="group" aria-label="Basic example" class="text-center">
+						<button type="submit" class="btn btn-primary">결제하기</button>
+						<button type="reset" class="btn btn-secondary">취소</button>
+				</div>
+				
 						
-			
+				</div>
 				</div><!-- col-lg-7 -->
             </div><!-- row justify-content-center -->
         </div><!-- .container -->

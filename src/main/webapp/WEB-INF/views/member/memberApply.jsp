@@ -55,9 +55,12 @@
 						매월 생활비를 벌어보세요.</p><br><br>
 					
 						<span class="hh2_font">
-						제출하신 펫시터 지원서의 결과는 매일 15시에 최종 발표해드립니다.</span>
+						방문 펫시터로 지원 후 합격하신다면<br> 
+						방문 펫시팅 서비스 제공이 가능한 권한이 주어집니다.<br>
+						이 후 위탁 펫시터 지원서 제출시
+						모든 서비스 제공이 가능한 펫시터로 활동 할 수 있게 됩니다. <br></span>
 					 	</div>
-						
+							
 						<br><br><br>
 						
 							<div class="panel panel-default">
@@ -71,16 +74,19 @@
 							      <div class="col-sm-3 text-center"><img src="/images/member/u.svg" class="svgImg1"><br>편리한 일정관리</div>
 							      <div class="col-sm-2 text-center"><img src="/images/member/i.svg" class="svgImg1"><br>매력적인 프로필 정보로 인기있는 펫시터 되기</div>
 							    
-							    
 							   </div>
 							 
-					  			<a href="" class="btn" role="button">방문 펫시터 지원하기</a>
 					</div><!-- .container -->
                 </div>
+					  			
+		        </div>
+		    </div>
+    
+    
+					  			<div class="text-center">
+	  								<a href="memberApplyForm" class="btn" style="background-color:#FE5C17; color:white;" role="button" role="button">방문 펫시터 지원하기</a>
+								</div>
             </div>
-        </div>
-    </div>
-    <!-- 404 End -->
 
 	<div>
 		<c:import url="footer.jsp"></c:import>
