@@ -1,16 +1,8 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FE5C17;
+    --primary: #E56D00;
     --light: #F0FBFC;
     --dark: #181d38;
-}
-
-@font-face
-{
-	font-family: 'Pretendard-Regular';
-	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
 }
 
 .fw-medium {
@@ -47,7 +39,7 @@
 
 /*** Button ***/
 .btn {
-    font-family: Pretendard-Regular;
+    font-family: 'Nunito', sans-serif;
     font-weight: 600;
     transition: .5s;
 }
@@ -88,7 +80,7 @@
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
-    font-family: "Pretendard-Regular;
+    font-family: "Font Awesome 5 Free";
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
