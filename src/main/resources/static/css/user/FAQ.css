@@ -1,0 +1,27 @@
+.accordion-button{
+	height: 50px;
+}
+.FAQ_Area > .nav-pills{
+	 justify-content:center;
+	 margin-top: 15px;
+}
+.accordion-header > button {
+	font-size: 20px;
+	font-weight: bold;
+}
+.accordion-body > p {
+	font-size: 13px;
+	color: #8e8e8e;
+}
+.FAQ_Area > .nav-pills > .nav-item {
+	font-size: 20px;
+	margin: 10px;
+	border: 1px solid;
+	border-radius: 10px;
+}
+.FAQ_Area > .nav-pills > .nav-item > .active {
+	background: #FE5C17;
+	border-radius: 10px;
+}
+
+
