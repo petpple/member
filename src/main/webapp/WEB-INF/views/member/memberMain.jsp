@@ -84,10 +84,10 @@
             <div class="row justify-content-center">
        
 				<div class="row">
-				<div class="col-lg-2" id="info">
-					<c:import url="http://localhost:8092/member/memberSide"></c:import>
-				</div>
-				
+				<div class="row justify-content-center">
+            		<div class="col-lg-2 wow fadeInUp " data-wow-delay="0.2s">
+						<c:import url="http://localhost:8092/member/memberSide"></c:import>
+					</div>
 				<!-- 진행 중인 펫시팅 -->
 				<div class="col-lg-7">
 					<div class="IMG1">
