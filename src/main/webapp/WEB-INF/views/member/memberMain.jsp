@@ -87,6 +87,8 @@
 				<div class="col-lg-2" id="info">
 					<c:import url="http://localhost:8092/member/memberSide"></c:import>
 				</div>
+				
+				<!-- 진행 중인 펫시팅 -->
 				<div class="col-lg-7">
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
@@ -95,7 +97,7 @@
 					<div class="box_mi">
 						<span class="label label-default s_font font_black"
 							style="background-color: rgb(225, 199, 199);">긴급-방문서비스</span>
-						<img src="/images/member/q.svg" class="svgImg1">
+						<img src="/images/member/timer-icon.svg" class="svgImg1">
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
 							<table class="table tab s_font">
@@ -124,13 +126,102 @@
 							</table>
 	
 							<div>
-								<button type="button" class="but btn btn-danger">의뢰자 노쇼</button>
-								<button type="button" class="but btn"
-									style="background-color: #FE5C17; color: white;">일지 쓰기</button>
+								<button type="button" class="btn btn-danger">펫시터 노쇼</button>
+								<button type="button" class="btn"
+									style="background-color: #FE5C17; color: white;">일지 보기</button>
 							</div>
+			
 						</div>
 					</div>
+					
 					<br>
+					
+					
+					<!-- 긴급 서비스 확정 대기 -->
+					
+					<div class="IMG1">
+						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
+							class="font h_font">긴급 서비스 수락 대기</span>
+					</div>
+					<div class="box_mi">
+						<span class="label label-default s_font font_black"
+							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
+						<span id="remainTime" class="s_font"></span>
+						<div class="serv_on">
+							<table class="table tab s_font">
+								<tr>
+									<th>신청번호</th>
+									<th style="text-align: center;">내용</th>
+									<th>긴급 요청 서비스 신청자 수</th>
+								</tr>
+								<tr>
+									<td><span class="reserveInfo">2333323</span></td>
+									<td>
+										<ul>
+											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
+											<li>시작일자: 2022-12-12 10:00</li>
+											<li>종료일자: 2022-12-12 13:00</li>
+										</ul>
+									</td>
+									<td>
+										<span id="sitterSu"> 3 </span> 명
+									</td>
+								</tr>
+							</table>
+							<div class="">
+									<button type="button" class="btn"
+									style="background-color: #FE5C17; color: white;">수락하러 가기</button>
+							
+							</div>
+	
+							
+						</div>
+					</div>
+					
+					
+					
+					<!-- 긴급 서비스 확정 대기 -->
+					
+					<div class="IMG1">
+						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
+							class="font h_font">긴급 서비스 확정 대기</span>
+					</div>
+					<div class="box_mi">
+						<span class="label label-default s_font font_black"
+							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
+						<span id="remainTime" class="s_font"></span>
+						<div class="serv_on">
+							<table class="table tab s_font">
+								<tr>
+									<th>신청번호</th>
+									<th style="text-align: center;">내용</th>
+									<th>의뢰자</th>
+									<th>취소여부</th>
+								</tr>
+								<tr>
+									<td><span class="reserveInfo">2333323</span></td>
+									<td>
+										<ul>
+											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
+											<li>시작일자: 2022-12-12 10:00</li>
+											<li>종료일자: 2022-12-12 13:00</li>
+										</ul>
+									</td>
+									<td><div class="reservInfoTd">
+											<img src="/images/member/profile.svg" style="width: 60px;"><br>
+											<span class="mb_font">루카스</span>
+										</div>
+									</td>
+									<td><button type="button" class="btn btn-danger">확정하기</button></td>
+								</tr>
+							</table>
+	
+							
+						</div>
+					</div>
+					
+					
+					<!-- 진행 예정인 펫시팅 -->
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
 							class="font h_font">진행 예정인 펫시팅</span>
