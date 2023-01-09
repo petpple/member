@@ -1,0 +1,108 @@
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	font-family: Pretendard-Regular;
+}
+
+.container {
+	display: grid;
+	padding-top: 30px;
+	width: 1300px !important;
+	
+}
+
+.box_pi {
+	border: 1px solid rgba(210, 210, 210, 0.913);
+	height: 100px;
+	box-shadow: 1px 1px 1px rgb(167, 165, 165);
+	border-radius: 4px;
+	padding: 13px;
+}
+
+.box_pi_money {
+	border: 1px solid rgba(210, 210, 210, 0.913);
+	box-shadow: 1px 1px 1px rgb(167, 165, 165);
+	border-radius: 4px;
+	padding: 13px;
+}
+
+.box_mi {
+	background-color: rgba(251, 238, 231, 0.636);
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	box-shadow: 1px 1px 1px rgb(222, 214, 214);
+	border-radius: 4px;
+	padding: 5px;
+	margin-bottom: 20px;
+}
+
+.svgImg1 {
+	padding-bottom: 5px
+}
+
+.svgImg2 {
+	padding-bottom: 1px
+}
+
+
+
+.h_font {
+	font-size:22px;
+	font-weight: 600;
+	
+}
+.h2_font {
+	font-size:20px;
+	font-weight: 600;
+}
+.l_font{
+	font-size:17px;
+}
+.mb_font{
+	font-size:15px;
+	font-weight: 600;
+}
+.m_font{
+	font-size:15px;
+	
+}
+.s_font {	
+	font-size:13px;
+}
+
+.font_black{
+	color:black !important;
+}
+
+.side_aTag:hover {
+	background-color: blanchedalmond;
+	color: blanchedalmond;
+}
+
+.but {
+	height: 30px;
+	text-align: center;
+	box-shadow: 1px 1px 1px rgb(203, 203, 203);
+	margin-left: 5px;
+}
+
+.tab th {
+	text-align: center;
+}
+
+
+.reserveInfo {
+	line-height: 60px;
+	text-align: center;
+}  
+
+.reservInfoTd {
+	padding: auto;
+	text-align: center;
+}

@@ -1,0 +1,79 @@
+.container {
+	display: grid;
+	padding-top: 30px;
+	padding: auto;
+	padding:auto;
+	width:1300px;
+}
+.h_font {
+   font-size:22px;
+   font-weight: 600;
+   
+}
+.h2_font {
+   font-size:20px;
+   font-weight: 600;
+}
+.l_font{
+   font-size:17px;
+}
+.mb_font{
+   font-size:15px;
+   font-weight: 600;
+}
+.m_font{
+   font-size:15px;
+   
+}
+.s_font {   
+   font-size:13px;
+}
+
+.font_black{
+   color:black;
+}
+
+.IMG1
+{
+  	 margin-left: 30px;
+}
+.svgImg2
+{
+	padding-bottom: 5px
+}
+.box_miInfo
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     
+}
+
+infoChange
+{
+	font-size:15px;
+}
+
+[type="radio"]:checked {
+  border: 0.3em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+
+[type="radio"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>member-sample</title>
+    <title>user-sample</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -27,6 +27,8 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    <link rel="stylesheet" href="/css/user/FAQ.css">
+    
 </head>
 
 <body>

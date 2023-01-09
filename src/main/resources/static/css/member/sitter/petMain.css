@@ -1,0 +1,208 @@
+@font-face {
+	font-family: 'Pretendard-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+		format('woff');
+	font-weight: 400;
+	font-style: normal;
+}
+
+* {
+	font-family: Pretendard-Regular;
+}
+
+.container {
+	display: grid;
+	padding-top: 30px;
+	padding:auto;
+	width:1300px;
+}
+
+.box_pi {
+	border: 1px solid rgba(210, 210, 210, 0.913);
+	height: 100px;
+	box-shadow: 1px 1px 1px rgb(167, 165, 165);
+	border-radius: 4px;
+	padding: 13px;
+}
+
+.box_pi_money {
+	border: 1px solid rgba(210, 210, 210, 0.913);
+	box-shadow: 1px 1px 1px rgb(167, 165, 165);
+	border-radius: 4px;
+	padding: 13px;
+}
+
+.box_mi {
+	background-color: rgba(251, 238, 231, 0.636);
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	box-shadow: 1px 1px 1px rgb(222, 214, 214);
+	border-radius: 4px;
+	padding: 13px;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.box_diary {
+	background-color: white;
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	box-shadow: 1px 1px 1px rgb(222, 214, 214);
+	border-radius: 4px;
+	padding: 10px;
+	height:500px;
+
+}
+
+
+.box_diary_flex {
+	background-color: white;
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	box-shadow: 1px 1px 1px rgb(222, 214, 214);
+	border-radius: 4px;
+	padding: 12px;
+	display:flex;
+	
+}
+
+
+
+.box_cal {
+	border: 1px solid rgba(210, 210, 210, 0.913);
+	box-shadow: 1px 1px 1px rgb(167, 165, 165);
+	border-radius: 4px;
+	padding: 13px;
+	margin-top: 5px;
+}
+
+.svgImg1 {
+	padding-bottom: 5px
+}
+
+.svgImg2 {
+	padding-bottom: 1px
+}
+
+.cal_md_font {
+	font_size: 12pt;
+	
+}
+
+.h_font {
+	font-size:22px;
+	font-weight: 600;
+	
+}
+.h2_font {
+	font-size:20px;
+	font-weight: 600;
+}
+.l_font{
+	font-size:17px;
+}
+.mb_font{
+	font-size:15px;
+	font-weight: 600;
+}
+.m_font{
+	font-size:15px;
+	
+}
+.s_font {	
+	font-size:13px;
+}
+
+.font_black{
+	color:black;
+}
+
+.side_aTag:hover {
+	background-color: blanchedalmond;
+	color: blanchedalmond;
+}
+
+.calendar {
+	height: 250px;
+	margin-top: 10px;
+}
+
+/* td, th {
+	font-size: 13px;
+	color: black;
+} */
+
+.current:hover {
+	background-color: blanchedalmond;
+	cursor: pointer;
+}
+
+.cal_box {
+	background-color: #f4621c;
+	width: 6px;
+	height: 6px;
+	border: 1px solid orange;
+	border-radius: 30px;
+	margin: 0;
+	padding: 0;
+}
+
+.cal_detail_div {
+	padding: 10px;
+	float: left;
+	text-align: center;
+}
+
+.box_cal_detail {
+	background-color: rgba(251, 238, 231, 0.636);
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	height: 90px;
+	border-radius: 10px;
+	padding-left: 20px;
+}
+
+.but {
+	height: 30px;
+	text-align: center;
+	box-shadow: 1px 1px 1px rgb(203, 203, 203);
+	margin-left: 5px;
+}
+
+.reserveInfo {
+	line-height: 60px;
+}
+
+/* .tab th td{
+	font-size:17px;
+	color:black;
+} */
+.tab th {
+	text-align: center;
+}
+
+
+.reservInfoTd {
+	padding: auto;
+	text-align: center;
+}
+
+.cal_detail_div {
+	padding: 10px;
+	float: left;
+	text-align: center;
+}
+
+
+.diary_inactive {
+	color: black;
+}
+
+.diary_table td{
+	width:250px;
+	padding-left:100px;
+}
+
+.div_horizon{
+	padding-top:10px;
+	flex:1;
+	margin-left:3px;
+	text-align:center;
+}
