@@ -97,26 +97,47 @@ public class MemberController {
 		return "member/memberCareTypeCho";
 	}
 	
+	/* 의뢰인 긴급서비스 펫 선택 */
 	@RequestMapping("/member/memberUsvcPetCho")
 	public String memberUsvcPetCho()
 	{
 		return "member/memberUsvcPetCho";
 	}
 	
+	/* 의뢰인 후기 내 펫 관리 */
 	@RequestMapping("/member/memberMyPet")
 	public String membermemberMyPet()
 	{
 		return "member/memberMyPet";
 	}
 	
+	/* 의뢰인 후기 내 펫 등록 페이지 */
 	@RequestMapping("/member/memberMyPetInsert")
-	public String membermemberMyPetInsert()
+	public String memberMyPetInsert()
 	{
 		return "member/memberMyPetInsert";
 	}
 	
+	/* 의뢰인 후기 쓸 펫 선택 */
+	@RequestMapping("/member/memberReviewPetChoice")
+	public String memberReviewPetChoice()
+	{
+		return "member/memberReviewPetChoice";
+	}
 	
+	/* 의뢰인 memberFAQ */
+	@RequestMapping("/member/memberFAQ")
+	public String memberFAQ()
+	{
+		return "member/memberFAQ";
+	}
 	
+	/* 의뢰인 내 펫 수정 폼 */
+	@RequestMapping("/member/memberMyPetUpdate")
+	public String memberMyPetUpdate()
+	{
+		return "member/memberMyPetUpdate";
+	}
 	
 	
 }
