@@ -14,25 +14,25 @@ input[type="radio"] + label {
 	display:inline-block;
 	text-align: center;
 	color:#555;
-/* 	border-bottom: 40px solid #999; */
-/* 	border-left: 25px solid transparent; */
-/* 	border-right: 25px solid transparent; */
+	border-bottom: 30px solid #999;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
 	height: 0;
-	width: 140px;
+	width: 125px;
 	cursor:pointer;
 }
 
 input[type="radio"]:checked + label {
-/* 	border-bottom: 40px solid #FE5C17; */
-/* 	border-left: 25px solid transparent; */
-/* 	border-right: 25px solid transparent; */
+	border-bottom: 30px solid #FE5C17;
+	border-left: 25px solid transparent;
+	border-right: 25px solid transparent;
 	color:white;
 }
 
 .conbox {
 	width:500px;
 	height:550px;
-	margin:0 auto;
+	margin:auto;
 	display:none;
 	box-shadow: 5px 5px 20px 1px rgb(200, 200, 200);
 	/* border-radius: 10px; */
@@ -40,22 +40,13 @@ input[type="radio"]:checked + label {
 	font-size: 13px;
 } 
 
-input[id="careType1"]:checked ~ .con1 {
+input[id="tab01"]:checked ~ .con1 {
 	display:block;
 }
 
-input[id="careType2"]:checked ~ .con2 {
+input[id="tab02"]:checked ~ .con2 {
 	display:block;
 }
-
-input[id="svcType1"]:checked ~ .con1 {
-	display:block;
-}
-
-input[id="svcType2"]:checked ~ .con2 {
-	display:block;
-}
-
 .login {
 	text-align: center;
 }
@@ -118,11 +109,7 @@ label{
 	margin: 0px;
 }
 
-#err1 {
-	color: red;
-	display: none;
-}
-#err2 {
+#err1, #err2  {
 	color: red;
 	display: none;
 }
@@ -130,4 +117,7 @@ label{
 a 
 {
 	text-decoration: none;
+}
+.box {
+ height: 600px;
 }
