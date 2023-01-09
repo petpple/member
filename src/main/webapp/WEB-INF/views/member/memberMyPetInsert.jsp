@@ -130,90 +130,91 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 					<span class="font h_font">내 펫 관리</span>
 		       		</div>
 		       		
-		       		<div class="box_miInfo">
-						<label for="homeTaba">사진 등록</label><br>
-							<input type="file" class="real-upload" accept="image/*" required multiple>
-					</div>
-        	
-		        	
-		        	
-		        	<div class="box_miInfo">
-		       			<div class="form-inline">
-							<div class="form-group">
-							
-								<label for="kinds">종류</label><br>
-							 	<div class="radio">
-								    <input type="radio" name="kinds" id="kinds" value="1">
-								    강아지&emsp;&emsp;&emsp;
-								 	<input type="radio" name="kinds" id="kinds" value="2">
-								    고양이
-								</div>
-								<br><br>
+		       		<form action="">
+		       		
+			       		<div class="box_miInfo">
+							<label for="homeTaba">사진 등록</label><br>
+								<input type="file" class="real-upload" accept="image/*" required multiple>
+						</div>
+	        	
+			        	
+			        	
+			        	<div class="box_miInfo">
+			       			<div class="form-inline">
+								<div class="form-group">
 								
-								<label for="name">이름</label><br>
-								<label>
-							   	<input type="text" class="form-control" id="name" placeholder="예) 댕댕이">
-							 	</label>
-							 	<br><br>
-							 	
-							 	<label for="gender">성별</label><br>
-							 	<div class="radio">
-								    <input type="radio" name="gender" id="gender" value="1">
-								    남&emsp;&emsp;&emsp;&emsp;&emsp;
-								    <input type="radio" name="gender" id="gender" value="2">
-								    여
-								</div>
-								<br><br>
-								
-								<label for="kind">품종</label><br>
-							   		<label>
-							   		<input type="text" class="form-control" id="kind" placeholder="예) 말티즈">
-							 		</label>
-							 	<br><br>
-							 	
-							 	<label for="datepicker">생년월일</label><br>
-							 		<label>
-							 		<input type="text"  id="datepicker" class="form-control">
-							 		</label>
-								 	<!-- 생년월일 datepicker  -->
-									<script type="text/javascript">
-										$("#datepicker").datepicker();
-									</script>
+									<label for="kinds">종류</label><br>
+								 	<div class="radio">
+									    <input type="radio" name="kinds" id="kinds" value="1">
+									    강아지&emsp;&emsp;&emsp;
+									 	<input type="radio" name="kinds" id="kinds" value="2">
+									    고양이
+									</div>
 									<br><br>
-							 	
-							 	<label for="weight">몸무게</label><br>
-							 	<label>
-							   	<input type="text" class="form-control" id="weight" placeholder="예) 2.8">
-							 	</label>
-							 	
-							 	<br><br>
-							 	
-							 	<label for="neutere">중성화</label><br>
-							 	<div class="radio">
-								    <input type="radio" name="neutere" id="neutere" value="1">
-								    예&emsp;&emsp;&emsp;&emsp;&emsp;
-								    <input type="radio" name="neutere" id="neutere" value="2">
-								    아니요
-								</div>
-								<br><br>
-								
-		        			</div>
-						
-						
-						
-						<div class="form">
-							<label for="floatingTextarea2">기타 참고사항</label><br>
-								<textarea class="form-control" placeholder="위 질문 외에도 주의해야 할 점이나 참고 해야할 특이사항이 있다면 300자 이내로 작성해주세요." id="floatingTextarea2" style="height: 100px"></textarea>
-								<br>
+									
+									<label for="name">이름</label><br>
+									<label>
+								   	<input type="text" class="form-control" id="name" placeholder="예) 댕댕이">
+								 	</label>
+								 	<br><br>
+								 	
+								 	<label for="gender">성별</label><br>
+								 	<div class="radio">
+									    <input type="radio" name="gender" id="gender" value="1">
+									    남&emsp;&emsp;&emsp;&emsp;&emsp;
+									    <input type="radio" name="gender" id="gender" value="2">
+									    여
+									</div>
+									<br><br>
+									
+									<label for="kind">품종</label><br>
+								   		<label>
+								   		<input type="text" class="form-control" id="kind" placeholder="예) 말티즈">
+								 		</label>
+								 	<br><br>
+								 	
+								 	<label for="datepicker">생년월일</label><br>
+								 		<label>
+								 		<input type="text"  id="datepicker" class="form-control">
+								 		</label>
+									 	<!-- 생년월일 datepicker  -->
+										<script type="text/javascript">
+											$("#datepicker").datepicker();
+										</script>
+										<br><br>
+								 	
+								 	<label for="weight">몸무게</label><br>
+								 	<label>
+								   	<input type="text" class="form-control" id="weight" placeholder="예) 2.8">
+								 	</label>
+								 	
+								 	<br><br>
+								 	
+								 	<label for="neutere">중성화</label><br>
+								 	<div class="radio">
+									    <input type="radio" name="neutere" id="neutere" value="1">
+									    예&emsp;&emsp;&emsp;&emsp;&emsp;
+									    <input type="radio" name="neutere" id="neutere" value="2">
+									    아니요
+									</div>
+									<br><br>
+									
+			        			</div>
 							
-								<div class="col text-center">
-				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8093/fsitter/fsitterMyPet'">추가하기</button>
-				                </div> 
-		                </div><!-- <div class="form-floating"> -->	
-		                </div>
-			        </div>
-						
+							
+							
+							<div class="form">
+								<label for="floatingTextarea2">기타 참고사항</label><br>
+									<textarea class="form-control" placeholder="위 질문 외에도 주의해야 할 점이나 참고 해야할 특이사항이 있다면 300자 이내로 작성해주세요." id="floatingTextarea2" style="height: 100px"></textarea>
+									<br>
+								
+									<div class="col text-center">
+					                    <a href="memberMyPet" role="button" class="btn" style="background-color: #FE5C17; color: white;">추가하기</button>
+					                </div> 
+			                </div><!-- <div class="form-floating"> -->	
+			                </div>
+				        </div>
+						</form>
 
                 </div>
             </div>
