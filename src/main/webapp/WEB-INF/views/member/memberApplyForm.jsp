@@ -26,9 +26,10 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="/css/main.css"> -->
-    <link rel="stylesheet" href="/css/user/FAQ.css">
+    <link rel="stylesheet" href="/css/main.css">
+<!--     <link rel="stylesheet" href="/css/user/FAQ.css"> -->
     <link rel="stylesheet" href="/css/member/memberMain.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
 </head>
 <style type="text/css">
@@ -175,6 +176,11 @@
 						<br>
 						<br>
 	
+<!-- 						<div class="input-group mb-3"> -->
+<!-- 						  <span class="input-group-text" id="inputGroup-sizing-default">예금주명<span class="sss_font"> * </span></span> -->
+<!-- 						  <input type="text" id="depositor" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="수익을 입금 받을 예금주 명을 입력 해 주세요."> -->
+<!-- 						</div> -->
+												
 	
 						<p class="l_font">
 							예금주명<span class="sss_font"> * </span>
@@ -227,7 +233,7 @@
 	</div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/library/wow/wow.min.js"></script>
     <script src="/library/easing/easing.min.js"></script>

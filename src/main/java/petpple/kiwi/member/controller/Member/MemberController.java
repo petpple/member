@@ -91,6 +91,32 @@ public class MemberController {
 	{
 		return "member/memberSvcTypeCho";
 	}
+	@RequestMapping("/member/memberCareTypeCho")
+	public String membeCareTypeCho()
+	{
+		return "member/memberCareTypeCho";
+	}
+	
+	@RequestMapping("/member/memberUsvcPetCho")
+	public String memberUsvcPetCho()
+	{
+		return "member/memberUsvcPetCho";
+	}
+	
+	@RequestMapping("/member/memberMyPet")
+	public String membermemberMyPet()
+	{
+		return "member/memberMyPet";
+	}
+	
+	@RequestMapping("/member/memberMyPetInsert")
+	public String membermemberMyPetInsert()
+	{
+		return "member/memberMyPetInsert";
+	}
+	
+	
+	
 	
 	
 }
