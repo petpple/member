@@ -1,0 +1,384 @@
+header{
+	width: 100%;
+	height: 100px;
+	border-style:solid; 
+	border-color: gray;
+	margin:2px;
+	position: relative;
+}
+#loge{
+	position: absolute;
+	top : 30px;
+	left: 30px;
+}
+
+#top_menu{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+}
+
+nav{
+	position: absolute;
+	bottom: 10px;
+	left: 25%;
+	font-size: 20px;
+} 
+
+nav li{
+	display: inline;
+	margin-left: 50px;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+*
+{
+	font-family: Pretendard-Regular;
+}
+.container 
+{
+	display: grid;
+    padding-top: 30px; 
+     
+    width: 1300px;   
+}
+.box_pi
+{
+     border: 1px solid rgba(210, 210, 210, 0.913); 
+     height: 350px;
+     box-shadow: 1px 1px 1px rgb(167, 165, 165); 
+     border-radius: 4px;
+     padding: 13px;
+     text-align: center;
+
+}
+.box_mypi
+{
+     border: 1px solid rgba(210, 210, 210, 0.913); 
+     height: 340px;
+     box-shadow: 1px 1px 1px rgb(167, 165, 165); 
+     border-radius: 4px;
+     padding: 13px;
+     text-align: center;
+	 font-size: 22px;
+}
+.box_mi
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 60px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+}
+.box_mi2
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+    
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+     
+    
+ }
+.box_mibank
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 5px;
+}
+.box_miInfo
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 3px;
+}
+.box_miDr
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 5px;
+}
+
+.box_miBl
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 5px;
+}
+
+.box_mypi2
+{
+     border: 1px solid rgba(210, 210, 210, 0.913); 
+     height: 340px;
+     box-shadow: 1px 1px 1px rgb(167, 165, 165); 
+     border-radius: 4px;
+     padding: 13px;
+     
+	 font-size: 15px;
+	 margin-left: 15px;
+	 
+}
+
+.box_miMyPr1
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+     
+}
+.box_miMyPr2
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+}
+
+.box_miMyPr3
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+}
+
+td,th 
+{
+     font-size: 22pt;
+     color: black;
+}
+form-inline
+{
+  	 text-align: center;
+  	 margin-left: 50px;
+}
+.col-md-2
+{
+     height: 350px;
+}
+.IMG1
+{
+  	 margin-left: 30px;
+}
+.IMG3
+{
+  	 margin-left: 30px;
+  	 height: 100;
+  	 width: 600;
+}
+.svgImg4
+{
+	viewBox="0 600 150 600 "
+  	 height: 150px;
+  	 width: 600px;
+}
+.svgImg5
+{
+	
+  	 height: 120px;
+  	 width: 120px;
+  	 float: left;
+  	 margin-top: -10px;
+}
+bank_change
+{
+  	 margin-left: 30px;
+}
+  
+.box_mi_top
+{
+	background-color: white;
+    border: 1px solid rgba(227, 226, 226, 0.913); 
+	
+    box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+    border-radius: 4px;
+    padding: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 13pt;
+       
+	
+}
+.box_mi_down
+{
+	background-color: white;
+    border: 1px solid rgba(227, 226, 226, 0.913); 
+	
+    box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+    border-radius: 4px;
+    padding: 60px;
+    width: 100%;
+	font-size: 20pt;
+	height: 100px;
+}
+.textarea
+{
+	 width: 100px;
+}
+.form-check
+{
+	margin-left: 50px;
+}
+
+.title_sub
+{
+	font-size: 18pt;
+	font-weight: bold;
+	
+}
+
+.title_int
+{
+	font-weight: bold;
+	
+}
+.map
+{
+	width: 200px;
+	height: 200px;
+}
+.form-inline
+{
+	margin-bottom :10px; 
+	margin-right: 10px;
+}
+#loc2
+{	
+	margin-left:20px;
+	width: 180px;
+	
+}
+#loc3
+{	
+	margin-top: 20px;
+	margin-left:20px;
+	width: 350px
+}
+
+#sitterName2
+{
+	width: 70px;
+}
+#sitterTitle
+{
+	margin-left:155px;
+	width: 350px;
+}
+
+[type="radio"] {
+  vertical-align: middle;
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  transition: border ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.3em solid tomato;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+
+[type="radio"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.font b_font
+{
+	font-size:17px;	
+}
+
+.MyPro1
+{
+	float: right;
+}
+.h_font {
+   font-size:22px;
+   font-weight: 600;
+   
+}
+.h2_font {
+   font-size:20px;
+   font-weight: 600;
+}
+.l_font{
+   font-size:17px;
+}
+.mb_font{
+   font-size:15px;
+   font-weight: 600;
+}
+.m_font{
+   font-size:15px;
+   
+}
+.s_font {   
+   font-size:13px;
+}
+
+.font_black{
+   color:black;
+}
