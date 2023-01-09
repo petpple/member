@@ -161,14 +161,12 @@ margin: 370px;
 						<div class="col-sm-6">
 							<a href="#" class="visit">
 								<img src="/images/member/visit.svg" class="visit" id="visit"> <br>
-								<span class="visit"> 방문서비스</span>
 							 </a>
 						</div>
 
 						<div class="col-sm-6">
 							 <a href="#" class="fos">
 								<img src="/images/member/fos.svg" class="fos" id="fos"> <br>
-								<span class="fos"> 위탁서비스</span>
 							 </a>
 						</div>
 					
