@@ -11,6 +11,8 @@ public interface MemberMapper {
 	Member getMember(int id);
 
     List<Member> getMemberList();
+    
+    int getCount();
 
     int createMember(Member member);
 
