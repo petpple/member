@@ -95,6 +95,14 @@ public class MemberController {
 		return "member/memberMyPet";
 	}
 	
+	@RequestMapping("/member/memberMyBlock")
+	public String memberMyBlock()
+	{
+		return "member/memberMyBlock";
+	}
+	
+	
+	
 	
 	//-------------- 의뢰인 긴급서비스 등록 디테일------------------
 	@RequestMapping("/member/memberUsvcDetail")
@@ -212,6 +220,6 @@ public class MemberController {
 		return "member/memberInfoFsvcPast";
 	}
 	
-	
+
 	
 }

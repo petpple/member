@@ -51,7 +51,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index" class="nav-item nav-link active">긴급요청 서비스</a>
+                <a href="#" class="nav-item nav-link active">긴급요청 서비스</a>
                 <a href="#" class="nav-item nav-link">방문 서비스</a>
                 <a href="#" class="nav-item nav-link">위탁 서비스</a>
                 <a href="memberFAQ" class="nav-item nav-link">FAQ</a>
@@ -60,10 +60,10 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                     <div class="dropdown-menu fade-down m-0">
                         <a href="memberMyInfo" class="dropdown-item">내 정보 변경</a>
-                        <a href="sample" class="dropdown-item">차단 목록</a>
-                        <a href="sample" class="dropdown-item">단골 펫시터 목록</a>
+                        <a href="memberMyBlock" class="dropdown-item">차단 목록</a>
+                        <a href="#" class="dropdown-item">단골 펫시터 목록</a>
                         <a href="memberMyPet" class="dropdown-item">내 펫 관리</a>
-                        <a href="sample" class="dropdown-item">탈퇴하기</a>
+                        <a href="#" class="dropdown-item">탈퇴하기</a>
                     </div>
                 </div>
                 
