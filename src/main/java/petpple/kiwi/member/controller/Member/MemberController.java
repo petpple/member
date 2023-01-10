@@ -1,20 +1,32 @@
 package petpple.kiwi.member.controller.Member;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import petpple.kiwi.member.repository.MemberMapper;
 
 @Controller
 public class MemberController {
 
+	@Autowired
+	private SqlSession sqlSession;
+	
 	@RequestMapping("/member/index")
 	public String memberIndex()
 	{
 		return "member/index";
 	}
 	
-	@RequestMapping("/member/sample")
-	public String sample()
+	@RequestMapping(value =  "/member/sample", method = RequestMethod.GET)
+	public String sample(Model model)
 	{
+		MemberMapper dao = sqlSession.getMapper(MemberMapper.class);
+		model.addAttribute("count", dao.getCount());
+		
 		return "member/sample";
 	}
 	
