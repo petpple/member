@@ -152,7 +152,7 @@
 									<th>신청번호</th>
 									<th style="text-align: center;">내용</th>
 									<th>의뢰자</th>
-									<th>확정여부</th>
+									<th>확정여부/후기쓰기</th>
 								</tr>
 								<tr>
 									<td><span class="reserveInfo">2333323</span></td>
