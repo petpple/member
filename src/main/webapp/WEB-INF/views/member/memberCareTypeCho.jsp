@@ -160,13 +160,13 @@ margin: 370px;
 					<div class="box_mi_t row">
 					
 						<div class="col-sm-6">
-							<a href="#" class="day">
+							<a href="memberSvcTypeCho" class="day" id="day">
 								<img src="/images/member/careTypeDay.svg" class="day" id="day"> <br>
 							 </a>
 						</div>
 
 						<div class="col-sm-6">
-							 <a href="#" class="time">
+							 <a href="memberSvcTypeCho" class="time" id="time">
 								<img src="/images/member/careTypeTime.svg" class="time" id="time"> <br>
 							 </a>
 						</div>
