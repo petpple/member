@@ -122,7 +122,8 @@
                    }  );        
          });
 </script>
-
+<style type="text/css">
+</style>
 
 </head>
 
@@ -197,10 +198,11 @@
 			                        	<input type="text" id="code" placeholder="우편번호" readonly="readonly">
 			                        </div>
 			                        <div class="col-md-5">
-			                        	<input type="button" onclick="DaumPostcode()" value="주소찾기">
+			                        	<input type="button" class="btn postCodeBtn" onclick="DaumPostcode()" value="주소찾기">
 			                        </div>
 									<div>
 										<input type="text" id="addr" placeholder="주소" readonly="readonly">
+										<input type="text" id="detailAddress" placeholder="상세주소">
 										<input type="hidden" id="lat" readonly="readonly">
 										<input type="hidden" id="lng" readonly="readonly">
 									</div>
