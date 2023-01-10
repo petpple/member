@@ -79,4 +79,12 @@ public class UserController {
 	}
 	//------------------------유저 회원가입 종료------------------------//
 	
+	//------------------------유저 ID/PW 찾기 시작------------------------//
+	@RequestMapping("/user/userIdPwSearch")
+	public String userIdPwSearch()
+	{
+		return "user/userIdPwSearch";
+	}
+	//------------------------유저 ID/PW 찾기 종료------------------------//
+	
 }
