@@ -56,7 +56,7 @@
             		
             	<div class="col-lg-7" id="">
             		<div class="box_mi"> 
-            			<span class="h2_font">긴급 요청 서비스 - 누적 펫시팅 횟수</span>
+            			<span class="h2_font">긴급 요청 서비스 - 누적 펫시팅 이력</span>
             			<div class="box_white">
             				<table class="table tab_Info m_font">
             					<tr>
