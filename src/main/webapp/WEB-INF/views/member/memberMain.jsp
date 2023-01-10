@@ -103,7 +103,7 @@
 							<table class="table tab s_font">
 								<tr>
 									<th>신청번호</th>
-									<th style="text-align: center;">내용</th>
+									<th>내용</th>
 									<th>의뢰자</th>
 									<th>결제금액</th>
 								</tr>
@@ -121,7 +121,7 @@
 											<span class="mb_font">루카스</span>
 										</div>
 									</td>
-									<td><span class="reserveInfo">350030원</span></td>
+									<td><span class="reserveInfo">350030</span>원</td>
 								</tr>
 							</table>
 	
@@ -136,67 +136,23 @@
 					
 					<br>
 					
-					
 					<!-- 긴급 서비스 확정 대기 -->
 					
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
-							class="font h_font">긴급 서비스 수락 대기</span>
+							class="font h_font">서비스 이용 확정 대기</span>
 					</div>
 					<div class="box_mi">
 						<span class="label label-default s_font font_black"
 							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
-							<table class="table tab s_font">
-								<tr>
-									<th>신청번호</th>
-									<th style="text-align: center;">내용</th>
-									<th>긴급 요청 서비스 신청자 수</th>
-								</tr>
-								<tr>
-									<td><span class="reserveInfo">2333323</span></td>
-									<td>
-										<ul>
-											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-											<li>시작일자: 2022-12-12 10:00</li>
-											<li>종료일자: 2022-12-12 13:00</li>
-										</ul>
-									</td>
-									<td>
-										<span id="sitterSu"> 3 </span> 명
-									</td>
-								</tr>
-							</table>
-							<div class="">
-									<button type="button" class="btn"
-									style="background-color: #FE5C17; color: white;">수락하러 가기</button>
-							
-							</div>
-	
-							
-						</div>
-					</div>
-					
-					
-					
-					<!-- 긴급 서비스 확정 대기 -->
-					
-					<div class="IMG1">
-						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
-							class="font h_font">긴급 서비스 확정 대기</span>
-					</div>
-					<div class="box_mi">
-						<span class="label label-default s_font font_black"
-							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
-						<span id="remainTime" class="s_font"></span>
-						<div class="serv_on">
-							<table class="table tab s_font">
+							<table class="table tab m_font">
 								<tr>
 									<th>신청번호</th>
 									<th style="text-align: center;">내용</th>
 									<th>의뢰자</th>
-									<th>취소여부</th>
+									<th>확정여부</th>
 								</tr>
 								<tr>
 									<td><span class="reserveInfo">2333323</span></td>
@@ -212,7 +168,11 @@
 											<span class="mb_font">루카스</span>
 										</div>
 									</td>
-									<td><button type="button" class="btn btn-danger">확정하기</button></td>
+									<td>
+										<div class="btn">
+											<a href="#" class="" role="button">확정하기</a>
+										</div>
+									</td>
 								</tr>
 							</table>
 	
@@ -234,7 +194,7 @@
 									<th>신청번호</th>
 									<th style="text-align: center">내용</th>
 									<th>의뢰자</th>
-									<th>결제금액</th>
+									<th>취소여부</th>
 								</tr>
 								<tr>
 									<td><span class="reserveInfo">23333</span></td>
@@ -252,7 +212,7 @@
 											<span class="mb_font">루카스</span>
 										</div>
 									</td>
-									<td><span class="reserveInfo">35000원</span></td>
+									<td><button type="button" class="btn btn-danger">취소하기</button></td>
 								</tr>
 								<tr>
 									<td><span class="reserveInfo">2333323</span></td>
@@ -270,7 +230,7 @@
 											<img src="/images/member/profile.svg" style="width: 60px;"><br>
 											<span class="mb_font">루카스</span>
 										</div></td>
-									<td><span class="reserveInfo">35000원</span></td>
+									<td><button type="button" class="btn btn-danger">취소하기</button></td>
 								</tr>
 								<tr>
 									<td><span class="reserveInfo">23333232</span></td>
@@ -290,7 +250,7 @@
 											<span class="mb_font">루카스아앙이라라</span>
 										</div>
 									</td>
-									<td><span class="reserveInfo">353,000원</span></td>
+									<td><button type="button" class="btn btn-danger">취소하기</button></td>
 								</tr>
 							</table>
 	
