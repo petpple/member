@@ -163,6 +163,12 @@ public class MemberController {
 	
 	/* --------------- 의뢰인 펫시팅 정보 왼쪽 Side---------------  */
 	
+	// 의뢰인 펫시팅 정보/ 긴급 요청 서비스 - 현재 의뢰중
+	@RequestMapping("/member/memberInfoUsvcIng")
+	public String memberInfoUsvcIng()
+	{
+		return "member/memberInfoUsvcIng";
+	}
 	// 의뢰인 펫시팅 정보/ 긴급 요청 서비스 - 의뢰인 수락 대기중 페이지
 	@RequestMapping("/member/memberInfoUsvcWaiting")
 	public String memberInfoUsvcWaiting()
@@ -175,6 +181,8 @@ public class MemberController {
 	{
 		return "member/memberInfoUsvcPast";
 	}
+	
+		
 	
 
 	// 의뢰인 펫시팅 정보/ 방문서비스 - 펫시터 수락 대기중
@@ -203,6 +211,7 @@ public class MemberController {
 	{
 		return "member/memberInfoFsvcPast";
 	}
+	
 	
 	
 }
