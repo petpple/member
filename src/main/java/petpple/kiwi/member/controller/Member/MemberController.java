@@ -138,6 +138,20 @@ public class MemberController {
 	{
 		return "member/memberMyPetUpdate";
 	}
+
+	/* 의뢰인 리뷰 작성 */
+	@RequestMapping("/member/memberReviewWritten")
+	public String memberReviewWritten()
+	{
+		return "member/memberReviewWritten";
+	}
+	
+	/* 의뢰인 긴급 요청 서비스 (확정)수락 대기중  */
+	@RequestMapping("/member/memberInfoFsvcWaiting")
+	public String memberInfoFsvcWaiting()
+	{
+		return "member/memberInfoFsvcWaiting";
+	}
 	
 	
 }
