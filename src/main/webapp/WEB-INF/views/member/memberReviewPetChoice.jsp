@@ -63,7 +63,7 @@
 			
 			<div class="col-lg-7">
 				<div class="IMG1">
-					<img src="/images/vsitter/diary.svg" class="svgImg1"> <span
+					<img src="/images/member/2.svg" class="svgImg1"> <span
 						class="font h_font">후기</span>
 				</div>
 				<ul class="nav nav-tabs">
@@ -86,7 +86,7 @@
 							<span class="mb_font">종료일자: </span><span class="m_font">2022-12-12 10:00</span>
 						</div>
 						<div class="div_horizon">
-							<img src="/images/vsitter/profile.png" style="width: 60px;"><br>
+							<img src="/images/member/profile.png" style="width: 60px;"><br>
 							<span class="mb_font">루카스</span>
 						</div>
 					</div>
@@ -94,17 +94,17 @@
 					<span class="l_font" style="font-weight:600;">후기 작성할 펫 선택 </span>
 					<div class="box_diary_flex">
 						<div class="div_horizon">
-							<img src="/images/vsitter/profile.png" style="width: 60px;"><br>
+							<img src="/images/member/profile.png" style="width: 60px;"><br>
 							<span class="mb_font">멍멍이</span><br>
 							<a href='http://localhost:8092/member/memberReviewForm' class="btn " style="background-color:#FE5C17; color:white">작성</a>
 						</div>
 						<div class="div_horizon">
-							<img src="/images/vsitter/profile.png" style="width: 60px;"><br>
+							<img src="/images/member/profile.png" style="width: 60px;"><br>
 							<span class="mb_font">야용이</span><br>
 							<a href='http://localhost:8092/member/memberReviewForm' class="btn" style="background-color:#FE5C17; color:white">작성</a>
 						</div>
 						<div class="div_horizon">
-							<img src="/images/vsitter/profile.png" style="width: 60px;"><br>
+							<img src="/images/member/profile.png" style="width: 60px;"><br>
 							<span class="mb_font">귄터</span><br>
 							<a href='http://localhost:8092/member/memberReviewForm' class="btn" style="background-color:#FE5C17; color:white">작성</a>
 						</div>					
@@ -119,7 +119,6 @@
             </div>
         </div>
     </div>
-    <!-- 404 End -->
 
 	<div>
 		<c:import url="footer.jsp"></c:import>

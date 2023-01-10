@@ -16,7 +16,7 @@
 }
 
 .box_diary_flex {
-	background-color: white;
+	background-color: #ffffff;
 	border: 1px solid rgba(227, 226, 226, 0.913);
 	box-shadow: 1px 1px 1px rgb(222, 214, 214);
 	border-radius: 4px;
@@ -46,7 +46,12 @@ li {
 
 
 .real-upload {
-	display: none;
+	 position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
 }
 
 /* .upload {
@@ -54,14 +59,153 @@ li {
       height: 200px;
       background-color: antiquewhite;
     } */
-.image-preview {
-	height: 200px;
-	background-color: aquamarine;
-	display: flex;
-	gap: 20px;
+
+
+.diary {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
 }
 
-/* 
-.btn_diary{
-	background-color: #ff8040!important;
+.file_label{
+	
+	display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #FE5C17;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+
+
+.diary_images {
+	
+	margin-top:10px;
+	display: flex;
+	
+	
+}
+
+.size_fix {
+	margin-left:10px;
+	width:230px;
+	
+}
+
+.size_fix > img{
+	width:200px;
+	height:150px;
+	object-fit: cover;
+}
+
+.petImg > img {
+	width:45px;
+	height:45px;
+	object-fit: cover;
+	border-radius: 30px;
+	
+}
+
+.input-file-button{
+  padding: 6px 25px;
+  background-color:#FE5C17;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-top : 10px;
+  margin-left:50px;
+}
+
+.box_mi2 {
+	background-color: rgba(251, 238, 231, 0.636);
+	border: 1px solid rgba(227, 226, 226, 0.913);
+	box-shadow: 1px 1px 1px rgb(222, 214, 214);
+	border-radius: 4px;
+	padding: 16px;
+	margin-bottom: 20px;
+}
+
+.input_date{
+	
+	padding:0px;width:70px;height:29px;
+	font-size: 13px !important;
+	color:#74777e!important;
+	text-align: center;
+}
+
+.shit{
+	font-size: 12px !important;
+	height:30px !important;
+	border-radius: 2px !important;
+}
+
+.h-divider {
+	margin: auto;
+	margin-top: 30px;
+	width: 100%;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+/* .h-divider .shadow {
+  overflow: hidden;
+  height: 1px;
 } */
+.h-divider .shadow:after {
+	content: '';
+	display: block;
+	margin: 1px auto 0;
+	width: 100%;
+	height: 1px;
+	border-radius: 1px/1px;
+	box-shadow: 1px 1px 1px rgb(200, 198, 198);
+}
+
+.h-divider .text {
+	width: 100px;
+	height: 30px;
+	padding: 12px;
+	position: absolute;
+	bottom: 100%;
+	margin-bottom: -13px;
+	left: 50%;
+	margin-left: -60px;
+	border-radius: 30px;
+	box-shadow: 0 1px 3px #999;
+	background: white;
+}
+
+.h-divider .text span {
+	position: absolute;
+	top: -10px;
+	bottom: 4px;
+	left: 4px;
+	right: 4px;
+	border-radius: 100%;
+	text-align: center;
+	line-height: 50px;
+	font-style: normal;
+	font-size: 14px;
+	color: #999;
+}
+
+.showMore {
+	background-color: #dedfe0 !important;
+	color: black!important; 
+	width:100%
+	
+}
+
+.showDiary {
+	color: #FE5C17;
+}
+/* .btn_diary{
+	background-color: #ff8040!important;
+}  */
