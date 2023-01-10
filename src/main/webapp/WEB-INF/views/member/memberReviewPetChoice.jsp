@@ -69,7 +69,7 @@
 				<ul class="nav nav-tabs">
 					<li class="nav-item">
 					<a href="sitterDiaryPetChoice" class="nav-link active"style="color: #FE5C17;">작성 가능한 후기</a></li>
-					<li class="nav-item"><a href="sitterDiaryWritten"
+					<li class="nav-item"><a href="memberReviewWritten"
 						class="nav-link diary_inactive font_black">작성 한 후기</a></li>
 				</ul>
 				<div class="box_mi2">
@@ -86,7 +86,7 @@
 							<span class="mb_font">종료일자: </span><span class="m_font">2022-12-12 10:00</span>
 						</div>
 						<div class="div_horizon">
-							<img src="/images/member/profile.png" style="width: 60px;"><br>
+							<img src="/images/member/profile.svg" style="width: 60px;"><br>
 							<span class="mb_font">루카스</span>
 						</div>
 					</div>
