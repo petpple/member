@@ -49,23 +49,8 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h1>여기다가</h1>
-                    <h1>코드작성하면 됩니다.</h1>
-                    <h1>이거 지우고</h1>
-                    <h1>쓰면 됩니다</h1>
-                    <h1>힘들었다.</h1>
-                    <h1>이 jsp 파일을 복사해서 jsp를 만들고</h1>
-                    <h1>작업하면 될 것 같습니다.</h1>
-                    <h1>sample jsp 입니다.</h1>
-                    <br><br><br><br><br><br><br><br><br>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
-                    <h1>가나다라</h1>
+                    <h1>${count }</h1>
+                    
                 </div>
             </div>
         </div>
