@@ -36,6 +36,13 @@
 <link rel="stylesheet" href="/css/user/userLoginForm.css">
 <link rel="stylesheet" href="/css/user/uMain.css">
 
+<style type="text/css">
+	#submitBtn{
+		background-color: #FF8C5B;
+		color: white;
+	}
+</style>
+
 </head>
 
 <body>
@@ -98,25 +105,29 @@
 							<!-- 펫시터 로그인 -->
 							<div class="conbox con2">
 								<div class="login">
-									<h1 class="h_font loginTitle">로그인</h1>
+									<h1 class="h_font loginTitle">아이디 찾기</h1>
 								</div>
-								<form action="#" method="post" id="petsitterForm">
+								<form action="#" method="post" id="userForm">
 									<div>
-										<h3 class="mb_font id">아이디</h3>
-										<input type="text" name="petsitterId" id="petsitterId"
-											placeholder="아이디">
+										<h3 class="mb_font id">이메일</h3>
+										<input type="text" name="userId" id="userId" placeholder="등록한 이메일">
 									</div>
 									<div>
-										<h3 class="mb_font pw">비밀번호</h3>
-										<input type="password" name="petsitterPw" id="petsitterPw"
-											placeholder="******">
+										<h3 class="mb_font pw">이름</h3>
+										<input type="text" name="name" id="name"
+											placeholder="본인 이름">
 									</div>
 									<div class="err">
-										<span class="s_font" id="err2"></span>
+										<span class="s_font" id="err1"></span>
 									</div>
 									<div>
-										<input type="button" value="로그인" id="pSubmitBtn"
-											class="btn pSubmitBtn m_font">
+										<input type="button" value="확인" id="submitBtn"
+											class="btn submitBtn m_font">
+									</div>
+									<div>
+										<input type="button" value="취소" id="signUpBtn"
+											class="btn signUpBtn m_font" onclick="#">
+										<!-- 회원 가입 폼으로 -->
 									</div>
 									<div class="forget">
 										<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
