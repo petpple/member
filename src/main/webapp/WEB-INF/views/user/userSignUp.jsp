@@ -35,41 +35,90 @@
 <!-- <link rel="stylesheet" href="/css/main.css"> -->
 
 <link rel="stylesheet" href="/css/user/uMain.css">
+<link rel="stylesheet" href="/css/user/userSignUp.css">
 
-<style type="text/css">
 
-.conbox {
-	width:500px;
-	height:550px;
-	margin:auto;
-	box-shadow: 5px 5px 20px 1px rgb(200, 200, 200);
-	/* border-radius: 10px; */
-	padding: 20px;
-	font-size: 13px;
-} 
 
-.submitBtn, .signUpBtn, .pSubmitBtn {
-	height: 50px;
-	border: 0;
-	outline: none;
-	border-radius: 5px;
-	letter-spacing: 2px;
-	box-shadow: 0px 5px 10px 0px rgb(200, 200, 200);
-	margin-top: 10px;
-	margin-bottom: 20px;
-}
+<!-- 다음 우편번호 API -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 카카오 맵 API -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c915512875915ad91cd2c322fa7c851b&libraries=services"></script>
 
-#err1 {
-	color: red;
-	display: none;
-}
+<script>
 
-.box {
- height: 1200px;
- box-shadow: 0px 5px 10px 0px rgb(200, 200, 200);
-}
+	    function DaumPostcode() {
+		
+	        new daum.Postcode({
+	            oncomplete: function(data) {
+	            	
+	             	var code = data.zonecode; // 우편번호
+	                var addr = ''; // 기본주소
+	                var addrjibun = ''; //지번주소
+	                var extraAddr = ''; // 참고항목
+	                var geocoder = new kakao.maps.services.Geocoder();
+	                
+	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+	                
+	                if (data.userSelectedType === 'R') 
+	                { // 사용자가 도로명 주소를 선택했을 경우 - 지번주소 return 되지 않음
+	                    addr = data.roadAddress;
+	                	
+	                  // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+	                  // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	                     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	                     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                         extraAddr += '(' + data.bname + ') ';
+	                     }
+	                     // 건물명이 있고, 공동주택일 경우 추가한다.
+	                     if(data.buildingName !== '' || data.apartment === 'Y'){
+	                         extraAddr += '(' + data.buildingName + ')';
+	                     } 
+	                }
+	                else
+	                { // 사용자가 지번 주소를 선택했을 경우(J)
+	                	addr = data.jibunAddress;
+	                	addrjibun = data.roadAddress;
+	                }
+	                
+	                // 주소 정보를 해당 필드에 넣는다.
+	                document.getElementById('code').value = code;
+	                document.getElementById('addr').value = addr + ' ' + extraAddr;
+	                
+	                
+	                // 주소로 상세 정보를 검색
+	                geocoder.addressSearch(data.address, function(results, status) {
+	                    // 정상적으로 검색이 완료됐으면
+	                    if (status === daum.maps.services.Status.OK) {
+	
+	                        var result = results[0]; //첫번째 결과의 값을 활용
+								
+	                        // 해당 주소에 대한 좌표를 받아서
+	                        var coords = new daum.maps.LatLng(result.y, result.x);                        
+	/*
+	                        // 지도를 보여준다.
+	                        mapContainer.style.display = "block";
+	                        map.relayout();
+	                        // 지도 중심을 변경한다.
+	                        map.setCenter(coords);
+	                        // 마커를 결과값으로 받은 위치로 옮긴다.
+	                        marker.setPosition(coords)
+	*/
+	                        
+	                        // X, Y 좌표값을 해당 필드에 넣는다.
+	//                      console.log('위도(Y): ' + coords.La);
+	//                      console.log('경도(X): ' + coords.Ma);
+	                        document.getElementById('lat').value = coords.Ma;
+	                        document.getElementById('lng').value = coords.La;
+	                        
+	                    }
+	                });
+	                
+	            }
+	        }).open();
+	    }//sample5_execDaumPostcode
+</script>
 
-</style>
+
 
 </head>
 
@@ -93,79 +142,91 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="box">
-						<div class="tab_content">
-							<div class="conbox">
-								<form action="#" method="post">
-				                    <div>
-				                        <p>아이디</p>
-				                        <div class="col-md-6">
-				                        	<input type="text" name="id" id="id" placeholder="아이디">
-				                        </div>
-				                        <div class="col-md-6">
-				                        	<input type="button" class="btn" value="ID 중복검사">
-				                        </div>
-				                    </div>
-				                    <div>
-				                        <p>닉네임</p>
-				                        <div class="col-md-6">
-				                        	<input type="text" name="nickName" id="nickName" placeholder="닉네임">
-				                        	<input type="button" class="btn" value="닉네임 중복검사">
-				                        </div>
-				                        
-				                    </div>
-										<!-- <span class="err">아아</span> -->			
-				                    <div>
-				                        <p>비밀번호</p>
-				                        <input type="password" name="pw" id="pw" placeholder="비밀번호">
-				                    </div>
-				                    <div>
-				                        <p>비밀번호 재확인</p>
-				                        <input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 재확인">
-				                    </div>
-				                    <div>
-				                        <p>이름</p>
-				                        <input type="text" class="" id="name">
-				                    </div>
-				                    <div >
-				                        <p>성별</p>
-				                        <input type="radio" name="gender" id="gender">남자
-				                        <input type="radio" name="gender" id="gender">여자
-				                    </div>
-				                    <div>
-				                        <p>생년월일</p>
-				                        <!--달력으로 출력-->
-				                    </div>
-				                    <div>
-				                        <p>주소</p>
-				                        <input type="text" id="sample4_postcode" placeholder="우편번호">
-				                        <input type="button" class="btn" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-				                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-				                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
-				                        <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-				                        <input type="text" id="sample4_extraAddress" placeholder="참고항목">
-				                        <input type="text" name="lat">
-				                        <input type="text" name="lng">
-				                    </div>
-				                    <div>
-				                        <p>전화번호</p>
-				                        <input type="tel" name="tel1" id="tle1" maxlength="3">-
-				                        <input type="tel" name="tle2" id="tle2" maxlength="4">-
-				                        <input type="tel" name="tle3" id="tle3" maxlength="4">
-				                    </div>
-				                    <div>
-				                        <p>주민번호</p>
-				                        <input type="text" name="ssn1" id="ssn1" maxlength="6">
-				                        -
-				                        <input type="password" name="ssn2" id="ssn2" maxlength="7">
-				                    </div>
-				                    <div>
-				                         <p>가입경로</p>
-				                         <input type="text" name="joinPath" id="joinPath">
-				                    </div>
-				                </form>
-			                </div>
-						</div>
+					<div class="tab_content">
+						<div class="conbox">
+							<form action="#" method="post">
+								<div>
+									<h1>회원가입</h1>
+								</div>
+			                    <div>
+			                        <div class="h2_font">아이디</div>
+			                        <div class="col-md-12">
+			                        	<input type="text" name="id" id="id" placeholder="아이디">
+			                        </div>
+			                       
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">닉네임</div>
+			                        <div class="col-md-12">
+			                        	<input type="text" name="nickName" id="nickName" placeholder="닉네임">
+			                        </div>
+			                    </div>
+									<!-- <span class="err">아아</span> -->			
+			                    <div>
+			                        <div class="h2_font">비밀번호</div>
+			                        <input type="password" name="pw" id="pw" placeholder="비밀번호">
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">비밀번호 재확인</div>
+			                        <input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 재확인">
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">이름</div>
+			                        <input type="text" class="" id="name">
+			                    </div>
+			                    <div >
+			                        <div class="h2_font">성별</div>
+			                        <input type="radio" name="gender" id="gender">남자
+			                        <input type="radio" name="gender" id="gender">여자
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">생년월일</div>
+			                        <!--달력으로 출력-->
+			                        <div>
+			                        	<input type="text" class="Cal">
+			                        </div>
+			                    </div>
+			                    
+			                    <div class="row">
+			                        <div class="h2_font">주소</div>
+			                        <div class="col-md-7">
+			                        	<input type="text" id="code" placeholder="우편번호" readonly="readonly">
+			                        </div>
+			                        <div class="col-md-5">
+			                        	<input type="button" onclick="DaumPostcode()" style="height: 30px; width: 100px;" value="주소찾기">
+			                        </div>
+									<div>
+										<input type="text" id="addr" placeholder="주소" readonly="readonly">
+										<input type="hidden" id="lat" readonly="readonly">
+										<input type="hidden" id="lng" readonly="readonly">
+									</div>
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">전화번호</div>
+			                        <input type="tel" name="tel1" id="tle1" maxlength="12">
+			                        
+			                    </div>
+			                    <div>
+			                        <div class="h2_font">주민번호</div>
+			                        <div class="row"]>
+			                        	<div class="col-sm-5">
+			                        		<input type="text" name="ssn1" id="ssn1" maxlength="6">
+			                        	</div>
+			                        	<div class="col-sm-1" style="text-align: center;">
+			                        		-
+			                        	</div>
+			                        	<div class="col-sm-6">
+			                        		<input type="password" name="ssn2" id="ssn2" maxlength="7">
+			                        	</div>
+			                        </div>
+			                    </div>
+			                    <div>
+			                         <div class="h2_font">가입경로</div>
+			                         <textarea rows="2" cols="20" id="joinPath" style="width: 100%"></textarea>
+			                    </div>
+			                    <button type="button" class="SignUpBtn">가입하기</button>
+			                </form>
+		                </div>
 					</div>
 				</div>
 			</div>
