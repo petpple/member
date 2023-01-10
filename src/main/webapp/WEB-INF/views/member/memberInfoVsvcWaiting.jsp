@@ -56,7 +56,7 @@
             		
             	<div class="col-lg-7" id="">
             		<div class="box_mi"> 
-            			<span class="h2_font">위탁 서비스 - 펫시터 수락 대기중</span>
+            			<span class="h2_font">방문 서비스 - 펫시터 수락 대기중</span>
             			<div class="box_white">
             				<table class="table tab_Info m_font">
             					<tr>
@@ -80,7 +80,7 @@
             							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
             							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
             						</td>
-            						<td><span class="m_font">위탁</span></td>
+            						<td><span class="m_font">방문</span></td>
             						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
             							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
             						</td>
@@ -100,7 +100,7 @@
             							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
             							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
             						</td>
-            						<td><span class="m_font">위탁</span></td>
+            						<td><span class="m_font">방문</span></td>
             						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
             							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
             						</td>

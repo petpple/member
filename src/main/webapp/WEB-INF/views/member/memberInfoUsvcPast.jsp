@@ -56,18 +56,19 @@
             		
             	<div class="col-lg-7" id="">
             		<div class="box_mi"> 
-            			<span class="h2_font">위탁 서비스 - 펫시터 수락 대기중</span>
+            			<span class="h2_font">긴급 요청 서비스 - 누적 펫시팅 횟수</span>
             			<div class="box_white">
             				<table class="table tab_Info m_font">
             					<tr>
-            						<th>지원일시</th>
+            						<th>요청번호</th>
             						<th>펫시터</th>
             						<th>내용</th>
             						<th>서비스 구분</th>
-            						<th>상세보기 / 취소</th>
+            						<th>서비스 상태</th> <!--취소,의뢰자노쇼,펫시터 노쇼,확정,확정 대기   -->
+            						<th>상세보기</th>
             					</tr>
             					<tr>
-            						<td>2022년 12월 1일<br> 12:30 </td>
+            						<td>233322</td>
             						<td>
             							<div class="petImg">
 													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
@@ -80,29 +81,29 @@
             							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
             							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
             						</td>
-            						<td><span class="m_font">위탁</span></td>
-            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
-            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
+            						<td><span class="m_font">방문</span></td>
+            						<td><span class="m_font">취소</span></td>
+            						<td><a href=""><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
             						</td>
             					</tr>
             					
             					<tr>
-            						<td>2022년 12월 1일<br> 12:30 </td>
+            						<td>233323</td>
             						<td>
             							<div class="petImg">
 													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
 										</div>
-										<span class="mb_font">낫루카스</span>
+										<span class="mb_font">로만</span>
             						</td>
             						<td style="text-align:left; padding-left:30px;">
             							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
             							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
+            							<span class="m_font">시작일시 : </span><span class="m_font">2023년 2월10일 15:00</span><br>
+            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 2월 11일 14:00</span><br>
             						</td>
-            						<td><span class="m_font">위탁</span></td>
-            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
-            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
+            						<td><span class="m_font">방문</span></td>
+            						<td><span class="m_font">확정</span></td>
+            						<td><a href=""><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
             						</td>
             					</tr>
             				</table>
@@ -118,7 +119,6 @@
 								</nav>
 							</div>
             			</div>
-            		
             		</div>
             	</div>
             	
