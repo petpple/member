@@ -40,18 +40,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="sample" class="dropdown-item">Our Team</a>
-                        <a href="sample" class="dropdown-item">Testimonial</a>
-                        <a href="sample" class="dropdown-item">404 Page</a>
-                    </div>
-                </div>
-                <a href="#" class="nav-item nav-link">Contact</a>
+                <a href="#" class="nav-item nav-link">의뢰인 소개</a>
+                <a href="#" class="nav-item nav-link">펫시터 소개</a>
+                <a href="#" class="nav-item nav-link">FAQ</a>
             </div>
             <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>

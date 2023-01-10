@@ -37,6 +37,7 @@
 <link href="/css/style.css" rel="stylesheet">
 <!-- <link rel="stylesheet" href="/css/main.css"> -->
 <link rel="stylesheet" href="/css/user/FAQ.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 
 </head>
 

@@ -42,8 +42,9 @@
 		color: white;
 	}
 </style>
-
 </head>
+
+
 
 <body>
 	<!-- Spinner Start -->
@@ -73,66 +74,90 @@
 								for="tab02">펫시터</label>
 							<div class="conbox con1">
 								<div class="login">
-									<h1 class="h_font loginTitle">아이디 찾기</h1>
+									<h1 class="h_font loginTitle">비밀번호 찾기</h1>
 								</div>
-								<form action="#" method="post" id="userForm">
+								<div>
 									<div>
-										<h3 class="mb_font id">이메일</h3>
-										<input type="text" name="userId" id="userId" placeholder="등록한 이메일">
+										<h3 class="mb_font id">아이디</h3>
 									</div>
-									<div>
-										<h3 class="mb_font pw">이름</h3>
-										<input type="text" name="name" id="name"
-											placeholder="본인 이름">
+									<div class="row"> 
+										<div class="col-sm-10">
+											<input type="text" name="userId" id="userId" placeholder="등록한 아이디">
+										</div>
+										<div class="col-sm-2 athBtn">
+											<button>인증</button>
+										</div>
+										<!-- 
+										<div class="col-sm-2">
+											<a href="">인증</a>
+										</div>
+										 -->
 									</div>
-									<div class="err">
-										<span class="s_font" id="err1"></span>
-									</div>
-									<div>
-										<input type="button" value="확인" id="submitBtn"
-											class="btn submitBtn m_font">
-									</div>
-									<div>
-										<input type="button" value="취소" id="signUpBtn"
-											class="btn signUpBtn m_font" onclick="#">
-										<!-- 회원 가입 폼으로 -->
-									</div>
-									<div class="forget">
-										<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
-									</div>
-								</form>
+								</div>
+								<div>
+									<h3 class="mb_font pw">이메일</h3>
+									<input type="text" name="name" id="name"
+										placeholder="등록한 이메일">
+								</div>
+								<div class="err">
+									<span class="s_font" id="err2"></span>
+								</div>
+								<div>
+									<input type="button" value="확인" id="submitBtn"
+										class="btn submitBtn m_font">
+								</div>
+								<div>
+									<input type="button" value="취소" id="signUpBtn"
+										class="btn signUpBtn m_font" onclick="#">
+									<!-- 회원 가입 폼으로 -->
+								</div>
+								<div class="forget">
+									<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
+								</div> 
 							</div>
 							<!-- 펫시터 로그인 -->
 							<div class="conbox con2">
 								<div class="login">
-									<h1 class="h_font loginTitle">아이디 찾기</h1>
+									<h1 class="h_font loginTitle">비밀번호 찾기</h1>
 								</div>
-								<form action="#" method="post" id="userForm">
+								<div>
 									<div>
-										<h3 class="mb_font id">이메일</h3>
-										<input type="text" name="userId" id="userId" placeholder="등록한 이메일">
+										<h3 class="mb_font id">아이디</h3>
 									</div>
-									<div>
-										<h3 class="mb_font pw">이름</h3>
-										<input type="text" name="name" id="name"
-											placeholder="본인 이름">
+									<div class="row"> 
+										<div class="col-sm-10">
+											<input type="text" name="userId" id="userId" placeholder="등록한 아이디">
+										</div>
+										<div class="col-sm-2 athBtn">
+											<button>인증</button>
+										</div>
+										<!-- 
+										<div class="col-sm-2">
+											<a href="">인증</a>
+										</div>
+										 -->
 									</div>
-									<div class="err">
-										<span class="s_font" id="err1"></span>
-									</div>
-									<div>
-										<input type="button" value="확인" id="submitBtn"
-											class="btn submitBtn m_font">
-									</div>
-									<div>
-										<input type="button" value="취소" id="signUpBtn"
-											class="btn signUpBtn m_font" onclick="#">
-										<!-- 회원 가입 폼으로 -->
-									</div>
-									<div class="forget">
-										<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
-									</div>
-								</form>
+								</div>
+								<div>
+									<h3 class="mb_font pw">이메일</h3>
+									<input type="text" name="name" id="name"
+										placeholder="등록한 이메일">
+								</div>
+								<div class="err">
+									<span class="s_font" id="err2"></span>
+								</div>
+								<div>
+									<input type="button" value="확인" id="submitBtn"
+										class="btn submitBtn m_font">
+								</div>
+								<div>
+									<input type="button" value="취소" id="signUpBtn"
+										class="btn signUpBtn m_font" onclick="#">
+									<!-- 회원 가입 폼으로 -->
+								</div>
+								<div class="forget">
+									<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
+								</div> 
 							</div>
 						</div>
 					</div>
