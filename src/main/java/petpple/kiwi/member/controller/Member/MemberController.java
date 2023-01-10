@@ -32,10 +32,10 @@ public class MemberController {
 		return "member/memberApply";
 	}
 	
-	@RequestMapping("/member/sitterAllowSubmit")
-	public String sitterAllowSubmit()
+	@RequestMapping("/member/memberSubmit")
+	public String memberSubmit()
 	{
-		return "member/sitterAllowSubmit";
+		return "member/memberSubmit";
 	}
 	
 	//-------------- 펫시터 폼 관련 -----------------------------
@@ -53,6 +53,12 @@ public class MemberController {
 		return "member/memberUsvcForm";
 	}
 	
+	// 의뢰인 시터 후기 등록 폼
+	@RequestMapping("/member/memberReviewForm")
+	public String memberReviewForm()
+	{
+		return "member/memberReviewForm";
+	}
 	
 	//-------------- 의뢰인 메인페이지  ------------------
 	// 중간 메인 화면
