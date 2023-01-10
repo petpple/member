@@ -174,7 +174,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 					
 					<span id="remainTime" class="s_font"></span>
 					<div class="serv_on">
-						<p class="l_font">신청 내용을 확인해주세요.</p>
+<!-- 						<p class="l_font">긴급 요청 서비스 신청 내용을 확인해주세요.</p> -->
 							<table class="table tab s_font">
 							
 								<tr>
@@ -237,7 +237,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 						<br>
 						
 						<div class="text-center">
-								<button type="submit" class="btn btn-success">확인</button>
+								<button type="submit" class="btn btn-success" onclick="history.back();">확인</button>
 						</div>
 								
 					</div>

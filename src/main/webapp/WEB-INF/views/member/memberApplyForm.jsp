@@ -31,6 +31,14 @@
     <link rel="stylesheet" href="/css/member/memberMain.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+    
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet"
+	   href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    
+    
 </head>
 <style type="text/css">
 .container {
@@ -50,6 +58,24 @@
 	font-weight: 500;
 }
 </style>
+
+<script type="text/javascript">
+   $(document).ready(function() {
+                  $.datepicker.setDefaults($.datepicker.regional['ko']); 
+                    $( "#date" ).datepicker({
+                         changeMonth: true, 
+                         changeYear: true,
+                         nextText: '다음 달',
+                         prevText: '이전 달', 
+                         dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                         monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                         dateFormat: "yy/mm/dd",
+                         maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                         }  );        
+               });
+</script>
 
 <body>
     <!-- Spinner Start -->
@@ -161,10 +187,11 @@
 						<br>
 	
 						<p class="l_font">
-							취득한 자격증의 취득 날짜를 선택해주세요.<span class="sss_font"> * 취득한 자격증은 모두 선택해주셔야합니다.</span>
+							제일 최근 취득한 자격증의 취득 날짜를 선택해주세요.<span class="sss_font"> * 취득한 자격증은 모두 선택해주셔야합니다.</span>
 						</p>
-						<br>
-						<br>
+						
+						<input type="text" class="form-control" id="date" style="width:200px;">
+						<br>						
 	
 
 					    <label for="title" class="form-label m_font">프로필 한 줄 제목 <span class="sss_font"> * </span></label>
