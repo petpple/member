@@ -28,7 +28,6 @@
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
 <!-- Template Stylesheet -->
 <link href="/css/style.css" rel="stylesheet">
@@ -37,12 +36,14 @@
 <link rel="stylesheet" href="/css/user/uMain.css">
 <link rel="stylesheet" href="/css/user/userSignUp.css">
 
-
-
 <!-- 다음 우편번호 API -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- 카카오 맵 API -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c915512875915ad91cd2c322fa7c851b&libraries=services"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <script>
 
@@ -90,23 +91,11 @@
 	                    // 정상적으로 검색이 완료됐으면
 	                    if (status === daum.maps.services.Status.OK) {
 	
-	                        var result = results[0]; //첫번째 결과의 값을 활용
+	                        var result = results[0]; 
 								
 	                        // 해당 주소에 대한 좌표를 받아서
 	                        var coords = new daum.maps.LatLng(result.y, result.x);                        
-	/*
-	                        // 지도를 보여준다.
-	                        mapContainer.style.display = "block";
-	                        map.relayout();
-	                        // 지도 중심을 변경한다.
-	                        map.setCenter(coords);
-	                        // 마커를 결과값으로 받은 위치로 옮긴다.
-	                        marker.setPosition(coords)
-	*/
-	                        
-	                        // X, Y 좌표값을 해당 필드에 넣는다.
-	//                      console.log('위도(Y): ' + coords.La);
-	//                      console.log('경도(X): ' + coords.Ma);
+	                       
 	                        document.getElementById('lat').value = coords.Ma;
 	                        document.getElementById('lng').value = coords.La;
 	                        
@@ -116,8 +105,23 @@
 	            }
 	        }).open();
 	    }//sample5_execDaumPostcode
+	    
+	    $(document).ready(function() {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+              $( "#date" ).datepicker({
+                   changeMonth: true, 
+                   changeYear: true,
+                   nextText: '다음 달',
+                   prevText: '이전 달', 
+                   dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                   dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                   monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                   monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                   dateFormat: "yy/mm/dd",
+                   maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                   }  );        
+         });
 </script>
-
 
 
 </head>
@@ -183,7 +187,7 @@
 			                        <div class="h2_font">생년월일</div>
 			                        <!--달력으로 출력-->
 			                        <div>
-			                        	<input type="text" class="Cal">
+			                        	<input type="text" class="date" id="date">
 			                        </div>
 			                    </div>
 			                    
@@ -193,7 +197,7 @@
 			                        	<input type="text" id="code" placeholder="우편번호" readonly="readonly">
 			                        </div>
 			                        <div class="col-md-5">
-			                        	<input type="button" onclick="DaumPostcode()" style="height: 30px; width: 100px;" value="주소찾기">
+			                        	<input type="button" onclick="DaumPostcode()" value="주소찾기">
 			                        </div>
 									<div>
 										<input type="text" id="addr" placeholder="주소" readonly="readonly">
@@ -239,7 +243,6 @@
 	</div>
 
 	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="/library/wow/wow.min.js"></script>
