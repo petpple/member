@@ -53,7 +53,7 @@
 .sss_font{
 	font-size:13px;
 	color: #FF8C5B;
-}
+} 
 .form-radio-label {
 	font-weight: 500;
 }
