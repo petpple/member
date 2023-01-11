@@ -6,28 +6,38 @@
 <mapper namespace="petpple.kiwi.member.repository.MemberMapper">
 
     <select id="getMemberList" resultType="Member">
-        select * from member
+        select * 
+        from member
     </select>
 
     <select id="getMember" resultType="Member">
-        select * from member where id = #{id}
+        select * 
+        from member where id = #{id}
     </select>
     
     <select id="getCount" resultType="java.lang.Integer">
-     select count(*) from member
+	     select count(*) 
+	     from member
     </select>
+    
+<!--     <insert id="createMember"> -->
+        
+<!--     </insert> -->
 
-    <insert id="createMember">
-        insert into member(name, id) values(#{name}, #{id})
+    <insert id="applyMember">
+        INSERT INTO S_APPLY(S_APP_ID,S_APP_PRO_TITLE,S_APP_PRO_CONTENT,S_APP_DATE,S_APP_DEPOSITOR,S_APP_ACC_NUMBER,S_APP_OPE_DATE,TMP_MEMBER_ID,S_STA_ID,P_PET_ID,P_PET_KIN_ID,BANK_ID)
+		VALUES(#{s_app_id},#{s_app_pro_title},#{s_app_pro_content},#{s_app_date},#{s_app_depositor},#{s_app_acc_number},#{s_app_ope_date},#{tmp_member_id},#{s_sta_id},#{p_pet_id},#{p_pet_kin_id},#{bank_id});
     </insert>
 
     <delete id="deleteMember">
-        delete from member
+        delete 
+        from member
         where id = #{id}
     </delete>
 
     <update id="updateMember">
-        update member set name = #{name}
+        update member 
+        set name = #{name}
         where id = #{id}
     </update>
 
