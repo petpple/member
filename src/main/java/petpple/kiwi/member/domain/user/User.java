@@ -1,8 +1,11 @@
 package petpple.kiwi.member.domain.user;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
+@Getter @Setter
 public class User {
 	/*
 	이름, 아이디, 비밀번호
