@@ -19,4 +19,10 @@ public interface MemberMapper {
     int updateMember(Member member);
 
     int deleteMember(int id);
+    
+    int ApplyMember(Member member);
+    
+    
+    
+    
 }
