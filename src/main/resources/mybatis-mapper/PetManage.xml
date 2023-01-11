@@ -8,4 +8,16 @@
 	{ CALL PRC_INS_PET('테스트이미지 경로', #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g_id}, #{d_or_cat_id},#{kind}, 'UV8YF0IN08')
 	}
 	</insert>
+	
+	<select id="getPet" resultType="Pet">
+	SELECT A.PET_NAME AS "name", A.PET_ID AS "id" ,MONTHS_BETWEEN(TRUNC(SYSDATE,'YEAR'),
+    TRUNC(PET_BIRTHDAY,'YEAR')) /12 +1 AS "birthday", (CASE WHEN A.PET_WEIGHT >=15 THEN '대형'
+    WHEN A.PET_WEIGHT>=7 THEN '중형'
+    ELSE '소형' END) AS "weight", A.PET_IMG AS "profile", G.GENDER_PET AS "gender"
+ 	FROM PET A LEFT OUTER JOIN PET_SHARE B 
+ 	ON A.PET_ID = B.PET_ID 
+ 	LEFT OUTER JOIN GENDER g
+ 	ON A.GENDER_ID = G.GENDER_ID
+ 	WHERE B.TMP_MEMBER_ID = 'UV8YF0IN08'
+	</select>
 </mapper>
