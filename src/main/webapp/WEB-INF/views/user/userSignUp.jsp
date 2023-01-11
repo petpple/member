@@ -156,28 +156,28 @@
 			                    <div>
 			                        <div class="h2_font">아이디</div>
 			                        <div class="col-md-12">
-			                        	<input type="text" name="mem_id_id" id="mem_id_id" placeholder="아이디">
+			                        	<input type="text" name="id" id="mem_id_id" placeholder="아이디">
 			                        </div>
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">닉네임</div>
 			                        <div class="col-md-12">
-			                        	<input type="text" name="mem_nickname" id="mem_nickname" placeholder="닉네임">
+			                        	<input type="text" name="nickname" id="mem_nickname" placeholder="닉네임">
 			                        </div>
 			                    </div>
 									<!-- <span class="err">아아</span> -->			
 			                    <div>
 			                        <div class="h2_font">비밀번호</div>
-			                        <input type="password" name="mem_pw" id="mem_pw" placeholder="비밀번호">
+			                        <input type="password" name="pw" id="mem_pw" placeholder="비밀번호">
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">비밀번호 재확인</div>
-			                        <input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 재확인">
+			                        <input type="password" id="pwCheck" placeholder="비밀번호 재확인">
 			                    </div>
 		
 			                    <div>
 			                        <div class="h2_font">이름</div>
-			                        <input type="text" class="" id="mem_name">
+			                        <input type="text" name="name" id="name">
 			                    </div>
 			                    <div >
 			                        <div class="h2_font">성별</div>
@@ -192,22 +192,23 @@
 			                        </div>
 			                    </div>
           	                    <div>
-			                    	<input type="file" name="profile" id="profile">
+          	                    	<div class="h2_font">프로필</div>
+			                    	<input type="file" id="mem_img">
 			                    </div>
 			                    
 			                    <div class="row">
 			                        <div class="h2_font">주소</div>
 			                        <div class="col-md-7">
-			                        	<input type="text" id="code" placeholder="우편번호" readonly="readonly">
+			                        	<input type="text" name="code" id="code" placeholder="우편번호" readonly="readonly">
 			                        </div>
 			                        <div class="col-md-5">
 			                        	<input type="button" class="btn postCodeBtn" onclick="DaumPostcode()" value="주소찾기">
 			                        </div>
 									<div>
-										<input type="text" id="addr" placeholder="주소" readonly="readonly">
-										<input type="text" id="detailAddress" placeholder="상세주소">
-										<input type="hidden" id="lat" readonly="readonly">
-										<input type="hidden" id="lng" readonly="readonly">
+										<input type="text" name="addr" id="addr" placeholder="주소" readonly="readonly">
+										<input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+										<input type="hidden" name="lat" id="lat" readonly="readonly">
+										<input type="hidden" name="lng" id="lng" readonly="readonly">
 									</div>
 			                    </div>
 			                    <div>
@@ -215,7 +216,8 @@
 			                        <input type="tel" name="tel" id="tel" maxlength="12">
 			                    </div>
 			                    <div>
-			                    	<input type="email" id="email">
+			                    	<div class="h2_font" style="width: 100%">이메일</div>
+			                    	<input type="email" name="email" id="email">
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">주민번호</div>
