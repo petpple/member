@@ -27,6 +27,8 @@ public class UserService {
 		
 	}
 	
-	
+	public int idCheck(String id) throws Exception {
+        return userMapper.idCheck(id);
+    } 
 
 }
