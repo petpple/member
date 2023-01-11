@@ -1,4 +1,4 @@
-package petpple.kiwi.member.domain;
+   package petpple.kiwi.member.domain;
 
 import lombok.Data;
 
