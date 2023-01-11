@@ -1,6 +1,6 @@
 .conbox {
 	width:700px;
-	height:850px;
+	height:900px;
 	margin:auto;
 	box-shadow: 5px 5px 20px 1px rgb(200, 200, 200);
 	/* border-radius: 10px; */
@@ -8,7 +8,7 @@
 	font-size: 13px;
 }
 
-Input[type=text], Input[type=password], Input[type=tel] {
+Input[type=text], Input[type=password], Input[type=tel] Input[type=email] {
 	width: 100%;
 	height: 30px;
 } 
