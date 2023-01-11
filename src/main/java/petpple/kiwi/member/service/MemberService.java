@@ -37,4 +37,8 @@ public class MemberService {
     public int deleteMember(int id) {
         return memberMapper.deleteMember(id);
     }
+    
+//    public int applyMember(Member member) {
+//    	return memberMapper.applyMember(member);
+//    }
 }
