@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import petpple.kiwi.member.repository.MemberMapper;
+import petpple.kiwi.member.repository.member.MemberMapper;
 
 @Controller
 public class MemberController {
