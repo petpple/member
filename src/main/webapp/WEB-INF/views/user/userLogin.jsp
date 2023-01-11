@@ -103,7 +103,7 @@
 								<div class="login">
 									<h1 class="h_font loginTitle">로그인</h1>
 								</div>
-								<form action="#" method="post" id="userForm">
+								<form action="loginAction" method="post" id="userForm">
 									<div>
 										<h3 class="mb_font id">아이디</h3>
 										<input type="text" name="userId" id="userId" placeholder="아이디">

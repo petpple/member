@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="petpple.kiwi.member.repository.UserMapper">
+<mapper namespace="petpple.kiwi.member.repository.user.UserMapper">
 
 	<!-- 회원 추가 -->
 	<insert id="PRC_TMP_MEMBER" statementType="CALLABLE" parameterType="User"> 
@@ -36,10 +36,16 @@
 		FROM MEMBER 
 	-->
 	<!-- 로그인 -->
-	<select id="userLogin" resultType="User">
-		SELECT *
+	<select id="userLogin" resultType="java.lang.Integer" parameterType="User">
+		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MEM_ID_ID= #{id} AND MEM_PW = #{pw}
+	</select>
+	
+	<select id="tmpMemberId" resultType="string" parameterType="User">
+		SELECT TMP_MEMBER_ID 
+		FROM MEMBER
+		WHERE MEM_ID_ID=#{id} AND MEM_PW=#{pw}
 	</select>
 	
 	
