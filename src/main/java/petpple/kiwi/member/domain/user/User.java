@@ -1,4 +1,4 @@
-package petpple.kiwi.member.domain;
+package petpple.kiwi.member.domain.user;
 
 import lombok.Data;
 
@@ -14,4 +14,6 @@ public class User {
 	, tel, ssn1, ssn2, nickname
 	, code, addr, detailAddress, lat, lng
 	, email;
+	
+	
 }
