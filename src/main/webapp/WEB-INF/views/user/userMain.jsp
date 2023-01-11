@@ -94,21 +94,21 @@
 							<div class="col-md-4 text-center">
 								<img id="img1" src="/images/user/service.jpg" alt="service">
 								<h3 class="h2_font">위탁&방문 서비스</h3>
-								<p class="m_font">원하시는 서비스를 선택하세요. 선택하신 서비스 예약이 완료되면 당일날 해당
-									서비스를 이용할 수 있어요</p>
+								<p class="m_font">원하시는 서비스를 선택하세요. 선택하신 서비스 예약이 <br>
+								완료되면 당일날 해당 서비스를 이용할 수 있어요</p>
 								<!-- <p><a class="btn btn-default" role="button" onclick="clickFunc()">예약하기 &raquo;</a></p> -->
 							</div>
 							<div class="col-md-4 text-center">
 								<img id="img2" src="/images/user/suprise.jpg" alt="service">
 								<h3 class="h2_font">긴급 서비스</h3>
-								<p class="m_font">급하게 반려동물을 맡길 펫시터를 구해야한다면 직접 펫시터 모집글을
+								<p class="m_font">급하게 반려동물을 맡길 펫시터를 구해야한다면 <br>직접 펫시터 모집글을
 									올려보세요.</p>
 								<!-- <p><a class="btn btn-default" role="button" onclick="clickFunc()">예약하기 &raquo;</a></p> -->
 							</div>
 							<div class="col-md-4 text-center">
 								<img id="img3" src="/images/user/dir.jpg" alt="service">
 								<h2 class="h2_font">돌봄일지</h2>
-								<p class="m_font">펫시터에게 돌봄일지를 받아보세요. 돌봄일지를 통해 돌봄 상세 내용을 확인하실
+								<p class="m_font">펫시터에게 돌봄일지를 받아보세요. 돌봄일지를 통해 <Br> 돌봄 상세 내용을 확인하실
 									수 있습니다.</p>
 								<!-- <p><a class="btn btn-default" role="button" onclick="clickFunc()">전체보기 &raquo;</a></p> -->
 							</div>
