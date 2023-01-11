@@ -32,7 +32,7 @@
 <body>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="/user/userMain" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Kiwi</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -42,9 +42,9 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="#" class="nav-item nav-link">의뢰인 소개</a>
                 <a href="#" class="nav-item nav-link">펫시터 소개</a>
-                <a href="#" class="nav-item nav-link">FAQ</a>
+                <a href="FAQ" class="nav-item nav-link">FAQ</a>
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="/user/userContract" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">회원가입<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
