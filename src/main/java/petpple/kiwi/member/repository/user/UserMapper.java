@@ -1,9 +1,6 @@
 package petpple.kiwi.member.repository.user;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import petpple.kiwi.member.domain.user.User;
 
@@ -24,6 +21,7 @@ public interface UserMapper {
 	
 	public String tmpMemberId(String id, String pw);
 
+	public int idCheck(String id);
 		
 }
 

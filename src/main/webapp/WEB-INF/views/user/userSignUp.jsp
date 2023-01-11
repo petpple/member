@@ -122,8 +122,66 @@
                    }  );        
          });
 </script>
-<style type="text/css">
-</style>
+<script type="text/javascript">
+
+function check() {
+    if($.trim($('#nickname').val()) == '') {
+        alert("닉네임을 입력해주세요.");
+        return false;
+    }
+    if($.trim($('#mem_id_id').val()) == '') {
+        alert("아이디를 입력해주세요.");
+        return false;
+    }
+    if($.trim($('#mem_pw').val()) == '') {
+        alert("비밀번호를 입력해주세요.");
+        return false;
+    }
+ 
+    if(confirm("회원가입을 하시겠습니까?")){
+        alert("회원가입이 완료되었습니다. 감사합니다.");
+         $("form").submit();    
+    }
+}
+ 
+ 
+/* 아이디 중복 체크 : ajax 비동기처리 */
+function idCheck() {
+    
+    var mem_id_id = $("#mem_id_id").val();
+    
+    if(mem_id_id.search(/\s/) != -1) { 
+        alert("아이디에는 공백이 들어갈 수 없습니다.");        
+    } else {             
+        if(mem_id_id.trim().length != 0) {
+            $.ajax({
+                async : true, 
+                type : 'POST', 
+                data: mem_id_id,
+                url: "/idCheck",
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                success: function(count) {    
+                    if(count > 0) {
+                        alert("해당 아이디 존재");    
+                        $("#submit").attr("disabled", "disabled");
+                        window.location.reload();
+                    } else {
+                        alert("사용가능 아이디");
+                        $("#submit").removeAttr("disabled");
+                    }            
+                },
+                error: function(error) {
+                    alert("아이디를 입력해주세요.");
+                }        
+            });
+        } else {
+            alert("아이디를 입력해주세요.");
+        }        
+    }
+}
+
+</script>
 
 </head>
 
@@ -153,19 +211,28 @@
 								<div>
 									<h1>회원가입</h1>
 								</div>
-			                    <div>
-			                        <div class="h2_font">아이디</div>
-			                        <div class="col-md-12">
-			                        	<input type="text" name="id" id="mem_id_id" placeholder="아이디">
-			                        </div>
-			                    </div>
-			                    <div>
-			                        <div class="h2_font">닉네임</div>
-			                        <div class="col-md-12">
-			                        	<input type="text" name="nickname" id="mem_nickname" placeholder="닉네임">
-			                        </div>
-			                    </div>
-									<!-- <span class="err">아아</span> -->			
+								<div>
+									<div class="h2_font">아이디</div>
+									<div class="row">
+										<div class="col-md-6">
+											<input type="text" name="id" id="mem_id_id" class="id_confirm" placeholder="아이디">
+										</div>
+										<div class="col-md-6">
+											<input type="button" id="idCheck" value="중복확인"
+												class="btn btn-outline-secondary" onclick="idCheck()">
+										</div>
+										<div id="checkId"></div>
+									</div>
+								</div>
+								<div>
+									<div class="h2_font">닉네임</div>
+									<div class="col-md-12">
+										<input type="text" name="nickname" id="mem_nickname"
+											placeholder="닉네임">
+									</div>
+									<div><span class="err">확인</span></div>
+								</div>
+										
 			                    <div>
 			                        <div class="h2_font">비밀번호</div>
 			                        <input type="password" name="pw" id="mem_pw" placeholder="비밀번호">
@@ -174,6 +241,7 @@
 			                        <div class="h2_font">비밀번호 재확인</div>
 			                        <input type="password" id="pwCheck" placeholder="비밀번호 재확인">
 			                    </div>
+			                    <div><span class="err">확인</span></div>
 		
 			                    <div>
 			                        <div class="h2_font">이름</div>
@@ -183,6 +251,7 @@
 			                        <div class="h2_font">성별</div>
 			                        <input type="radio" name="gender" value="male">남자
 			                        <input type="radio" name="gender" value="female">여자
+			                        <div><span class="err">확인</span></div>
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">생년월일</div>
@@ -202,7 +271,7 @@
 			                        	<input type="text" name="code" id="code" placeholder="우편번호" readonly="readonly">
 			                        </div>
 			                        <div class="col-md-5">
-			                        	<input type="button" class="btn postCodeBtn" onclick="DaumPostcode()" value="주소찾기">
+			                        	<input type="button" class="btn postCodeBtn btn-outline-secondary" onclick="DaumPostcode()" value="주소찾기">
 			                        </div>
 									<div>
 										<input type="text" name="addr" id="addr" placeholder="주소" readonly="readonly">
@@ -233,7 +302,7 @@
 			                        	</div>
 			                        </div>
 			                    </div>
-			                    <button type="submit" class="SignUpBtn">가입하기</button>
+			                    <button type="button" id="submit" class="SignUpBtn" onclick="check()">가입하기</button>
 			                </form>
 		                </div>
 					</div>

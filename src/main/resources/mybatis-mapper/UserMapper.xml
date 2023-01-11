@@ -42,6 +42,7 @@
 		WHERE MEM_ID_ID= #{id} AND MEM_PW = #{pw}
 	</select>
 	
+	<!-- 임의 회원 코드 -->
 	<select id="tmpMemberId" resultType="string" parameterType="User">
 		SELECT TMP_MEMBER_ID 
 		FROM MEMBER
@@ -56,5 +57,12 @@
 <!-- 		WHERE EMAIL = #{email} -->
 <!-- 		AND NAME = #{name}	 -->
 	<!-- 회원 PW 찾기 -->
+	
+	<!-- id 중복성 검사 -->
+	<select id="idCheck" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEM_ID_ID= #{id};
+	</select>
 	
 </mapper>
