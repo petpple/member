@@ -50,7 +50,7 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form class="contract" action="main.html">
+                    <form class="contract" action="/user/userSignUp">
 		        <h1>회원가입 약관</h1>
 		        <div class="text">제1장 총칙
 		
