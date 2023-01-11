@@ -1,10 +1,10 @@
-package petpple.kiwi.member.repository;
+package petpple.kiwi.member.repository.user;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import petpple.kiwi.member.domain.User;
+import petpple.kiwi.member.domain.user.User;
 
 @Mapper
 public interface UserMapper {
@@ -16,6 +16,9 @@ public interface UserMapper {
 	int getCount();
 	
 	List<User> getUserList();
+	
+	User userLogin(User user);
+	
 		
 }
 
