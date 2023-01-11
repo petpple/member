@@ -125,76 +125,32 @@
 			        </div>
 			        <br>
 			        
+			        
 			        <div class="row">
+			        	<c:forEach var="pet" items="${list}">
 				        <div class="col-lg-4">
 				        	<div class="card" style="margin-bottom: 20px;">
 				            	<img src="/images/member/p.svg" id="petsvg1" class="card-img-top" height="130px" width="130px"  >
 				            <div class="card-body">
-				              	<h5 class="card-title" style="text-align: center;">알빠노</h5>
+				            	
+				              	<h5 class="card-title" style="text-align: center;">${pet.name}</h5>
 				              		<ul class="list-group list-group-flush">
-										<li class="list-group-item" style="text-align: center;">소형 / 여 / 4살</li>
+										<li class="list-group-item" style="text-align: center;">${pet.weight} / ${pet.gender} / ${pet.birthday}살</li>
 									</ul>
+								
 				              	<div class="col text-center">
 				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
 				                    onclick="location.href='http://localhost:8092/member/memberMyPetUpdate'">수정하기</button>
-									<button class="btn btn-secondary m-2" id="confirmStart">삭제하기</button>
+									<button type="button" class="btn btn-secondary m-2" id="confirmStart"
+									>삭제하기</button>
 				                </div> 
 				            </div><!-- <div class="card-body"> -->
 				          	</div>
 				       	</div><!-- <div class="col-lg-4"> -->
-
-		        		<div class="col-lg-4">
-				        	<div class="card" style="margin-bottom: 20px;">
-				            	<img src="/images/member/p.svg" id="petsvg2" class="card-img-top" height="130px" width="130px"  >
-				            <div class="card-body">
-				              	<h5 class="card-title" style="text-align: center;">알빠노</h5>
-				              		<ul class="list-group list-group-flush">
-										<li class="list-group-item" style="text-align: center;">소형 / 여 / 4살</li>
-									</ul>
-				              	<div class="col text-center">
-				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8092/member/memberMyPetUpdate'">수정하기</button>
-									<button class="btn btn-secondary m-2" name="confirmStart">삭제하기</button>
-				                </div> 
-				            </div><!-- <div class="card-body"> -->
-				          	</div>
-				       	</div><!-- <div class="col-lg-4"> -->
+						</c:forEach>
+		        		
 				       	
-				       	<div class="col-lg-4">
-				        	<div class="card" style="margin-bottom: 20px;">
-				            	<img src="/images/member/p.svg" id="petsvg3" class="card-img-top" height="130px" width="130px"  >
-				            <div class="card-body">
-				              	<h5 class="card-title" style="text-align: center;">알빠노</h5>
-				              		<ul class="list-group list-group-flush">
-										<li class="list-group-item" style="text-align: center;">소형 / 여 / 4살</li>
-									</ul>
-				              	<div class="col text-center">
-				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8092/member/memberMyPetUpdate'">수정하기</button>
-									<button class="btn btn-secondary m-2" name="confirmStart">삭제하기</button>
-				                </div> 
-				            </div><!-- <div class="card-body"> -->
-				          	</div>
-				       	</div><!-- <div class="col-lg-4"> -->
 				       	
-				       	<div class="col-lg-4">
-				        	<div class="card" style="margin-bottom: 20px;">
-				            	<img src="/images/member/p.svg" id="petsvg4" class="card-img-top" height="130px" width="130px"  >
-				            <div class="card-body">
-				              	<h5 class="card-title" style="text-align: center;">알빠노</h5>
-				              		<ul class="list-group list-group-flush">
-										<li class="list-group-item" style="text-align: center;">소형 / 여 / 4살</li>
-									</ul>
-				              	<div class="col text-center">
-				                    <button type="button" class="btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8092/member/memberMyPetUpdate'">수정하기</button>
-				                    
-									<button class="btn btn-secondary m-2" name="confirmStart">삭제하기</button>
-				                    
-				                </div> 
-				            </div><!-- <div class="card-body"> -->
-				          	</div>
-				       	</div><!-- <div class="col-lg-4"> -->
 					</div><!-- <div class="row"> -->
 					
 					</div><!-- <div class="box_miInfo"> -->
