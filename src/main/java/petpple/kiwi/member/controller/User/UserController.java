@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import petpple.kiwi.member.domain.User;
-import petpple.kiwi.member.repository.UserMapper;
+import petpple.kiwi.member.domain.user.User;
+import petpple.kiwi.member.repository.user.UserMapper;
 
 @Controller
 public class UserController {
@@ -74,13 +74,7 @@ public class UserController {
 	}
 	//------------------------유저 회원가입 이용약관 종료------------------------//
 	
-	//------------------------유저 로그인 시작------------------------//
-	@RequestMapping("/user/userLogin")
-	public String userLogin()
-	{
-		return "user/userLogin";
-	}
-	//------------------------유저 로그인 종료------------------------//
+	
 	
 	//------------------------유저 회원가입 시작------------------------//
 	@RequestMapping("/user/userSignUp")
