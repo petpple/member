@@ -1,10 +1,21 @@
 package petpple.kiwi.member.controller.User;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import petpple.kiwi.member.domain.User;
+import petpple.kiwi.member.repository.UserMapper;
 
 @Controller
 public class UserController {
+	
+	@Autowired 
+	private SqlSession sqlSession; 
+
+
 	
 	@RequestMapping("/")
 	public String userMain()
@@ -103,4 +114,17 @@ public class UserController {
 	}
 	//------------------------유저 Pw 찾기 종료------------------------//
 	
+	//------------------------회원 데이터 입력 시작------------------------//
+	@RequestMapping(value = "/memberinsert.action", method = RequestMethod.POST)
+	public String memberInsert(User user)
+	{
+		
+		UserMapper dao = sqlSession.getMapper(UserMapper.class);
+		
+		dao.PRC_TMP_MEMBER(user);
+		
+		return "redirect:user/userMain";
+	}
+	//------------------------회원 데이터 입력 종료------------------------//
+
 }
