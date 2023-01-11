@@ -16,8 +16,15 @@ public class UserService {
 	}
 	
 	
-	public User userLogin(User user) {
+	public int userLogin(User user) 
+	{
 		return userMapper.userLogin(user);
+	}
+	
+	public String tmpMemberId(String id, String pw) 
+	{
+		return userMapper.tmpMemberId(id, pw);
+		
 	}
 	
 	
