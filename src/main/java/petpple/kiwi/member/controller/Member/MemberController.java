@@ -241,7 +241,5 @@ public class MemberController {
 //		return "member/vsitterPetSitterList";
 //	}
 //			
-		
 
-	
 }
