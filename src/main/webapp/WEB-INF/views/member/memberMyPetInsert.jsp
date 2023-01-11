@@ -27,7 +27,7 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="/css/member/fsitter/fsitterMyPet.css">
+    <link rel="stylesheet" href="/css/member/fsitter/fsitterMyPetInsert.css">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
     
     <!-- datepicker -->
@@ -39,7 +39,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/main.css">
-    
+<style type="text/css">
+	.input-file-button{
+  padding: 6px 25px;
+  background-color:#FE5C17;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-top : 10px;
+  margin-left:50px;
+}
+
+</style>
     
 <script type="text/javascript">
 $(document).ready(function () {
@@ -64,7 +75,7 @@ $(document).ready(function () {
         showOn: 'both',
         // buttonText: "달력",
         showButtonPanel: false,
-        dateFormat: 'yy-mm',          
+        dateFormat: 'yy/mm/dd',          
         yearRange: "-10:+0",
 };
       
@@ -100,6 +111,28 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
       $(".month_picker").datepicker(datepicker_default);
 });
 
+$(function() { // 파일 업로드
+    $('#img_select1').change(function() {
+       setImageFromFile(this, '#preview1');
+    });
+    $('#img_select2').change(function() {
+       setImageFromFile(this, '#preview2');
+    });
+    $('#img_select3').change(function() {
+       setImageFromFile(this, '#preview3');
+    });
+ });
+ //파일 업로드
+ function setImageFromFile(input, expression) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+
+       reader.onload = function(e) {
+          $(expression).attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
+ }
 
 </script>
     
@@ -126,97 +159,167 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
                 
                 
                     <div class="IMG1" >
-					<img src="/images/member/2.svg" class="svgImg2">
-					<span class="font h_font">내 펫 관리</span>
+					<img src="/images/fsitter/2.svg" class="svgImg2">
+					<span class="font h_font">내 펫 추가</span>
 		       		</div>
 		       		
-		       		<form action="member/petInsert" method="post">
+		       		<div class="box_miInfo">
 		       		
-			       		<div class="box_miInfo">
-							<label for="homeTaba">사진 등록</label><br>
-								<input type="file" class="real-upload" name="img" accept="image/*" required>
+		       			
+        			</div>
+		        	
+		        	
+		        	<div class="box_miInfo">
+		        	
+		       			<div class="form-inline">
+		       				<form action="/member/petInsert" method="post" enctype="multipart/form-data">
+		       				
+							<div class="form-group">
+								<div class="size_fix">
+                              <!-- <img src="/images/sitter/no_img.png" id="preview1" style="width: 100px; height=100px; object-fit: cover;"/> --> 
+                              <label for="img_select1" class="input-file-button">사진 첨부</label> 
+	                          <input type="file" id="img_select1" name="file" style="display: none;" />
+		       		
+						<!-- <label for="photo">사진 등록</label><br>
+							<input type="file" class="real-upload" accept="image/*" required multiple> -->
 						</div>
-	        	
-			        	
-			        	
-			        	<div class="box_miInfo">
-			       			<div class="form-inline">
-								<div class="form-group">
-								
-									<label for="kinds">종류</label><br>
-								 	<div class="radio">
-									    <input type="radio" name="d_or_cat_id" id="kinds" value="1">
-									    강아지&emsp;&emsp;&emsp;
-									 	<input type="radio" name="d_or_cat_id" id="kinds" value="2">
-									    고양이
-									</div>
-									<br><br>
-									
-									<label for="name">이름</label><br>
-									<label>
-								   	<input type="text" class="form-control" name="name" id="name" placeholder="예) 댕댕이">
+								<label for="kinds">종류</label><br>
+							 	<div class="radio">
+							 		<label>
+								    	<input type="radio" name="d_or_cat_id" id="kinds" value="1">
+								    	강아지&emsp;&emsp;&emsp;
 								 	</label>
-								 	<br><br>
-								 	
-								 	<label for="gender">성별</label><br>
-								 	<div class="radio">
-									    <input type="radio" name="gender" id="gender" value="1">
-									    남&emsp;&emsp;&emsp;&emsp;&emsp;
-									    <input type="radio" name="gender" id="gender" value="2">
-									    여
-									</div>
-									<br><br>
-									
-									<label for="kind">품종</label><br>
-								   		<label>
-								   		<input type="text" class="form-control"  name="kind" id="kind" placeholder="예) 말티즈">
-								 		</label>
-								 	<br><br>
-								 	
-								 	<label for="datepicker">생년월일</label><br>
-								 		<label>
-								 		<input type="text"  id="datepicker" name="birthday" class="form-control">
-								 		</label>
-									 	<!-- 생년월일 datepicker  -->
-										<script type="text/javascript">
-											$("#datepicker").datepicker();
-										</script>
-										<br><br>
-								 	
-								 	<label for="weight">몸무게</label><br>
 								 	<label>
-								   	<input type="text" class="form-control" name="weight" id="weight" placeholder="예) 2.8">
-								 	</label>
-								 	
-								 	<br><br>
-								 	
-								 	<label for="neutere">중성화</label><br>
-								 	<div class="radio">
+								 		<input type="radio" name="d_or_cat_id" id="kinds" value="2">
+								    	고양이
+								    </label>	
+								</div>
+								<br><br>
+								
+								<label for="name">이름</label><br>
+								<label>
+							   	<input type="text" class="form-control" name="name" id="name" placeholder="예) 댕댕이">
+							 	</label>
+							 	<br><br>
+							 	
+							 	<label for="gender">성별</label><br>
+							 	<div class="radio">
+							 		<label>
+								    	<input type="radio" name="gender" id="gender" value="1">
+								    	남&emsp;&emsp;&emsp;&emsp;&emsp;
+								    </label>
+								    <label>
+								    	<input type="radio" name="gender" id="gender" value="2">
+								    	여
+								    </label>	
+								</div>
+								<br><br>
+								
+								<!-- 종류에서 강아지 고르면 이게 나오게 해야함 -->
+								<label for="dog">강아지 품종</label><br>
+									<label>
+							   		<select class="form-select" name="kind" style="text-align: center;">
+										  <option selected>-- 강아지 품종 --</option>
+										  <option value="1">시베리아허스키</option>
+										  <option value="2">푸들</option>
+										  <option value="3">셰퍼드</option>
+										  <option value="4">알래스칸 맬러뮤트</option>
+										  <option value="5">도베르만</option>
+										  <option value="6">리트리버</option>
+										  <option value="7">베들링턴 테이러</option>
+										  <option value="8">그레이 하운드</option>
+										  <option value="9">웰시코기</option>
+										  <option value="10">사모예드</option>
+										  <option value="11">시바이누</option>
+										  <option value="12">스피츠</option>
+										  <option value="13">슈나우저</option>
+										  <option value="14">비숑프리제</option>
+										  <option value="15">시츄</option>
+										  <option value="16">잭 러셀 테리어</option>
+										  <option value="17">포메라니안</option>
+										  <option value="18">미니어처 핀셔</option>
+										  <option value="19">파피용</option>
+										  <option value="20">요크셔 테리어</option>
+										  <option value="21">말티즈</option>
+										  <option value="22">닥스훈트</option>
+										  <option value="23">치와와</option>
+										  <option value="24">퍼그</option>
+										  <option value="25">프렌치불독</option>
+										  <option value="26">꼬똥 드 툴레아</option>
+										  <option value="40">기타</option>
+									</select>
+									</label>
+							 	<br><br>
+							 	<!-- 종류에서 고양이 고르면 이게 나오게 해야함 -->
+							 	<label for="cat">고양이 품종</label><br>
+									<label>
+							   		<select class="form-select" name="" style="text-align: center;">
+										  <option selected>-- 고양이 품종 --</option>
+										  <option value="27">페르시안고양이</option>
+										  <option value="28">러시안블루</option>
+										  <option value="29">아메리칸숏헤어</option>
+										  <option value="30">브리티쉬숏헤어</option>
+										  <option value="31">벵갈</option>
+										  <option value="32">아비시니안</option>
+										  <option value="33">스코티시폴드</option>
+										  <option value="34">스핑크스</option>
+										  <option value="35">소말리</option>
+										  <option value="36">먼치킨</option>
+										  <option value="37">랙돌</option>
+										  <option value="38">터키쉬앙고라</option>
+										  <option value="39">노르웨이 숲</option>
+										  <option value="41">기타</option>
+									</select>
+								</label>
+							 	<br><br>
+							 	
+							 	<label for="datepicker">생년월일</label><br>
+							 		<label>
+							 		<input type="text"  id="datepicker" name="birthday"class="form-control">
+							 		</label>
+								 	<!-- 생년월일 datepicker  -->
+									<script type="text/javascript">
+										$("#datepicker").datepicker();
+									</script>
+									<br><br>
+							 	
+							 	<label for="weight">몸무게</label><br>
+							 	<label>
+							   	<input type="text" class="form-control" id="weight" name="weight" placeholder="예) 2.8">
+							 	</label>
+							 	
+							 	<br><br>
+							 	
+							 	<label for="neutere">중성화</label><br>
+							 	<div class="radio">
+							 		<label>
 									    <input type="radio" name="g_id" id="neutere" value="1">
 									    예&emsp;&emsp;&emsp;&emsp;&emsp;
-									    <input type="radio" name="g_id" id="neutere" value="2">
-									    아니요
-									</div>
-									<br><br>
-									
-			        			</div>
-							
-							
-							
-							<div class="form">
-								<label for="floatingTextarea2">기타 참고사항</label><br>
-									<textarea class="form-control" name="comment" placeholder="위 질문 외에도 주의해야 할 점이나 참고 해야할 특이사항이 있다면 300자 이내로 작성해주세요." id="floatingTextarea2" style="height: 100px"></textarea>
-									<br>
+									</label>
+									<label>    
+								    	<input type="radio" name="g_id" id="neutere" value="2">
+								   	 	아니요
+								   	</label>
+								</div>
+								<br><br>
 								
-									<div class="col text-center">
-					                    <button type="submit" class="btn" style="background-color: #FE5C17; color: white;">추가하기</button>
-					                    
-					                </div> 
-			                </div><!-- <div class="form-floating"> -->	
-			                </div>
-				        </div>
-						</form>
-
+		        			</div>
+						
+						
+						
+						<div class="form">
+							<label for="floatingTextarea2">기타 참고사항</label><br>
+								<textarea class="form-control" placeholder="위 질문 외에도 주의해야 할 점이나 참고 해야할 특이사항이 있다면 300자 이내로 작성해주세요." name="comment" id="floatingTextarea2" style="height: 100px"></textarea>
+								<br>
+							
+								<div class="col text-center">
+				                    <button type="submit" class="but btn" style="background-color: #FE5C17; color: white;"
+				                   >추가하기</button>
+				                </div> 
+		                </div><!-- <div class="form-floating"> -->	
+		                </form>
+		                </div>
+			        </div>
                 </div>
             </div>
         </div>
@@ -228,7 +331,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 	</div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <!--  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/library/wow/wow.min.js"></script>
     <script src="/library/easing/easing.min.js"></script>

@@ -6,8 +6,5 @@ import petpple.kiwi.member.domain.pet.Pet;
 
 @Mapper
 public interface IPetManage {
-
 	public int insertPet(Pet dto);
-	
-	
 }
