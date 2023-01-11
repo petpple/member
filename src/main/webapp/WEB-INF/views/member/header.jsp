@@ -51,9 +51,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="#" class="nav-item nav-link active">긴급요청 서비스</a>
-                <a href="#" class="nav-item nav-link">방문 서비스</a>
-                <a href="#" class="nav-item nav-link">위탁 서비스</a>
+                <a href="#" class="nav-item nav-link active">긴급 요청 서비스</a>
+                <a href="vsitterPetSitterList" class="nav-item nav-link">방문 서비스</a>
+                <a href="fsitterPetSitterList" class="nav-item nav-link">위탁 서비스</a>
                 <a href="memberFAQ" class="nav-item nav-link">FAQ</a>
                 <a href="memberApply" class="nav-item nav-link">펫시터 지원하기</a>
                 <div class="nav-item dropdown">
@@ -68,7 +68,7 @@
                 </div>
                 
             </div>
-            <a href="" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+            <a href="memberLogin" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     <!-- Navbar End -->
