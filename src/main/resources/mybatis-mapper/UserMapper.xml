@@ -6,7 +6,7 @@
 <mapper namespace="petpple.kiwi.member.repository.UserMapper">
 
 	<!-- 회원 추가 -->
-	<insert id="PRC_TMP_MEMBER" statementType="CALLABLE" parameterType="petpple.kiwi.member.domain.User"> 
+	<insert id="PRC_TMP_MEMBER" statementType="CALLABLE" parameterType="User"> 
 	{ CALL PRC_TMP_MEMBER( 
 	      #{name}, #{id}, #{pw}, #{tel}, #{ssn1}, #{ssn2}, #{nickname}, #{code}, #{email}, #{addr}, 
 	      #{detailAddress}, #{lat}, #{lng}, 'test')
@@ -35,13 +35,20 @@
 		SELECT 
 		FROM MEMBER 
 	-->
-	<!-- 회원 ID 찾기 -->
-	<!-- 	
-		SELECT 
+	<!-- 로그인 -->
+	<select id="userLogin" resultType="User">
+		SELECT *
 		FROM MEMBER
-		WHERE EMAIL = #{}
-		AND NAME = #{}	
-	 -->
+		WHERE MEM_ID_ID= #{id} AND MEM_PW = #{pw}
+	</select>
+	
+	
+	<!-- 회원 ID 찾기 -->
+		
+<!-- 		SELECT  -->
+<!-- 		FROM MEMBER -->
+<!-- 		WHERE EMAIL = #{email} -->
+<!-- 		AND NAME = #{name}	 -->
 	<!-- 회원 PW 찾기 -->
 	
 </mapper>
