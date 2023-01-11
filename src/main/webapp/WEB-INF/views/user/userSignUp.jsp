@@ -149,40 +149,40 @@
 				<div class="col-lg-12">
 					<div class="tab_content">
 						<div class="conbox">
-							<form action="#" method="post">
+							<form action="memberinsert.action" method="post">
 								<div>
 									<h1>회원가입</h1>
 								</div>
 			                    <div>
 			                        <div class="h2_font">아이디</div>
 			                        <div class="col-md-12">
-			                        	<input type="text" name="id" id="id" placeholder="아이디">
+			                        	<input type="text" name="mem_id_id" id="mem_id_id" placeholder="아이디">
 			                        </div>
-			                       
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">닉네임</div>
 			                        <div class="col-md-12">
-			                        	<input type="text" name="nickName" id="nickName" placeholder="닉네임">
+			                        	<input type="text" name="mem_nickname" id="mem_nickname" placeholder="닉네임">
 			                        </div>
 			                    </div>
 									<!-- <span class="err">아아</span> -->			
 			                    <div>
 			                        <div class="h2_font">비밀번호</div>
-			                        <input type="password" name="pw" id="pw" placeholder="비밀번호">
+			                        <input type="password" name="mem_pw" id="mem_pw" placeholder="비밀번호">
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">비밀번호 재확인</div>
 			                        <input type="password" name="pwCheck" id="pwCheck" placeholder="비밀번호 재확인">
 			                    </div>
+		
 			                    <div>
 			                        <div class="h2_font">이름</div>
-			                        <input type="text" class="" id="name">
+			                        <input type="text" class="" id="mem_name">
 			                    </div>
 			                    <div >
 			                        <div class="h2_font">성별</div>
-			                        <input type="radio" name="gender" id="gender">남자
-			                        <input type="radio" name="gender" id="gender">여자
+			                        <input type="radio" name="gender" value="male">남자
+			                        <input type="radio" name="gender" value="female">여자
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">생년월일</div>
@@ -190,6 +190,9 @@
 			                        <div>
 			                        	<input type="text" class="date" id="date">
 			                        </div>
+			                    </div>
+          	                    <div>
+			                    	<input type="file" name="profile" id="profile">
 			                    </div>
 			                    
 			                    <div class="row">
@@ -209,12 +212,14 @@
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">전화번호</div>
-			                        <input type="tel" name="tel1" id="tle1" maxlength="12">
-			                        
+			                        <input type="tel" name="tel" id="tel" maxlength="12">
+			                    </div>
+			                    <div>
+			                    	<input type="email" id="email">
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">주민번호</div>
-			                        <div class="row"]>
+			                        <div class="row">
 			                        	<div class="col-sm-5">
 			                        		<input type="text" name="ssn1" id="ssn1" maxlength="6">
 			                        	</div>
@@ -226,11 +231,7 @@
 			                        	</div>
 			                        </div>
 			                    </div>
-			                    <div>
-			                         <div class="h2_font">가입경로</div>
-			                         <textarea rows="2" cols="20" id="joinPath" style="width: 100%"></textarea>
-			                    </div>
-			                    <button type="button" class="SignUpBtn">가입하기</button>
+			                    <button type="submit" class="SignUpBtn">가입하기</button>
 			                </form>
 		                </div>
 					</div>
