@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="petpple.kiwi.member.repository.pet.IPetManage">
+    <insert id="PRC_INS_PET" statementType="CALLABLE" parameterType="Pet"> 
+	{ CALL PRC_INS_PET( 
+	      #{id}, '테스트이미지 겨', #{name}, #{birthday}, #{weight}, #{comment}, #{reg_date}, #{gender}, #{g_id}, #{d_or_cat_id}, 
+	      #{kind}, 'UV8YF0IN08')
+	}
+	</insert>
+</mapper>
