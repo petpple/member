@@ -115,15 +115,14 @@ public class UserController {
 	//------------------------유저 Pw 찾기 종료------------------------//
 	
 	//------------------------회원 데이터 입력 시작------------------------//
-	@RequestMapping(value = "/memberinsert.action", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/memberinsert.action", method = RequestMethod.POST)
 	public String memberInsert(User user)
 	{
-		
 		UserMapper dao = sqlSession.getMapper(UserMapper.class);
 		
 		dao.PRC_TMP_MEMBER(user);
 		
-		return "redirect:user/userMain";
+		return "redirect:userMain";
 	}
 	//------------------------회원 데이터 입력 종료------------------------//
 
