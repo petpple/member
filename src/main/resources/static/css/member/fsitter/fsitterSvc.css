@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.sitterList {
+	background-color: white;
+	border: 1px solid rgb(235, 235, 235);
+	box-shadow: rgb(0 0 0/ 7%) 0px 0px 12px 0px;
+	height: 260px;
+	border-radius: 3px;
+	margin-left: -10px;
+	display:flex;
+}
+
+.sitterImg {
+	width: 390px;
+	height: 250px;
+	border-radius: 3px;
+	margin-left: 5px;
+	overflow: hidden;
+	position: relative;
+	padding-top: 3px;
+	display:flex;
+}
+
+.sitterImg>Img {
+	width: 390px;
+	height: 250px;
+	object-fit: cover;
+	border-radius: 3px;
+}
+
+.sitterAtag {
+	padding: 30px 33px 0px 38px;
+	height: 100%;
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.locAndTitleDiv{
+	width: 100%; border-bottom: 1px solid rgb(235, 235, 235); padding-bottom: 5px;
+}
+.underDiv {
+	display: flex; justify-content: space-between; width: 100%; height: 100%; padding-top: 18px;
+	
+}
+
+.underTitle {
+	display: flex; flex-direction: column; justify-content: space-between;"
+}
+
+.starImg{
+	width: 25px;
+	height: 25px;
+	object-fit: cover;
+}
+
+.gradeImg img{
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	
+}
