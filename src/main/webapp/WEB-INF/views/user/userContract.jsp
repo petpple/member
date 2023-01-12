@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>user-sample</title>
+    <title>회원 약관</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -47,11 +47,12 @@
 
     <!-- 여기다가 코드 작성 -->
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container text-center">
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-6">
+                <div class="col-lg-8">
                     <form class="contract" action="/user/userSignUp">
 		        <h1>회원가입 약관</h1>
+		        <br>
 		        <div class="text">제1장 총칙
 		
 		제 1 조 (목적)
