@@ -6,13 +6,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import petpple.kiwi.member.domain.user.User;
-import petpple.kiwi.member.repository.user.UserMapper;
+import petpple.kiwi.member.repository.user.IUserMapper;
 
 
 @Controller
@@ -34,7 +34,7 @@ public class UserLoginController
 	public String userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, HttpServletRequest request)
 	{
 		
-		UserMapper dao = sqlSession.getMapper(UserMapper.class);
+		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
 		
 		HttpSession session = request.getSession();
 		
@@ -42,8 +42,7 @@ public class UserLoginController
 		temp.setId(id);
 		temp.setPw(pw);
 		int str = 0;
-//		
-//		
+
 //		System.out.println(dao.userLogin(temp));
 //		System.out.println("id : " + temp.getId() + ", pw : " + temp.getPw());
 //		System.out.println("id : " + id + ", pw : " + pw);
@@ -102,11 +101,27 @@ public class UserLoginController
 //		
 //
 //	}
-	
-	
-	
 	//------------------------유저 로그인 종료------------------------//
+
+	//------------------------유저 로그아웃------------------------//
+	@PostMapping("/logout")
+	public String logout(HttpServletRequest request) 
+	{
+		// 세션을 삭제한다.
+		
+		HttpSession session = request.getSession(false);
+		
+		if (session != null)
+		{
+			session.invalidate();
+			
+		}
+		
+		return "redirect:/user/userMain";
+	}
+	
 	
 	
 
 }
+	
