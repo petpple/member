@@ -4,4 +4,5 @@ import petpple.kiwi.member.domain.apply.Sitter;
 
 public interface ISitterApply {
 	public int applySitter(Sitter dto);
+	public int confirmSitter(String id);
 }
