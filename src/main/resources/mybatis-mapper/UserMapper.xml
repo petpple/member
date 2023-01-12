@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="petpple.kiwi.member.repository.user.UserMapper">
+<mapper namespace="petpple.kiwi.member.repository.user.IUserMapper">
 
 	<!-- 회원 추가 -->
 	<insert id="PRC_TMP_MEMBER" statementType="CALLABLE" parameterType="User"> 
@@ -60,11 +60,17 @@
 <!-- 		AND NAME = #{name}	 -->
 	<!-- 회원 PW 찾기 -->
 	
-	<!-- id 중복성 검사 -->
+	<!-- id 중복 검사 -->
 	<select id="idCheck" parameterType="String" resultType="java.lang.Integer">
-		SELECT COUNT(*)
+		SELECT COUNT(*) AS COUNT
 		FROM MEMBER
-		WHERE MEM_ID_ID= #{id};
+		WHERE MEM_ID_ID= #{id}
 	</select>
 	
+	<!-- 닉네임 중복 검사 -->
+	<select id="nickNameCheck" parameterType="String" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM MEMBER
+		WHERE MEM_NICKNAME=#{nickName}
+	</select>
 </mapper>
