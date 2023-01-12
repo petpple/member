@@ -64,7 +64,7 @@
 	<div>
 		<c:import url="header.jsp"></c:import>
 	</div>
-
+	<span>${sessionScope.temId==null ? "비회원" : "일반회원" }</span>
 	<!-- 여기다가 코드 작성 -->
 	<div class="container-xxl wow fadeInUp" data-wow-delay="0.2s">
 		<div class="container text-center">

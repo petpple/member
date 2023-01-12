@@ -22,6 +22,8 @@ public interface UserMapper {
 	public String tmpMemberId(String id, String pw);
 
 	public int idCheck(String id);
+	//test
+	public String tmpMemberId(User user);
 		
 }
 

@@ -49,6 +49,8 @@
 		WHERE MEM_ID_ID=#{id} AND MEM_PW=#{pw}
 	</select>
 	
+	<!-- 펫시터 코드 -->
+	
 	
 	<!-- 회원 ID 찾기 -->
 		
