@@ -102,9 +102,24 @@
      font-size: 15px;
 }
 
+.box_miMyPr5
+{
+     background-color: rgba(251, 238, 231, 0.636);
+     border: 1px solid rgba(227, 226, 226, 0.913); 
+  	
+     box-shadow: 1px 1px 1px rgb(222, 214, 214); 
+     border-radius: 4px;
+     padding: 30px;
+     width:100%;
+     margin-left: 30px;
+     margin-top: 35px;
+     font-size: 15px;
+     height: auto;
+}
+
 #sitterName2
 {
-	width: 70px;
+	width: 100px;
 }
 #sitterTitle
 {
@@ -125,6 +140,33 @@
 	 
 }
 
+.box_mypi3
+{
+     border: 1px solid rgba(210, 210, 210, 0.913); 
+     height: 340px;
+     box-shadow: 1px 1px 1px rgb(167, 165, 165); 
+     border-radius: 4px;
+     padding: 13px;
+     
+	 font-size: 15px;
+	 margin-left: 15px;
+	 
+}
+
+.box_mypi4
+{
+     border: 1px solid rgba(210, 210, 210, 0.913); 
+     height: 200px;
+     box-shadow: 1px 1px 1px rgb(167, 165, 165); 
+     border-radius: 4px;
+     padding: 13px;
+     
+	 font-size: 15px;
+	 margin-left: 15px;
+	 
+}
+
+
 #loc2
 {	
 	
@@ -140,4 +182,172 @@
 .certificate
 {
 	font-size:15px;
+}
+
+.petImg2
+{
+   width:50px;
+   height:60px;
+   object-fit: cover;
+   border-radius: 30px;
+}
+
+.petImg2 > img {
+   width:45px;
+   height:45px;
+   object-fit: cover;
+   border-radius: 30px;
+}
+
+.size_fix {
+   margin-left:10px;
+   width:50px;
+   
+}
+
+.size_fix2 {
+   height:150px;
+   width:500px;
+   margin-bottom: 20px;
+}
+.size_fix > img{
+   width:50px;
+   height:50px;
+   object-fit: cover;
+}
+
+
+.size_fix2 > img{
+   width:150px;
+   height:150px;
+   object-fit: cover;
+   margin-right: 10px;
+   
+}
+
+.input-file-button{
+  padding: 6px 25px;
+  background-color:#FE5C17;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  
+}
+
+.lg-3
+{
+	margin-bottom: 10px;
+}
+
+.map
+{
+	width: 300px;
+	height: 290px;
+}
+
+.petreview
+{
+	display: flex; 
+	flex-direction: row; 
+	align-items: center; 
+	margin-bottom: 38px;
+}
+
+.petreviewTitle
+{
+	font-weight: 600; 
+	font-size: 22px; 
+	letter-spacing: -0.2px; 
+	line-height: 33px; 
+	color: rgb(57, 60, 71); 
+	margin-right: 20px; 
+	margin-bottom: 0px;
+}
+
+.petstar
+{
+	display: flex; 
+	flex-direction: row; 
+	justify-content: space-between; 
+	align-items: center; 
+	width: 113px;
+}
+
+.reviewPhoto
+{
+	display: flex; 
+	flex-direction: row;
+}
+
+.reviewPhotos
+{
+	display: flex; 
+	overflow: hidden; 
+	border-radius: 3px; 
+	margin-right: 9px; 
+	user-select: none; 
+	cursor: pointer; 
+	position: relative;
+}
+
+.line
+{
+	margin-top: 20px;
+}
+
+.petImgs
+{
+	display: flex; 
+	flex-direction: row; 
+	margin-top: 10px;"
+}
+
+.petImg
+{
+	width: 90px; 
+	height: 90px;
+}
+
+.petHostReview
+{
+	font-size: 15px; 
+	line-height: 25px; 
+	color: rgb(76, 80, 86); 
+	margin-top: 13px;"
+}
+
+.reviewForm
+{
+	display: flex; 
+	flex-direction: column; 
+	border-top: 1px solid rgb(235, 235, 235); 
+	padding: 20px 0px;"
+}
+
+.reviewFormTitle
+{
+	 display: flex;
+	 flex-direction: row; 
+	 align-items: center;"
+}
+
+.reviewId
+{
+	font-size: 15px; 
+	letter-spacing: -0.2px; 
+	line-height: 22px; 
+	color: rgb(56, 60, 72);"
+}
+
+.reviewDate
+{
+	font-size: 13px; 
+	line-height: 19px; 
+	color: rgb(76, 80, 86); 
+	margin-top: 3px;"
+}
+
+.reviewImgIdDate
+{
+	margin-left: 18px;
 }
