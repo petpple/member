@@ -9,7 +9,7 @@
 
 <head>
 <meta charset="utf-8">
-<title>user-sample</title>
+<title>FAQ</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
