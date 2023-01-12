@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import petpple.kiwi.member.domain.user.User;
-import petpple.kiwi.member.repository.user.UserMapper;
+import petpple.kiwi.member.repository.user.IUserMapper;
 
 @Controller
 public class UserController {
@@ -95,7 +95,7 @@ public class UserController {
 	@RequestMapping(value = "/user/memberinsert.action", method = RequestMethod.POST)
 	public String memberInsert(User user)
 	{
-		UserMapper dao = sqlSession.getMapper(UserMapper.class);
+		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
 		
 		dao.PRC_TMP_MEMBER(user);
 		
