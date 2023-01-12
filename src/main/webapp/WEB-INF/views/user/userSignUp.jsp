@@ -136,7 +136,7 @@
 		$("#btnCheck").click(function()
 		{
 // 			alert("확인");
-			if ($("#txtid").val() != "")
+			if ($("#id").val() != "")
 			{
 // 				아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
 		         $.ajax({
@@ -144,7 +144,7 @@
 		             type: "POST",
 		             url: "/checkId.action",
 // 		             data: "id=" + $("#txtid").val(),
-		             data: {id:$("#txtid").val()},
+		             data: {id:$("#id").val()},
  		             dataType: "json",
 		             success: function(result) {
 		                 if (result == "0") {
@@ -162,7 +162,7 @@
 		     } else 
 		     {
 		         alert("아이디를 입력하세요.");
-		         $("#txtid").focus();
+		         $("#id").focus();
 		     }
 				
 		});
@@ -170,14 +170,14 @@
 		$("#nickNameCheck").click(function()
 		{
 //  		alert("확인");
-			if ($("#nickName").val() != "")
+			if ($("#nickname").val() != "")
 			{
 //  			아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
 		         $.ajax({
 		   					
 		             type: "POST",
 		             url: "/nickName.action",
-		             data: {nickName:$("#nickName").val()},
+		             data: {nickName:$("#nickname").val()},
 //  		         dataType: "json",
 		             success: function(nameResult) {
 		                 if (nameResult == "0") {
@@ -195,13 +195,37 @@
 		     } else 
 		     {
 		         alert("닉네임을 입력하세요.");
-		         $("#nickName").focus();
+		         $("#nickname").focus();
 		     }
 				
 		});
 		
-		
 	})
+	
+	function check() {
+		if($.trim($('#id').val()) == '') 
+		{
+	        alert("아이디를 입력해주세요.");
+	        return false;
+	    }
+		if($.trim($('#nickname').val()) == '') 
+		{
+	        alert("닉네임을 입력해주세요.");
+	        return false;
+	    }
+	    if($.trim($('#pw').val()) == '') 
+	    {
+	        alert("비밀번호를 입력해주세요.");
+	        return false;
+	    }
+	 
+	    if(confirm("회원가입을 하시겠습니까?")){
+	        alert("회원가입이 완료되었습니다. 감사합니다.");
+// 	         $("form").submit(); 
+	         return true;
+	    }
+	    
+	}
 
 </script>
 
@@ -230,7 +254,7 @@
 				<div class="col-lg-12">
 					<div class="tab_content">
 						<div class="conbox">
-							<form action="memberinsert.action" method="post">
+							<form action="memberinsert.action" method="post" onsubmit="check();">
 								<div>
 									<h1 class="h_font">회원가입</h1>
 								</div>
@@ -238,7 +262,7 @@
 									<div class="h2_font">아이디</div>
 									<div class="row">
 										<div class="col-md-6">
-											<input type="text" name="txtid" id="txtid" class="id_confirm" placeholder="아이디">
+											<input type="text" name="id" id="id" class="id_confirm" placeholder="아이디">
 										</div>
 										<div class="col-md-6">
 											<input type="button" name="btnCheck" id="btnCheck" value=" 아이디중복확인"
@@ -252,7 +276,7 @@
 									<div class="h2_font">닉네임</div>
 									<div class="row">
 										<div class="col-md-6">
-											<input type="text" name="nickName" id="nickName" placeholder="닉네임">
+											<input type="text" name="nickname" id="nickname" placeholder="닉네임">
 										</div>
 										<div class="col-md-6">
 											<input type="button" name="nickNameCheck" id="nickNameCheck" value="닉네임중복확인"
@@ -331,7 +355,7 @@
 			                        	</div>
 			                        </div>
 			                    </div>
-			                    <button type="button" id="submit" class="SignUpBtn" onclick="check()">가입하기</button>
+			                    <button type="submit" id="SignUpBtn" class="SignUpBtn">가입하기</button>
 			                </form>
 		                </div>
 					</div>
