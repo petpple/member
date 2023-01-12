@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import petpple.kiwi.member.domain.user.User;
 
 @Mapper
-public interface UserMapper {
+public interface IUserMapper {
 
 	public int PRC_TMP_MEMBER(User user);
 	
@@ -21,9 +21,12 @@ public interface UserMapper {
 	
 	public String tmpMemberId(String id, String pw);
 
-	public int idCheck(String id);
 	//test
 	public String tmpMemberId(User user);
+	
+	public int idCheck(String id);
+
+	public int nickNameCheck(String nickName);
 		
 }
 
