@@ -45,6 +45,13 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet"href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+<style type="text/css">
+
+	#result,#nameResult {color: red; }
+
+</style>
+
+
 <script>
 
 	    function DaumPostcode() {
@@ -124,64 +131,80 @@
 </script>
 <script type="text/javascript">
 
-function check() {
-    if($.trim($('#nickname').val()) == '') {
-        alert("닉네임을 입력해주세요.");
-        return false;
-    }
-    if($.trim($('#mem_id_id').val()) == '') {
-        alert("아이디를 입력해주세요.");
-        return false;
-    }
-    if($.trim($('#mem_pw').val()) == '') {
-        alert("비밀번호를 입력해주세요.");
-        return false;
-    }
- 
-    if(confirm("회원가입을 하시겠습니까?")){
-        alert("회원가입이 완료되었습니다. 감사합니다.");
-         $("form").submit();    
-    }
-}
- 
- 
-/* 아이디 중복 체크 : ajax 비동기처리 */
-function idCheck() {
-    
-    var mem_id_id = $("#mem_id_id").val();
-    
-    if(mem_id_id.search(/\s/) != -1) { 
-        alert("아이디에는 공백이 들어갈 수 없습니다.");        
-    } else {             
-        if(mem_id_id.trim().length != 0) {
-            $.ajax({
-                async : true, 
-                type : 'POST', 
-                data: mem_id_id,
-                url: "/idCheck",
-                dataType: "json",
-                contentType: "application/json; charset=UTF-8",
-                success: function(count) {    
-                    if(count > 0) {
-                        alert("해당 아이디 존재");    
-                        $("#submit").attr("disabled", "disabled");
-                        window.location.reload();
-                    } else {
-                        alert("사용가능 아이디");
-                        $("#submit").removeAttr("disabled");
-                    }            
-                },
-                error: function(error) {
-                    alert("아이디를 입력해주세요.");
-                }        
-            });
-        } else {
-            alert("아이디를 입력해주세요.");
-        }        
-    }
-}
+	$(document).ready(function()
+	{
+		$("#btnCheck").click(function()
+		{
+// 			alert("확인");
+			if ($("#txtid").val() != "")
+			{
+// 				아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+		         $.ajax({
+		   					
+		             type: "POST",
+		             url: "/checkId.action",
+// 		             data: "id=" + $("#txtid").val(),
+		             data: {id:$("#txtid").val()},
+ 		             dataType: "json",
+		             success: function(result) {
+		                 if (result == "0") {
+		                     $("#result").html("사용 가능한 아이디입니다.");
+		                 } else {
+		                     $("#result").html("이미 사용중인 아이디입니다.");
+		                 }
+		             },
+		             error: function(a, b, c) {
+		                 console.log(a, b, c);
+		             }
+		   					
+		         });
+		   				
+		     } else 
+		     {
+		         alert("아이디를 입력하세요.");
+		         $("#txtid").focus();
+		     }
+				
+		});
+		
+		$("#nickNameCheck").click(function()
+		{
+//  		alert("확인");
+			if ($("#nickName").val() != "")
+			{
+//  			아이디를 서버로 전송 > DB 유효성 검사 > 결과 반환받기
+		         $.ajax({
+		   					
+		             type: "POST",
+		             url: "/nickName.action",
+		             data: {nickName:$("#nickName").val()},
+//  		         dataType: "json",
+		             success: function(nameResult) {
+		                 if (nameResult == "0") {
+		                     $("#nameResult").html("사용 가능한 닉네임입니다.");
+		                 } else {
+		                     $("#nameResult").html("이미 사용중인 닉네임입니다.");
+		                 }
+		             },
+		             error: function(a, b, c) {
+		                 console.log(a, b, c);
+		             }
+		   					
+		         });
+		   				
+		     } else 
+		     {
+		         alert("닉네임을 입력하세요.");
+		         $("#nickName").focus();
+		     }
+				
+		});
+		
+		
+	})
 
 </script>
+
 
 </head>
 
@@ -209,33 +232,39 @@ function idCheck() {
 						<div class="conbox">
 							<form action="memberinsert.action" method="post">
 								<div>
-									<h1>회원가입</h1>
+									<h1 class="h_font">회원가입</h1>
 								</div>
 								<div>
 									<div class="h2_font">아이디</div>
 									<div class="row">
 										<div class="col-md-6">
-											<input type="text" name="id" id="mem_id_id" class="id_confirm" placeholder="아이디">
+											<input type="text" name="txtid" id="txtid" class="id_confirm" placeholder="아이디">
 										</div>
 										<div class="col-md-6">
-											<input type="button" id="idCheck" value="중복확인"
-												class="btn btn-outline-secondary" onclick="idCheck()">
+											<input type="button" name="btnCheck" id="btnCheck" value=" 아이디중복확인"
+												class="btn btn-outline-secondary">
 										</div>
-										<div id="checkId"></div>
+										<span id="result"></span><br>
+										
 									</div>
 								</div>
 								<div>
 									<div class="h2_font">닉네임</div>
-									<div class="col-md-12">
-										<input type="text" name="nickname" id="mem_nickname"
-											placeholder="닉네임">
+									<div class="row">
+										<div class="col-md-6">
+											<input type="text" name="nickName" id="nickName" placeholder="닉네임">
+										</div>
+										<div class="col-md-6">
+											<input type="button" name="nickNameCheck" id="nickNameCheck" value="닉네임중복확인"
+												class="btn btn-outline-secondary">
+										</div>
 									</div>
-									<div><span class="err">확인</span></div>
+									<span id="nameResult"></span>
 								</div>
 										
 			                    <div>
 			                        <div class="h2_font">비밀번호</div>
-			                        <input type="password" name="pw" id="mem_pw" placeholder="비밀번호">
+			                        <input type="password" name="pw" id="pw" placeholder="비밀번호">
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">비밀번호 재확인</div>
