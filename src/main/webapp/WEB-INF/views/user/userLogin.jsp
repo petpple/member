@@ -126,7 +126,7 @@
 										<!-- 회원 가입 폼으로 -->
 									</div>
 									<div class="forget">
-										<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
+										<a href="userIdPwSearch">아이디 / 비밀번호를 잊어버리셨나요?</a>
 									</div>
 								</form>
 							</div>
@@ -154,7 +154,7 @@
 											class="btn pSubmitBtn m_font">
 									</div>
 									<div class="forget">
-										<a href="#">아이디 / 비밀번호를 잊어버리셨나요?</a>
+										<a href="userIdPwSearch">아이디 / 비밀번호를 잊어버리셨나요?</a>
 									</div>
 								</form>
 							</div>
