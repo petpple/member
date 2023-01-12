@@ -26,10 +26,10 @@ public class MemberToSitterController {
 	public String sitterApply(Sitter dto) {
 
 		ISitterApply dao = sqlSession.getMapper(ISitterApply.class);
-		dao.applySitter(dto);
+		dao.applySitter(dto); // 펫시터 지원
 
+		dao.confirmSitter(dto.getId()); // 펫시터 승인
 		return "redirect:memberMain";
 	}
-
 
 }
