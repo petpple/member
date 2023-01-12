@@ -42,7 +42,8 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="#" class="nav-item nav-link">의뢰인 소개</a>
                 <a href="#" class="nav-item nav-link">펫시터 소개</a>
-                <a href="FAQ" class="nav-item nav-link">FAQ</a>
+                <a href="/user/FAQ" class="nav-item nav-link">FAQ</a>
+                <a href="/user/userLogin" class="nav-item nav-link">로그인</a>
             </div>
             <a href="/user/userContract" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">회원가입<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
