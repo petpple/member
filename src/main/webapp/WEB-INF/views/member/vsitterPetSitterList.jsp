@@ -140,8 +140,24 @@
 					$("#location").val($(this).children('span').text());
 					$(".location_div").css('display', 'none');
 				})
-
+				
+				$("#showMore").click(function(){
+					$.ajax({
+						url:"showMoreVList",
+						data:{'start':1 , 'end':2},
+						type:"post",
+						success: function(data){
+								$("#addon").append(data);
+									}
+		
+						,
+						error: function(jqXHR,textStatus, errorThrown)
+						{
+							alert("오류발생")
+						}
+				});
 			});
+	});
 </script>
 
 </head>
@@ -211,53 +227,49 @@
 					style="height: 2px; margin-top: 50px; margin-bottom: 50px;">
 				</div>
 
-				<div class="row">
+				<div class="row" >
+					<div class="row" id="addon" >
+					<c:forEach var="item" items="${list }">
 					<div class="col-auto">
 						<div class="sitterList"
 							style="width: 370px; height: 225px; padding-top: 20px;">
 							<div class="sitterImg">
 								<!-- carousel 시작 -->
 								<img src="/images/user/suprise.jpg"><br> <span
-									class="mb_font" style="margin-top: 10px;">잘까</span>
+									class="mb_font" style="margin-top: 10px;">${item.name }</span>
 							</div>
 							<!--sitter IMg  -->
-							<a href="#" class="sitterAtag">
+							<a href="/member/vsitter?allowid=${item.allowId }" class="sitterAtag">
 
 								<div class="locAndTitleDiv">
 									<p
-										style="font-size: 14px; letter-spacing: -0.1px; color: rgb(94, 99, 109);">서울
-										강남구 청담동</p>
+										style="font-size: 14px; letter-spacing: -0.1px; color: rgb(94, 99, 109);">${item.addr }</p>
 									<p
-										style="font-size: 20px; letter-spacing: -0.2px; color: rgb(56, 60, 72); margin-top: 9.5px;">한강산책
-										프리미엄 펫시터🐶</p>
+										style="font-size: 20px; letter-spacing: -0.2px; color: rgb(56, 60, 72); margin-top: 9.5px;">${item.title }</p>
 								</div>
 								<div class="underDiv">
 									<div class="underTitle">
 										<p
 											style="color: rgb(56, 60, 72); font-size: 13px; letter-spacing: -0.3px; max-width: 400px;">
-											· 흡연 안함 · 반려동물 있어요</p>
+											· ${item.smokeId == 1 ? "흡연자입니다" : "비흡연자입니다" } · 반려동물 있어요</p>
 										<div
 											style="display: flex; align-items: center; flex-direction: row; margin-bottom: 80px;">
 											<div
 												style="width: 140px; display: flex; flex-direction: row; justify-content: space-between;">
 												<div class="starImg"
 													style="display: flex; flex: 1 1 0%; justify-content: space-between;">
-													<img src="/images/member/pngwing.com.png"> <img
-														src="/images/member/pngwing.com.png"> <img
-														src="/images/member/pngwing.com.png"> <img
-														src="/images/member/pngwing.com.png"> <img
-														src="/images/member/pngwing.com.png">
+													<c:forEach var="n" begin="1" end="${item.stars}" step="1">
+														<img src="/images/member/pngwing.com.png"> 
+													</c:forEach>
 												</div>
-
-
 											</div>
 											<div style="displplay: flex; margin-left: 10px;">
-												<span class="mb_font">후기 (5)</span>
+												<span class="mb_font">후기 (${item.reviewCnt })</span>
 											</div>
 										</div>
 									</div>
 									<div style="text-align: center; margin-top: 0px;">
-										<p style="font-size: 13px; font-weight: bold;">등급</p>
+										<p style="font-size: 13px; font-weight: bold;">${item.count } / ${item.time }</p>
 										<div class="gradeImg">
 											<img src="/images/member/다운로드.jfif">
 											<!--등급 image  -->
@@ -268,10 +280,12 @@
 							</a>
 						</div>
 				</div>
+				</c:forEach>
+				</div>
 				
 
 				<div style="margin-top: 20px;">
-					<button class="btn btn-light" style="width: 100%">더보기</button>
+					<button class="btn btn-light" style="width: 100%" id="showMore">더보기</button>
 				</div>
 			</div>
 
