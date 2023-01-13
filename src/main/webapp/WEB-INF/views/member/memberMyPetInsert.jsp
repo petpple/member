@@ -183,14 +183,14 @@ $(function() { // 파일 업로드
 						<!-- <label for="photo">사진 등록</label><br>
 							<input type="file" class="real-upload" accept="image/*" required multiple> -->
 						</div>
-								<label for="kinds">종류</label><br>
+								<label for="d_or_cat_id">종류</label><br>
 							 	<div class="radio">
 							 		<label>
-								    	<input type="radio" name="d_or_cat_id" id="kinds" value="1">
+								    	<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="1">
 								    	강아지&emsp;&emsp;&emsp;
 								 	</label>
 								 	<label>
-								 		<input type="radio" name="d_or_cat_id" id="kinds" value="2">
+								 		<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="2">
 								    	고양이
 								    </label>	
 								</div>
@@ -290,14 +290,14 @@ $(function() { // 파일 업로드
 							 	
 							 	<br><br>
 							 	
-							 	<label for="neutere">중성화</label><br>
+							 	<label for="g_id">중성화</label><br>
 							 	<div class="radio">
 							 		<label>
-									    <input type="radio" name="g_id" id="neutere" value="1">
+									    <input type="radio" name="g_id" id="g_id" value="1">
 									    예&emsp;&emsp;&emsp;&emsp;&emsp;
 									</label>
 									<label>    
-								    	<input type="radio" name="g_id" id="neutere" value="2">
+								    	<input type="radio" name="g_id" id="g_id" value="2">
 								   	 	아니요
 								   	</label>
 								</div>
