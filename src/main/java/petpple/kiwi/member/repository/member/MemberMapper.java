@@ -37,9 +37,12 @@ public interface MemberMapper {
 
 	public int sumFpetsitting();
 
-    // 펫시팅 현황 현재 이력
-//	public List<Member> currentPetsitting();
+    // 모든 진행 중인 펫시팅
     public ArrayList<Member> currentPetsitting();
+
+    // 모든 서비스 이용 확정 대기
+    public ArrayList<Member> comfirmWaiting();
+
 
     // 임의 회원코드
 	public String tempIdsearch(String id);
