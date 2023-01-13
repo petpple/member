@@ -27,7 +27,7 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="/css/fsitter/fsitterMyProfile.css">
+    <link rel="stylesheet" href="/css/member/fsitter/fsitterMyProfile.css">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
     
     <!-- datepicker -->
@@ -38,10 +38,50 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="/css/fsitter/fsitterMyPet.css">
+	<link rel="stylesheet" href="/css/member/fsitter/fsitterMyPet.css">
 	<link rel="stylesheet" href="/css/main.css">
     
-    
+  	<style type="text/css">
+  		.serveType {
+  			width:65px; border:1px solid  white; 
+  			background-color:#ffd7b3; border-radius:5px;padding:5px; 
+  			vertical-align: center; cursor: pointer;
+  		}
+ 		.serveType:hover {
+			box-shadow: 0 0 2px gray;		
+ 		} 
+ 		
+ 		
+ 		.select {
+    padding: 15px 10px;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #ffd7b3;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+    border-radius: 5px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #ffd7b3;
+    color: #333;
+}	
+  		.
+  	
+  	</style>
    
 
 <script type="text/javascript">
@@ -126,7 +166,8 @@ $(function() { // 파일 업로드
     }
  }
 </script>
-    
+ 
+   
     
 <!-- 카카오 맵 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=267276c330ec0b1c55c55bf8f203426d"></script>
@@ -195,36 +236,27 @@ $(function() { // 파일 업로드
 						<div class="box_miMyPr1">
 								<!-- <div class="size_fix inline"> -->
 	                              <!-- <img src="/images/fsitter/h4.svg" id="preview1" />  -->
-									<img src="/images/fsitter/h4.svg" class="svgImg3" id="preview1">
+									<img src="/images/member/fsitter/h4.svg" class="svgImg3" id="preview1">
 									<!--  <div class="form-group m_font" id="MyPro1"> -->
-									 	<div class="lg-3 row"> 
-										     <div class="col-lg-5" style="margin-left: -10px;">
-										      	<input type="text" class="form-control" id="location" placeholder="서울시 마포구 합정동" >
+									 	<div class="row"> 
+										     <div class="" style="margin-left: -10px;">
+										     	<span class="m_font">서울 광진구 법흥동</span><br>
+										      	<span class="m_font">펫시터</span>
+										      	&nbsp;<span class="m_font ">다나카</span><span class="m_font">님</span>
+										      	<div style="padding-top:20px;">
+										      		<span style="font-size: 25px;">따뜻한 보살핌을 드리겠습니다.</span>
+										      	</div>
+										      	
+										      	<br>
 										     </div>
-										     	<label for="location" class="col-lg-2 col-form-label">펫시터</label>
-										     <div class="col-lg-3">
-										      	<input type="text" class="form-control"  placeholder="다나카" Readonly>
-										     </div>
-										    	<label for="sitterName3" class="col-lg-2 col-form-label" >님</label>
-										    	
-										    	<input type="text" class="form-control form-control-lg" id="loc3" placeholder="내 아이를 돌보듯 따뜻하고 편안하게">
 										</div><!-- <div class="lg-3 row"> -->
 										
-											<!-- <label
-	                               			  for="img_select1" class="input-file-button" style="margin-left: -8px; ">사진 첨부</label> 
-	                                		 <input type="file" id="img_select1" style="display: none;" /> -->
-																	 	
-								 <!-- </div> -->
-								
-							<!-- </div> --><!--end <form class="form-inline">-->
 						</div><!--end <div class="box_mi">-->
 					
-						<div class="box_miMyPr2 ">
-							<div class="lg-3 row">
-							    <div class="col-lg-2">
-							      <input type="text" class="form-control"  placeholder="다나카" Readonly>
-							    </div>
-							    <label for="sitterName2" class="col-lg-5 col-form-label" >펫시터님을 소개합니다.</label>
+						<div class="box_miMyPr2">
+							<div class="">
+						      	<span class="mb_font">다나카</span>
+						      	<span class="m_font">펫시터 님을 소개합니다.</span>
 							</div>
 							<br>
 							<div>
@@ -232,51 +264,7 @@ $(function() { // 파일 업로드
 							</div>
 						</div><!-- <div class="box_miMyPr2 "> -->
 			
-						<div class="box_miMyPr3">
-							<label for="sitter_name m_font">자격증 및 교육 수료</label>
-							<select class="form-control" size="10"  multiple="multiple" id="certificate">
-								  <option value="0" selected>-- 자격증 선택 --</option>
-								  <option value="1">반려견지도사</option>
-								  <option value="2">도그쇼 심사위원</option>
-								  <option value="3">핸들러</option>
-								  <option value="4">펫시터</option>
-								  <option value="5">애견브리더</option>
-								  <option value="6">펫그루머</option>
-								  <option value="7">반려동물목욕관리사</option>
-								  <option value="8">반려동물관리사</option>
-								  <option value="9">반려동물행동교정사</option>
-								  <option value="10">반려동물산업기술자(동물위탁서비스관리)</option>
-								  <option value="12">반려동물산업기술자(동물행동교정)</option>
-								  <option value="13">펫케어상담사</option>
-								  <option value="14">동물교감사</option>
-								  <option value="15">반려동물산업기술자(종합관리)</option>
-								  <option value="16">동물보건사</option>
-								  <option value="17">펫유치원교원</option>
-								  <option value="18">반려동물행동교정사</option>
-								  <option value="19">펫매니저</option>
-								  <option value="20">펫유치원교원</option>
-								  <option value="21">도그워커</option>
-								  <option value="22">클리커트레이너</option>
-								  <option value="23">반려동물식품관리사</option>
-								</select>
-						</div><!-- <div class="box_miMyPr3"> -->
 						
-						<div class="box_miMyPr3">
-							<label for="sitter_name m_font">돌봄 가능 펫 크기</label>
-							<br><br>
-								<div class="radio">
-								    <input type="radio" name="petsize" id="petsize" value="1">
-								    소형견 (7kg 미만)&emsp;&emsp;&emsp;
-								    <input type="radio" name="petsize" id="petsize" value="2">
-								    중형견 (7 ~ 14.9kg)&emsp;&emsp;&emsp;
-								    <input type="radio" name="petsize" id="petsize" value="3">
-								    대형견 (15kg 이상)
-							</div>
-						</div>
-						
-						
-						
-						<br>
 						<!-- <div class="col text-center">
 		                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
 		                    onclick="location.href='http://localhost:8093/fsitter/fsitterMyProfileUpdate'">수정하기</button>주소는 추후 수정예정
@@ -389,7 +377,7 @@ $(function() { // 파일 업로드
 					
 					
 					<!-- 오른쪽 바 -->
-					<div class="col-lg-4 row" style="margin-left: 20px; margin-top: 38px;">
+					<div class="col-lg-4 row" style="margin-left: 10px; margin-top: 0px;">
 				        <div class ="box_mypi2 inline" style="height: auto;">
 				            <span>언제 펫시터가 필요한가요?</span>
 					           <form class=" lg-3 row inline"> 
@@ -409,11 +397,11 @@ $(function() { // 파일 업로드
 										<script type="text/javascript">
 											$("#datepicker2").datepicker();
 										</script>
-							    </form>       
+							          
 				            <br>
-				            
-				            <span>체크인 시간&emsp;&emsp;&emsp;&emsp;&emsp;</span><span>&emsp;&emsp;&emsp;체크아웃 시간</span>
-				            <form class=" lg-3 row inline"> 
+				            <div class="row">
+				           		 <span class="col-auto">체크인 시간 </span> <span class="col-auto" style="margin-left: 120px;">체크아웃 시간</span>
+				            </div>
 					            	<div class="form-group col-lg-5">  
 								 		<!-- <input type="text"  id="checkIn" class="form-control"> -->
 								 			<select class="form-control" name="checkIn" style="text-align: center;">
@@ -453,48 +441,57 @@ $(function() { // 파일 업로드
 								            	<option value="13">21:00 </option>
 								            </select>
 								 	</div><!-- <div class="form-group col-lg-5">  -->
-				            	</form><!-- <form class=" lg-3 row inline"> --> 
-				            <br>
-				            
+				            <br><br>
+				            	<div class="form-group"style="margin-top:30px;">
+				            		서비스 구분 선택
+				            	 	<div style="display: flex; justify-content:space-around;  flex-direction: row;margin:auto;">
+									     	<!-- <div class="serveType shadow-sm" style="">
+									     		<span style="font-size: 15px;font-weight: bold;">타임케어</span>
+									     	</div>
+									     	<div class="serveType shadow-sm" style="">
+									     		<span style="font-size: 15px;font-weight: bold;">데이케어</span>
+									     	</div> -->
+									     	<div class="select">
+											     <input type="radio" id="select" name="shop"><label for="select">타임케어</label>
+											     <input type="radio" id="select2" name="shop"><label for="select2">데이케어</label>
+											</div>
+									 </div>
+							  </div><br><br>
 				            	<span>맡기시는 반려동물</span>
-					            <select class="form-control" style="text-align: center;">
-					            	<option value="0" selected>반려동물 선택</option>
+					            <select class="form-control" multiple="multiple" style="text-align: center;" required="required">
+					            	<option value="" selected>반려동물 선택</option>
 					            	<option value="1">바둑이 </option>
 					            	<option value="2">똘이 </option>
 					            </select>
 					            <br><br>
-					            
-					            <!-- 이부분은 날짜를 선택하고 동물을 고르면 자동으로 계산되어야 하는 부분 -->
-					            <span>합계요금</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;	<span>85,000</span><span>원</span>
-			        			<br>
-			        			<span>─────────────────────</span>
-			        			<br>
-			        			<span>타임케어 비용</span><span>/소형</span><span>2</span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <span>85,000</span><span>원</span>
-			        			<br><br>
 			        			
 			        			<div class="col text-center">
-				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8093/fsitter/fsitterMyProfileUpdate'">예약요청</button><!-- 주소는 추후 수정예정 -->
+				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white; margin-top:30px;"
+				                    onclick="location.href='http://localhost:8092/fsitter/fsitterMyProfileUpdate'">예약요청</button><!-- 주소는 추후 수정예정 -->
 				                </div>
+				                </form>
 			        		</div>
 			        		
-			        		<div class="box_mypi2" style="height: 200px;">돌봄가능 펫 크기
+			        		<div class="box_mypi2" style="height: 120px; ">돌봄가능 펫 크기<br>
 			        		
-			        		<br><br>
-						 	<div class="radio">
-								    <input type="radio" name="petsize" id="petsize" value="1">
-								    소형견 (7kg 미만)<br><br>
-								    <input type="radio" name="petsize" id="petsize" value="2">
-								    중형견 (7 ~ 14.9kg)<br><br>
-								    <input type="radio" name="petsize" id="petsize" value="3">
-								    대형견 (15kg 이상)
-							</div>
+			        		
+							 	
+									    <div style="display: flex; justify-content:space-around;  flex-direction: row; width:250px;margin:auto;">
+									     	<div class="shadow-sm" style="width:65px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;">
+									     		<span style="font-size: 12px;font-weight: bold;">소형<br>(7kg 미만)</span>
+									     	</div>
+									     	<div class="shadow-sm" style="width:65px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;">
+									     		<span style="font-size: 12px;font-weight: bold;">중형<br>(7~15kg)</span>
+									     	</div>
+									     
+									    </div>
+								
 			        		</div>
 			        		
 			        		<div class="box_mypi2" style="height: 460px;">예약 가능 날짜
 			        		<br><br>
 						 	<div id="test">
-								<c:import url="http://localhost:8093/fsitter/fsitterCal"></c:import>
+								<%-- <c:import url="http://localhost:8093/fsitter/fsitterCal"></c:import> --%>
 							</div>
 			        		</div>
 			        		
