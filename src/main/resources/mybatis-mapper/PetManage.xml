@@ -5,7 +5,7 @@
 
 <mapper namespace="petpple.kiwi.member.repository.pet.IPetManage">
     <insert id="insertPet" statementType="CALLABLE" parameterType="Pet"> 
-	{ CALL PRC_INS_PET('테스트이미지 경로', #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g_id}, #{d_or_cat_id},#{kind}, 'UV8YF0IN08')
+	{ CALL PRC_INS_PET('테스트이미지 경로', #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g}, #{dogcat}, #{kind}, 'UV8YF0IN08')
 	}
 	</insert>
 	
@@ -20,4 +20,34 @@
  	ON A.GENDER_ID = G.GENDER_ID
  	WHERE B.TMP_MEMBER_ID = 'UV8YF0IN08'
 	</select>
+	
+	<update id="updatePet" parameterType="Pet">
+		UPDATE PET
+		SET
+		D_OR_CAT_ID = #{dogcat},
+		KIND_ID = #{kind},  
+		PET_NAME = #{name}, 
+		GENDER_ID = #{gender},  
+		PET_BIRTHDAY = #{birthday},
+		PET_WEIGHT = #{weight},
+		G_ID = #{g},
+		PET_COMMENT = #{comment},
+		PET_IMG = '테스트이미지1'
+		WHERE PET_ID = #{id}
+	</update>
+	
+	<select id="search" resultType="Pet">
+		SELECT PET_ID as "id", D_OR_CAT_ID as "dogcat",PET_NAME as "name", GENDER_ID as "gender", KIND_ID as "kind",
+		 PET_BIRTHDAY  as "birthday", PET_WEIGHT as "weight", G_ID as "g", PET_COMMENT as "comment",
+		 PET_IMG as "profile"
+		FROM PET 
+		WHERE PET_ID = #{id}
+	</select>
+	
+	<update id="deletePet">
+    	UPDATE PET_SHARE
+    	SET
+    	TMP_MEMBER_ID = NULL
+    	WHERE PET_ID = #{id}
+    </update>
 </mapper>
