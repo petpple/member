@@ -22,7 +22,26 @@ public interface MemberMapper {
     
     int ApplyMember(Member member);
     
+    // 펫시팅 현황
+	/* int petsittingCurrent(); */
     
+    // 방문서비스 수락 대기중(펫시팅 정보)
+    int waitingAcceptance();
+    
+    // 방문서비스 누적 펫시팅 횟수(펫시팅 정보)
+    int sumPetsitting();
+    
+    // 위탁 서비스 
+    int waitingFacceptance();
+    
+    int sumFpetsitting();
+    
+    // 펫시팅 현황 현재 이력
+    List<Member> currentPetsitting();
+    
+    
+    // 임의 회원코드 
+    String tempIdsearch(String id);
     
     
 }

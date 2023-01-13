@@ -335,7 +335,7 @@
 			                    </div>
 			                    <div>
 			                        <div class="h2_font">전화번호</div>
-			                        <input type="tel" name="tel" id="tel" maxlength="12">
+			                        <input type="tel" name="tel" id="tel" maxlength="11" placeholder="'-'빼고 입력해주세요">
 			                    </div>
 			                    <div>
 			                    	<div class="h2_font" style="width: 100%">이메일</div>

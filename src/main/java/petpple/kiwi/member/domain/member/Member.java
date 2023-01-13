@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class Member {
-
-	private int id;
-	
-	private String name;
+	//요청번호
+	/* private int vId; */
+	// 방문 요청번호, 이름, 주소, 서비스시작일, 종료일, 펫시터 닉네임, 펫시터 프로필
+	private String id, temId, vId, name, addr, startDate, endDate, petsitterNickname, petsitterProfile, reqDate, totalPrice ;
 }
