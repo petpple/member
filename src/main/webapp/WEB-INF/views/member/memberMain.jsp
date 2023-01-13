@@ -1,5 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+// 	String title = "스크립틀릿 제목입니다.";
+// 	pageContext.setAttribute("title", title);
+ %>
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +63,7 @@
     timer = setInterval(showRemaining, 1000);
 }
 	$(function(){
-		CountDownTimer('01/04/2023 16:25:00', 'remainTime');
+		CountDownTimer('01/14/2023 16:25:00', 'remainTime');
 	});
 
 </script>
@@ -110,10 +115,15 @@
 								<c:forEach var="member" items="${memberList}">
 								<tr>
 									<td>${member.vid }</td>
+									<c:if test="${member.vid == null}">
+										<span>X</span>
+									</c:if>
 									<td>
 										<ul>
 											<li>주소 : <span> ${member.addr }</span></li>
 											<li>시작일자: <span> ${member.startDate }</span></li>
+<%-- 											<li>시작일자: <fmt:formatDate value="${member.startDate}" pattern="yyyy.MM.dd"/><br />				 --%>
+<%-- 											<li>시작일자: <fmt:formatDate value="${member.startDate}" type="date" dateStyle="full" /><br></li>			 --%>
 											<li>종료일자: <span> ${member.endDate }</span></li>
 										</ul>
 									</td>
@@ -124,8 +134,9 @@
 										</div>
 									</td>
 									<td>
-										<span class="reserveInfo"> ${member.totalPrice }</span>원
+										<fmt:formatNumber value="${member.totalPrice }"/> 원
 									</td>
+									
 								</tr>
 								</c:forEach>
 							</table>
@@ -143,7 +154,7 @@
 					
 					
 					
-					<!-- 긴급 서비스 확정 대기 -->
+					<!-- 서비스 이용 확정 대기 -->
 					
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
@@ -155,26 +166,28 @@
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
 								<table class="table tab m_font">
-							
 									<tr>
 										<th>신청번호</th>
 										<th style="text-align: center;">내용</th>
 										<th>펫시터</th>
 										<th>확정여부/후기쓰기</th>
 									</tr>
-									
 									<tr>
-										<td><span class="reserveInfo">2323</span></td>
+								<c:forEach var="member" items="${memberIng}">
+										<c:if test="${empty member.vid}">
+												<span>×</span> 
+										</c:if>
+										<td><span class="reserveInfo"> ${member.vid }</span></td>
 										<td>
 											<ul>
-												<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-												<li>시작일자: 2022-12-12 10:00</li>
-												<li>종료일자: 2022-12-12 13:00</li>
+												<li>주소 : <span> ${member.addr }</span></li>
+												<li>시작일자: <span> ${member.startDate }</span></li>
+												<li>종료일자: <span> ${member.endDate }</span></li>
 											</ul>
 										</td>
 										<td><div class="reservInfoTd">
 												<img src="/images/member/profile.svg" style="width: 60px;"><br>
-												<span class="mb_font">루카스</span>
+												<span class="mb_font">${member.petsitterNickname }</span>
 											</div>
 										</td>
 										<td>
@@ -183,6 +196,7 @@
 												<button type="button" class="btn">후기쓰기</button>
 											</div>
 										</td>
+									</c:forEach>
 									</tr>
 							</table>
 	
@@ -262,7 +276,9 @@
 											<span class="mb_font">루카스아앙이라라</span>
 										</div>
 									</td>
-									<td><button type="button" class="btn btn-danger">취소하기</button></td>
+									<td>
+										<button type="button" class="btn btn-danger">취소하기</button>
+									</td>
 								</tr>
 							</table>
 	

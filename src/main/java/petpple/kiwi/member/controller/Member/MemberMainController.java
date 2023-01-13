@@ -31,8 +31,13 @@ public class MemberMainController
 
 		ArrayList<Member> memberList = dao.currentPetsitting();
 
-		modelMap.addAttribute("memberList", dao.currentPetsitting());
+		ArrayList<Member> memberIng = dao.comfirmWaiting();
 
+		modelMap.addAttribute("memberList", memberList);
+
+		modelMap.addAttribute("memberIng", memberIng);
+
+//		System.out.println(memberIng);
 //		System.out.println(dao.currentPetsitting());
 
 		return "member/memberMain";
