@@ -48,6 +48,16 @@
   cursor: pointer;
   margin-top : 10px;
   margin-left:50px;
+  }
+  
+  .petProfile {
+   width:150px;
+   height:150px;
+   object-fit: cover;
+   border-radius:30px;
+   margin-bottom: 30px;
+   border: 2px solid #fffff;
+  }
 }
 
 </style>
@@ -109,30 +119,27 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
           $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
       }
       $(".month_picker").datepicker(datepicker_default);
+      
+      
+      $(function() { // 파일 업로드
+    	    $('#img_select1').change(function() {
+    	       setImageFromFile(this, '#preview1');
+    	    });
+    	 });
+    	 //파일 업로드
+    	 function setImageFromFile(input, expression) {
+    	    if (input.files && input.files[0]) {
+    	       var reader = new FileReader();
+
+    	       reader.onload = function(e) {
+    	          $(expression).attr('src', e.target.result);
+    	       }
+    	       reader.readAsDataURL(input.files[0]);
+    	    }
+    	 }
 });
 
-$(function() { // 파일 업로드
-    $('#img_select1').change(function() {
-       setImageFromFile(this, '#preview1');
-    });
-    $('#img_select2').change(function() {
-       setImageFromFile(this, '#preview2');
-    });
-    $('#img_select3').change(function() {
-       setImageFromFile(this, '#preview3');
-    });
- });
- //파일 업로드
- function setImageFromFile(input, expression) {
-    if (input.files && input.files[0]) {
-       var reader = new FileReader();
 
-       reader.onload = function(e) {
-          $(expression).attr('src', e.target.result);
-       }
-       reader.readAsDataURL(input.files[0]);
-    }
- }
 
 </script>
     
@@ -156,25 +163,15 @@ $(function() { // 파일 업로드
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-7">
-                
-                
-                    <div class="IMG1" >
-					<img src="/images/fsitter/2.svg" class="svgImg2">
-					<span class="font h_font">내 펫 추가</span>
-		       		</div>
-		       		
-		       		<div class="box_miInfo">
-		       		
-		       			
-        			</div>
 		        	
-		        	
+		        	<span class="font h_font">내 펫 추가</span>
 		        	<div class="box_miInfo">
 		        	
 		       			<div class="form-inline">
 		       				<form action="/member/petInsert" method="post" enctype="multipart/form-data">
 		       				
 							<div class="form-group">
+
 								<div class="size_fix">
                               <!-- <img src="/images/sitter/no_img.png" id="preview1" style="width: 100px; height=100px; object-fit: cover;"/> --> 
                               <label for="img_select1" class="input-file-button">사진 첨부</label> 
@@ -184,6 +181,14 @@ $(function() { // 파일 업로드
 							<input type="file" class="real-upload" accept="image/*" required multiple> -->
 						</div>
 								<label for="d_or_cat_id">종류</label><br>
+
+						<!--<div>
+	                               <img src="/images/member/no_Img.png" id="preview1" class="petProfile"/> 
+	                              <label for="img_select1" class="input-file-button">사진 첨부</label> 
+		                          <input type="file" id="img_select1" name="file" style="display: none;" required="required"/>
+								</div>
+								<label for="kinds">종류</label><br>-->
+
 							 	<div class="radio">
 							 		<label>
 								    	<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="1">

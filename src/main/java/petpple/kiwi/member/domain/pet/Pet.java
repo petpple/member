@@ -8,5 +8,4 @@ public class Pet {
 	String id, dogcat, name, gender, kind, birthday
 	, weight, g, comment, profile;
 	
-	
 }

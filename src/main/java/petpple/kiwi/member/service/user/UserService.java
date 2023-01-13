@@ -3,14 +3,14 @@ package petpple.kiwi.member.service.user;
 import org.springframework.stereotype.Service;
 
 import petpple.kiwi.member.domain.user.User;
-import petpple.kiwi.member.repository.user.UserMapper;
+import petpple.kiwi.member.repository.user.IUserMapper;
 
 @Service
 public class UserService {
 
-	UserMapper userMapper;
+	IUserMapper userMapper;
 	
-	public UserService(UserMapper userMapper)
+	public UserService(IUserMapper userMapper)
 	{
 		this.userMapper = userMapper;
 	}

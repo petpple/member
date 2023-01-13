@@ -1,6 +1,7 @@
 package petpple.kiwi.member.repository.pet;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,5 +17,11 @@ public interface IPetManage {
 	
 	public int updatePet(Pet dto);
 	
+
 	public int deletePet(String id);
+	
+	public String getPetId();
+	
+	public int insertPetProfile(HashMap<String, Object> map);
+
 }

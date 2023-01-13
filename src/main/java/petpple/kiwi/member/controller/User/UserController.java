@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import petpple.kiwi.member.domain.user.User;
-import petpple.kiwi.member.repository.user.UserMapper;
+import petpple.kiwi.member.repository.user.IUserMapper;
 
 @Controller
 public class UserController {
@@ -15,25 +15,18 @@ public class UserController {
 	@Autowired 
 	private SqlSession sqlSession; 
 
-
-	
 	@RequestMapping("/")
 	public String userMain()
 	{
-		return "user/index";
+		return "user/userMain";
 	}
 
-	@RequestMapping("/user/index")
-	public String userIndex()
+	@RequestMapping("/user/userMain")
+	public String Main()
 	{
-		return "user/index";
+		return "user/userMain";
 	}
 	
-	@RequestMapping("/user/sample")
-	public String userSample()
-	{
-		return "user/sample";
-	}
 	//------------------------FAQ 시작------------------------//
 	@RequestMapping("/user/FAQ")
 	public String FAQ()
@@ -58,14 +51,6 @@ public class UserController {
 	}
 	//------------------------펫시터님을 위한 FAQ 종료------------------------//
 	
-	//------------------------유저 메인페이지 시작------------------------//
-	@RequestMapping("/user/userMain")
-	public String Main()
-	{
-		return "user/userMain";
-	}
-	//------------------------유저 메인페이지 종료------------------------//
-	
 	//------------------------유저 회원가입 이용약관 시작------------------------//
 	@RequestMapping("/user/userContract")
 	public String userContract()
@@ -73,8 +58,6 @@ public class UserController {
 		return "user/userContract";
 	}
 	//------------------------유저 회원가입 이용약관 종료------------------------//
-	
-	
 	
 	//------------------------유저 회원가입 시작------------------------//
 	@RequestMapping("/user/userSignUp")
@@ -112,7 +95,7 @@ public class UserController {
 	@RequestMapping(value = "/user/memberinsert.action", method = RequestMethod.POST)
 	public String memberInsert(User user)
 	{
-		UserMapper dao = sqlSession.getMapper(UserMapper.class);
+		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
 		
 		dao.PRC_TMP_MEMBER(user);
 		
