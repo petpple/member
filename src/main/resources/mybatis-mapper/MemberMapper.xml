@@ -64,6 +64,7 @@
     </select>
     
     <select id="currentPetsitting" resultType="Member">
+    	<![CDATA[
     	SELECT V_ID AS vid, V_CLI_ADDR AS addr, V_START_DATE AS startDate
 		, V_END_DATE AS endDate, V_REQ_DATE AS reqDate, P_TOTAL AS totalPrice
 		, MEM_NICKNAME AS petsitterNickname, MEM_IMG AS petsitterProfile  
@@ -84,7 +85,37 @@
 		JOIN PAY P
 		ON P.P_ID = V.PAYMENT_ID
 		WHERE TM.T_MEM_ID = 'UV8YF0IN08'
+		]]>
     </select>
+  
+<!-- 		AND SYSDATE >= V.V_START_DATE -->
+<!-- 		AND SYSDATE < V.V_END_DATE -->
+    <select id="comfirmWaiting" resultType="Member">
+    	<![CDATA[
+    	SELECT V_ID AS vid, V_CLI_ADDR AS addr, V_START_DATE AS startDate
+		, V_END_DATE AS endDate, V_REQ_DATE AS reqDate, P_TOTAL AS totalPrice
+		, MEM_NICKNAME AS petsitterNickname
+		FROM MEMBER M JOIN TMP_MEM TM
+		ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+		JOIN PET_SHARE PS
+		ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+		JOIN V_PET_CHO VPC
+		ON PS.P_SHA_ID = VPC.P_SHA_ID
+		JOIN V V
+		ON VPC.V_ID = V.V_ID
+		JOIN S_ALLOW SA
+		ON V.S_ALL_ID = SA.S_ALL_ID
+		JOIN S_APPLY S
+		ON SA.S_APP_ID = S.S_APP_ID
+		JOIN V_RESERV VR
+		ON V.V_ID = VR.V_ID
+		JOIN PAY P
+		ON P.P_ID = V.PAYMENT_ID
+		WHERE TMP_MEMBER_ID='UV8YF0IN08'
+		]]>
+    </select>
+<!-- AND SYSDATE >= V.V_START_DATE -->
+<!-- 		AND SYSDATE < V.V_END_DATE     -->
     
     <select id="tempIdsearch" resultType="String">
     
@@ -109,5 +140,6 @@
 		WHERE MEM_ID_ID= #{id}
 		]]>
     </select>
+    
  
 </mapper>
