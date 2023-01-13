@@ -171,19 +171,31 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 		       				<form action="/member/petInsert" method="post" enctype="multipart/form-data">
 		       				
 							<div class="form-group">
-								<div>
+
+								<div class="size_fix">
+                              <!-- <img src="/images/sitter/no_img.png" id="preview1" style="width: 100px; height=100px; object-fit: cover;"/> --> 
+                              <label for="img_select1" class="input-file-button">사진 첨부</label> 
+	                          <input type="file" id="img_select1" name="file" style="display: none;" />
+		       		
+						<!-- <label for="photo">사진 등록</label><br>
+							<input type="file" class="real-upload" accept="image/*" required multiple> -->
+						</div>
+								<label for="d_or_cat_id">종류</label><br>
+
+						<!--<div>
 	                               <img src="/images/member/no_Img.png" id="preview1" class="petProfile"/> 
 	                              <label for="img_select1" class="input-file-button">사진 첨부</label> 
 		                          <input type="file" id="img_select1" name="file" style="display: none;" required="required"/>
 								</div>
-								<label for="kinds">종류</label><br>
+								<label for="kinds">종류</label><br>-->
+
 							 	<div class="radio">
 							 		<label>
-								    	<input type="radio" name="d_or_cat_id" id="kinds" value="1">
+								    	<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="1">
 								    	강아지&emsp;&emsp;&emsp;
 								 	</label>
 								 	<label>
-								 		<input type="radio" name="d_or_cat_id" id="kinds" value="2">
+								 		<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="2">
 								    	고양이
 								    </label>	
 								</div>
@@ -283,14 +295,14 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 							 	
 							 	<br><br>
 							 	
-							 	<label for="neutere">중성화</label><br>
+							 	<label for="g_id">중성화</label><br>
 							 	<div class="radio">
 							 		<label>
-									    <input type="radio" name="g_id" id="neutere" value="1">
+									    <input type="radio" name="g_id" id="g_id" value="1">
 									    예&emsp;&emsp;&emsp;&emsp;&emsp;
 									</label>
 									<label>    
-								    	<input type="radio" name="g_id" id="neutere" value="2">
+								    	<input type="radio" name="g_id" id="g_id" value="2">
 								   	 	아니요
 								   	</label>
 								</div>

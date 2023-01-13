@@ -43,47 +43,32 @@
 	<link rel="stylesheet" href="/css/main.css">
 	
 	<!-- Sweet Alert 플러그인 추가해주기  -->
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<link
          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
          rel="stylesheet"
          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
          crossorigin="anonymous"
-      />
+      /> -->
       
       <script type="text/javascript">
 
-		
-      $().ready(function () {
-    	  
-    	  $("#confirmStart").click(function () {
-    	    Swal.fire({
-    	      title: '정말 삭제 하시겠습니까?',
-    	      text: "다시 되돌릴 수 없습니다. 신중히 결정해주세요.",
-    	      icon: 'warning',
-    	      showCancelButton: true,
-    	      confirmButtonColor: '#3085d6',
-    	      cancelButtonColor: '#d33',
-    	      confirmButtonText: '승인',
-    	      cancelButtonText: '취소',
-    	      reverseButtons: true, // 버튼 순서 거꾸로
-    	      
-    	    }).then((result) => {
-    	      if (result.isConfirmed) {
-    	        Swal.fire(
-    	          '삭제 완료되었습니다.',
-//     	          '',
-//     	          'success'
-    	        )
-    	      }
-    	    })
-    	  });
-    	  
-    	  
-    	});
+      $(function(){
+          
+          $(".confirmStart").click(function(){
+             let id = $(this).val();
+             
+          
+          if(confirm("선택한 데이터를 정말 삭제 하시겠습니까?"))
+          {
+             $(location).attr("href","memberMyPetDelete?id="+$(this).val() );
+          }
 
 
+       });
+
+      });
 	</script>
     
    
@@ -127,7 +112,9 @@
 			        
 			        
 			        <div class="row">
+			        
 			        	<c:forEach var="pet" items="${list}">
+				       
 				        <div class="col-lg-4">
 				        	<div class="card" style="margin-bottom: 20px;">
 				            	<img src="/images/member/p.svg" id="petsvg1" class="card-img-top" height="130px" width="130px"  >
@@ -140,15 +127,16 @@
 								
 				              	<div class="col text-center">
 				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-				                    onclick="location.href='http://localhost:8092/member/memberMyPetUpdate'">수정하기</button>
-									<button type="button" class="btn btn-secondary m-2" id="confirmStart"
-									>삭제하기</button>
+				                    onclick="location.href='PetUpdate?id=${pet.id }'">수정하기</button>
+									<button type="button" class="btn btn-secondary confirmStart m-2" 
+									value="${pet.id }">삭제하기</button>
 				                </div> 
 				            </div><!-- <div class="card-body"> -->
 				          	</div>
 				       	</div><!-- <div class="col-lg-4"> -->
+						
 						</c:forEach>
-		        		
+		        	
 				       	
 				       	
 					</div><!-- <div class="row"> -->

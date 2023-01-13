@@ -13,11 +13,15 @@ public interface IPetManage {
 	
 	public ArrayList<Pet> getPet();
 	
+	public Pet search(String id);
+	
 	public int updatePet(Pet dto);
 	
-	public int deletePet(int id);
+
+	public int deletePet(String id);
 	
 	public String getPetId();
 	
 	public int insertPetProfile(HashMap<String, Object> map);
+
 }

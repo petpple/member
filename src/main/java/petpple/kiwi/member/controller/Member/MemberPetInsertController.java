@@ -36,14 +36,60 @@ public class MemberPetInsertController {
 	}
 	
 	//-- 의뢰인 내 펫 수정
-	@RequestMapping(value = "/member/memberMyPetUpdate", method = RequestMethod.POST)
-	public String memberMyPetUpdate(ModelMap mav)
-	{
-		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-		mav.addAttribute("list", daoIPetManage.getPet());
+		@RequestMapping(value = "/member/PetUpdate", method = RequestMethod.GET)
+		public String membermemberMyPetUpdate(ModelMap mav,@RequestParam("id") String id)
+		{
+			
+			 IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+			 
+			 Pet dto = daoIPetManage.search(id);
+			  
+			 mav.addAttribute("Pet", dto);
+			
+			
+			 System.out.println(dto.getDogcat());
+			 System.out.println(dto.getName());
+			 System.out.println(dto.getGender());
+			 System.out.println(dto.getKind());
+			 System.out.println(dto.getBirthday());
+			 System.out.println(dto.getWeight());
+			 System.out.println(dto.getG());
+			 System.out.println(dto.getComment());
+			 return "member/memberMyPetUpdate";
+			
+		}
 		
-		return "member/memberMyPetUpdate";
-	}
+		@RequestMapping(value = "/member/memberMyPetUpdate", method = RequestMethod.GET)
+		public String memberMyPetUpdate(Pet dto)
+		{
+			IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+			
+			daoIPetManage.updatePet(dto);
+			
+			
+			 System.out.println(dto.getDogcat());
+			 System.out.println(dto.getName());
+			 System.out.println(dto.getGender());
+			 System.out.println(dto.getKind());
+			 System.out.println(dto.getBirthday());
+			 System.out.println(dto.getWeight());
+			 System.out.println(dto.getG());
+			 System.out.println(dto.getComment());
+			 
+			return "redirect:memberMyPet";
+		}
+		
+		
+		//-- 의뢰인 내 펫 삭제
+		@RequestMapping(value = "/member/memberMyPetDelete", method = RequestMethod.GET)
+		public String memberMyPetDelete(String id)
+		{
+			IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+			
+			daoIPetManage.deletePet(id);
+			
+			return "redirect:memberMyPet";
+		}
 	
 	
 	//-- 의뢰인 내 펫 삭제
