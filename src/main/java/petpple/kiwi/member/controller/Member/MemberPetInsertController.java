@@ -1,5 +1,7 @@
 package petpple.kiwi.member.controller.Member;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,8 +54,16 @@ public class MemberPetInsertController {
 	{
 		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
 		daoIPetManage.insertPet(dto);
+		String profile = new ImgUpload().uploadProfileImg(file,"C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\"
+							, daoIPetManage.getPetId());
 		
-		new ImgUpload().uploadProfileImg(file);
+		 System.out.println(profile); 
+		 HashMap<String, Object> map = new HashMap<String, Object>(); 
+		 map.put("profile", profile);
+		 map.put("id",daoIPetManage.getPetId()); 
+		 daoIPetManage.insertPetProfile(map);
+	
+		
 		return "redirect:memberMain";
 	}
 	

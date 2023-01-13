@@ -13,31 +13,19 @@ public class ImgUpload {
 		return PetProfilePath;
 	}
 
-	// 단일 파일 업로드 저장이름 : tmp_memId + pet +확장자.
-	public void uploadProfileImg2(MultipartFile uploadFile,String path) {
+	// 단일 파일 업로드 저장이름 : id +확장자.
+	public String uploadProfileImg(MultipartFile uploadFile,String path , String name) {
 		String origin = uploadFile.getOriginalFilename();
 		String ext = origin.substring(origin.lastIndexOf("."));
-		File savefile = new File(path,ext);
+		File savefile = new File(path,name+ext);
 		try {
 			uploadFile.transferTo(savefile);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+		return path+name+ext; //db에 저장될 사진 경로 및 파일명
 	}
 	
-
-	public void uploadProfileImg(MultipartFile uploadFile) {
-		int num = 0;
-
-		File savefile = new File(PetProfilePath, String.valueOf(++num));
-
-		try {
-			uploadFile.transferTo(savefile);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-	}
-
 	// 복수 파일 업로드
 	public void uploadImages(MultipartFile[] uploadFiles) {
 		// 업로드 경로

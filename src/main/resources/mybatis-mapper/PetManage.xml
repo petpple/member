@@ -5,8 +5,7 @@
 
 <mapper namespace="petpple.kiwi.member.repository.pet.IPetManage">
     <insert id="insertPet" statementType="CALLABLE" parameterType="Pet"> 
-	{ CALL PRC_INS_PET('테스트이미지 경로', #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g_id}, #{d_or_cat_id},#{kind}, 'UV8YF0IN08')
-	}
+		{ CALL PRC_INS_PET(#{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g_id}, #{d_or_cat_id},#{kind},'UV8YF0IN08')}
 	</insert>
 	
 	<select id="getPet" resultType="Pet">
@@ -20,4 +19,17 @@
  	ON A.GENDER_ID = G.GENDER_ID
  	WHERE B.TMP_MEMBER_ID = 'UV8YF0IN08'
 	</select>
-</mapper>
+	
+	<select id="getPetId" resultType="string">
+	SELECT ps.PET_ID 
+	FROM PET_SHARE ps
+	WHERE ps.P_SHA_ID = (SELECT MAX(P_SHA_ID)
+						FROM PET_SHARE ps )
+	</select>
+	
+	<update id="insertPetProfile" parameterType="hashmap">
+	update PET
+	set PET_IMG = #{profile}
+	where PET_ID = #{id}
+	</update>
+</mapper> 
