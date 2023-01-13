@@ -6,7 +6,7 @@ import lombok.Data;
 public class Pet {
 
 	String id,d_or_cat_id, name, gender, kind, birthday
-	, weight, g_id, comment, profile;
+	, weight, g_id, comment,profile;
 	
 	
 }
