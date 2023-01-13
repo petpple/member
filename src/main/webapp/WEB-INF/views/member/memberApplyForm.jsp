@@ -160,45 +160,10 @@
 						
 						<br>
 	
-						<p class="l_font">
-							취득한 자격증이 있다면 선택해주세요.<span class="sss_font"> * 취득한 자격증은 모두 선택해주셔야합니다. 다중 선택시 Ctrl 키를 눌러 선택 해주세요.</span>
-						</p>
-	
-						<select name="cert" size="8" multiple="multiple" id="cert"
-							class="m_font form-select" aria-label="Default select example">
-							<option value="0" selected> -- 자격증 선택 -- </option>
-							<option value="1">반려견지도사</option>
-							<option value="2">도그쇼 심사위원</option>
-							<option value="3">핸들러</option>
-							<option value="4">펫시터</option>
-							<option value="5">애견브리더</option>
-							<option value="6">펫그루머</option>  
-							<option value="7">반려동물목욕관리사</option>
-							<option value="8">반려동물관리사</option>
-							<option value="9">반려동물행동교정사</option>
-							<option value="10">반려동물산업기술자(동물위탁서비스관리)</option>
-							<option value="12">반려동물산업기술자(동물행동교정)</option>
-							<option value="13">펫케어상담사</option>
-							<option value="14">동물교감사</option>
-							<option value="15">반려동물산업기술자(종합관리)</option>
-							<option value="16">동물보건사</option>
-							<option value="17">펫유치원교원</option>
-							<option value="18">반려동물행동교정사</option>
-							<option value="19">펫매니저</option>
-							<option value="20">펫유치원교원</option>
-							<option value="21">도그워커</option>
-							<option value="22">클리커트레이너</option>
-							<option value="23">반려동물식품관리사</option></select><br>
-						<br>
-	
-						<p class="l_font">
-							제일 최근 취득한 자격증의 취득 날짜를 선택해주세요.<span class="sss_font"> * 취득한 자격증은 모두 선택해주셔야합니다.</span>
-						</p>
-						
-						<input type="text" class="form-control" id="date" style="width:200px;">
+						<input type="text" class="form-control" name="date1" id="date1" style="width:200px;">
 						<br>						
 	
-
+						
 					    <label for="title" class="form-label m_font">프로필 한 줄 제목 <span class="sss_font"> * </span></label>
 					    <input type="text" name="title" class="form-control" id="title" placeholder="표시 될 프로필 제목을 입력 해 주세요." required>
 						<br>
