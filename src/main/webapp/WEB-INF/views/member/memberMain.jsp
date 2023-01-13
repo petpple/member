@@ -107,22 +107,27 @@
 									<th>펫시터</th>
 									<th>결제금액</th>
 								</tr>
+								<c:forEach var="member" items="${memberList}">
 								<tr>
-									<td><span class="reserveInfo">2333323</span></td>
+									<td>${member.vid }</td>
 									<td>
 										<ul>
-											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-											<li>시작일자: 2022-12-12 10:00</li>
-											<li>종료일자: 2022-12-12 13:00</li>
+											<li>주소 : <span> ${member.addr }</span></li>
+											<li>시작일자: <span> ${member.startDate }</span></li>
+											<li>종료일자: <span> ${member.endDate }</span></li>
 										</ul>
 									</td>
-									<td><div class="reservInfoTd">
+									<td>
+										<div class="reservInfoTd">
 											<img src="/images/member/profile.svg" style="width: 60px;"><br>
-											<span class="mb_font">루카스</span>
+											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
-									<td><span class="reserveInfo">350030</span>원</td>
+									<td>
+										<span class="reserveInfo"> ${member.totalPrice }</span>원
+									</td>
 								</tr>
+								</c:forEach>
 							</table>
 	
 							<div>
@@ -136,6 +141,8 @@
 					
 					<br>
 					
+					
+					
 					<!-- 긴급 서비스 확정 대기 -->
 					
 					<div class="IMG1">
@@ -147,43 +154,43 @@
 							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
-							<table class="table tab m_font">
+								<table class="table tab m_font">
 							
-								
-								<tr>
-									<th>신청번호</th>
-									<th style="text-align: center;">내용</th>
-									<th>펫시터</th>
-									<th>확정여부/후기쓰기</th>
-								</tr>
-								
-								<c:forEach var="member"  items="${memeberList }">
-								<tr>
-									<td><span class="reserveInfo" name="vId">${member.vId }</span></td>
-									<td>
-										<ul>
-											<li name="addr">주소 : ${member.addr }</li>
-											<li name="startDate">시작일자: ${member.startDate }</li>
-											<li name="endDate">종료일자: ${member.endDate }</li>
-										</ul>
-									</td>
-									<td><div class="reservInfoTd">
-											<img src="/images/member/profile.svg" style="width: 60px;"><br>
-											<span class="mb_font">${member.petsitterNickname }</span>
-										</div>
-									</td>
-									<td>
-										<div class="btn">
-											<a href="#" class="" role="button">확정하기</a>
-										</div>
-									</td>
-								</tr>
-								</c:forEach>
+									<tr>
+										<th>신청번호</th>
+										<th style="text-align: center;">내용</th>
+										<th>펫시터</th>
+										<th>확정여부/후기쓰기</th>
+									</tr>
+									
+									<tr>
+										<td><span class="reserveInfo">2323</span></td>
+										<td>
+											<ul>
+												<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
+												<li>시작일자: 2022-12-12 10:00</li>
+												<li>종료일자: 2022-12-12 13:00</li>
+											</ul>
+										</td>
+										<td><div class="reservInfoTd">
+												<img src="/images/member/profile.svg" style="width: 60px;"><br>
+												<span class="mb_font">루카스</span>
+											</div>
+										</td>
+										<td>
+											<div class="btn">
+												<a href="#" class="" role="button">확정하기</a>
+												<button type="button" class="btn">후기쓰기</button>
+											</div>
+										</td>
+									</tr>
 							</table>
 	
 							
 						</div>
 					</div>
+					
+					
 					
 					
 					<!-- 진행 예정인 펫시팅 -->
