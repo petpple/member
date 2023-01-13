@@ -64,10 +64,9 @@
     </select>
     
     <select id="currentPetsitting" resultType="Member">
-    	
-    	SELECT V_ID AS vId, V_CLI_ADDR as addr, V_START_DATE as startDate
-		, V_END_DATE as endDate, V_REQ_DATE as reqDate, P_TOTAL as totalPrice
-		, MEM_NICKNAME as petsitterNickname, MEM_IMG as petsitterProfile  
+    	SELECT V_ID AS vid, V_CLI_ADDR AS addr, V_START_DATE AS startDate
+		, V_END_DATE AS endDate, V_REQ_DATE AS reqDate, P_TOTAL AS totalPrice
+		, MEM_NICKNAME AS petsitterNickname, MEM_IMG AS petsitterProfile  
 		FROM MEMBER M JOIN TMP_MEM TM
 		ON M.TMP_MEMBER_ID = TM.T_MEM_ID
 		JOIN PET_SHARE PS
