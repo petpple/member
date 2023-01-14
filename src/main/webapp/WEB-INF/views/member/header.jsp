@@ -66,11 +66,14 @@
                         <a href="#" class="dropdown-item">탈퇴하기</a>
                     </div>
                 </div>
-                
+				<a href="/logout" class="nav-item nav-link">로그아웃</a>
             </div>
-            <a href="memberLogin" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
+    <%
+    	session = request.getSession();
+    	out.print("임시회원 코드 : " + session.getAttribute("temId") + "<br>");
+    %>
     <!-- Navbar End -->
 </body>
 

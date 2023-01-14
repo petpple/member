@@ -135,7 +135,7 @@
 								<div class="login">
 									<h1 class="h_font loginTitle">로그인</h1>
 								</div>
-								<form action="#" method="post" id="petsitterForm">
+								<form action="/sitter/loginAction" method="post" id="petsitterForm">
 									<div>
 										<h3 class="mb_font id">아이디</h3>
 										<input type="text" name="petsitterId" id="petsitterId"

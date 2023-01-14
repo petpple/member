@@ -48,6 +48,10 @@
             <a href="/user/userContract" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">회원가입<i class="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
+    <%
+    	session = request.getSession();
+    	out.print("임시회원 코드 : " + session.getAttribute("temId") + "<br>");
+    %>
     <!-- Navbar End -->
 </body>
 
