@@ -4,7 +4,7 @@
 <mapper namespace="petpple.kiwi.member.repository.vService.IVisitService">
 
 	<select id="getVSitterList" parameterType="java.lang.Integer" resultType="Sitter">
-		SELECT B.ALLOWID AS allowId, B.NICKNAME AS name , B.ADDR AS addr , B.TITLE AS title, B.SMOKEID AS smokeId, B.TIME AS time, 
+		SELECT B.ALLOWID AS allowId, B.NICKNAME AS name , B.ADDR AS addr , B.TITLE AS title, B.SMOKEID AS smokeId, B.TIME AS time,B.PROFILE AS profileImg,  
 		B.count AS count , B.REIVEWCNT AS reviewCnt, ROUND((NVL(V.STARS,0)+NVL(F.STARS,0))/DECODE(B.REIVEWCNT,0,1,B.REIVEWCNT)) AS stars
 		FROM BUILDUPFORSTAR B
 		LEFT OUTER JOIN V_REVIEW_CNT V
@@ -14,5 +14,25 @@
 		WHERE #{start} <![CDATA[<]]>=ROWNUM  and ROWNUM <![CDATA[<]]>= #{end}
 		ORDER BY REVIEWCNT DESC
 	</select>
+	
+	<select id="getVSitterProfile" parameterType="String" resultType="Sitter">
+		SELECT B.ALLOWID AS allowId, B.NICKNAME AS name , B.ADDR AS addr , B.TITLE AS title, B.SMOKEID AS smokeId, B.TIME AS time, 
+		B.count AS count , B.REIVEWCNT AS reviewCnt, ROUND((NVL(V.STARS,0)+NVL(F.STARS,0))/DECODE(B.REIVEWCNT,0,1,B.REIVEWCNT)) AS STARS,B.CONTENT AS content
+		,B.lat AS lat ,B.lng AS lng, B.petSize AS petSizeId,B.PROFILE AS profileImg
+		FROM BUILDUPFORSTAR B
+		LEFT OUTER JOIN V_REVIEW_CNT V
+		ON B.TMP_MEMBER_ID = V.TMP_MEMBER_ID
+		LEFT OUTER JOIN F_REVIEW_CNT F
+		ON B.TMP_MEMBER_ID = F.TMP_MEMBER_ID
+		WHERE B.ALLOWID = #{allowId}
+	</select>
+	
+	<select id="getReviews" parameterType="String" resultType="ReviewProfile">
+		SELECT name,profile,revdate,content,img1,img2,img3
+		FROM GETSITTERREVIEW
+		WHERE id = #{id}
+	</select>
+	
+		
 	
 </mapper>
