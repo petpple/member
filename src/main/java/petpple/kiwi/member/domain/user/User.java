@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Getter @Setter
 public class User {
 	/*
 	이름, 아이디, 비밀번호
