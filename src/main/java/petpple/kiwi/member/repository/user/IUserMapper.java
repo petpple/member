@@ -1,5 +1,7 @@
 package petpple.kiwi.member.repository.user;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import petpple.kiwi.member.domain.user.User;
@@ -26,6 +28,7 @@ public interface IUserMapper {
 
 	public int nickNameCheck(String nickName);
 		
+	public int insertMemberProfile(HashMap<String, Object> map);
 }
 
 

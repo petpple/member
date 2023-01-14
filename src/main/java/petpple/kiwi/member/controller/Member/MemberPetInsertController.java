@@ -45,16 +45,6 @@ public class MemberPetInsertController {
 			 Pet dto = daoIPetManage.search(id);
 			  
 			 mav.addAttribute("Pet", dto);
-			
-			
-			 System.out.println(dto.getDogcat());
-			 System.out.println(dto.getName());
-			 System.out.println(dto.getGender());
-			 System.out.println(dto.getKind());
-			 System.out.println(dto.getBirthday());
-			 System.out.println(dto.getWeight());
-			 System.out.println(dto.getG());
-			 System.out.println(dto.getComment());
 			 return "member/memberMyPetUpdate";
 			
 		}
@@ -66,16 +56,6 @@ public class MemberPetInsertController {
 			
 			daoIPetManage.updatePet(dto);
 			
-			
-			 System.out.println(dto.getDogcat());
-			 System.out.println(dto.getName());
-			 System.out.println(dto.getGender());
-			 System.out.println(dto.getKind());
-			 System.out.println(dto.getBirthday());
-			 System.out.println(dto.getWeight());
-			 System.out.println(dto.getG());
-			 System.out.println(dto.getComment());
-			 
 			return "redirect:memberMyPet";
 		}
 		
@@ -100,13 +80,14 @@ public class MemberPetInsertController {
 	{
 		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
 		daoIPetManage.insertPet(dto);
-		String profile = new ImgUpload().uploadProfileImg(file,"C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\"
-							, daoIPetManage.getPetId());
+		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
+		String id = daoIPetManage.getPetId();
+		String profile = new ImgUpload().uploadProfileImg(file,path
+							,id);
 		
-		 System.out.println(profile); 
 		 HashMap<String, Object> map = new HashMap<String, Object>(); 
 		 map.put("profile", profile);
-		 map.put("id",daoIPetManage.getPetId()); 
+		 map.put("id",id); 
 		 daoIPetManage.insertPetProfile(map);
 	
 		

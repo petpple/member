@@ -55,8 +55,8 @@
     	TMP_MEMBER_ID = NULL
     	WHERE PET_ID = #{id}
     </update>
-</mapper>
-<!--
+
+
 	<select id="getPetId" resultType="string">
 	SELECT ps.PET_ID 
 	FROM PET_SHARE ps
@@ -68,6 +68,6 @@
 	update PET
 	set PET_IMG = #{profile}
 	where PET_ID = #{id}
-	</update>-->
+	</update>
 </mapper> 
 

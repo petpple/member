@@ -1,13 +1,18 @@
 package petpple.kiwi.member.controller.User;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import petpple.kiwi.member.domain.user.User;
 import petpple.kiwi.member.repository.user.IUserMapper;
+import petpple.kiwi.member.service.member.ImgUpload;
 
 @Controller
 public class UserController {
@@ -93,11 +98,21 @@ public class UserController {
 	
 	//------------------------회원 데이터 입력 시작------------------------//
 	@RequestMapping(value = "/user/memberinsert.action", method = RequestMethod.POST)
-	public String memberInsert(User user)
+	public String memberInsert(User user,@RequestParam(value = "file")MultipartFile file)
 	{
 		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
-		
+	
 		dao.PRC_TMP_MEMBER(user);
+		String id = dao.tmpMemberId(user);
+		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\member\\";
+		String profile = new ImgUpload().uploadProfileImg(file,
+				path
+				,id);
+		
+		 HashMap<String, Object> map = new HashMap<String, Object>(); 
+		 map.put("profile", "\\images\\member\\member\\"+profile);
+		 map.put("id",id); 
+		 dao.insertMemberProfile(map);
 		
 		return "redirect:userMain";
 	}
