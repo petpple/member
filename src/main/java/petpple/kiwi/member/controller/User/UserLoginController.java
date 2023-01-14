@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,46 +34,62 @@ public class UserLoginController
 	@RequestMapping(value = "/user/loginAction", method = RequestMethod.POST)
 	public String userLogin(@RequestParam("userId") String id, @RequestParam("userPw") String pw, HttpServletRequest request)
 	{
+		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
+		HttpSession session = request.getSession();
 		
+		User user = new User();
+		
+		user.setId(id);
+		user.setPw(pw);
+		
+		int str = dao.userLogin(user);
+		
+		String temId = dao.tmpMemberId(user);
+
+		if (str != 0)
+		{
+			// session.setAttribute("signIn", dao.tmpMemberId(id, pw));
+			session.setAttribute("temId", temId);
+			//session.removeAttribute("temId");
+			return "redirect:/member/memberMain";
+		}
+		else
+		{ 
+			//session.setAttribute("signIn", null);
+			session.setAttribute("temId", null);
+			return "redirect:/user/userLogin";
+		}
+		
+	}
+	
+	@RequestMapping(value = "/sitter/loginAction", method = RequestMethod.POST)
+	public String sitterLogin(@RequestParam("petsitterId") String id, @RequestParam("petsitterPw") String pw, HttpServletRequest request)
+	{
 		IUserMapper dao = sqlSession.getMapper(IUserMapper.class);
 		
 		HttpSession session = request.getSession();
 		
 		User temp = new User();
+		
 		temp.setId(id);
 		temp.setPw(pw);
-		int str = 0;
 
-//		System.out.println(dao.userLogin(temp));
-//		System.out.println("id : " + temp.getId() + ", pw : " + temp.getPw());
-//		System.out.println("id : " + id + ", pw : " + pw);
+		int str = dao.userLogin(temp);
 		
-		str = dao.userLogin(temp);
 		String temId = dao.tmpMemberId(temp);
-		System.out.println(temId);
 
-//		System.out.println("str : " + str);
-		
-		  if (str != 0)
-		  {
-			  // session.setAttribute("signIn", dao.tmpMemberId(id, pw));
-//			  System.out.println("맞은 비밀번호");
-			  //session.setAttribute("temId", temId);
-			  session.removeAttribute("temId");
-			  return "/member/memberMain";
-		  }
-		  else
-		  { 
-			  //session.setAttribute("signIn", null);
-			  session.setAttribute("temId", null);
-//			  System.out.println("틀린 비밀번호");
-			  return "redirect:/user/userLogin";
-		  }
-		
+		if (str != 0)
+		{
+			session.setAttribute("temId", temId);
+			return "redirect:http://localhost:8093/sitter/sitterMain";
 
+		}
+		else
+		{ 
+			session.setAttribute("temId", null);
+			return "redirect:/user/userLogin";
+		}
 	}
-	
-	
 	
 	
 //	@RequestMapping(value = "user/loginAction", method = RequestMethod.POST)
@@ -104,20 +121,15 @@ public class UserLoginController
 	//------------------------유저 로그인 종료------------------------//
 
 	//------------------------유저 로그아웃------------------------//
-	@PostMapping("/logout")
-	public String logout(HttpServletRequest request) 
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) 
 	{
 		// 세션을 삭제한다.
+		// HttpSession session = request.getSession(false);
+		session.invalidate();
 		
-		HttpSession session = request.getSession(false);
-		
-		if (session != null)
-		{
-			session.invalidate();
-			
-		}
-		
-		return "redirect:/user/userMain";
+		return "redirect:/";
 	}
 	
 	
