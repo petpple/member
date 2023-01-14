@@ -15,8 +15,6 @@ public interface IUserMapper {
 	
 	//public List<User> getUserList();
 	
-	
-	
 	public int userLogin(User user);
 	
 	public String tmpMemberId(String id, String pw);
