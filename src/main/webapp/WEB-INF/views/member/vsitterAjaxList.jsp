@@ -1,12 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+  <c:if test="${empty list}">
+  		<span id="none" class="h1_font" style="color:red;">조회 결과가 더 이상 없습니다.</span>
+  </c:if>
+   <c:if test="${not empty  list }">
+  	
+
   <c:forEach var="item" items="${list }">
 					<div class="col-auto">
 						<div class="sitterList"
 							style="width: 370px; height: 225px; padding-top: 20px;">
 							<div class="sitterImg">
 								<!-- carousel 시작 -->
-								<img src="/images/user/suprise.jpg"><br> <span
+								<img src="${item.profileImg }"><br> <span
 									class="mb_font" style="margin-top: 10px;">${item.name }</span>
 							</div>
 							<!--sitter IMg  -->
@@ -52,3 +58,5 @@
 						</div>
 				</div>
 				</c:forEach>
+				
+				  </c:if>
