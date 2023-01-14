@@ -74,6 +74,7 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
+				num = 6;
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 				$("#startDate")
 						.datepicker(
@@ -140,16 +141,19 @@
 					$("#location").val($(this).children('span').text());
 					$(".location_div").css('display', 'none');
 				})
-				
+			
 				$("#showMore").click(function(){
+					if(document.getElementById('none')){
+						return;
+					};
 					$.ajax({
 						url:"showMoreVList",
-						data:{'start':1 , 'end':2},
+						data:{'start':num, 'end':num+5},
 						type:"post",
 						success: function(data){
 								$("#addon").append(data);
+								num += 6;
 									}
-		
 						,
 						error: function(jqXHR,textStatus, errorThrown)
 						{
@@ -235,7 +239,7 @@
 							style="width: 370px; height: 225px; padding-top: 20px;">
 							<div class="sitterImg">
 								<!-- carousel 시작 -->
-								<img src="/images/user/suprise.jpg"><br> <span
+								<img src="${item.profileImg}"><br> <span
 									class="mb_font" style="margin-top: 10px;">${item.name }</span>
 							</div>
 							<!--sitter IMg  -->
