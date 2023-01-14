@@ -9,7 +9,7 @@
 	<insert id="PRC_TMP_MEMBER" statementType="CALLABLE" parameterType="User"> 
 	{ CALL PRC_TMP_MEMBER( 
 	      #{name}, #{id}, #{pw}, #{tel}, #{ssn1}, #{ssn2}, #{nickname}, #{code}, #{email}, #{addr}, 
-	      #{detailAddress}, #{lat}, #{lng}, 'test')
+	      #{detailAddress}, #{lat}, #{lng})
 	}
 	
 	</insert>
@@ -48,6 +48,13 @@
 		FROM MEMBER
 		WHERE MEM_ID_ID=#{id} AND MEM_PW=#{pw}
 	</select>
+	
+	
+	<update id="insertMemberProfile">
+	update MEMBER
+	set MEM_IMG = #{profile}
+	where TMP_MEMBER_ID = #{id}
+	</update>
 	
 	<!-- 펫시터 코드 -->
 	
