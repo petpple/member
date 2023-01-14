@@ -15,7 +15,7 @@ public class User {
 	private String name, id, pw
 	, tel, ssn1, ssn2, nickname
 	, code, addr, detailAddress, lat, lng
-	, email;
+	, email,profile;
 	
 	
 }
