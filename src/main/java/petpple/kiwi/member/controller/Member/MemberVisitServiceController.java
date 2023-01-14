@@ -2,6 +2,7 @@ package petpple.kiwi.member.controller.Member;
 
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
+import petpple.kiwi.member.domain.apply.ReviewProfile;
 import petpple.kiwi.member.domain.apply.Sitter;
 import petpple.kiwi.member.domain.pet.Pet;
 import petpple.kiwi.member.repository.pet.IPetManage;
@@ -43,8 +45,13 @@ public class MemberVisitServiceController {
 	}
 	
 	@RequestMapping(value = "/member/vsitter")
-	public String membervSitterProfile()
+	public String membervSitterProfile(@RequestParam("allowid") String allowId, Model model)
 	{
+		IVisitService dao = sqlSession.getMapper(IVisitService.class);
+		Sitter sitter = dao.getVSitterProfile(allowId);
+		ArrayList<ReviewProfile> reviews = dao.getReviews(allowId);
+		model.addAttribute("sitter", sitter);
+		model.addAttribute("reviews", reviews);
 		return "/member/vsitterMyProfile";
 	}
 	

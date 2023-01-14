@@ -50,7 +50,12 @@
  		.serveType:hover {
 			box-shadow: 0 0 2px gray;		
  		} 
- 		
+ 		.starImg{
+	width: 25px;
+	height: 25px;
+	object-fit: cover;
+	margin:0px;
+}
  		
  		.select {
     padding: 15px 10px;
@@ -86,62 +91,46 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $.datepicker.monthpicker = {
-    	minDate: 0,
-        closeText: '닫기',
-        nextText : '다음 달',
-        prevText : '이전 달',
-        currentText : "오늘",
-        changeMonth : true,
-        changeYear : true,
-        monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames : [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
-        dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'],
-        weekHeader : "주",
-        firstDay : 0,
-        isRTL : false,
-        showMonthAfterYear : true,
-        yearSuffix : "년",
-        showOn: 'both',
-        // buttonText: "달력",
-        showButtonPanel: false,
-        dateFormat: 'yy/mm/dd',          
-        yearRange: "-10:+0",
-};
-      
-$.datepicker.setDefaults($.datepicker.monthpicker);
+	$.datepicker.setDefaults($.datepicker.regional['ko']); 
+    $( "#startDate" ).datepicker({
+         changeMonth: true, 
+         changeYear: true,
+         nextText: '다음 달',
+         prevText: '이전 달', 
+         dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+         monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+         dateFormat: "yy/mm/dd",
+         minDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+         onClose: function( selectedDate ) {    
+              //시작일(startDate) datepicker가 닫힐때
+              //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+             $("#endDate").datepicker( "option", "minDate", selectedDate );
+         }    
 
-      var datepicker_default = {
-          showOn: 'both',
-          buttonText: "달력",
-          currentText: "이번달",
-          changeMonth: true,
-          changeYear: true,
-          showButtonPanel: true,
-          yearRange: 'c-99:c+99',
-          showOtherMonths: true,
-          selectOtherMonths: true
-      }
-      datepicker_default.closeText = "선택";
-      datepicker_default.dateFormat = "yy-mm-dd";
-      datepicker_default.onClose = function (dateText, inst) {
-          var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-          var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-          $(this).datepicker('setDate', new Date(year, month, 1));
-      }
-      datepicker_default.beforeShow = function () {
-          var selectDate = $("#sdate").val().split("-");
-          var year = Number(selectDate[0]);
-          var month = Number(selectDate[1]) - 1;
-          var day = Number(selectDate[0]);
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-      }
-      $(".month_picker").datepicker(datepicker_default);
-});
+    });
+    $( "#endDate" ).datepicker({
+         changeMonth: true, 
+         changeYear: true,
+         nextText: '다음 달',
+         prevText: '이전 달', 
+         dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+         dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+         monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+         dateFormat: "yy/mm/dd",
+         minDate:0,
+         maxDate: 90,                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+         onClose: function( selectedDate ) {    
+             // 종료일(endDate) datepicker가 닫힐때
+             // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+             $("#startDate").datepicker( "option", "maxDate", selectedDate );
+         }    
+
+    });   
+      
+   
 
 $(function() { // 파일 업로드
     $('#img_select1').change(function() {
@@ -165,6 +154,7 @@ $(function() { // 파일 업로드
        reader.readAsDataURL(input.files[0]);
     }
  }
+});
 </script>
  
    
@@ -181,15 +171,15 @@ $(function() { // 파일 업로드
 		container = document.getElementById("map");					
 		options =
 		{
-			center: new kakao.maps.LatLng(37.556556, 126.919550),	
-			level: 5,
+			center: new kakao.maps.LatLng(${sitter.lat}, ${sitter.lng}),	
+			level: 7,
 		};
 		
 		map = new kakao.maps.Map(container, options);
-		
+		map.setMinLevel(2);
 		 circle = new kakao.maps.Circle({
-		    center : new kakao.maps.LatLng(37.556556, 126.919550),  // 원의 중심좌표 입니다 
-		    radius: 250, // 미터 단위의 원의 반지름입니다 
+		    center : new kakao.maps.LatLng(${sitter.lat}, ${sitter.lng}),  // 원의 중심좌표 입니다 
+		    radius: 1300, // 미터 단위의 원의 반지름입니다 
 		    strokeWeight: 2, // 선의 두께입니다 
 		    strokeColor: '#75B8FA', // 선의 색깔입니다
 		    strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
@@ -234,17 +224,14 @@ $(function() { // 파일 업로드
 			       	</div>
        				 -->
 						<div class="box_miMyPr1">
-								<!-- <div class="size_fix inline"> -->
-	                              <!-- <img src="/images/fsitter/h4.svg" id="preview1" />  -->
-									<img src="/images/member/fsitter/h4.svg" class="svgImg3" id="preview1">
-									<!--  <div class="form-group m_font" id="MyPro1"> -->
+									<img src="${sitter.profileImg }" class="svgImg3" id="preview1">
 									 	<div class="row"> 
 										     <div class="" style="margin-left: -10px;">
-										     	<span class="m_font">서울 광진구 법흥동</span><br>
+										     	<span class="m_font">${sitter.addr }</span><br>
 										      	<span class="m_font">펫시터</span>
-										      	&nbsp;<span class="m_font ">다나카</span><span class="m_font">님</span>
+										      	&nbsp;<span class="m_font ">${sitter.name }</span><span class="m_font">님</span>
 										      	<div style="padding-top:20px;">
-										      		<span style="font-size: 25px;">따뜻한 보살핌을 드리겠습니다.</span>
+										      		<span style="font-size: 25px;">${sitter.title }</span>
 										      	</div>
 										      	
 										      	<br>
@@ -255,111 +242,57 @@ $(function() { // 파일 업로드
 					
 						<div class="box_miMyPr2">
 							<div class="">
-						      	<span class="mb_font">다나카</span>
+						      	<span class="mb_font">${sitter.name }</span>
 						      	<span class="m_font">펫시터 님을 소개합니다.</span>
 							</div>
 							<br>
 							<div>
-								<textarea class="form-control m_font" rows="9" placeholder="안녕하세요. 반려동물을 무한히 사랑하는 펫시터 다나카입니다. 지금은 곁에 없지만 17년동안 막내아들처럼 함께했던 반려견을 보내고 그리움과 허전함으로 힘들게 지내다가, 마침내 용기를 내어서 주변에 혼자있게 되는 반려견을 견주님들이 내 집처럼 맡길수 있는 펫시터로서의 일을 시작하게 되었습니다. 반려견들이 더 존중받는 뉴질랜드에서부터 반려견을 키우고, 지인들의 반려견들을 맡아주던 경험도 많습니다. 집 근처에 있는 여러 공원과 반포천은 반려견들이 산책하기에 좋은 환경입니다. 내 아이를 돌보듯 따뜻하고 편안하게, 사랑과 정성으로 최선을 다해 보살펴드리겠습니다."></textarea>
+								<div class="shadow-sm" style ="background-color: white; padding:20px;" >
+									<p>${sitter.content }</p>
+								
+								</div>
 							</div>
 						</div><!-- <div class="box_miMyPr2 "> -->
-			
-						
-						<!-- <div class="col text-center">
-		                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;"
-		                    onclick="location.href='http://localhost:8093/fsitter/fsitterMyProfileUpdate'">수정하기</button>주소는 추후 수정예정
-		                </div> -->
 		                <br>
-		                
 		                <div class="box_miMyPr5 inline">
-		                	<div class="petreview">
-		                		<h2 class="petreviewTitle">펫시터 후기 24개</h2>
-				                	<div class="petstar">
-					                	<img width="18" height="18" src="/static/images/common/star_1.png">
-					                	<img width="18" height="18" src="/static/images/common/star_1.png">
-					                	<img width="18" height="18" src="/static/images/common/star_1.png">
-					                	<img width="18" height="18" src="/static/images/common/star_1.png">
-					                	<img width="18" height="18" src="/static/images/common/star_1.png">
-				                	</div>
+		                	<div class="petreview" style="display:flex;flex-direction: row;">
+		                		<h2 class="petreviewTitle">펫시터 후기 ${sitter.reviewCnt }개</h2>
+											<div
+												style="width: 140px; display: flex; flex-direction: row; justify-content: space-between;">
+												<div class="starImg"
+													style="display: flex; flex: 1 1 0%; justify-content: space-between;">
+													<c:forEach var="n" begin="1" end="${sitter.stars}" step="1">
+														<img src="/images/member/pngwing.com.png"> 
+													</c:forEach>
+												</div>
+											</div>
 		                	</div>
 		                	
 		                	
 		                	<!-- 후기 사진 부분 -->
-		                	<div class="reviewPhoto">
-		                		<div class="reviewPhotos">
-		                			<img width="139" height="139" src="https://petplanet.cdn.ntruss.com/resized/review/1dc77e2abae74ce9969db0dfd4d723ec.jpg" style="object-fit: cover;">
-		                		</div>
-		                		<div class="reviewPhotos">
-		                			<img width="139" height="139" src="https://petplanet.cdn.ntruss.com/resized/review/4091f1ce922843f288d9e960876c712e.jpg" style="object-fit: cover;">
-		                		</div>
-		                		<div class="reviewPhotos">
-		                			<img width="139" height="139" src="https://petplanet.cdn.ntruss.com/resized/review/83ca435152004627a54514e82e00de53.jpg" style="object-fit: cover;">
-		                		</div>
-		                		<div class="reviewPhotos">
-		                			<img width="139" height="139" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/review/b07039330b2748e9a6b7305117ebd113.jpg" style="object-fit: cover;">
-				                		<div style="display: flex; position: absolute; inset: 0px; width: 139px; height: 139px; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.59); border-radius: 3px;">
-				                			<p style="font-size: 17px; letter-spacing: 0.5px; line-height: 25px; color: white;">+19</p>
-				                		</div>
-		                		</div>
-	                		</div>
 		                	
-		                	<div class="line">
+		                	
+		                	<div class="line" style="max-height: 1200px; overflow-y:scroll;">
 		                	
 		                	<!-- 사용자 후기 -->
+		                	<c:forEach var="review" items="${reviews}">
 		                	<div class="reviewForm">
 		                		<div class="reviewFormTitle">
-		                			<img width="50" height="50" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/pet/9ae4c0dc2721462ba04a9047a96e0b9c.jpg" style="object-fit: cover; border-radius: 50%;">
+		                			<img width="50" height="50" src="${review.profile }" style="object-fit: cover; border-radius: 50%;">
 		                				<div class="reviewImgIdDate">
-		                					<p class="reviewId">C***************N</p>
-		                					<p class="reviewDate">2023년 1월 1일</p>
+		                					<p class="reviewId">${review.name }</p>
+		                					<p class="reviewDate">${review.revDate }</p>
 		                				</div>
 		                		</div>
-		                		<p class="petHostReview" >태어나 처음으로 떨어져야 하는 울애기
-								무려 4일이나 떨어져야해서 걱정이 너무 많았어요 소심하고 낯가리고 덜덜떠는 겁쟁이라 여기저기 알아보다 시터님을 알게되었어요
-								사실 맡기고 나서도 너무 걱정되서 그날 밤은 잠을 잘 못잤어요 그런데 써주시는 일지의 사진과 동영상들을 보니 잘지내고 있는게 느껴지더라구요
-								저보다 더 밥도 잘 먹여주시는거 같고 추위를 많이 타서 전 산책을 못시켰었는데 품에 안고 산책도 시켜주시고
-								저한테만 보여줄 줄 알았던 애교도 부리고 있더라구요😅 사실 그동안 맡길곳이 없어 강아지가 힘들어도 끌고 다녔는데 좋은분 만난 것 같아 너무 든든해졌어요
-								너무너무 감사했습니다 다음번에도 잘 부탁드릴께요❤️</p>
+		                		<p class="petHostReview" >${review.content }</p>
 								<!-- 이미지 -->
 								<div class="petImgs">
-									<img class="petImg" src="https://petplanet.cdn.ntruss.com/resized/review/1dc77e2abae74ce9969db0dfd4d723ec.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-									<img class="petImg" src="https://petplanet.cdn.ntruss.com/resized/review/4091f1ce922843f288d9e960876c712e.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-									<img class="petImg" src="https://petplanet.cdn.ntruss.com/resized/review/83ca435152004627a54514e82e00de53.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
+									<img class="petImg" src="${review.img1 }" onerror="this.style.display='none'" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
+									<img class="petImg" src="${review.img2 }" onerror="this.style.display='none'" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
+									<img class="petImg" src="${review.img3 }" onerror="this.style.display='none'" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
 								</div>
 							</div>
-							
-							<div class="reviewForm">
-								<div class="reviewFormTitle">
-									<img width="50" height="50" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/pet/a74f101652134233a3efbabccac2eaea.jpg" style="object-fit: cover; border-radius: 50%;">
-										<div class="reviewImgIdDate">
-											<p class="reviewId">김*경</p>
-											<p class="reviewDate">2022년 12월 11일</p>
-										</div>
-								</div>
-									<p class="petHostReview">1박 2일 동안 밀크를 사랑으로 잘 돌봐주셔서 깊은 감사를 드립니다. 사회성이 부족하여 평소 산책을 잘 못하는데 시터님께서 산책도 시켜주시고 재미있게 놀이도 해 주셨어요. 예쁜 사진과 함께 일지도 자주 올려주셔서 걱정없이 잘 다녀올 수 있었습니다. 
-									감사드립니다~~</p>
-								<!-- 이미지 -->	
-								<div class="petImgs">
-									<img class="petImg" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/review/b07039330b2748e9a6b7305117ebd113.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-									<img class="petImg" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/review/a454b97448cb4216800cfb68ce24bb19.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-								</div>
-							</div>
-							
-							<div class="reviewForm">
-								<div class="reviewFormTitle">
-									<img width="50" height="50" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/pet/7c67b3121ae440f7937e9afcd2cf6dc8.jpg" style="object-fit: cover; border-radius: 50%;">
-										<div class="reviewImgIdDate"">
-											<p class="reviewId">김*희</p>
-											<p class="reviewDate">2022년 11월 13일</p>
-										</div>
-								</div>
-								<p class="petHostReview">펫시터님 덕분에 정말 안심하고 다녀왔습니다. 강아지와 떨어져 본 적이 없어서 처음에 너무 걱정했는데, 일지도 꼼꼼히 적어 보내주셨고  다녀왔더니 너무 잘 지내고 있어서 깜짝 놀랐어요. 이틀동안 정말 감사했습니다.</p>
-								<div class="petImgs">
-									<img width="90" height="90" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/review/0eec0d8deb8b4b30bb40a93e50739dea.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-									<img width="90" height="90" src="https://d1cd60iwvuzqnn.cloudfront.net/resized/review/97532cf2a8ca40448475fb305c513a7e.jpg" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
-								</div>
-							</div>
-							
+							</c:forEach>
 							<!-- 아직 정리 안됨 -->
 							<!-- <div style="display: flex; align-items: center; justify-content: center; height: 50px; border-radius: 25px; border: 1px solid rgb(129, 137, 155); margin-bottom: 100px; user-select: none; cursor: pointer; margin-top: 12px;">
 								<p style="font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: rgb(56, 60, 72);">펫시터 후기 더보기</p>
@@ -382,21 +315,14 @@ $(function() { // 파일 업로드
 				            <span>언제 펫시터가 필요한가요?</span>
 					           <form class=" lg-3 row inline"> 
 					            	<div class="form-group col-lg-5">  
-								 		<input type="text"  id="datepicker" class="form-control">
+								 		<input type="text"  id="startDate" class="form-control">
 								 	</div> 
 								 		<label for="datepicker" class="col-lg-2 col-form-label">-></label>
 								 	<div class="form-group col-lg-5">  
-								 		<input type="text"  id="datepicker2" class="form-control" style="margin-left: -20px;">
+								 		<input type="text"  id="endDate" class="form-control" style="margin-left: -20px;">
 								 	</div>	
 
-							            <!-- 생년월일 datepicker  -->
-										<script type="text/javascript">
-											$("#datepicker").datepicker();
-										</script>
-							            <!-- 생년월일 datepicker  -->
-										<script type="text/javascript">
-											$("#datepicker2").datepicker();
-										</script>
+							       
 							          
 				            <br>
 				            <div class="row">
@@ -473,21 +399,28 @@ $(function() { // 파일 업로드
 			        		</div>
 			        		
 			        		<div class="box_mypi2" style="height: 120px; ">돌봄가능 펫 크기<br>
-			        		
-			        		
-							 	
-									    <div style="display: flex; justify-content:space-around;  flex-direction: row; width:250px;margin:auto;">
-									     	<div class="shadow-sm" style="width:65px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;">
-									     		<span style="font-size: 12px;font-weight: bold;">소형<br>(7kg 미만)</span>
-									     	</div>
-									     	<div class="shadow-sm" style="width:65px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;">
-									     		<span style="font-size: 12px;font-weight: bold;">중형<br>(7~15kg)</span>
-									     	</div>
-									     
+			        					<div style="display: flex; justify-content:space-around;  flex-direction: row; width:250px;margin:auto;">
+			        							<div class="shadow-sm" style="width:70px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;text-align:center;">
+									     		<span style="font-size: 12px;font-weight: bold; ">소형<br>(7kg 미만)</span>
+			        					  		</div>
+									     	<c:choose>
+									     		<c:when test="${sitter.petSizeId eq '2' }">
+							     				<div class="shadow-sm" style="width:70px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;text-align:center">
+							     				<span style="font-size: 12px;font-weight: bold;">중형<br>(7~15kg)</span>
+							     				</div>
+									     		</c:when>
+									     		
+									     		<c:when test="${sitter.petSizeId eq '3'}">
+							     				<div class="shadow-sm" style="width:70px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;text-align:center">
+							     				<span style="font-size: 12px;font-weight: bold;">중형<br>(7~15kg)</span>
+							     				</div>
+							     				<div class="shadow-sm" style="width:70px; border:1px solid  white; background-color:#ffd7b3; border-radius:5px;padding:5px;text-align:center">
+									     		<span style="font-size: 12px;font-weight: bold;">대형<br>(15kg이상)</span>
+									     		</div>
+									     		</c:when>
+									     	</c:choose>
 									    </div>
-								
 			        		</div>
-			        		
 			        		<div class="box_mypi2" style="height: 460px;">예약 가능 날짜
 			        		<br><br>
 						 	<div id="test">

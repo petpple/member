@@ -48,6 +48,25 @@
 <style type="text/css">
 
 	#result,#nameResult {color: red; }
+	
+		.input-file-button{
+  padding: 6px 25px;
+  background-color:#FE5C17;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  margin-top : 10px;
+  margin-left:50px;
+  }
+  
+  .petProfile {
+   width:150px;
+   height:150px;
+   object-fit: cover;
+   border-radius:30px;
+   margin-bottom: 30px;
+   border: 2px solid #fffff;
+  }
 
 </style>
 
@@ -127,7 +146,25 @@
                    dateFormat: "yy/mm/dd",
                    maxDate: 0,                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
                    }  );        
-         });
+         
+              $(function() { // 파일 업로드
+          	    $('#img_select1').change(function() {
+          	       setImageFromFile(this, '#preview1');
+          	    });
+          	 });
+          	 //파일 업로드
+          	 function setImageFromFile(input, expression) {
+          	    if (input.files && input.files[0]) {
+          	       var reader = new FileReader();
+
+          	       reader.onload = function(e) {
+          	          $(expression).attr('src', e.target.result);
+          	       }
+          	       reader.readAsDataURL(input.files[0]);
+          	    }
+          	 }
+	    
+	    });
 </script>
 <script type="text/javascript">
 
@@ -254,10 +291,19 @@
 				<div class="col-lg-12">
 					<div class="tab_content">
 						<div class="conbox">
-							<form action="memberinsert.action" method="post" onsubmit="check();">
+							<form action="memberinsert.action" method="post" onsubmit="check();" enctype="multipart/form-data">
 								<div>
 									<h1 class="h_font">회원가입</h1>
 								</div>
+								<br><br>
+								 <div>
+          	                    	<div class="h2_font">프로필사진</div>
+			                    	<div>
+		                               <img src="/images/member/no_Img.png" id="preview1" class="petProfile"/> 
+		                              <label for="img_select1" class="input-file-button">사진 첨부</label> 
+			                          <input type="file" id="img_select1" name="file" style="display: none;" required="required"/>
+									</div>
+			                    </div>
 								<div>
 									<div class="h2_font">아이디</div>
 									<div class="row">
@@ -313,10 +359,7 @@
 			                        	<input type="text" class="date" id="date">
 			                        </div>
 			                    </div>
-          	                    <div>
-          	                    	<div class="h2_font">프로필</div>
-			                    	<input type="file" id="mem_img">
-			                    </div>
+          	                   
 			                    
 			                    <div class="row">
 			                        <div class="h2_font">주소</div>
