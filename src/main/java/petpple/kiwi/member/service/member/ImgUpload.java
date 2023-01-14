@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ImgUpload {
+	
 	private final String PetProfilePath = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet";
 
 	public String getPetProfilePath() {
@@ -23,7 +24,7 @@ public class ImgUpload {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-		return path+name+ext; //db에 저장될 사진 경로 및 파일명
+		return name+ext; //db에 저장될 사진 파일명
 	}
 	
 	// 복수 파일 업로드
