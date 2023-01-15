@@ -236,14 +236,14 @@
 					<c:forEach var="item" items="${list }">
 					<div class="col-auto">
 						<div class="sitterList"
-							style="width: 370px; height: 225px; padding-top: 20px;">
+							style="width: 380px; height: 230px; padding-top: 20px;">
 							<div class="sitterImg">
 								<!-- carousel 시작 -->
 								<img src="${item.profileImg}"><br> <span
 									class="mb_font" style="margin-top: 10px;">${item.name }</span>
 							</div>
 							<!--sitter IMg  -->
-							<a href="/member/vsitter?allowid=${item.allowId }" class="sitterAtag">
+							<a href="/member/vsitter?allowid=${item.allowId }&grade=${item.grade}" class="sitterAtag">
 
 								<div class="locAndTitleDiv">
 									<p
@@ -273,9 +273,21 @@
 										</div>
 									</div>
 									<div style="text-align: center; margin-top: 0px;">
-										<p style="font-size: 13px; font-weight: bold;">${item.count } / ${item.time }</p>
+										<p style="font-size: 13px; font-weight: bold; margin-bottom:-5px;">등급</p>
 										<div class="gradeImg">
-											<img src="/images/member/다운로드.jfif">
+											<c:if test="${item.grade eq '1' }">
+												<img src="/images/member/sprout.svg">
+											</c:if>
+											<c:if test="${item.grade eq '2' }">
+												<img src="/images/member/bronze.svg">
+											</c:if>
+											<c:if test="${item.grade eq '3' }">
+												<img src="/images/member/silver.svg">
+											</c:if>
+											<c:if test="${item.grade eq '4' }">
+												<img src="/images/member/gold.svg">
+											</c:if>
+											
 											<!--등급 image  -->
 										</div>
 									</div>
