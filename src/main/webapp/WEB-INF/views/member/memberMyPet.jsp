@@ -116,8 +116,8 @@
 			        	<c:forEach var="pet" items="${list}">
 				       
 				        <div class="col-lg-4">
-				        	<div class="card" style="margin-bottom: 20px;">
-				            	<img src="/images/member/p.svg" id="petsvg1" class="card-img-top" height="130px" width="130px"  >
+				        	<div class="card" style="margin-bottom: 20px;text-align: center;">
+				            	<img src="${pet.profile }" id="petsvg1" class="card-img-top"  style="margin-top:15px; margin-left:auto;margin-right:auto; height:130px; width:130px; object-fit:cover; border-radius: 50px;"  >
 				            <div class="card-body">
 				            	
 				              	<h5 class="card-title" style="text-align: center;">${pet.name}</h5>
