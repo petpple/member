@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="#" class="nav-item nav-link active">긴급 요청 서비스</a>
-                <a href="vsitterPetSitterList" class="nav-item nav-link">방문 서비스</a>
+                <a href="vsitterList" class="nav-item nav-link">방문 서비스</a>
                 <a href="fsitterPetSitterList" class="nav-item nav-link">위탁 서비스</a>
                 <a href="memberFAQ" class="nav-item nav-link">FAQ</a>
                 <a href="memberApply" class="nav-item nav-link">펫시터 지원하기</a>
