@@ -33,6 +33,28 @@
 		WHERE id = #{id}
 	</select>
 	
-		
+	
+	<select id="getPet" parameterType="String" resultType="Pet" >
+	
+		SELECT ps.P_SHA_ID as shaId, p.PET_NAME AS name,(CASE WHEN p.PET_WEIGHT <![CDATA[>]]>=15 THEN '1'
+								  					 	 WHEN p.PET_WEIGHT<![CDATA[>]]>=7 THEN '2'
+								    					 ELSE '3' END) AS weightId
+		FROM PET P
+		INNER JOIN PET_SHARE ps 
+		ON p.PET_ID = ps.PET_ID
+		WHERE ps.TMP_MEMBER_ID = #{temId}
+	</select>
+	
+	<insert id="requestVisitService" statementType="CALLABLE" parameterType="VisitService"> 	
+		{CALL PRC_INSERT_V(#{pay},#{refAccNum},'50291073077107',#{refDepositor},'최동현','1',#{refBankId},#{code},#{addr},#{detailAddress},#{lat},#{lng}
+		,TO_DATE(#{start},'YYYY-MM-DD HH24:MI:SS'),TO_DATE(#{end},'YYYY-MM-DD HH24:MI:SS'),#{content}, #{careType},#{allowId})}
+
+	</insert>
+	
+	<insert id="requestPetChoice" parameterType="string">
+		INSERT INTO V_PET_CHO (V_PET_CHOICE_ID,V_ID,P_SHA_ID) VALUES (SEQ_V_PET_CHOICE_ID.NEXTVAL,(SELECT TO_CHAR(LAST_NUMBER-1)
+		FROM USER_SEQUENCES 
+		WHERE SEQUENCE_NAME = 'SEQ_V_ID'),#{petShaId})
+	</insert>
 	
 </mapper>
