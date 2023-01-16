@@ -106,8 +106,6 @@ public class MemberVisitServiceController {
 		{
 			return "//user/userMain";
 		}
-		
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
