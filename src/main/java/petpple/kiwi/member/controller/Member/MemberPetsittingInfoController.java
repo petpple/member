@@ -52,6 +52,10 @@ public class MemberPetsittingInfoController {
 			HttpSession session = request.getSession();
 		      
 			String temId = (String)session.getAttribute("temId");
+			if(temId==null)
+			{
+				return "//user/userMain";
+			}
 			
 			ArrayList<Member> waitingAcceptanceList = dao.waitingAcceptanceList(temId);
 			
@@ -68,6 +72,10 @@ public class MemberPetsittingInfoController {
 			HttpSession session = request.getSession();
 		      
 			String temId = (String)session.getAttribute("temId");
+			if(temId==null)
+			{
+				return "//user/userMain";
+			}
 			
 			ArrayList<Member> sumPetsittingList = dao.sumPetsittingList();
 			
