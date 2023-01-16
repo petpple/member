@@ -43,7 +43,7 @@
 <body>
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-        <a href="index" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <a href="/member/memberMain" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 class="m-0 text-primary"><i class="fa fa-book me-3"></i>Kiwi</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -54,7 +54,7 @@
                 <a href="#" class="nav-item nav-link active">긴급 요청 서비스</a>
                 <a href="vsitterList" class="nav-item nav-link">방문 서비스</a>
                 <a href="fsitterPetSitterList" class="nav-item nav-link">위탁 서비스</a>
-                <a href="memberFAQ" class="nav-item nav-link">FAQ</a>
+                <a href="/member/memberFAQ" class="nav-item nav-link">FAQ</a>
                 <a href="memberApply" class="nav-item nav-link">펫시터 지원하기</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
