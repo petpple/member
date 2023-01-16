@@ -8,6 +8,7 @@ public class Sitter {
 	,title,name, content, depositor
 	, accNumber , reviewCnt ,grade
 	, smokeId, petSizeId,profileImg
-	, petKindId, bankId,time,count;
+	, petKindId, bankId,time,count
+	, temId;
 	int stars;
 }
