@@ -1,6 +1,5 @@
 package petpple.kiwi.member.service.member;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -39,10 +38,6 @@ public class MemberService {
         return memberMapper.deleteMember(id);
     }
 
-    public ArrayList<Member> currentPetsitting()
-    {
-    	return memberMapper.currentPetsitting();
-    }
 
 //    public int applyMember(Member member) {
 //    	return memberMapper.applyMember(member);
