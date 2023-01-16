@@ -25,7 +25,7 @@
 
     <insert id="applyMember">
         INSERT INTO S_APPLY(S_APP_ID,S_APP_PRO_TITLE,S_APP_PRO_CONTENT,S_APP_DATE,S_APP_DEPOSITOR,S_APP_ACC_NUMBER,S_APP_OPE_DATE,TMP_MEMBER_ID,S_STA_ID,P_PET_ID,P_PET_KIN_ID,BANK_ID)
-		VALUES(#{s_app_id},#{s_app_pro_title},#{s_app_pro_content},#{s_app_date},#{s_app_depositor},#{s_app_acc_number},#{s_app_ope_date},#{tmp_member_id},#{s_sta_id},#{p_pet_id},#{p_pet_kin_id},#{bank_id});
+		VALUES(#{s_app_id},#{s_app_pro_title},#{s_app_pro_content},#{s_app_date},#{s_app_depositor},#{s_app_acc_number},#{s_app_ope_date},#{tmp_member_id},#{s_sta_id},#{p_pet_id},#{p_pet_kin_id},#{bank_id})
     </insert>
 
     <delete id="deleteMember">
@@ -40,12 +40,33 @@
         where id = #{id}
     </update>
     
-    <!-- 방문 서비스 펫시팅 현황 -->
-    <select id="waitingAcceptance" resultType="java.lang.Integer">
-    	SELECT COUNT(*) AS COUNT
-		FROM VIEW_WAITING_ACCEPTANCE
-    </select>
+    <!-- 방문 서비스 수락 대기 횟수 -->
     
+    <select id="waitingAcceptance" resultType="java.lang.Integer">
+    	<![CDATA[
+    	SELECT COUNT(*) AS COUNT
+		FROM MEMBER M JOIN TMP_MEM TM
+		ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+		JOIN PET_SHARE PS
+		ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+		JOIN V_PET_CHO VPC
+		ON VPC.P_SHA_ID = PS.P_SHA_ID
+		JOIN V V
+		ON VPC.V_ID = V.V_ID
+		JOIN PAY P
+		ON P.P_ID = V.PAYMENT_ID
+		LEFT OUTER JOIN V_REF_REF VRR
+		ON VRR.V_ID = V.V_ID
+		LEFT OUTER JOIN V_RESERV VR
+		ON V.V_ID = VR.V_ID  
+		WHERE TM.T_MEM_ID='${temId }' 
+		AND VRR.V_REF_REF_DATE IS NULL 
+		AND VR.V_RES_DATE IS NULL
+		AND V_START_DATE <= SYSDATE
+		]]>
+    </select>
+   
+    <!-- 방문 서비스 누적 펫시팅 현황 -->
     <select id="sumPetsitting" resultType="java.lang.Integer">
     	SELECT COUNT(*) AS COUNT
 		FROM VIEW_SUM_PETSITTING
@@ -63,55 +84,205 @@
 		FROM VIEW_SUM_FPETSITTING
     </select>
     
+    <!-- 현재 진행 중 펫시팅 -->
     <select id="currentPetsitting" resultType="Member">
     	<![CDATA[
-    	SELECT V_ID AS vid, V_CLI_ADDR AS addr, V_START_DATE AS startDate
-		, V_END_DATE AS endDate, V_REQ_DATE AS reqDate, P_TOTAL AS totalPrice
-		, MEM_NICKNAME AS petsitterNickname, MEM_IMG AS petsitterProfile  
-		FROM MEMBER M JOIN TMP_MEM TM
-		ON M.TMP_MEMBER_ID = TM.T_MEM_ID
-		JOIN PET_SHARE PS
-		ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-		JOIN V_PET_CHO VPC
-		ON PS.P_SHA_ID = VPC.P_SHA_ID
-		JOIN V V
-		ON VPC.V_ID = V.V_ID
-		JOIN S_ALLOW SA
-		ON V.S_ALL_ID = SA.S_ALL_ID
-		JOIN S_APPLY S
-		ON SA.S_APP_ID = S.S_APP_ID
-		JOIN V_RESERV VR
-		ON V.V_ID = VR.V_ID
-		JOIN PAY P
-		ON P.P_ID = V.PAYMENT_ID
-		WHERE TM.T_MEM_ID = 'UV8YF0IN08'
+    	SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, V_START_DATE AS startDate
+      , V_END_DATE AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일"') AS reqDate, P_TOTAL AS totalPrice,(SELECT MEM_NICKNAME
+        FROM MEMBER M JOIN TMP_MEM TM 
+        ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+        JOIN S_APPLY S
+        ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+        JOIN S_ALLOW SA
+        ON S.S_APP_ID = SA.S_APP_ID
+        JOIN V V
+        ON V.S_ALL_ID = SA.S_ALL_ID
+        WHERE V_ID = (SELECT V_ID
+                      FROM MEMBER M JOIN TMP_MEM TM 
+                      ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                      JOIN PET_SHARE PS
+                      ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                      JOIN V_PET_CHO VPC
+                      ON PS.P_SHA_ID = VPC.P_SHA_ID
+                      WHERE TM.T_MEM_ID = '${temId }'))AS petsitterNickname, 
+                            (SELECT MEM_IMG
+                            FROM MEMBER M JOIN TMP_MEM TM 
+                            ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                            JOIN S_APPLY S
+                            ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+                            JOIN S_ALLOW SA
+                            ON S.S_APP_ID = SA.S_APP_ID
+                            JOIN V V
+                            ON V.S_ALL_ID = SA.S_ALL_ID
+                            WHERE V_ID = (SELECT V_ID
+                                          FROM MEMBER M JOIN TMP_MEM TM 
+                                          ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                                          JOIN PET_SHARE PS
+                                          ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                                          JOIN V_PET_CHO VPC
+                                          ON PS.P_SHA_ID = VPC.P_SHA_ID
+                                          WHERE TM.T_MEM_ID = '${temId }'))AS petsitterProfile
+FROM MEMBER M JOIN TMP_MEM TM
+ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+JOIN PET_SHARE PS
+ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+JOIN V_PET_CHO VPC
+ON VPC.P_SHA_ID = PS.P_SHA_ID
+JOIN V V
+ON VPC.V_ID = V.V_ID
+JOIN PAY P
+ON P.P_ID = V.PAYMENT_ID
+JOIN V_RESERV VR
+ON V.V_ID = VR.V_ID
+LEFT OUTER JOIN V_REF_REF VRR
+ON VRR.V_ID = V.V_ID 
+LEFT OUTER JOIN V_CAN_REF VCR
+ON VR.V_RES_ID = VCR.V_RES_ID
+LEFT OUTER JOIN V_NOS_REF VNR
+ON VR.V_RES_ID = VNR.V_RES_ID
+LEFT OUTER JOIN V_CONFIRM VC
+ON VR.V_RES_ID = VC.V_RES_ID
+WHERE TM.T_MEM_ID='${temId }'
+AND VRR.V_REF_REF_DATE IS NULL
+AND VCR.V_CAN_REF_DATE IS NULL  
+AND VNR.V_NOS_REF_DATE IS NULL
+AND VC.V_CON_DATE IS NULL       
+AND V.V_START_DATE <= SYSDATE
+AND V.V_END_DATE >= SYSDATE
+		]]>
+    </select>
+    
+    <!-- 서비스 이용 확정 대기 -->
+    <select id="comfirmWaiting" resultType="Member">
+    	<![CDATA[
+    	SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, V_START_DATE AS startDate
+      , V_END_DATE AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일"') AS reqDate, P_TOTAL AS totalPrice,(SELECT MEM_NICKNAME
+        FROM MEMBER M JOIN TMP_MEM TM 
+        ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+        JOIN S_APPLY S
+        ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+        JOIN S_ALLOW SA
+        ON S.S_APP_ID = SA.S_APP_ID
+        JOIN V V
+        ON V.S_ALL_ID = SA.S_ALL_ID
+        WHERE V_ID = (SELECT V_ID
+                      FROM MEMBER M JOIN TMP_MEM TM 
+                      ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                      JOIN PET_SHARE PS
+                      ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                      JOIN V_PET_CHO VPC
+                      ON PS.P_SHA_ID = VPC.P_SHA_ID
+                      WHERE TM.T_MEM_ID = '${temId }'))AS petsitterNickname, 
+                            (SELECT MEM_IMG
+                            FROM MEMBER M JOIN TMP_MEM TM 
+                            ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                            JOIN S_APPLY S
+                            ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+                            JOIN S_ALLOW SA
+                            ON S.S_APP_ID = SA.S_APP_ID
+                            JOIN V V
+                            ON V.S_ALL_ID = SA.S_ALL_ID
+                            WHERE V_ID = (SELECT V_ID
+                                          FROM MEMBER M JOIN TMP_MEM TM 
+                                          ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                                          JOIN PET_SHARE PS
+                                          ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                                          JOIN V_PET_CHO VPC
+                                          ON PS.P_SHA_ID = VPC.P_SHA_ID
+                                          WHERE TM.T_MEM_ID = '${temId }'))AS petsitterProfile
+FROM MEMBER M JOIN TMP_MEM TM
+ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+JOIN PET_SHARE PS
+ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+JOIN V_PET_CHO VPC
+ON VPC.P_SHA_ID = PS.P_SHA_ID
+JOIN V V
+ON VPC.V_ID = V.V_ID
+JOIN PAY P
+ON P.P_ID = V.PAYMENT_ID
+JOIN V_RESERV VR
+ON V.V_ID = VR.V_ID
+LEFT OUTER JOIN V_REF_REF VRR
+ON VRR.V_ID = V.V_ID 
+LEFT OUTER JOIN V_CAN_REF VCR
+ON VR.V_RES_ID = VCR.V_RES_ID
+LEFT OUTER JOIN V_NOS_REF VNR
+ON VR.V_RES_ID = VNR.V_RES_ID
+LEFT OUTER JOIN V_CONFIRM VC
+ON VR.V_RES_ID = VC.V_RES_ID
+WHERE TM.T_MEM_ID='${temId }'
+AND VRR.V_REF_REF_DATE IS NULL
+AND VCR.V_CAN_REF_DATE IS NULL  
+AND VNR.V_NOS_REF_DATE IS NULL  
+AND VC.V_CON_DATE IS NULL       
+AND V.V_END_DATE <= SYSDATE    
+AND V.V_END_DATE + 3 >= SYSDATE    
 		]]>
     </select>
   
 <!-- 		AND SYSDATE >= V.V_START_DATE -->
 <!-- 		AND SYSDATE < V.V_END_DATE -->
-    <select id="comfirmWaiting" resultType="Member">
+	<!-- 진행 예정인 펫시팅 -->
+    <select id="petsittingSchedule" resultType="Member">
     	<![CDATA[
-    	SELECT V_ID AS vid, V_CLI_ADDR AS addr, V_START_DATE AS startDate
-		, V_END_DATE AS endDate, V_REQ_DATE AS reqDate, P_TOTAL AS totalPrice
-		, MEM_NICKNAME AS petsitterNickname
-		FROM MEMBER M JOIN TMP_MEM TM
-		ON M.TMP_MEMBER_ID = TM.T_MEM_ID
-		JOIN PET_SHARE PS
-		ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-		JOIN V_PET_CHO VPC
-		ON PS.P_SHA_ID = VPC.P_SHA_ID
-		JOIN V V
-		ON VPC.V_ID = V.V_ID
-		JOIN S_ALLOW SA
-		ON V.S_ALL_ID = SA.S_ALL_ID
-		JOIN S_APPLY S
-		ON SA.S_APP_ID = S.S_APP_ID
-		JOIN V_RESERV VR
-		ON V.V_ID = VR.V_ID
-		JOIN PAY P
-		ON P.P_ID = V.PAYMENT_ID
-		WHERE TMP_MEMBER_ID='UV8YF0IN08'
+    	SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일"') AS startDate
+      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일"') AS reqDate, P_TOTAL AS totalPrice,(SELECT MEM_NICKNAME
+        FROM MEMBER M JOIN TMP_MEM TM 
+        ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+        JOIN S_APPLY S
+        ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+        JOIN S_ALLOW SA
+        ON S.S_APP_ID = SA.S_APP_ID
+        JOIN V V
+        ON V.S_ALL_ID = SA.S_ALL_ID
+        WHERE V_ID = (SELECT V_ID
+                      FROM MEMBER M JOIN TMP_MEM TM 
+                      ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                      JOIN PET_SHARE PS
+                      ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                      JOIN V_PET_CHO VPC
+                      ON PS.P_SHA_ID = VPC.P_SHA_ID
+                      WHERE TM.T_MEM_ID = '${temId }'))AS petsitterNickname, 
+                            (SELECT MEM_IMG
+                            FROM MEMBER M JOIN TMP_MEM TM 
+                            ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                            JOIN S_APPLY S
+                            ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+                            JOIN S_ALLOW SA
+                            ON S.S_APP_ID = SA.S_APP_ID
+                            JOIN V V
+                            ON V.S_ALL_ID = SA.S_ALL_ID
+                            WHERE V_ID = (SELECT V_ID
+                                          FROM MEMBER M JOIN TMP_MEM TM 
+                                          ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                                          JOIN PET_SHARE PS
+                                          ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                                          JOIN V_PET_CHO VPC
+                                          ON PS.P_SHA_ID = VPC.P_SHA_ID
+                                          WHERE TM.T_MEM_ID = '${temId }'))AS petsitterProfile
+FROM MEMBER M JOIN TMP_MEM TM
+ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+JOIN PET_SHARE PS
+ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+JOIN V_PET_CHO VPC
+ON VPC.P_SHA_ID = PS.P_SHA_ID
+JOIN V V
+ON VPC.V_ID = V.V_ID
+JOIN PAY P
+ON P.P_ID = V.PAYMENT_ID
+JOIN V_RESERV VR
+ON V.V_ID = VR.V_ID
+LEFT OUTER JOIN V_REF_REF VRR
+ON VRR.V_ID = V.V_ID 
+LEFT OUTER JOIN V_CAN_REF VCR
+ON VR.V_RES_ID = VCR.V_RES_ID
+LEFT OUTER JOIN V_NOS_REF VNR
+ON VR.V_RES_ID = VNR.V_RES_ID
+WHERE TM.T_MEM_ID='${temId }'
+AND VRR.V_REF_REF_DATE IS NULL
+AND VCR.V_CAN_REF_DATE IS NULL
+AND VNR.V_NOS_REF_DATE IS NULL
+AND V.V_START_DATE >= SYSDATE
 		]]>
     </select>
 <!-- AND SYSDATE >= V.V_START_DATE -->
@@ -139,6 +310,65 @@
 		ON VR.V_RES_ID = VC.V_RES_ID
 		WHERE MEM_ID_ID= #{id}
 		]]>
+    </select>
+    
+    <!-- 방문 서비스 수락 대기중 리스트 -->
+    <select id="waitingAcceptanceList" resultType="Member">
+    <![CDATA[
+    SELECT V.V_ID AS vid, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일"') AS startDate
+      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일"') AS reqDate, P_TOTAL AS totalPrice,(SELECT MEM_NICKNAME
+        FROM MEMBER M JOIN TMP_MEM TM 
+        ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+        JOIN S_APPLY S
+        ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+        JOIN S_ALLOW SA
+        ON S.S_APP_ID = SA.S_APP_ID
+        JOIN V V
+        ON V.S_ALL_ID = SA.S_ALL_ID
+        WHERE V_ID = (SELECT V_ID
+                      FROM MEMBER M JOIN TMP_MEM TM 
+                      ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                      JOIN PET_SHARE PS
+                      ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                      JOIN V_PET_CHO VPC
+                      ON PS.P_SHA_ID = VPC.P_SHA_ID
+                      WHERE TM.T_MEM_ID = '${temId }' ))AS petsitterNickname, 
+                            (SELECT MEM_IMG
+                            FROM MEMBER M JOIN TMP_MEM TM 
+                            ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                            JOIN S_APPLY S
+                            ON TM.T_MEM_ID = S.TMP_MEMBER_ID
+                            JOIN S_ALLOW SA
+                            ON S.S_APP_ID = SA.S_APP_ID
+                            JOIN V V
+                            ON V.S_ALL_ID = SA.S_ALL_ID
+                            WHERE V_ID = (SELECT V_ID
+                                          FROM MEMBER M JOIN TMP_MEM TM 
+                                          ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+                                          JOIN PET_SHARE PS
+                                          ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+                                          JOIN V_PET_CHO VPC
+                                          ON PS.P_SHA_ID = VPC.P_SHA_ID
+                                          WHERE TM.T_MEM_ID = '${temId }' ))AS petsitterProfile
+FROM MEMBER M JOIN TMP_MEM TM
+ON M.TMP_MEMBER_ID = TM.T_MEM_ID
+JOIN PET_SHARE PS
+ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
+JOIN V_PET_CHO VPC
+ON VPC.P_SHA_ID = PS.P_SHA_ID
+JOIN V V
+ON VPC.V_ID = V.V_ID
+JOIN PAY P
+ON P.P_ID = V.PAYMENT_ID
+LEFT OUTER JOIN V_REF_REF VRR
+ON VRR.V_ID = V.V_ID
+LEFT OUTER JOIN V_RESERV VR
+ON V.V_ID = VR.V_ID  
+WHERE TM.T_MEM_ID= '${temId }'
+AND VRR.V_REF_REF_DATE IS NULL 
+AND VR.V_RES_DATE IS NULL
+AND V_START_DATE <= SYSDATE
+]]>
     </select>
     
  
