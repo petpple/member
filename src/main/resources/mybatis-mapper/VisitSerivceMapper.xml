@@ -4,15 +4,9 @@
 <mapper namespace="petpple.kiwi.member.repository.vService.IVisitService">
 
 	<select id="getVSitterList" parameterType="HashMap" resultType="Sitter">
-		SELECT B.ALLOWID AS allowId, B.NICKNAME AS name , B.ADDR AS addr , B.TITLE AS title, B.SMOKEID AS smokeId, B.TIME AS time,B.PROFILE AS profileImg,  
-		B.count AS count , B.REIVEWCNT AS reviewCnt, ROUND((NVL(V.STARS,0)+NVL(F.STARS,0))/DECODE(B.REIVEWCNT,0,1,B.REIVEWCNT)) AS stars
-		FROM BUILDUPFORSTAR B
-		LEFT OUTER JOIN V_REVIEW_CNT V
-		ON B.TMP_MEMBER_ID = V.TMP_MEMBER_ID
-		LEFT OUTER JOIN F_REVIEW_CNT F
-		ON B.TMP_MEMBER_ID = F.TMP_MEMBER_ID
-		WHERE #{start} <![CDATA[<]]>=ROWNUM  and ROWNUM <![CDATA[<]]>= #{end} AND B.TMP_MEMBER_ID != #{temId}
-		ORDER BY REVIEWCNT DESC
+		SELECT allowId,name ,addr ,title,smokeId,time,profileImg,count ,reviewCnt,stars
+		FROM SITTERLIST
+		WHERE #{start} <![CDATA[<]]>=NUM AND NUM  <![CDATA[<]]>=#{end} AND TMP_MEMBER_ID != #{temId}
 	</select>
 	
 	<select id="getVSitterProfile" parameterType="String" resultType="Sitter">
