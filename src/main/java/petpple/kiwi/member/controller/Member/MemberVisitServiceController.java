@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +46,20 @@ public class MemberVisitServiceController {
 	private SitterRequestHelper srh;
 	
 	@RequestMapping(value = "/member/vsitterList")
-	public String memberVSitterList(Model model) {
+	public String memberVSitterList(Model model,HttpServletRequest request) {
 		IVisitService dao = sqlSession.getMapper(IVisitService.class);
-		ArrayList<Sitter> sitters = dao.getVSitterList(1, 6);
+		HttpSession session = request.getSession();
+		String temId = (String)session.getAttribute("temId");
+		if(temId==null)
+		{
+			return "//user/userMain";
+		}
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", 1);
+		map.put("end", 6);
+		map.put("temId",temId);
+		ArrayList<Sitter> sitters = dao.getVSitterList(map);
 
 		for (Sitter sitter : sitters) {
 			sitter.setGrade(gc.getGrade(sitter.getTime(), sitter.getCount()));
@@ -87,7 +99,20 @@ public class MemberVisitServiceController {
 	public String membershowMoreVList(HttpServletRequest request, @RequestParam("start") int start,
 			@RequestParam("end") int end, Model model) {
 		IVisitService dao = sqlSession.getMapper(IVisitService.class);
-		ArrayList<Sitter> list = dao.getVSitterList(start, end);
+		
+		HttpSession session = request.getSession();
+		String temId = (String)session.getAttribute("temId");
+		if(temId==null)
+		{
+			return "//user/userMain";
+		}
+		
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("temId",temId);
+		ArrayList<Sitter> list = dao.getVSitterList(map);
 		for (Sitter sitter : list) {
 			sitter.setGrade(gc.getGrade(sitter.getTime(), sitter.getCount()));
 		}
