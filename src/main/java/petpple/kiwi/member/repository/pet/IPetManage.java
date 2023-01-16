@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import petpple.kiwi.member.domain.pet.Pet;
 
@@ -11,7 +12,7 @@ import petpple.kiwi.member.domain.pet.Pet;
 public interface IPetManage {
 	public int insertPet(Pet dto);
 	
-	public ArrayList<Pet> getPet();
+	public ArrayList<Pet> getPet(@Param("temId") String temId);
 	
 	public Pet search(String id);
 	

@@ -137,6 +137,38 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
     	       reader.readAsDataURL(input.files[0]);
     	    }
     	 }
+    	 
+    	 
+    $("#d_or_cat_id").change(function(){
+    	$("#kind").find("option").each(function(){
+				$(this).css("display","inline");
+    	});
+    
+   		$("#kind").find("option").each(function(){
+   			if(parseInt(this.value) >= 27 && parseInt(this.value) != 40 && parseInt(this.value) != 100)
+   			{
+   				$(this).css("display","none");
+   				$("#kind").val('100').prop('selected','selected');
+   			}
+   		});
+    		
+    	
+    });
+    $("#d_or_cat_id2").change(function(){
+    	$("#kind").find("option").each(function(){
+			$(this).css("display","inline");
+		});
+   		$("#kind").find("option").each(function(){
+   			if(parseInt(this.value) < 27 || parseInt(this.value) == 40 || parseInt(this.value) == 100)
+   			{
+   				$(this).css("display","none");
+   				$("#kind").val('101').prop('selected','selected');
+   			}
+   		});
+    	
+    	
+    });
+    
 });
 
 
@@ -173,7 +205,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 							<div class="form-group">
 
 								<div class="size_fix">
-                              <!-- <img src="/images/sitter/no_img.png" id="preview1" style="width: 100px; height=100px; object-fit: cover;"/> --> 
+                              <img src="/images/member/no_Img.png" id="preview1" style="width: 100px; height:100px; object-fit: cover;"/>  
                               <label for="img_select1" class="input-file-button">사진 첨부</label> 
 	                          <input type="file" id="img_select1" name="file" style="display: none;" />
 		       		
@@ -191,11 +223,11 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 
 							 	<div class="radio">
 							 		<label>
-								    	<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="1">
+								    	<input type="radio" name="dogcat" id="d_or_cat_id" value="1">
 								    	강아지&emsp;&emsp;&emsp;
 								 	</label>
 								 	<label>
-								 		<input type="radio" name="d_or_cat_id" id="d_or_cat_id" value="2">
+								 		<input type="radio" name="dogcat" id="d_or_cat_id2" value="2">
 								    	고양이
 								    </label>	
 								</div>
@@ -210,21 +242,21 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 							 	<label for="gender">성별</label><br>
 							 	<div class="radio">
 							 		<label>
-								    	<input type="radio" name="gender" id="gender" value="1">
+								    	<input type="radio" name="gender" id="gender1" value="1">
 								    	남&emsp;&emsp;&emsp;&emsp;&emsp;
 								    </label>
 								    <label>
-								    	<input type="radio" name="gender" id="gender" value="2">
+								    	<input type="radio" name="gender" id="gender2" value="2">
 								    	여
 								    </label>	
 								</div>
 								<br><br>
 								
 								<!-- 종류에서 강아지 고르면 이게 나오게 해야함 -->
-								<label for="dog">강아지 품종</label><br>
+								<label for="kind">품종</label><br>
 									<label>
-							   		<select class="form-select" name="kind" style="text-align: center;">
-										  <option selected>-- 강아지 품종 --</option>
+							   		<select class="form-select" name="kind" id="kind"style="text-align: center;">
+										  <option value="100"selected>-- 강아지 품종 --</option>
 										  <option value="1">시베리아허스키</option>
 										  <option value="2">푸들</option>
 										  <option value="3">셰퍼드</option>
@@ -252,14 +284,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 										  <option value="25">프렌치불독</option>
 										  <option value="26">꼬똥 드 툴레아</option>
 										  <option value="40">기타</option>
-									</select>
-									</label>
-							 	<br><br>
-							 	<!-- 종류에서 고양이 고르면 이게 나오게 해야함 -->
-							 	<label for="cat">고양이 품종</label><br>
-									<label>
-							   		<select class="form-select" name="" style="text-align: center;">
-										  <option selected>-- 고양이 품종 --</option>
+										  <option value="101">-- 고양이 품종 --</option>
 										  <option value="27">페르시안고양이</option>
 										  <option value="28">러시안블루</option>
 										  <option value="29">아메리칸숏헤어</option>
@@ -298,11 +323,11 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 							 	<label for="g_id">중성화</label><br>
 							 	<div class="radio">
 							 		<label>
-									    <input type="radio" name="g_id" id="g_id" value="1">
+									    <input type="radio" name="g" id="g_id" value="1">
 									    예&emsp;&emsp;&emsp;&emsp;&emsp;
 									</label>
 									<label>    
-								    	<input type="radio" name="g_id" id="g_id" value="2">
+								    	<input type="radio" name="g" id="g_id" value="2">
 								   	 	아니요
 								   	</label>
 								</div>

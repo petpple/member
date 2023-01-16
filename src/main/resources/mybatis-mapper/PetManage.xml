@@ -4,25 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="petpple.kiwi.member.repository.pet.IPetManage">
-    <insert id="insertPet" statementType="CALLABLE" parameterType="Pet"> 
+    <insert id="insertPet" statementType="CALLABLE" parameterType="VisitService"> 
 
-	{ CALL PRC_INS_PET('테스트이미지 경로', #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g}, #{dogcat}, #{kind}, 'UV8YF0IN08')
-	}
+	{ CALL PRC_INS_PET( #{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g}, #{dogcat}, #{kind}, #{temId})}
 
 	<!--{ CALL PRC_INS_PET(#{name}, #{birthday}, #{weight}, #{comment}, #{gender}, #{g_id}, #{d_or_cat_id},#{kind},'UV8YF0IN08')}-->
 
 	</insert>
 	
-	<select id="getPet" resultType="Pet">
+	<select id="getPet" resultType="Pet" parameterType="string">
 	SELECT A.PET_NAME AS "name", A.PET_ID AS "id" ,MONTHS_BETWEEN(TRUNC(SYSDATE,'YEAR'),
     TRUNC(PET_BIRTHDAY,'YEAR')) /12 +1 AS "birthday", (CASE WHEN A.PET_WEIGHT >=15 THEN '대형'
     WHEN A.PET_WEIGHT>=7 THEN '중형'
     ELSE '소형' END) AS "weight", A.PET_IMG AS "profile", G.GENDER_PET AS "gender"
+    , A.PET_IMG AS profile
  	FROM PET A LEFT OUTER JOIN PET_SHARE B 
  	ON A.PET_ID = B.PET_ID 
  	LEFT OUTER JOIN GENDER g
  	ON A.GENDER_ID = G.GENDER_ID
- 	WHERE B.TMP_MEMBER_ID = 'UV8YF0IN08'
+ 	WHERE B.TMP_MEMBER_ID = #{temId}
 	</select>
 	
 

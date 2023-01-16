@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Pet {
 
-	String id, dogcat, name, gender, kind, birthday
-	, weight, g, comment, profile;
+	String id,shaId, dogcat, name, gender, kind, birthday
+	, weight,weightId, g, comment, profile,temId;
 	
 }

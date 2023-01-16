@@ -29,7 +29,9 @@
     
     <link rel="stylesheet" href="/css/member/fsitter/fsitterMyProfile.css">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
-    
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c915512875915ad91cd2c322fa7c851b&libraries=services"></script>
+<!-- 카카오 맵 API -->
     <!-- datepicker -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -39,6 +41,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="/css/member/fsitter/fsitterMyPet.css">
+	<link rel="stylesheet" href="/css/member/fsitter/vsitterSvc.css">
 	<link rel="stylesheet" href="/css/main.css">
     
   	<style type="text/css">
@@ -84,7 +87,24 @@
     background-color: #ffd7b3;
     color: #333;
 }	
-  		.
+  .tab2 th {
+        text-align: left;
+    }
+
+    .tab2 td {
+        text-align: right;
+    }
+
+    .tab2 {
+        border: 0px white !important;
+        padding:100px;
+        border-bottom: 0px white !important;
+    }
+    
+    .pay{
+    	width:300px;
+        padding: 30px;
+    }
   	
   	</style>
    
@@ -154,13 +174,317 @@ $(function() { // 파일 업로드
        reader.readAsDataURL(input.files[0]);
     }
  }
+ 
+ 
+ $("#checkIn").change(function(){
+	if($("#startDate").val()!='' && $("#endDate").val()!='' &&($("#startDate").val()==$("#endDate").val())
+			&&( parseInt($("#checkIn").val()) >= parseInt($("#checkOut").val())))
+	{
+		$("#checkOut").val('0').prop('selected','selected');
+		setBackTime();
+		removeEndTime($("#checkIn").val());
+	} 
+	else if($("#startDate").val()!='' && $("#endDate").val()!='' &&($("#startDate").val()==$("#endDate").val())
+			&&(parseInt($("#checkIn").val()) < parseInt($("#checkOut").val())))
+	{	
+		setBackTime();
+		removeEndTime($("#checkIn").val());
+		
+	}
+ });
+ 
+ $("#checkOut").change(function(){
+		if($("#startDate").val()!='' && $("#endDate").val()!='' &&($("#startDate").val()==$("#endDate").val())
+				&&( parseInt($("#checkIn").val()) >= parseInt($("#checkOut").val())))
+		{	
+			$("#checkIn").val('0').prop('selected','selected');
+			setBackTime();
+			removeStartTime($("#checkOut").val());
+			
+		} 
+		
+		else if($("#startDate").val()!='' && $("#endDate").val()!='' &&($("#startDate").val()==$("#endDate").val())
+				&&(parseInt($("#checkIn").val()) < parseInt($("#checkOut").val())))
+		{	
+			setBackTime();
+			removeStartTime($("#checkOut").val());
+			
+		} 	 
+	 });
+ $("#startDate").change(function(){
+	 setBackTime();
+	 $("#checkIn").val('0')
+	 $("#checkOut").val('0')
+	 
+ });
+  $("#endDate").change(function(){
+	 setBackTime();
+	 $("#checkIn").val('0')
+	 $("#checkOut").val('0')
+	 
+ });
+  $("#popbutton").click(function(){
+    			 var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+    				  keyboard: false
+    				})
+    			 myModal.show();
+    		    });
+    		    
+   $("#doRequest").click(function(){
+	   if($("#startDate").val()==''){
+		   alert("시작날짜를 입력하세요");
+		   $("#startDate").focus();
+		   return;
+	   }
+	   if($("#endDate").val()==''){
+		   alert("종료날짜를 입력하세요");
+		   $("#endDate").focus();
+		   return;
+	   }
+	   if($("#checkIn").val()=='0'){
+		   alert("시작시간을 입력하세요");
+		   $("#checkIn").focus();
+		   return;
+	   }
+	   if($("#checkOut").val()=='0'){
+		   alert("종료시간을 입력하세요");
+		   $("#checkOut").focus();
+		   return;
+	   }
+	   if(!$('input[name=careType]:checked').val()){
+		   alert("케어타입을 선택하세요");
+		   $("#select2").focus();
+		   return;
+	   }
+	   
+	   if($("#petChoice").val()==''){
+		   alert("펫을 선택하세요");
+		   $("#petChoice").focus();
+		   return;
+	   }
+	   if($("#code").val()==''){
+		   alert("주소를 입력하세요.");
+		   $("#code").focus();
+		   return;
+	   }
+	   
+	   let basicCost = 0;
+	   let timeCost = 0;
+	   let dayCost = 0;
+	   let gradeCost = 0;
+	   let petCost = 0;
+	   let weightCost = 0;
+	   let totalCost =0;
+	   
+	   let petCount = $("#petChoice").val().length;
+	   
+	   
+	   
+	   if($('input[name=careType]:checked').val()=='1')
+	   {
+		   let checkInTime = parseInt($("#checkIn").val());
+		   let checkOutTime = parseInt($("#checkOut").val());
+		   
+		   if($("#startDate").val()==$("#endDate").val())
+		   {
+			   timeCost = (checkOutTime-checkInTime-1) *2000
+		   }
+		   else
+		   {
+			   let dateA = new Date($("#startDate").val()+" "+$("select[id='checkIn'] option:selected").text().trim()+":00");
+			   let dateB = new Date($("#endDate").val()+" "+$("select[id='checkOut'] option:selected").text().trim()+":00");
+			   const diffMSec = dateB.getTime() - dateA.getTime();
+			   const diffHour = diffMSec / (60 * 60 * 1000);
+			   timeCost = (diffHour-1) *2000
+		   }
+		   basicCost=15000
+	   }
+	   else if ($('input[name=careType]:checked').val()=='2')
+	   {
+		    let date1Arr = $("#startDate").val().split("/")
+		    let date2Arr = $("#endDate").val().split("/")
+		    const date1 = new Date(date1Arr[0], date1Arr[1], date1Arr[2]);
+			const date2 = new Date(date2Arr[0], date2Arr[1], date2Arr[2]);
+
+			const elapsedMSec = date2.getTime() - date1.getTime(); // 172800000
+			const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24; // 2
+			
+			dayCost = (elapsedDay)*50000
+			basicCost= 50000
+	   }
+		if(${sitter.grade}==1)
+		{
+			gradeCost = -5000;
+		}
+		else if(${sitter.grade}==2)
+		{
+			gradeCost = 0;
+		}
+		else if(${sitter.grade}==3)
+		{
+			gradeCost = 5000;
+		}
+		else if(${sitter.grade}==4)
+		{
+			gradeCost = 10000;
+		}
+	    
+	   petCost = petCount * 5000;
+
+	   let shaIdList = new Array();
+	   let weightList = new Array();
+	   let petList = $("#petChoice").val();
+	   for (let i = 0; i < petCount; i++) {
+		    
+			let shaAndWei = petList[i].split("/");
+			shaIdList.push(shaAndWei[0].trim());
+			weightList.push(shaAndWei[1].trim());
+	   }
+	   for(let i = 0; i < weightList.length; i++) {
+		   
+			if(weightList[i]=='2') {
+				weightCost+=10000
+			}
+			else if(weightList[i]=='3') {
+				weightCost+=20000
+			}
+	   }
+	   petCost= (petCount-1)*10000;
+	   
+	   $("#basicCost").text(changeToMoneyFormat(basicCost));
+	   $("#timeCost").text(changeToMoneyFormat(timeCost));
+	   $("#dayCost").text(changeToMoneyFormat(dayCost));
+	   $("#petCost").text(changeToMoneyFormat(petCost));
+	   $("#weightCost").text(changeToMoneyFormat(weightCost));
+	   $("#gradeCost").text(changeToMoneyFormat(gradeCost));
+	   totalCost= basicCost+timeCost +dayCost+petCost + weightCost+ gradeCost;
+	   $("#totalCost").text(changeToMoneyFormat(totalCost));
+
+
+	   var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+		   keyboard: false
+		 })
+	   myModal.show();			
+	   $("#payment").click(function(){
+		  var regex = /[^0-9]/g;	
+
+       	 $("#petShaIdArr").val(shaIdList);
+       	 $("#pay").val($("#totalCost").text().replace(regex, ""))
+       	 $("#refDepositor").val($("#tmpRefName").val())
+       	 $("#refBank").val($("#bank").val())
+       	 $("#refAccNum").val($("#tmpRefAccNum").val())
+       	 $("#myform").submit();
+	   });
+   });
+ 
+ 
 });
+function removeEndTime(num)
+{
+	$("#checkOut").find("option").each(function(){
+		if(parseInt(this.value) <= parseInt(num))
+		{
+			$(this).css("display","none");
+		}
+	});
+	
+}
+
+function changeToMoneyFormat(money)
+{
+
+
+	const cash = money.toString()
+  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+  return cash+'원';
+}
+function removeStartTime(num)
+{
+	$("#checkIn").find("option").each(function(){
+		if(parseInt(this.value) >= parseInt(num))
+		{
+			$(this).css("display","none");
+		}
+	});
+}
+
+
+function setBackTime()
+{
+		$("#checkOut").find("option").each(function(){
+				$(this).css("display","inline");
+		});
+		$("#checkIn").find("option").each(function(){
+			$(this).css("display","inline");
+		});
+}
+function DaumPostcode() {
+	
+    new daum.Postcode({
+        oncomplete: function(data) {
+        	
+         	var code = data.zonecode; // 우편번호
+            var addr = ''; // 기본주소
+            var addrjibun = ''; //지번주소
+            var extraAddr = ''; // 참고항목
+            var geocoder = new kakao.maps.services.Geocoder();
+            
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            
+            if (data.userSelectedType === 'R') 
+            { // 사용자가 도로명 주소를 선택했을 경우 - 지번주소 return 되지 않음
+                addr = data.roadAddress;
+            	
+              // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+              // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                 if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                     extraAddr += '(' + data.bname + ') ';
+                 }
+                 // 건물명이 있고, 공동주택일 경우 추가한다.
+                 if(data.buildingName !== '' || data.apartment === 'Y'){
+                     extraAddr += '(' + data.buildingName + ')';
+                 } 
+            }
+            else
+            { // 사용자가 지번 주소를 선택했을 경우(J)
+            	addr = data.jibunAddress;
+            	addrjibun = data.roadAddress;
+            }
+            
+            // 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('code').value = code;
+            document.getElementById('addr').value = addr + ' ' + extraAddr;
+            
+            
+            // 주소로 상세 정보를 검색
+            geocoder.addressSearch(data.address, function(results, status) {
+                // 정상적으로 검색이 완료됐으면
+                if (status === daum.maps.services.Status.OK) {
+
+                    var result = results[0]; 
+						
+                    // 해당 주소에 대한 좌표를 받아서
+                    var coords = new daum.maps.LatLng(result.y, result.x);                        
+                   
+                    document.getElementById('lat').value = coords.Ma;
+                    document.getElementById('lng').value = coords.La;
+                    
+                }
+            });
+            
+        }
+    }).open();
+}
+
+
 </script>
  
    
     
 <!-- 카카오 맵 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=267276c330ec0b1c55c55bf8f203426d"></script>
+
 
 <script type="text/javascript">
 
@@ -223,19 +547,41 @@ $(function() { // 파일 업로드
 						<span class="font h_font">수정하기</span>
 			       	</div>
        				 -->
-						<div class="box_miMyPr1">
-									<img src="${sitter.profileImg }" class="svgImg3" id="preview1">
-									 	<div class="row"> 
+						<div class="box_miMyPr1" style="">
+									<div style="vertical-align:middle;"> 
+									<img src="${sitter.profileImg }" class="svgImg3" id="preview1" style="margin-top: 30px;margin-left:10px;  border-radius:9px">
+									<div class="row gradeImg" style="vertical-align:middle;">
+										      		<div class="col-auto" style="padding-bottom:15px;">
+										      		<c:if test="${sitter.grade eq '1' }">
+													<img src="/images/member/sprout.svg">
+													</c:if>
+													<c:if test="${sitter.grade eq '2' }">
+														<img src="/images/member/bronze.svg">
+													</c:if>
+													<c:if test="${sitter.grade eq '3' }">
+														<img src="/images/member/silver.svg">
+													</c:if>
+													<c:if test="${sitter.grade eq '4' }">
+														<img src="/images/member/gold.svg">
+													</c:if>
+													</div>
+													<p class="col-auto" style="margin-left:-10px;padding-top: 10px;">등급</p>
+													
+									</div>
+									</div>
+									 	<div class="row" style="margin-top:-15px;"> 
 										     <div class="" style="margin-left: -10px;">
 										     	<span class="m_font">${sitter.addr }</span><br>
 										      	<span class="m_font">펫시터</span>
 										      	&nbsp;<span class="m_font ">${sitter.name }</span><span class="m_font">님</span>
+										      	
 										      	<div style="padding-top:20px;">
-										      		<span style="font-size: 25px;">${sitter.title }</span>
+										      		<span style="font-size: 25px;font-weight: 600">${sitter.title }</span>
 										      	</div>
 										      	
 										      	<br>
 										     </div>
+										      
 										</div><!-- <div class="lg-3 row"> -->
 										
 						</div><!--end <div class="box_mi">-->
@@ -291,46 +637,34 @@ $(function() { // 파일 업로드
 									<img class="petImg" src="${review.img2 }" onerror="this.style.display='none'" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
 									<img class="petImg" src="${review.img3 }" onerror="this.style.display='none'" style="border-radius: 2px; object-fit: cover; margin-right: 9px; user-select: none; cursor: pointer;">
 								</div>
+								<input type="text" hidden="hidden">
 							</div>
 							</c:forEach>
-							<!-- 아직 정리 안됨 -->
-							<!-- <div style="display: flex; align-items: center; justify-content: center; height: 50px; border-radius: 25px; border: 1px solid rgb(129, 137, 155); margin-bottom: 100px; user-select: none; cursor: pointer; margin-top: 12px;">
-								<p style="font-size: 14px; letter-spacing: -0.2px; line-height: 20px; color: rgb(56, 60, 72);">펫시터 후기 더보기</p>
-							</div> -->
+							
 							</div>
-		                	
-		                	
 		                </div><!-- <div class="box_miMyPr5 inline"> -->
-		                
 					</div>
 					
 					
-					
-					
-					
-					
 					<!-- 오른쪽 바 -->
-					<div class="col-lg-4 row" style="margin-left: 10px; margin-top: 0px;">
+					<div class="col-lg-4 row" style="margin-left: 10px; margin-top: 0px;" >
 				        <div class ="box_mypi2 inline" style="height: auto;">
 				            <span>언제 펫시터가 필요한가요?</span>
-					           <form class=" lg-3 row inline"> 
+					           <form class=" lg-3 row inline" action="/member/visitServiceRequest" id="myform"method="post"> 
 					            	<div class="form-group col-lg-5">  
-								 		<input type="text"  id="startDate" class="form-control">
+								 		<input type="text" name="startDate" id="startDate" class="form-control">
 								 	</div> 
 								 		<label for="datepicker" class="col-lg-2 col-form-label">-></label>
 								 	<div class="form-group col-lg-5">  
-								 		<input type="text"  id="endDate" class="form-control" style="margin-left: -20px;">
+								 		<input type="text"  name="endDate" id="endDate"class="form-control" style="margin-left: -20px;">
 								 	</div>	
-
-							       
-							          
 				            <br>
 				            <div class="row">
 				           		 <span class="col-auto">체크인 시간 </span> <span class="col-auto" style="margin-left: 120px;">체크아웃 시간</span>
 				            </div>
 					            	<div class="form-group col-lg-5">  
 								 		<!-- <input type="text"  id="checkIn" class="form-control"> -->
-								 			<select class="form-control" name="checkIn" style="text-align: center;">
+								 			<select class="form-control" name="checkIn" id="checkIn" style="text-align: center;">
 								            	<option value="0" selected>시간 선택</option>
 								            	<option value="1">09:00 </option>
 								            	<option value="2">10:00 </option>
@@ -350,7 +684,7 @@ $(function() { // 파일 업로드
 								 		<label for="datepicker" class="col-lg-2 col-form-label">~</label>
 								 	<div class="form-group col-lg-5">  
 								 		<!-- <input type="text"  id="checkOut" class="form-control" style="margin-left: -20px;"> -->
-								 			<select class="form-control" name="checkOut" style="margin-left: -20px; text-align: center">
+								 			<select class="form-control" name="checkOut" id="checkOut" style="margin-left: -20px; text-align: center">
 								            	<option value="0" selected>시간 선택</option>
 								            	<option value="1">09:00 </option>
 								            	<option value="2">10:00 </option>
@@ -371,30 +705,61 @@ $(function() { // 파일 업로드
 				            	<div class="form-group"style="margin-top:30px;">
 				            		서비스 구분 선택
 				            	 	<div style="display: flex; justify-content:space-around;  flex-direction: row;margin:auto;">
-									     	<!-- <div class="serveType shadow-sm" style="">
-									     		<span style="font-size: 15px;font-weight: bold;">타임케어</span>
-									     	</div>
-									     	<div class="serveType shadow-sm" style="">
-									     		<span style="font-size: 15px;font-weight: bold;">데이케어</span>
-									     	</div> -->
+									    
 									     	<div class="select">
-											     <input type="radio" id="select" name="shop"><label for="select">타임케어</label>
-											     <input type="radio" id="select2" name="shop"><label for="select2">데이케어</label>
+											     <input type="radio" id="select" name="careType" value="1"><label for="select">타임케어</label>
+											     <input type="radio" id="select2" name="careType" value="2"><label for="select2">데이케어</label>
 											</div>
 									 </div>
 							  </div><br><br>
 				            	<span>맡기시는 반려동물</span>
-					            <select class="form-control" multiple="multiple" style="text-align: center;" required="required">
+					            <select id="petChoice" class="form-select" multiple="multiple" size="7"style="text-align: center; background-color: #FFFAF0" required="required" >
 					            	<option value="" selected>반려동물 선택</option>
-					            	<option value="1">바둑이 </option>
-					            	<option value="2">똘이 </option>
+					            	 <c:forEach var="pet" items="${petList}" >
+					            	 	<c:if test="${sitter.petSizeId < pet.weightId }">
+					            	 		<option value="${pet.shaId }/${pet.weightId}" disabled="disabled" style="color:red">${pet.name}</option>
+					            	 	</c:if>
+					            	 	
+					            	 	<c:if test="${sitter.petSizeId >= pet.weightId}">
+					            	 	<option value="${pet.shaId }/${pet.weightId}" >${pet.name}</option>
+					            	 	</c:if>
+					            	 </c:forEach>
 					            </select>
+					            <span style="color:gray; font-size:10pt; font-weight: light;font-family: 맑은 고딕">※펫시터님의 돌봄 가능 한 펫크기가 보다 큰 펫의 경우는 붉은 글씨로 표시됩니다.</span>
 					            <br><br>
-			        			
+			        			<div class="form-group"style="margin-top:30px;margin-bottom: 25px;">
+				            		요청사항
+				            	 	<div>
+				            	 		 <textarea class="form-control" id="" name="content" rows="4"></textarea>
+				            	 </div>
+				            	 주소
+				            	 <div class="row">
+			                     	   
+			                        <div class="col-md-7">
+			                        	<input class="form-control" type="text" name="code" id="code" placeholder="우편번호" readonly="readonly">
+			                        </div>
+			                        <div class="col-md-5">
+			                        	<input type="button" class="btn postCodeBtn btn-outline-secondary" onclick="DaumPostcode()" value="주소찾기">
+			                        </div>
+									<div>
+										<input class="form-control" type="text" name="addr" id="addr" placeholder="주소" readonly="readonly" 
+										style="margin-top:5px;  margin-bottom: 5px;">
+										<input class="form-control" type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+										<input type="hidden" name="lat" id="lat" readonly="readonly">
+										<input type="hidden" name="lng" id="lng" readonly="readonly">
+									</div>
+			                    </div>
+							  </div><br><br>
 			        			<div class="col text-center">
-				                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white; margin-top:30px;"
-				                    onclick="location.href='http://localhost:8092/fsitter/fsitterMyProfileUpdate'">예약요청</button><!-- 주소는 추후 수정예정 -->
+				                    <button type="button" id="doRequest"  class="but btn" style="background-color: #FE5C17; color: white; margin-top:30px;"
+				                   >예약요청</button>
 				                </div>
+				                 <input type="hidden" name="petShaIdArr" id="petShaIdArr">
+				                 <input type="hidden" name="pay" id="pay">
+				             	 <input type="hidden" name="refBankId" id="refBank">
+				             	 <input type="hidden" name="refDepositor" id="refDepositor">
+				             	 <input type="hidden" name="refAccNum" id="refAccNum">
+								 <input type="hidden" name="allowId" id="refAccNum" value="${sitter.allowId}">
 				                </form>
 			        		</div>
 			        		
@@ -502,7 +867,7 @@ $(function() { // 파일 업로드
 								  	
 								  	<tr>
 								  		<th scope="row">마리당</th>
-								  		<td>-10,000</td>
+								  		<td>-5,000</td>
 								  		<td></td>
 								  		<td>-10,000</td>
 								  	</tr>
@@ -520,7 +885,93 @@ $(function() { // 파일 업로드
                 </div>
             </div>
         </div>
-   
+   <div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" style="width:600px;">
+      <div class="modal-content pay">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">결제하기</h5>
+        </div>
+        <div class="modal-body" >
+            <table class="table tab2">
+                <tr>
+                    <th style="width:220px;">기본 금액</th>
+                    
+                    <td><span id="basicCost"></span></td>       
+                </tr>
+                <tr>
+                    <th>시간 당 추가요금(타임케어)</th>
+                    <td><span id="timeCost"></span></td>       
+                </tr>
+                <tr>
+                    <th>일당 추가요금(데이케어)</th>
+                    <td><span id="dayCost"></span></td>       
+                </tr>
+                <tr>
+                    <th>등급 추가요금</th>
+                    <td><span id="gradeCost"></span></td>       
+                </tr>
+                <tr>
+                    <th>반려동물 추가 요금</th>
+                    <td><span id="petCost"></span></td>       
+                </tr>
+                <tr>
+                    <th>긴급요청 추가요금</th>
+                    <td>0원</td>       
+                </tr>
+                <tr>
+                    <th>반려동물 크기별 추가 요금</th>
+                    <td><span id="weightCost"></span></td>           
+                </tr>
+                <tr>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <th colspan="2" class="border-bottom">결제금액 </th>
+                </tr>
+
+                <tr>
+                    <td colspan="2" >
+                        <span id="totalCost"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th >환불 계좌번호('-'없이 입력)</th>
+                    <td><input type="text" id="tmpRefAccNum" class="form-control"></td>
+                </tr>
+                <tr>
+                     <th>환불 계좌 예금주명</th>
+                    <td><input type="text" id="tmpRefName" class="form-control"></td>
+                </tr>
+                 <tr>
+                    <th>환불 계좌 은행</th>
+                    <td><select name="bankId" class="m_font form-select" id="bank" >
+							<option value="0" selected> -- 은행 선택 -- </option>
+							<option value="1">신한은행</option>
+							<option value="2">NH농협은행</option>
+							<option value="3">카카오뱅크</option>
+							<option value="4">우리은행</option>
+							<option value="5">IBK기업은행</option>
+							<option value="6">하나은행</option>
+							<option value="7">케이뱅크</option>
+							<option value="8">새마을금고</option>
+							<option value="9">우체국</option>
+							<option value="10">신협은행</option>
+						</select></td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary" id="payment">결제</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- 404 End -->
 
 	<div>

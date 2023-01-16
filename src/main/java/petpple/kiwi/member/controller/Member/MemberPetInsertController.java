@@ -2,6 +2,9 @@ package petpple.kiwi.member.controller.Member;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +30,16 @@ public class MemberPetInsertController {
 	
 	//--  의뢰인 내 펫 관리 
 	@RequestMapping(value = "/member/memberMyPet")
-	public String membermemberMyPet(ModelMap mav)
+	public String membermemberMyPet(ModelMap mav,HttpServletRequest request)
 	{
 		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-		mav.addAttribute("list", daoIPetManage.getPet());
+		HttpSession session = request.getSession();
+		String temId = (String) session.getAttribute("temId");
+		if(temId==null)
+		{
+			return "//user/userMain";
+		}
+		mav.addAttribute("list", daoIPetManage.getPet(temId));
 		
 		return "member/memberMyPet";
 	}
@@ -76,20 +85,22 @@ public class MemberPetInsertController {
 	
 	
 	@RequestMapping(value = "/member/petInsert" ,method = RequestMethod.POST)
-	public String membermemberMyPetInsert(Pet dto,@RequestParam(value = "file")MultipartFile file)
+	public String membermemberMyPetInsert(Pet dto,@RequestParam(value = "file")MultipartFile file,HttpServletRequest request)
 	{
-		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-		daoIPetManage.insertPet(dto);
-		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
-		String id = daoIPetManage.getPetId();
-		String profile = new ImgUpload().uploadProfileImg(file,path
-							,id);
 		
-		 HashMap<String, Object> map = new HashMap<String, Object>(); 
-		 map.put("profile", profile);
-		 map.put("id",id); 
-		 daoIPetManage.insertPetProfile(map);
-	
+		  IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+		 HttpSession session = request.getSession();
+		 
+		  String temId = (String) session.getAttribute("temId"); dto.setTemId(temId);
+		  daoIPetManage.insertPet(dto); String path =
+		  "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
+		  String id = daoIPetManage.getPetId(); String profile = new
+		  ImgUpload().uploadProfileImg(file,path ,id);
+		  
+		  HashMap<String, Object> map = new HashMap<String, Object>();
+		  map.put("profile", "\\images\\member\\pet\\"+profile); map.put("id",id);
+		  daoIPetManage.insertPetProfile(map);
+		
 		
 		return "redirect:memberMain";
 	}
