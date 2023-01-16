@@ -1,5 +1,8 @@
 package petpple.kiwi.member.controller.Member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,9 +26,12 @@ public class MemberToSitterController {
 	}
 
 	@RequestMapping(value = "/member/sitterApply", method = RequestMethod.POST)
-	public String sitterApply(Sitter dto) {
+	public String sitterApply(Sitter dto,HttpServletRequest request) {
 
 		ISitterApply dao = sqlSession.getMapper(ISitterApply.class);
+		HttpSession session = request.getSession();
+		String temId = (String)session.getAttribute("temId");
+		dto.setTemId(temId);
 		dao.applySitter(dto); // 펫시터 지원
 		dao.confirmSitter(dto.getId()); // 펫시터 승인
 		return "redirect:memberMain";
