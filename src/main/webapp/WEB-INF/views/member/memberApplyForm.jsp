@@ -160,8 +160,7 @@
 						
 						<br>
 	
-						<input type="text" class="form-control" name="date1" id="date1" style="width:200px;">
-						<br>						
+										
 	
 						
 					    <label for="title" class="form-label m_font">프로필 한 줄 제목 <span class="sss_font"> * </span></label>
