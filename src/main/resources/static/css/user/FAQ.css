@@ -13,15 +13,19 @@
 	font-size: 13px;
 	color: #8e8e8e;
 }
+
+.FAQ_Area > .nav-pills > .nav-item > .active {
+	background: #FE5C17;
+	border: none;
+	border-radius: 10px;
+}
+
 .FAQ_Area > .nav-pills > .nav-item {
 	font-size: 20px;
 	margin: 10px;
 	border: 1px solid;
 	border-radius: 10px;
 }
-.FAQ_Area > .nav-pills > .nav-item > .active {
-	background: #FE5C17;
-	border-radius: 10px;
-}
+
 
 
