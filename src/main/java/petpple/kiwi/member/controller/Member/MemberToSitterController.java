@@ -31,6 +31,10 @@ public class MemberToSitterController {
 		ISitterApply dao = sqlSession.getMapper(ISitterApply.class);
 		HttpSession session = request.getSession();
 		String temId = (String)session.getAttribute("temId");
+		if(temId==null)
+		{
+			return "//user/userMain";
+		}
 		dto.setTemId(temId);
 		dao.applySitter(dto); // 펫시터 지원
 		dao.confirmSitter(dto.getId()); // 펫시터 승인
