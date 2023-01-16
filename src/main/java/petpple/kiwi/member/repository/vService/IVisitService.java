@@ -13,7 +13,7 @@ import petpple.kiwi.member.domain.visitService.VisitService;
 
 @Mapper
 public interface IVisitService {
-	public ArrayList<Sitter> getVSitterList(@Param("start") int start,@Param("end") int end);
+	public ArrayList<Sitter> getVSitterList(HashMap<String, Object> map);
 	public ArrayList<ReviewProfile> getReviews(@Param("id") String id);
 	public Sitter getVSitterProfile(@Param("allowId") String allowId);
 	public ArrayList<Pet> getPet(@Param("temId") String temId);
