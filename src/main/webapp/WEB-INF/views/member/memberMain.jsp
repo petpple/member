@@ -101,7 +101,7 @@
 					</div>
 					<div class="box_mi">
 						<span class="label label-default s_font font_black"
-							style="background-color: rgb(225, 199, 199);">긴급-방문서비스</span>
+							style="background-color: rgb(225, 199, 199);">방문서비스</span>
 						<img src="/images/member/timer-icon.svg" class="svgImg1">
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
@@ -112,18 +112,13 @@
 									<th>펫시터</th>
 									<th>결제금액</th>
 								</tr>
-								<c:forEach var="member" items="${memberList}">
+								<c:forEach var="member" items="${currentPetsitting}">
 								<tr>
 									<td>${member.vid }</td>
-									<c:if test="${member.vid == null}">
-										<span>X</span>
-									</c:if>
 									<td>
 										<ul>
 											<li>주소 : <span> ${member.addr }</span></li>
 											<li>시작일자: <span> ${member.startDate }</span></li>
-<%-- 											<li>시작일자: <fmt:formatDate value="${member.startDate}" pattern="yyyy.MM.dd"/><br />				 --%>
-<%-- 											<li>시작일자: <fmt:formatDate value="${member.startDate}" type="date" dateStyle="full" /><br></li>			 --%>
 											<li>종료일자: <span> ${member.endDate }</span></li>
 										</ul>
 									</td>
@@ -138,14 +133,15 @@
 									</td>
 									
 								</tr>
+							<div>
+							<button type="button" class="btn btn-danger">펫시터 노쇼</button>
+							<button type="button" class="btn"
+								style="background-color: #FE5C17; color: white;">일지 보기</button>
+							</div>
 								</c:forEach>
 							</table>
 	
-							<div>
-								<button type="button" class="btn btn-danger">펫시터 노쇼</button>
-								<button type="button" class="btn"
-									style="background-color: #FE5C17; color: white;">일지 보기</button>
-							</div>
+							
 			
 						</div>
 					</div>
@@ -162,7 +158,7 @@
 					</div>
 					<div class="box_mi">
 						<span class="label label-default s_font font_black"
-							style="background-color: rgb(225, 199, 199);">긴급 서비스</span>
+							style="background-color: rgb(225, 199, 199);">방문 서비스</span>
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
 								<table class="table tab m_font">
@@ -173,7 +169,7 @@
 										<th>확정여부/후기쓰기</th>
 									</tr>
 									<tr>
-								<c:forEach var="member" items="${memberIng}">
+								<c:forEach var="member" items="${comfirmWaiting}">
 										<c:if test="${empty member.vid}">
 												<span>×</span> 
 										</c:if>
@@ -222,64 +218,28 @@
 									<th>펫시터</th>
 									<th>취소여부</th>
 								</tr>
+								
+								<c:forEach var="member" items="${petsittingSchedule }">
 								<tr>
-									<td><span class="reserveInfo">23333</span></td>
+									<td><span class="reserveInfo">${member.vid }</span></td>
 									<td>
-										<ul>
-											<li><span class="label label-default s_font font_black"
-												style="background-color: rgb(225, 199, 199);">긴급-위탁서비스</span></li>
-											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-											<li>시작일자: 2022-12-12 10:00</li>
-											<li>종료일자: 2022-12-12 13:00</li>
-										</ul>
-									</td>
-									<td><div class="reservInfoTd">
-											<img src="/images/member/profile.svg" style="width: 60px;"><br>
-											<span class="mb_font">루카스</span>
-										</div>
-									</td>
-									<td><button type="button" class="btn btn-danger">취소하기</button></td>
-								</tr>
-								<tr>
-									<td><span class="reserveInfo">2333323</span></td>
-									<td>
-	
-										<ul>
-											<li><span class="label label-default s_font font_black"
-												style="background-color: rgb(225, 199, 199);">긴급-방문서비스</span></li>
-											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-											<li>시작일자: 2022-12-12 10:00</li>
-											<li>종료일자: 2022-12-12 13:00</li>
-										</ul>
-									</td>
-									<td><div class="reservInfoTd">
-											<img src="/images/member/profile.svg" style="width: 60px;"><br>
-											<span class="mb_font">루카스</span>
-										</div></td>
-									<td><button type="button" class="btn btn-danger">취소하기</button></td>
-								</tr>
-								<tr>
-									<td><span class="reserveInfo">23333232</span></td>
-									<td>
-	
 										<ul>
 											<li><span class="label label-default s_font font_black"
 												style="background-color: rgb(225, 199, 199);">방문서비스</span></li>
-											<li>주소 : 서울특별시 강서구 화곡로 344 경동 에파이어 304호</li>
-											<li>시작일자: 2022-12-12 10:00</li>
-											<li>종료일자: 2022-12-12 13:00</li>
+											<li>주소 : ${member.addr }</li>
+											<li>시작일자: ${member.startDate }</li>
+											<li>종료일자: ${member.endDate }</li>
 										</ul>
 									</td>
-									<td>
-										<div class="reservInfoTd">
-											<img src="/images/member/profile.svg" style="width: 60px;"><br>
-											<span class="mb_font">루카스아앙이라라</span>
+									<td><div class="reservInfoTd">
+											<img src="${member.petsitterProfile }" style="width: 60px;"><br>
+											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
-									<td>
-										<button type="button" class="btn btn-danger">취소하기</button>
-									</td>
+									<td><button type="button" class="btn btn-danger">취소하기</button></td>
 								</tr>
+								</c:forEach>
+								
 							</table>
 	
 						</div>
