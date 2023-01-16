@@ -106,13 +106,18 @@
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
 							<table class="table tab s_font">
+								<c:if test="${empty currentPetsitting}">
+									<br>
+									<span class="mb_font">현재 진행 중인 펫시팅 서비스가없습니다.</span>
+								</c:if>
+							
+								<c:forEach var="member" items="${currentPetsitting}">
 								<tr>
 									<th>신청번호</th>
 									<th>내용</th>
 									<th>펫시터</th>
 									<th>결제금액</th>
 								</tr>
-								<c:forEach var="member" items="${currentPetsitting}">
 								<tr>
 									<td>${member.vid }</td>
 									<td>
@@ -162,6 +167,11 @@
 						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
 								<table class="table tab m_font">
+								<c:if test="${empty comfirmWaiting}">
+									<br>
+									<span class="mb_font">현재 서비스 이용 확정 대기가 없습니다.</span>
+								</c:if>
+								<c:forEach var="member" items="${comfirmWaiting}">
 									<tr>
 										<th>신청번호</th>
 										<th style="text-align: center;">내용</th>
@@ -169,10 +179,6 @@
 										<th>확정여부/후기쓰기</th>
 									</tr>
 									<tr>
-								<c:forEach var="member" items="${comfirmWaiting}">
-										<c:if test="${empty member.vid}">
-												<span>×</span> 
-										</c:if>
 										<td><span class="reserveInfo"> ${member.vid }</span></td>
 										<td>
 											<ul>
@@ -212,6 +218,11 @@
 	
 						<div class="serv_on">
 							<table class="table tab m_font">
+							<c:if test="${empty petsittingSchedule}">
+								<br>
+								<span class="mb_font">현재 진행 예정인 펫시팅이 없습니다.</span>
+							</c:if>
+								<c:forEach var="member" items="${petsittingSchedule }">
 								<tr>
 									<th>신청번호</th>
 									<th style="text-align: center">내용</th>
@@ -219,7 +230,6 @@
 									<th>취소여부</th>
 								</tr>
 								
-								<c:forEach var="member" items="${petsittingSchedule }">
 								<tr>
 									<td><span class="reserveInfo">${member.vid }</span></td>
 									<td>
