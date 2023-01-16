@@ -7,7 +7,7 @@
 	 <insert id="applySitter" parameterType="Sitter">
         INSERT INTO S_APPLY(S_APP_ID,S_APP_PRO_TITLE,S_APP_PRO_CONTENT,S_APP_DATE,S_APP_DEPOSITOR,S_APP_ACC_NUMBER,S_APP_OPE_DATE,TMP_MEMBER_ID,S_STA_ID,P_PET_ID,P_PET_KIN_ID,BANK_ID)
 		VALUES(SEQ_S_APP_ID.NEXTVAL,#{title}, #{content},DEFAULT, #{depositor}
-		, #{accNumber},DEFAULT,'D6KE61CYZX'
+		, #{accNumber},DEFAULT,#{temId}
 		, #{smokeId}, #{petSizeId}
 		, #{petKindId}, #{bankId})
 		
