@@ -66,6 +66,30 @@
             						<th>서비스 구분</th>
             						<th>상세보기 / 취소</th>
             					</tr>
+            					<c:forEach var="member" items="${waitingAcceptanceList }">
+           						<tr>
+            						<td>${member.endDate } </td>
+            						<td>
+            							<div class="petImg">
+													<img src="${member.petsitterProfile }">
+										</div>
+										<span class="mb_font">${member.petsitterNickname }</span>
+            						</td>
+            						<td style="text-align:left; padding-left:30px;">
+            							<span class="m_font">주소 : </span><span class="m_font">${member.addr }</span><br>
+            							<span class="m_font">금액 : </span><span class="m_font">${member.totalPrice }원</span><br>
+            							<span class="m_font">시작일시 : </span><span class="m_font">${member.startDate }</span><br>
+            							<span class="m_font">종료일시 : </span><span class="m_font">${member.endDate }</span><br>
+            						</td>
+            						<td><span class="m_font">방문</span></td>
+            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
+            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
+            						</td>
+            					</tr>
+            					</c:forEach>
+            					
+            					
+            					<!-- 
             					<tr>
             						<td>2022년 12월 1일<br> 12:30 </td>
             						<td>
@@ -105,14 +129,15 @@
             							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
             						</td>
             					</tr>
+            					 -->
             				</table>
             				<div style="text-align:center">
 	            				<nav aria-label="Page navigation example"style=" display: inline-block;">
 								  <ul class="pagination " >
 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Previous</a></li>
 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">1</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">2</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">3</a></li>
+<!-- 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">2</a></li> -->
+<!-- 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">3</a></li> -->
 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Next</a></li>
 								  </ul>
 								</nav>
