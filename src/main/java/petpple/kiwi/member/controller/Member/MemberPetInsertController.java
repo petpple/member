@@ -24,95 +24,86 @@ import petpple.kiwi.member.service.member.MemberService;
 @Controller
 public class MemberPetInsertController {
 
-	
 	@Autowired
 	private SqlSession sqlSession;
-	
-	//--  의뢰인 내 펫 관리 
+
+	// -- 의뢰인 내 펫 관리
 	@RequestMapping(value = "/member/memberMyPet")
-	public String membermemberMyPet(ModelMap mav,HttpServletRequest request)
-	{
+	public String membermemberMyPet(ModelMap mav, HttpServletRequest request) {
 		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
 		HttpSession session = request.getSession();
 		String temId = (String) session.getAttribute("temId");
-		if(temId==null)
-		{
+		if (temId == null) {
 			return "//user/userMain";
 		}
 		mav.addAttribute("list", daoIPetManage.getPet(temId));
-		
+
 		return "member/memberMyPet";
 	}
-	
-	//-- 의뢰인 내 펫 수정
-		@RequestMapping(value = "/member/PetUpdate", method = RequestMethod.GET)
-		public String membermemberMyPetUpdate(ModelMap mav,@RequestParam("id") String id)
-		{
-			
-			 IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-			 
-			 Pet dto = daoIPetManage.search(id);
-			  
-			 mav.addAttribute("Pet", dto);
-			 return "member/memberMyPetUpdate";
-			
+
+	// -- 의뢰인 내 펫 수정
+	@RequestMapping(value = "/member/PetUpdate", method = RequestMethod.GET)
+	public String membermemberMyPetUpdate(ModelMap mav, @RequestParam("id") String id) {
+
+		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+
+		Pet dto = daoIPetManage.search(id);
+
+		mav.addAttribute("Pet", dto);
+		return "member/memberMyPetUpdate";
+
+	}
+
+	@RequestMapping(value = "/member/memberMyPetUpdate", method = RequestMethod.GET)
+	public String memberMyPetUpdate(Pet dto) {
+		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+
+		daoIPetManage.updatePet(dto);
+
+		return "redirect:memberMyPet";
+	}
+
+	// -- 의뢰인 내 펫 삭제
+	@RequestMapping(value = "/member/memberMyPetDelete", method = RequestMethod.GET)
+	public String memberMyPetDelete(String id) {
+		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+
+		daoIPetManage.deletePet(id);
+
+		return "redirect:memberMyPet";
+	}
+
+	// -- 의뢰인 내 펫 삭제
+
+	@RequestMapping(value = "/member/petInsert", method = RequestMethod.POST)
+	public String membermemberMyPetInsert(Pet dto, @RequestParam(value = "file") MultipartFile file,
+			HttpServletRequest request) {
+
+		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
+		HttpSession session = request.getSession();
+
+		String temId = (String) session.getAttribute("temId");
+		dto.setTemId(temId);
+		if (temId == null) {
+			return "//user/userMain";
 		}
-		
-		@RequestMapping(value = "/member/memberMyPetUpdate", method = RequestMethod.GET)
-		public String memberMyPetUpdate(Pet dto)
-		{
-			IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-			
-			daoIPetManage.updatePet(dto);
-			
-			return "redirect:memberMyPet";
-		}
-		
-		
-		//-- 의뢰인 내 펫 삭제
-		@RequestMapping(value = "/member/memberMyPetDelete", method = RequestMethod.GET)
-		public String memberMyPetDelete(String id)
-		{
-			IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-			
-			daoIPetManage.deletePet(id);
-			
-			return "redirect:memberMyPet";
-		}
-	
-	
-	//-- 의뢰인 내 펫 삭제
-	
-	
-	@RequestMapping(value = "/member/petInsert" ,method = RequestMethod.POST)
-	public String membermemberMyPetInsert(Pet dto,@RequestParam(value = "file")MultipartFile file,HttpServletRequest request)
-	{
-		
-		  IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
-		 HttpSession session = request.getSession();
-		 
-		  String temId = (String) session.getAttribute("temId"); dto.setTemId(temId);
-		  daoIPetManage.insertPet(dto); String path =
-		  "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
-		  String id = daoIPetManage.getPetId(); String profile = new
-		  ImgUpload().uploadProfileImg(file,path ,id);
-		  
-		  HashMap<String, Object> map = new HashMap<String, Object>();
-		  map.put("profile", "\\images\\member\\pet\\"+profile); map.put("id",id);
-		  daoIPetManage.insertPetProfile(map);
-		
-		
+		daoIPetManage.insertPet(dto);
+		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
+		String id = daoIPetManage.getPetId();
+		String profile = new ImgUpload().uploadProfileImg(file, path, id);
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("profile", "\\images\\member\\pet\\" + profile);
+		map.put("id", id);
+		daoIPetManage.insertPetProfile(map);
+
 		return "redirect:memberMain";
 	}
-	
-	
-		
+
 	/* 의뢰인 내 펫 등록(추가) 페이지 */
 	@RequestMapping(value = "/member/memberMyPetInsert")
-	public String memberMyPetInsert()
-	{
+	public String memberMyPetInsert() {
 		return "member/memberMyPetInsert";
 	}
-	
-	
+
 }
