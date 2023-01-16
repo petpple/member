@@ -27,7 +27,7 @@ public interface MemberMapper {
 	/* int petsittingCurrent(); */
 
     // 방문서비스 수락 대기중(펫시팅 정보)
-	public int waitingAcceptance();
+	public int waitingAcceptance(String temId);
 
     // 방문서비스 누적 펫시팅 횟수(펫시팅 정보)
 	public int sumPetsitting();
@@ -38,14 +38,24 @@ public interface MemberMapper {
 	public int sumFpetsitting();
 
     // 모든 진행 중인 펫시팅
-    public ArrayList<Member> currentPetsitting();
+    public ArrayList<Member> currentPetsitting(String temId);
 
     // 모든 서비스 이용 확정 대기
-    public ArrayList<Member> comfirmWaiting();
+    public ArrayList<Member> comfirmWaiting(String temId);
 
+    // 모든 서비스 진행 예정 펫시팅
+    public ArrayList<Member> petsittingSchedule(String temId);
 
+    // 누적 펫시팅 리스트
+    public ArrayList<Member> sumPetsittingList();
     // 임의 회원코드
-	public String tempIdsearch(String id);
+	/* public String tempIdsearch(String id); */
+    
+    // 수락 대기 중인 리스트
+    public ArrayList<Member> waitingAcceptanceList(String temId);
+    
+    
 
 
 }
+
