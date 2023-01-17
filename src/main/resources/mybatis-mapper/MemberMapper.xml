@@ -175,8 +175,8 @@ AND V.V_END_DATE <![CDATA[+]]> 3 <![CDATA[>]]>= SYSDATE
 <!--       AND SYSDATE < V.V_END_DATE -->
    <!-- 진행 예정인 펫시팅 -->
     <select id="petsittingSchedule" resultType="Member" parameterType="String">
-       SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS startDate
-      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS reqDate, P_TOTAL AS totalPrice
+       SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
+      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
       ,(SELECT MEM_NICKNAME 
       						   FROM MEMBER 
       						   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
@@ -238,8 +238,8 @@ AND V.V_START_DATE <![CDATA[>]]> SYSDATE
     
     <!-- 방문 서비스 수락 대기중 리스트 -->
     <select id="waitingAcceptanceList" resultType="Member" parameterType="String">
-     SELECT V.V_ID AS vid, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS startDate
-      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS reqDate
+     SELECT V.V_ID AS vid, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
+      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate
       ,P_TOTAL AS totalPrice, (SELECT MEM_NICKNAME 
       						   FROM MEMBER 
       						   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname,(SELECT MEM_IMG  
