@@ -84,8 +84,8 @@
     
     <!-- 현재 진행 중 펫시팅 -->
     <select id="currentPetsitting" resultType="Member" parameterType="String">
-    SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V.V_START_DATE, '""YYYY"년 "MM"월 "DD"일"') AS startDate
-      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일"') AS reqDate, P_TOTAL AS totalPrice
+    SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V.V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
+      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
       ,(SELECT MEM_NICKNAME 
 	   FROM MEMBER 
 	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
@@ -129,7 +129,7 @@ AND V.V_END_DATE<![CDATA[>]]>= SYSDATE
     <!-- 서비스 이용 확정 대기 -->
     <select id="comfirmWaiting" resultType="Member" parameterType="String">
       SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, V_START_DATE AS startDate
-      , V_END_DATE AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH" : "MI"') AS reqDate, P_TOTAL AS totalPrice
+      , V_END_DATE AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
       ,(SELECT MEM_NICKNAME 
 	   FROM MEMBER 
 	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
