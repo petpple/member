@@ -92,7 +92,7 @@ public class MemberController {
 
 
 	//-------------- 의뢰인 긴급서비스 등록 디테일------------------
-	@RequestMapping(value = "/member/memberUsvcDetail")
+	@RequestMapping(value = "member/memberUsvcDetail")
 	public String memberUsvcDetail()
 	{
 		return "member/memberUsvcDetail";
@@ -129,7 +129,7 @@ public class MemberController {
 	}
 
 	/* 의뢰인 memberFAQ */
-	@RequestMapping(value = "/member/memberFAQ")	
+	@RequestMapping(value = "/member/memberFAQ")
 	public String memberFAQ()
 	{
 		return "member/memberFAQ";
