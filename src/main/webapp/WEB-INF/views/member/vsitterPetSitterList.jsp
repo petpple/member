@@ -74,7 +74,7 @@
 <script type="text/javascript">
 	$(document).ready(
 			function() {
-				num = 6;
+				num = 7;
 				$.datepicker.setDefaults($.datepicker.regional['ko']);
 				$("#startDate")
 						.datepicker(
