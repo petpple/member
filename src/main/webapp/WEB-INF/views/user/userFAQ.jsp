@@ -157,10 +157,10 @@
 								<div class="accordion-body">
 									<p>의뢰인이 취소하는 경우</p>
 									<p>펫시팅 시작일 72시간전까지 : 100% 환불</p>
-									<p>펫시팅 시작 24시간전 : 환불 불가</p>
 									<p>펫시팅 시작일 48시간부터 24시간전까지 : 50% 환불</p>
+									<p>펫시팅 시작 24시간전 : 환불 불가</p>
 									<p>의뢰인이 펫 프로필을 다르게 작성한 경우 : 환불 불가</p>
-									<p>펫시터의 귀책사유로 인한 경우, 모든 경우 : 환불 불가</p>
+									<p>펫시터의 귀책사유로 인한 경우, 모든 경우 : 환불 가능</p>
 								</div>
 							</div>
 						</div>
@@ -260,7 +260,7 @@
 								aria-labelledby="heading13" data-bs-parent="#accordion">
 								<div class="accordion-body">
 									<p>"펫시팅 도중 반려동물의 건강에 이상이 생긴 경우, 사전에 펫시터님과 고객님께서 정한 병원으로 즉시
-										이송하여 진단, 치료를 받을 수 있습니다. 진단 및 치료 후 수의학적 판단에 의한 과실 여부에 따라 펫플래닛의
+										이송하여 진단, 치료를 받을 수 있습니다. 진단 및 치료 후 수의학적 판단에 의한 과실 여부에 따라 키위의
 										프리미엄 안전 보상 프로그램을 적용 받으실 수 있습니다."</p>
 								</div>
 							</div>
@@ -326,7 +326,8 @@
 							<div id="collapse17" class="accordion-collapse collapse"
 								aria-labelledby="heading17" data-bs-parent="#accordion">
 								<div class="accordion-body">
-									<p>방문 서비스, 위탁 서비스 등 다양한 서비스 옵션을 제공하고 있습니다.</p>
+									<p>키위 회원님들 간에 1대1로 의사 소통 해야 할 일이 있으실때 닉네임 입력 후 쪽지 보내고
+									받는 기능이 가능합니다.</p>
 								</div>
 							</div>
 						</div>
@@ -343,7 +344,7 @@
 								aria-labelledby="heading18" data-bs-parent="#accordion">
 								<div class="accordion-body">
 									<p>"서비스 개시 후 의뢰인 또는 펫시터중에서 서비스의 준비가 된 측에서 상대방이 노쇼(예약부도 행위)를
-										하였다고 판단하였을 경우 노쇼를 버튼을 누르시게되면 플랫폼이 정한 귀책사유 정책 및 입장에 따라 환불 및 경고
+										하였다고 판단하였을 경우 노쇼를 버튼을 누르시게되면 키위 플랫폼이 정한 귀책사유 정책 및 입장에 따라 환불 및 경고
 										처리 됩니다. "</p>
 								</div>
 							</div>
@@ -362,7 +363,7 @@
 								<div class="accordion-body">
 									<p>마이페이지에 탈퇴하기 버튼이 있습니다. 진행중인 서비스가 있거나 요청된 서비스가 있다면 탈퇴가 불가능
 										합니다. 회원 탈퇴시 이전의 쪽지와, 일지는 모두 볼 수 없게 됩니다. 또한 탈퇴 후 1년이내 재가입이 불가능
-										합니다. 신중히 진행해 주세요</p>
+										합니다. 신중히 진행해 주세요.</p>
 								</div>
 							</div>
 						</div>
@@ -378,7 +379,7 @@
 							<div id="collapse20" class="accordion-collapse collapse"
 								aria-labelledby="heading20" data-bs-parent="#accordion">
 								<div class="accordion-body">
-									<p>원칙적으로 펫시터는 취소가 불가능 합니다.</p>
+									<p>일반회원으로 로그인 한 뒤 메뉴바에서 펫시터로 지원하기 에서 서류를 작성 해주시면 됩니다.</p>
 									<!-- 이상함 -->
 								</div>
 							</div>
@@ -396,10 +397,11 @@
 							<div id="collapse21" class="accordion-collapse collapse"
 								aria-labelledby="heading21" data-bs-parent="#accordion">
 								<div class="accordion-body">
-									<p>이런 분과 함께하고 있습니다.</p>
-									<p>모든 일에 있어서 책임감이 강해요</p>
-									<p>고객에게 친절하게 응대할 수 있어요</p>
-									<p>시간 약속은 철저하게 지켜요</p>
+									<p>기본적으로 누구나 지원 가능하며 시간와 능력은 키위에서 누적되면 등급이 올라가서 수익금에 차등이 있습니다!</p>
+									<p>그래서 이런 분과 함께하고 있습니다.</p>
+									<p> → 모든 일에 있어서 책임감이 강해요</p>
+									<p> → 고객에게 친절하게 응대할 수 있어요</p>
+									<p> → 시간 약속은 철저하게 지켜요</p>
 								</div>
 							</div>
 						</div>
