@@ -38,6 +38,30 @@
     
     </style>
     
+    
+    <script>
+
+    // a  태그가 선택되면 active 속성이 부여된다.
+	$(function () {
+	
+	    var url = window.location.pathname,
+	
+	    urlRegExp = new RegExp(url.replace(/\/$/, '') + "$");  
+	
+	    $('a').each(function () {
+	
+	    	if (urlRegExp.test(this.href.replace(/\/$/, ''))) 
+	   	 	{
+	
+	    	      $(this).addClass('active');
+	
+	    	}
+	      });
+	
+	    });
+
+</script>
+    
 </head>
 
 <body>
@@ -51,7 +75,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="#" class="nav-item nav-link active">긴급 요청 서비스</a>
+                <a href="memberSvcTypeCho" class="nav-item nav-link">긴급 요청 서비스</a>
                 <a href="vsitterList" class="nav-item nav-link">방문 서비스</a>
                 <a href="fsitterPetSitterList" class="nav-item nav-link">위탁 서비스</a>
                 <a href="/member/memberFAQ" class="nav-item nav-link">FAQ</a>
@@ -72,7 +96,7 @@
     </nav>
     <%
     	session = request.getSession();
-    	out.print("임시회원 코드 : " + session.getAttribute("temId") + "<br>");
+//     	out.print("임시회원 코드 : " + session.getAttribute("temId") + "<br>");
     %>
     <!-- Navbar End -->
 </body>
