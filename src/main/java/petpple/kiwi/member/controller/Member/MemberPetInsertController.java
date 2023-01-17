@@ -78,7 +78,7 @@ public class MemberPetInsertController {
 	@RequestMapping(value = "/member/petInsert", method = RequestMethod.POST)
 	public String membermemberMyPetInsert(Pet dto, @RequestParam(value = "file") MultipartFile file,
 			HttpServletRequest request) {
-
+		MultipartFile file2= file;
 		IPetManage daoIPetManage = sqlSession.getMapper(IPetManage.class);
 		HttpSession session = request.getSession();
 
@@ -89,8 +89,9 @@ public class MemberPetInsertController {
 		}
 		daoIPetManage.insertPet(dto);
 		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet\\";
+		String path2 = "C:\\Petpple\\sitter\\src\\main\\resources\\static\\images\\member\\pet\\";
 		String id = daoIPetManage.getPetId();
-		String profile = new ImgUpload().uploadProfileImg(file, path, id);
+		String profile = new ImgUpload().uploadProfileImg(file, path,path2, id);
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("profile", "\\images\\member\\pet\\" + profile);

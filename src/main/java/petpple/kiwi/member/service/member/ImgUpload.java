@@ -1,6 +1,10 @@
 package petpple.kiwi.member.service.member;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,12 +19,16 @@ public class ImgUpload {
 	}
 
 	// 단일 파일 업로드 저장이름 : id +확장자.
-	public String uploadProfileImg(MultipartFile uploadFile,String path , String name) {
+	public String uploadProfileImg(MultipartFile uploadFile,String path ,String path2, String name) {
 		String origin = uploadFile.getOriginalFilename();
 		String ext = origin.substring(origin.lastIndexOf("."));
 		File savefile = new File(path,name+ext);
+		Path source = Paths.get(path+name+ext);
+		Path target = Paths.get(path2+name+ext);
 		try {
 			uploadFile.transferTo(savefile);
+			
+			Files.copy(source,target, StandardCopyOption.REPLACE_EXISTING);
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}

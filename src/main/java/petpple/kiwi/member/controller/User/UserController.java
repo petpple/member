@@ -105,8 +105,9 @@ public class UserController {
 		dao.PRC_TMP_MEMBER(user);
 		String id = dao.tmpMemberId(user);
 		String path = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\member\\";
+		String path2 = "C:\\Petpple\\sitter\\src\\main\\resources\\static\\images\\member\\member\\";
 		String profile = new ImgUpload().uploadProfileImg(file,
-				path
+				path,path2
 				,id);
 		
 		 HashMap<String, Object> map = new HashMap<String, Object>(); 
