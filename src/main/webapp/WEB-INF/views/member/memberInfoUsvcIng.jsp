@@ -77,11 +77,12 @@
             						<td style="text-align:left; padding-left:30px;">
             							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
             							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
+            							<span class="m_font">시작일시 : </span><span class="m_font">2023년 1월 18일 10:00</span><br>
+            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 18일 21:00</span><br>
             						</td>
             						<td><span class="m_font">취소</span></td>
-            						<td><a href="memberUsvcDetail"><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
+            						<td><button class="btn btn-sm show_button" style="margin-bottom:10px;"
+            						onclick="location.href = '/member/memberUsvcDetail/'">상세</button><br>
             							<a href="#"><button class="btn-sm btn-danger" style="margin-bottom:10px;">취소</button></a>
             						</td>
             					</tr>
@@ -101,7 +102,9 @@
             							<span class="m_font">종료일시 : </span><span class="m_font">2023년 2월 11일 14:00</span><br>
             						</td>
             						<td><span class="m_font">확정</span></td>
-            						<td><a href="memberUsvcDetail"><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
+            						<td>
+            							<button class="btn btn-sm show_button" style="margin-bottom:10px;"
+            							onclick="location.href = '/member/memberUsvcDetail/'">상세</button><br>
             							<a href="#"><button class="btn-sm btn-danger" style="margin-bottom:10px;">취소</button></a>
             						</td>
             					</tr>
