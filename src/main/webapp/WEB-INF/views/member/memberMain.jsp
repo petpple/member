@@ -36,6 +36,18 @@
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
+	 <!-- JavaScript Libraries -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/library/wow/wow.min.js"></script>
+    <script src="/library/easing/easing.min.js"></script>
+    <script src="/library/waypoints/waypoints.min.js"></script>
+    <script src="/library/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/javascript/main.js"></script>
+    
+	
 <script type="text/javascript">
 	function CountDownTimer(dt, id) {
     var end = new Date(dt);
@@ -268,23 +280,12 @@
             </div><!-- row justify-content-center -->
         </div><!-- .container -->
     </div><!-- .container-xxl py-5 wow fadeInUp -->
-
+	</div>
+	
 	<div>
 		<c:import url="footer.jsp"></c:import>
 	</div>
 
-    <!-- JavaScript Libraries -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/library/wow/wow.min.js"></script>
-    <script src="/library/easing/easing.min.js"></script>
-    <script src="/library/waypoints/waypoints.min.js"></script>
-    <script src="/library/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="/javascript/main.js"></script>
-    
-    
 </body>
 
 
