@@ -159,13 +159,13 @@ margin: 370px;
 					<div class="box_mi_t row">
 					
 						<div class="col-sm-6">
-							<a href="memberUsvcForm" class="visit">
+							<a href="member/memberUsvcForm" class="visit">
 								<img src="/images/member/visit.svg" class="visit" id="visit"> <br>
 							 </a>
 						</div>
 
 						<div class="col-sm-6">
-							 <a href="memberUsvcForm" class="fos">
+							 <a href="member/memberUsvcForm" class="fos">
 								<img src="/images/member/fos.svg" class="fos" id="fos"> <br>
 							 </a>
 						</div>
