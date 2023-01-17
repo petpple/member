@@ -121,7 +121,7 @@
 							<span class="m_font">고양이</span></label>
 						</div>
             			<div class="checkBox">
-							<input class="form-check-input" type="radio"  name="petKindId" id="petKind2" value="3"> <label for="petKind2">
+							<input class="form-check-input" type="radio"  name="petKindId" id="petKind3" value="3"> <label for="petKind3">
 							<span class="m_font">둘 다</span></label>
 						</div>
 						<br>
