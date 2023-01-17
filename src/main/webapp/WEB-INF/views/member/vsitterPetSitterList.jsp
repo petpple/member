@@ -236,7 +236,7 @@
 					<c:forEach var="item" items="${list }">
 					<div class="col-auto">
 						<div class="sitterList"
-							style="width: 380px; height: 230px; padding-top: 20px;">
+							style="width: 370px; height: 230px; padding-top: 20px;">
 							<div class="sitterImg">
 								<!-- carousel 시작 -->
 								<img src="${item.profileImg}"><br> <span
