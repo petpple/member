@@ -129,7 +129,7 @@
 									</td>
 									<td>
 										<div class="reservInfoTd">
-											<img src="/images/member/profile.svg" style="width: 60px;"><br>
+											<img src="${member.petsitterProfile }" style="width: 60px; "><br>
 											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
@@ -188,14 +188,15 @@
 											</ul>
 										</td>
 										<td><div class="reservInfoTd">
-												<img src="/images/member/profile.svg" style="width: 60px;"><br>
+												<img src="${member.petsitterProfile }" style="width: 60px; height:60px; object-fit:cover; border-radius: 30px;"><br>
 												<span class="mb_font">${member.petsitterNickname }</span>
 											</div>
 										</td>
 										<td>
 											<div class="btn">
-												<a href="#" class="" role="button">확정하기</a>
-												<button type="button" class="btn">후기쓰기</button>
+												<a href="#" class="btn btn-primary" role="button">확정하기</a>
+												<button type="button" class="btn btn-success"
+												onclick="location.href = '/member/memberReviewForm/'">후기쓰기</button>
 											</div>
 										</td>
 									</c:forEach>
