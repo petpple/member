@@ -7,7 +7,7 @@ public class SitterRequestHelper {
 	public String getDate(String date, String timeId)
 	{
 		String time ="";
-		int timeNum = Integer.parseInt(timeId)+9;
+		int timeNum = Integer.parseInt(timeId)+8;
 		if(timeNum == 9) {
 			time = "0"+timeNum;
 		}
