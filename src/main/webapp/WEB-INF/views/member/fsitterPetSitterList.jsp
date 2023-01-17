@@ -193,17 +193,17 @@
 							  <div class="carousel-inner">
 							    <div class="carousel-item  active">
 								    <div class="sitterImg">
-								      <img src="/images/sitter/2022102780036_0.jpg" class="" alt="...">
+								      <img src="/images/member/2022102780036_0.jpg" class="" alt="...">
 								     </div>
 							    </div>
 							    <div class="carousel-item">
 								      <div class="sitterImg">
-									      <img src="/images/sitter/designtwoply-project093-3.jpg" class="" alt="...">
+									      <img src="/images/member/designtwoply-project093-3.jpg" class="" alt="...">
 									     </div>
 							    </div>
 							    <div class="carousel-item">
 								      <div class="sitterImg">
-									      <img src="/images/sitter/designtwoply0000.png" class="" alt="...">
+									      <img src="/images/member/designtwoply0000.png" class="" alt="...">
 									   </div>
 							    </div>
 							  </div>
@@ -233,11 +233,11 @@
 	   								<div style="display: flex; align-items: center; flex-direction: row; margin-bottom: 30px;">
 	   									<div style="width:140px; display: flex; flex-direction: row; justify-content: space-between; over">
 	   										<div class="starImg" style="display: flex; flex: 1 1 0%; justify-content: space-between;">
-	   											<img src="/images/sitter/pngwing.com.png">
-	   											<img src="/images/sitter/pngwing.com.png">
-	   											<img src="/images/sitter/pngwing.com.png">
-	   											<img src="/images/sitter/pngwing.com.png">
-	   											<img src="/images/sitter/pngwing.com.png">
+	   											<img src="/images/member/pngwing.com.png">
+	   											<img src="/images/member/pngwing.com.png">
+	   											<img src="/images/member/pngwing.com.png">
+	   											<img src="/images/member/pngwing.com.png">
+	   											<img src="/images/member/pngwing.com.png">
 	   										</div>
 	   										
 	   										
@@ -250,7 +250,7 @@
 	   								<div style="text-align: center; margin-top:30px;">
 	   									<p style="font-size:13px; font-weight:bold;">등급 </p>
 	   									<div class="gradeImg">
-	   											<img src="/images/member/다운로드.jfif">
+	   											<img src="/images/member/gold.svg">
 	   											<!--등급 image  -->
 	   									</div>
 	   								</div>
