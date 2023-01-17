@@ -138,6 +138,29 @@
 		}
 	}
 </script>
+
+<script type="text/javascript">
+
+   $(document).ready(function() {
+   
+	  // 오늘 날짜가 출력되는 script
+      var today = new Date();
+
+      var year = today.getFullYear();
+      var month = ('0' + (today.getMonth() + 1)).slice(-2);
+      var day = ('0' + today.getDate()).slice(-2);
+
+      var dateString = year + '-' + month  + '-' + day;
+
+      console.log(dateString);
+      // 결과 : 2023-01-17
+      
+      document.getElementById("today").innerHTML=dateString;
+   });
+   
+
+</script>
+
 </head>
 
 <body>
@@ -177,7 +200,7 @@
 					<div class="box_mi">
 						<div class="box_diary">
 							<div class="div_diary_header">
-								<span class="h2_font" id="date">2022년 12월 22일</span><br>
+								<span class="h2_font" id="today"></span><br>
 								<div class="">
 									<img src="/images/member/profile.svg"
 										style="width: 60px; margin-right: 10px;"><span
@@ -188,10 +211,11 @@
 							&emsp;&emsp;&emsp;&emsp;<button type="button" class="btn btn-outline-primary">단골 등록</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 							<button type="button" class="btn btn-outline-dark">블랙 리스트 등록</button>
 
-						<br>					
+						<br><br>				
 						<form class="mb-3" name="myform" id="myform" method="post">
+								<span class="text-bold">별점은 펫시터님의 등급에 영향을 미칠 수 있습니다!</span>
+								<br>
 							<fieldset>
-								<span class="text-bold">별점은 펫시터님의 등급에 영향을 미칠 수 있습니다</span>
 								<input type="radio" name="reviewStar" value="1" id="rate1"><label
 									for="rate1">★</label>
 								<input type="radio" name="reviewStar" value="2" id="rate2"><label
@@ -205,7 +229,7 @@
 							</fieldset>
 							<div>
 								<textarea class="col-auto form-control" type="text" id="reviewContents"
-										  placeholder="솔직한 후기는 펫시터님과 Kiwi에 큰 힘이 됩니다! (300자 이내)"></textarea>
+										  placeholder="솔직한 후기는 펫시터님과 Kiwi에 큰 힘이 됩니다! (최대 300자 이내 작성바랍니다.)"></textarea>
 							</div>
 						</form>				
 					
