@@ -30,9 +30,9 @@
 	
 	<select id="getPet" parameterType="String" resultType="Pet" >
 	
-		SELECT ps.P_SHA_ID as shaId, p.PET_NAME AS name,(CASE WHEN p.PET_WEIGHT <![CDATA[>]]>=15 THEN '1'
+		SELECT ps.P_SHA_ID as shaId, p.PET_NAME AS name,(CASE WHEN p.PET_WEIGHT <![CDATA[>]]>=15 THEN '3'
 								  					 	 WHEN p.PET_WEIGHT<![CDATA[>]]>=7 THEN '2'
-								    					 ELSE '3' END) AS weightId
+								    					 ELSE '1' END) AS weightId
 		FROM PET P
 		INNER JOIN PET_SHARE ps 
 		ON p.PET_ID = ps.PET_ID
