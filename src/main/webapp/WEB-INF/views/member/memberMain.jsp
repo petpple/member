@@ -75,7 +75,7 @@
     timer = setInterval(showRemaining, 1000);
 }
 	$(function(){
-		CountDownTimer('01/14/2023 16:25:00', 'remainTime');
+		CountDownTimer('01/18/2023 14:30:00', 'remainTime');
 	});
 
 </script>
@@ -150,12 +150,13 @@
 									</td>
 									
 								</tr>
-							<div>
-							<button type="button" class="btn btn-danger">펫시터 노쇼</button>
-							<button type="button" class="btn"
-								style="background-color: #FE5C17; color: white;">일지 보기</button>
-							</div>
 								</c:forEach>
+								<div>
+								<button type="button" class="btn btn-danger">펫시터 노쇼</button>
+								<button type="button" class="btn"
+								style="background-color: #FE5C17; color: white;">일지 보기</button>
+							
+							</div>
 							</table>
 	
 							
