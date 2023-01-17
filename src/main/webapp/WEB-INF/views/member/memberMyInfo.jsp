@@ -61,13 +61,14 @@
             	
                 <div class="col-lg-9">
                     <div class="IMG1" >
-				<img src="/images/member/2.svg" class="svgImg2">
-				<span class="font h_font">내정보 변경</span>
-        	</div>
+						<img src="/images/member/2.svg" class="svgImg2">
+						<span class="font h_font">내정보 변경</span>
+        			</div>
         	
         	<div class="box_miInfo">
 	            <div class= "infoChange">
         			<div class="form-inline">
+        				<form action="#" method="post">
 						<div class="form-group ">
 							<label for="nickname">닉네임</label><br>
 						   	<input type="text" class="form-control" id="nickname" placeholder="닉네임">
@@ -91,15 +92,16 @@
 						 	<br><br>
 						 	
 						 	
+						
+							</div>	
+							<div class="col text-center">
+			                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;">변경하기</button>
+			                </div> 
 							
-						</div>	
-						<div class="col text-center">
-		                    <button type="button" class="but btn" style="background-color: #FE5C17; color: white;">변경하기</button>
-		                </div> 
-							
-					</div>
-					</div>
-        		</div>
+							</form>
+							</div>
+						</div>
+        			</div>
                 </div>
             </div>
         </div>

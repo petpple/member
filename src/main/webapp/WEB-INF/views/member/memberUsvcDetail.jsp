@@ -194,9 +194,9 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 								<tr>
 									<td class="l_font">
 										
-										<span class="mb_font">시작일자: </span><span class="m_font" id="uSvcStart">2022-12-12 10:00</span><br>
+										<span class="mb_font">시작일자: </span><span class="m_font" id="uSvcStart">2023-01-18 10:00</span><br>
 										<br> 
-										<span class="mb_font">종료일자: </span><span class="m_font" id="uSvcEnd">2022-12-12 10:00</span><br>
+										<span class="mb_font">종료일자: </span><span class="m_font" id="uSvcEnd">2023-01-18 21:00</span><br>
 										 
 									
 									</td>
@@ -227,7 +227,7 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 								</tr>
 
 								<tr>
-									<td class="l_font"><p id="total">333,323<span> 원</span></p></td>
+									<td class="l_font"><p id="total"> 30,000 <span> 원</span></p></td>
 								</tr>
 							</table>
 		

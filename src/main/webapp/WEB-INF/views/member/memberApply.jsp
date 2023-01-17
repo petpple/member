@@ -27,6 +27,18 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/library/wow/wow.min.js"></script>
+    <script src="/library/easing/easing.min.js"></script>
+    <script src="/library/waypoints/waypoints.min.js"></script>
+    <script src="/library/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/javascript/main.js"></script>
+    
 </head>
 
 <body>
@@ -47,7 +59,6 @@
         <div class="container text-center">
             <div class="row justify-content-center">
                 <div class="col-lg-12">
-                   <div class="container">
                    
                    
 						<p class="h_font">
@@ -82,26 +93,15 @@
 		        </div>
 		    </div>
     
-    
-					  			<div class="text-center">
-	  								<a href="memberApplyForm" class="btn" style="background-color:#FE5C17; color:white;" role="button" role="button">방문 펫시터 지원하기</a>
-								</div>
-            </div>
+
+	  			<div class="text-center">
+							<a href="memberApplyForm" class="btn" style="background-color:#FE5C17; color:white;" role="button" role="button">방문 펫시터 지원하기</a>
+				</div>
 
 	<div>
 		<c:import url="footer.jsp"></c:import>
 	</div>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/library/wow/wow.min.js"></script>
-    <script src="/library/easing/easing.min.js"></script>
-    <script src="/library/waypoints/waypoints.min.js"></script>
-    <script src="/library/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="/javascript/main.js"></script>
 </body>
 
 </html>

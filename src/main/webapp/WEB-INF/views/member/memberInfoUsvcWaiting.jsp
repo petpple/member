@@ -79,7 +79,8 @@
             							<span class="m_font">시작일시 : </span><span class="m_font" id="start">2022년 12월30일 15:00</span><br>
             							<span class="m_font">종료일시 : </span><span class="m_font" id="end">2023년 1월 1일 14:00</span><br>
             						</td>
-            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
+            						<td><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white"
+            							onclick="location.href = '/member/memberReviewForm/'">상세</button><br>
             							<a href=""><button class="btn btn-sm btn-success">수락</button></a>
             						</td>
             					</tr>

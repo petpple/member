@@ -123,7 +123,7 @@
 		var month = now.getMonth();
 		var date = now.getDate();
 		if (0 < date < 10) {
-			date = '0' + date;
+			date = + date;
 		}
 
 		return year + '-' + month + 1 + '-' + date;
@@ -140,7 +140,7 @@
 		var month = input.getMonth();
 		var date = input.getDate();
 		if (0 < date < 10) {
-			date = '0' + date;
+			date = date;
 		}
 
 		return year + '-' + (month + 1) + '-' + '01';
@@ -168,7 +168,7 @@
 		var month = now.getMonth();
 		var date = now.getDate();
 		if (0 < date < 10) {
-			date = '0' + date;
+			date = date;
 		}
 
 		return year + '-' + month + 1 + '-' + date;
@@ -211,7 +211,7 @@
 					</ul>
 					<div class="box_mi">
 						<div class="box_diary">
-							<span class="mb_font">일자로 조회하기</span> <br>
+							<span class="mb_font">월별 조회하기</span> <br>
 							<form>
 								<div class="" style="display: flex; margin-top: 10px;">
 									<div class="btn-group" style="flex: 6;">
@@ -286,7 +286,7 @@
 												<span class="badge font_black"
 													style="background-color: rgb(225, 199, 199);
 													font-size:13px;">긴급-방문서비스</span>
-												<br> <span>2023년 1월 3일</span>
+												<br> <span>2023년 12월 3일</span>
 											</td>
 											<td>
 												<a class="showDiary" href="">후기 보기</a>
@@ -309,7 +309,7 @@
 												<span class="badge font_black"
 													style="background-color: rgb(225, 199, 199);
 													font-size:13px;">긴급-방문서비스</span>
-												<br> <span>2023년 1월 2일</span>
+												<br> <span>2023년 12월 2일</span>
 											</td>
 											<td>
 												<a class="showDiary" href="">후기 보기</a>
@@ -332,7 +332,7 @@
 												<span class="badge font_black"
 													style="background-color: rgb(225, 199, 199);
 													font-size:13px;">긴급-방문서비스</span>
-												<br> <span>2023년 1월 1일</span>
+												<br> <span>2023년 12월 1일</span>
 											</td>
 											<td>
 												<a class="showDiary" href="">후기 보기</a>
