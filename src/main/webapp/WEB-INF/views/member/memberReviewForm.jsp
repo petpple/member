@@ -202,9 +202,9 @@
 							<div class="div_diary_header">
 								<span class="h2_font" id="today"></span><br>
 								<div class="">
-									<img src="/images/member/profile.svg"
+									<img src="\images\member\member\D6KE61CYZX.jpg"
 										style="width: 60px; margin-right: 10px;"><span
-										class="mb_font" id="petName">루카스</span> <span class="l_font">님의 후기 작성과 별점을 입력 해주세요!</span>
+										class="mb_font" id="petName">손흥민</span> <span class="l_font">님의 후기 작성과 별점을 입력 해주세요!</span>
 								</div>
 							</div>
 							
