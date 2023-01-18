@@ -16,7 +16,7 @@
 									class="mb_font" style="margin-top: 10px;">${item.name }</span>
 							</div>
 							<!--sitter IMg  -->
-							<a href="/member/vsitter?allowid=${item.allowId }" class="sitterAtag">
+							<a href="/member/vsitter?allowid=${item.allowId }&grade=${item.grade}" class="sitterAtag">
 
 								<div class="locAndTitleDiv">
 									<p
