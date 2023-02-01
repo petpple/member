@@ -84,90 +84,40 @@
     
     <!-- 현재 진행 중 펫시팅 -->
     <select id="currentPetsitting" resultType="Member" parameterType="String">
-    SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V.V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
-      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
-      ,(SELECT MEM_NICKNAME 
-	   FROM MEMBER 
-	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
-	  ,(SELECT MEM_IMG  
-	   FROM MEMBER 
-	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterProfile
-FROM MEMBER M 
-JOIN TMP_MEM TM
-ON M.TMP_MEMBER_ID = TM.T_MEM_ID 
-JOIN PET_SHARE PS
-ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-JOIN V_PET_CHO VPC
-ON VPC.P_SHA_ID = PS.P_SHA_ID
-JOIN V V
-ON VPC.V_ID = V.V_ID
-JOIN PAY P
-ON P.P_ID = V.PAYMENT_ID
-JOIN V_RESERV VR
-ON V.V_ID = VR.V_ID
-LEFT OUTER JOIN S_ALLOW sa 
-ON sa.S_ALL_ID = v.S_ALL_ID  
-LEFT OUTER JOIN S_APPLY sp
-ON sp.S_APP_ID = sa.S_APP_ID 
-LEFT OUTER JOIN V_REF_REF VRR
-ON VRR.V_ID = V.V_ID 
-LEFT OUTER JOIN V_CAN_REF VCR
-ON VR.V_RES_ID = VCR.V_RES_ID
-LEFT OUTER JOIN V_NOS_REF VNR
-ON VR.V_RES_ID = VNR.V_RES_ID
-LEFT OUTER JOIN V_CONFIRM VC
-ON VR.V_RES_ID = VC.V_RES_ID
-WHERE TM.T_MEM_ID=#{temId}
-AND VRR.V_REF_REF_DATE IS NULL
-AND VCR.V_CAN_REF_DATE IS NULL  
-AND VNR.V_NOS_REF_DATE IS NULL
-AND VC.V_CON_DATE IS NULL       
-AND V.V_START_DATE <![CDATA[<]]>= SYSDATE
-AND V.V_END_DATE<![CDATA[>]]>= SYSDATE    
+        SELECT *
+        FROM VIEW_NOW_VISIT_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_NOW_FOSTER_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_NOW_UV_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_NOW_UF_SERVICE
+        WHERE temId = #{temId}
     </select>
     
     <!-- 서비스 이용 확정 대기 -->
     <select id="comfirmWaiting" resultType="Member" parameterType="String">
-      SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, V_START_DATE AS startDate
-      , V_END_DATE AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
-      ,(SELECT MEM_NICKNAME 
-	   FROM MEMBER 
-	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
-	  ,(SELECT MEM_IMG  
-	   FROM MEMBER 
-	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterProfile
-FROM MEMBER M 
-JOIN TMP_MEM TM
-ON M.TMP_MEMBER_ID = TM.T_MEM_ID
-JOIN PET_SHARE PS
-ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-JOIN V_PET_CHO VPC
-ON VPC.P_SHA_ID = PS.P_SHA_ID
-JOIN V V
-ON VPC.V_ID = V.V_ID
-JOIN PAY P
-ON P.P_ID = V.PAYMENT_ID
-JOIN V_RESERV VR
-ON V.V_ID = VR.V_ID
-LEFT OUTER JOIN S_ALLOW sa 
-ON sa.S_ALL_ID = v.S_ALL_ID  
-LEFT OUTER JOIN S_APPLY sp
-ON sp.S_APP_ID = sa.S_APP_ID 
-LEFT OUTER JOIN V_REF_REF VRR
-ON VRR.V_ID = V.V_ID 
-LEFT OUTER JOIN V_CAN_REF VCR
-ON VR.V_RES_ID = VCR.V_RES_ID
-LEFT OUTER JOIN V_NOS_REF VNR
-ON VR.V_RES_ID = VNR.V_RES_ID
-LEFT OUTER JOIN V_CONFIRM VC
-ON VR.V_RES_ID = VC.V_RES_ID
-WHERE TM.T_MEM_ID=#{temId}
-AND VRR.V_REF_REF_DATE IS NULL
-AND VCR.V_CAN_REF_DATE IS NULL  
-AND VNR.V_NOS_REF_DATE IS NULL  
-AND VC.V_CON_DATE IS NULL       
-AND V.V_END_DATE <![CDATA[<]]>= SYSDATE    
-AND V.V_END_DATE <![CDATA[+]]> 3 <![CDATA[>]]>= SYSDATE    
+        SELECT *
+        FROM VIEW_CONWAIT_VISIT_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CONWAIT_FOSTER_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CONWAIT_UV_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CONWAIT_UF_SERVICE
+        WHERE temId = #{temId}
 
     </select>
   
@@ -175,41 +125,21 @@ AND V.V_END_DATE <![CDATA[+]]> 3 <![CDATA[>]]>= SYSDATE
 <!--       AND SYSDATE < V.V_END_DATE -->
    <!-- 진행 예정인 펫시팅 -->
     <select id="petsittingSchedule" resultType="Member" parameterType="String">
-       SELECT V.V_ID AS vid, VR.V_RES_ID AS vresId, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
-      , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate, P_TOTAL AS totalPrice
-      ,(SELECT MEM_NICKNAME 
-      						   FROM MEMBER 
-      						   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterNickname
-      ,(SELECT MEM_IMG  
-	   FROM MEMBER 
-	   WHERE sp.TMP_MEMBER_ID=TMP_MEMBER_ID) AS petsitterProfile
-FROM MEMBER M JOIN TMP_MEM TM
-ON M.TMP_MEMBER_ID = TM.T_MEM_ID
-JOIN PET_SHARE PS
-ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-JOIN V_PET_CHO VPC
-ON VPC.P_SHA_ID = PS.P_SHA_ID
-JOIN V V
-ON VPC.V_ID = V.V_ID
-JOIN PAY P
-ON P.P_ID = V.PAYMENT_ID
-JOIN V_RESERV VR
-ON V.V_ID = VR.V_ID
-LEFT OUTER JOIN S_ALLOW sa 
-ON sa.S_ALL_ID = v.S_ALL_ID  
-LEFT OUTER JOIN S_APPLY sp
-ON sp.S_APP_ID = sa.S_APP_ID 
-LEFT OUTER JOIN V_REF_REF VRR
-ON VRR.V_ID = V.V_ID 
-LEFT OUTER JOIN V_CAN_REF VCR
-ON VR.V_RES_ID = VCR.V_RES_ID
-LEFT OUTER JOIN V_NOS_REF VNR
-ON VR.V_RES_ID = VNR.V_RES_ID
-WHERE TM.T_MEM_ID=#{temId}
-AND VRR.V_REF_REF_DATE IS NULL
-AND VCR.V_CAN_REF_DATE IS NULL
-AND VNR.V_NOS_REF_DATE IS NULL
-AND V.V_START_DATE <![CDATA[>]]> SYSDATE
+        SELECT *
+        FROM VIEW_CURRENT_VISIT_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CURRENT_FOSTER_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CURRENT_UV_SERVICE
+        WHERE temId = #{temId}
+        UNION ALL
+        SELECT *
+        FROM VIEW_CURRENT_UF_SERVICE
+        WHERE temId = #{temId}
     </select>
 <!-- AND SYSDATE >= V.V_START_DATE -->
 <!--       AND SYSDATE < V.V_END_DATE     -->
@@ -238,7 +168,7 @@ AND V.V_START_DATE <![CDATA[>]]> SYSDATE
     
     <!-- 방문 서비스 수락 대기중 리스트 -->
     <select id="waitingAcceptanceList" resultType="Member" parameterType="String">
-     SELECT V.V_ID AS vid, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
+     SELECT V.V_ID AS serviceId, V.V_CLI_ADDR AS addr, TO_CHAR(V_START_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS startDate
       , TO_CHAR(V_END_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS endDate, TO_CHAR(V.V_REQ_DATE, '""YYYY"년 "MM"월 "DD"일 "HH24" : "MI"') AS reqDate
       ,P_TOTAL AS totalPrice, (SELECT MEM_NICKNAME 
       						   FROM MEMBER 
