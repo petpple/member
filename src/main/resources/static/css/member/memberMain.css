@@ -15,7 +15,7 @@
 	display: grid;
 	padding-top: 30px;
 	width: 1300px !important;
-	
+
 }
 
 .box_pi {
@@ -55,7 +55,7 @@
 .h_font {
 	font-size:22px;
 	font-weight: 600;
-	
+
 }
 .h2_font {
 	font-size:20px;
@@ -70,9 +70,9 @@
 }
 .m_font{
 	font-size:15px;
-	
+
 }
-.s_font {	
+.s_font {
 	font-size:13px;
 }
 
@@ -92,17 +92,20 @@
 	margin-left: 5px;
 }
 
-.tab th {
+.tab th, .tab td {
 	text-align: center;
+	vertical-align: middle;!important;
 }
 
-
+.reserveTable {
+	background-colorcolor: red;
+}
 .reserveInfo {
 	line-height: 60px;
 	text-align: center;
-}  
+}
 
 .reservInfoTd {
-	padding: auto;
-	text-align: center;
+
+
 }

@@ -69,15 +69,21 @@
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
         
-        var text = hours + '시간 '+minutes + '분 '+ seconds + '초';
+        var text = '남은시간: '+ hours + '시간 '+minutes + '분 '+ seconds + '초';
         document.getElementById(id).innerHTML = text;
     }
     timer = setInterval(showRemaining, 1000);
 }
-	$(function(){
-		CountDownTimer('01/18/2023 14:30:00', 'remainTime');
-	});
 
+	function dateGetter(endDate){
+		const endTime = endDate.trim();
+		const endyear = endTime.substring(0,4);
+		const endmonth = endTime.substring(6,8);
+		const endday = endTime.substring(10,12);
+		const endtime = endTime.substring(14,16);
+
+		return endmonth+'/'+endday+'/'+endyear+' '+endtime+':00:00';
+	}
 </script>
     
 </head>
@@ -112,57 +118,89 @@
 							class="font h_font">진행 중인 펫시팅</span>
 					</div>
 					<div class="box_mi">
-						<span class="label label-default s_font font_black"
-							style="background-color: rgb(225, 199, 199);">방문서비스</span>
-						<img src="/images/member/timer-icon.svg" class="svgImg1">
-						<span id="remainTime" class="s_font"></span>
-						<div class="serv_on">
-							<table class="table tab s_font">
 								<c:if test="${empty currentPetsitting}">
 									<br>
 									<span class="mb_font">현재 진행 중인 펫시팅 서비스가없습니다.</span>
 								</c:if>
-							
-								<c:forEach var="member" items="${currentPetsitting}">
+								<c:if test="${!empty currentPetsitting}">
+								<table class="table tab s_font">
+									<tr>
+										<th>신청번호</th>
+										<th>내용</th>
+										<th>펫시터</th>
+										<th>결제금액</th>
+									</tr>
+								<c:forEach var="member" items="${currentPetsitting}" varStatus="status">
 								<tr>
-									<th>신청번호</th>
-									<th>내용</th>
-									<th>펫시터</th>
-									<th>결제금액</th>
+								<td colspan="2" style="border: 0px; ">
+								<span class="label label-default s_font font_black"
+									  style="background-color: rgb(225, 199, 199);">
+									<c:if test="${member.serviceType == '1'}">
+										방문서비스
+									</c:if>
+									<c:if test="${member.serviceType == '2'}">
+										위탁서비스
+									</c:if>
+									<c:if test="${member.serviceType == '3'}">
+										긴급-위탁서비스
+									</c:if>
+									<c:if test="${member.serviceType == '4'}">
+										긴급-방문서비스
+									</c:if>
+								</span>
+								<img src="/images/member/timer-icon.svg" class="svgImg1" style="margin-left: 10px;">
+								<span id="remainTime${status.index}" class="m_font" style="font-weight: bold;background-color: white;color: #ff9433; border-radius: 5px;"></span>
+
+								</td>
 								</tr>
+
+
+
 								<tr>
-									<td>${member.vid }</td>
-									<td>
-										<ul>
+									<td>${member.serviceId }</td>
+									<td style="border: 0px;">
+										<ul style="text-align:left;">
 											<li>주소 : <span> ${member.addr }</span></li>
 											<li>시작일자: <span> ${member.startDate }</span></li>
-											<li>종료일자: <span> ${member.endDate }</span></li>
+											<li>종료일자: <span id="aa${status.index}"> ${member.endDate }</span></li>
 										</ul>
 									</td>
 									<td>
 										<div class="reservInfoTd">
-											<img src="${member.petsitterProfile }" style="width: 60px; "><br>
+											<img src="${member.petsitterProfile }" style="width: 60px; height:60px; object-fit:cover; border-radius: 30px;"><br>
 											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
 									<td>
 										<fmt:formatNumber value="${member.totalPrice }"/> 원
 									</td>
-									
+									<script>
+										$(function(){
+											CountDownTimer(dateGetter($("#aa${status.index}").text()), 'remainTime${status.index}');
+
+										});
+										// 0/ 0/ 20  1:00:00
+									</script>
+
+								</tr>
+
+								<tr aria-rowspan="2">
+									<td colspan="2">
+										<div>
+											<button type="button" class="btn btn-danger"
+											onclick="location.href='/member/serviceNoshow?serviceType=${member.serviceType}&serviceNo=${member.serviceId}'">펫시터 노쇼</button>
+											<button type="button" class="btn"
+													style="background-color: #FE5C17; color: white;">일지 보기</button>
+
+										</div>
+									</td>
 								</tr>
 								</c:forEach>
-								<div>
-								<button type="button" class="btn btn-danger">펫시터 노쇼</button>
-								<button type="button" class="btn"
-								style="background-color: #FE5C17; color: white;">일지 보기</button>
-							
-							</div>
-							</table>
-	
-							
-			
+
+								</table>
+								</c:if>
 						</div>
-					</div>
+
 					
 					<br>
 					
@@ -175,26 +213,42 @@
 							class="font h_font">서비스 이용 확정 대기</span>
 					</div>
 					<div class="box_mi">
-						<span class="label label-default s_font font_black"
-							style="background-color: rgb(225, 199, 199);">방문 서비스</span>
-						<span id="remainTime" class="s_font"></span>
 						<div class="serv_on">
-								<table class="table tab m_font">
+
 								<c:if test="${empty comfirmWaiting}">
 									<br>
 									<span class="mb_font">현재 서비스 이용 확정 대기가 없습니다.</span>
 								</c:if>
-								<c:forEach var="member" items="${comfirmWaiting}">
+
+								<c:if test="${!empty comfirmWaiting}">
+									<table class="table tab m_font">
+
 									<tr>
 										<th>신청번호</th>
 										<th style="text-align: center;">내용</th>
 										<th>펫시터</th>
 										<th>확정여부/후기쓰기</th>
 									</tr>
+								<c:forEach var="member" items="${comfirmWaiting}">
 									<tr>
-										<td><span class="reserveInfo"> ${member.vid }</span></td>
+										<td style="width: 80px;"><span class="label label-default s_font font_black"
+												  style="background-color: rgb(225, 199, 199);">
+										<c:if test="${member.serviceType == '1'}">
+											방문서비스
+										</c:if>
+										<c:if test="${member.serviceType == '2'}">
+											위탁서비스
+										</c:if>
+										<c:if test="${member.serviceType == '3'}">
+											긴급-위탁서비스
+										</c:if>
+										<c:if test="${member.serviceType == '4'}">
+											긴급-방문서비스
+										</c:if>
+										</span><br>
+											<span class="reserveInfo"> ${member.serviceId }</span></td>
 										<td>
-											<ul>
+											<ul style="text-align: left;">
 												<li>주소 : <span> ${member.addr }</span></li>
 												<li>시작일자: <span> ${member.startDate }</span></li>
 												<li>종료일자: <span> ${member.endDate }</span></li>
@@ -212,8 +266,10 @@
 												onclick="location.href = '/member/memberReviewForm/'">후기쓰기</button>
 											</div>
 										</td>
-									</c:forEach>
 									</tr>
+									</c:forEach>
+										</c:if>
+
 							</table>
 	
 							
@@ -231,41 +287,58 @@
 					<div class="box_mi">
 	
 						<div class="serv_on">
-							<table class="table tab m_font">
+
 							<c:if test="${empty petsittingSchedule}">
 								<br>
 								<span class="mb_font">현재 진행 예정인 펫시팅이 없습니다.</span>
 							</c:if>
-								<c:forEach var="member" items="${petsittingSchedule }">
+							<c:if test="${!empty petsittingSchedule}">
+									<table class="table align-middle text-center m_font">
 								<tr>
 									<th>신청번호</th>
 									<th style="text-align: center">내용</th>
 									<th>펫시터</th>
 									<th>취소여부</th>
 								</tr>
-								
+								<c:forEach var="member" items="${petsittingSchedule }">
+
+
 								<tr>
-									<td><span class="reserveInfo">${member.vid }</span></td>
-									<td>
-										<ul>
+									<td><span class="reserveInfo">${member.serviceId }</span></td>
+									<td style="width:350px;">
+										<ul style="text-align: left">
 											<li><span class="label label-default s_font font_black"
-												style="background-color: rgb(225, 199, 199);">방문서비스</span></li>
+												style="background-color: rgb(225, 199, 199);">
+												<c:if test="${member.serviceType == '1'}">
+												방문서비스
+											</c:if>
+											<c:if test="${member.serviceType == '2'}">
+												위탁서비스
+											</c:if>
+											<c:if test="${member.serviceType == '3'}">
+												긴급-위탁서비스
+											</c:if>
+											<c:if test="${member.serviceType == '4'}">
+											긴급-방문서비스
+											</c:if>
+											</span>
+											</li>
 											<li>주소 : ${member.addr }</li>
 											<li>시작일자: ${member.startDate }</li>
 											<li>종료일자: ${member.endDate }</li>
 										</ul>
 									</td>
 									<td><div class="reservInfoTd">
-											<img src="${member.petsitterProfile }" style="width: 60px;"><br>
+											<img src="${member.petsitterProfile }" style="width: 60px;height:60px; border-radius:30px; object-fit: cover;"><br>
 											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
-									<td><button type="button" class="btn btn-danger">취소하기</button></td>
+									<td><button type="button" class="btn btn-danger" onclick="location.href='/member/serviceCancel?serviceType=1&serviceNo=${member.serviceId}'">취소하기</button></td>
 								</tr>
 								</c:forEach>
 								
 							</table>
-	
+							</c:if>
 						</div>
 	
 	

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="petpple.kiwi.member.repository.service.IReservedService">
+    <select id="getVServiceInfo" parameterType="String" resultType="Refund">
+        SELECT *
+        FROM V_SERIVCE_RESERVEd
+        WHERE vId = #{vId}
+    </select>
+    <select id="getFServiceInfo" parameterType="String" resultType="Refund">
+        SELECT *
+        FROM F_SERVICE_RESERVED
+        WHERE fId = #{fId}
+    </select>
+    <select id="getUVServiceInfo" parameterType="String" resultType="Refund">
+        SELECT *
+        FROM U_V_SERVICE_RESERVED
+        WHERE uvId = #{uvId}
+    </select>
+    <select id="getUFServiceInfo" parameterType="String" resultType="Refund">
+        SELECT *
+        FROM U_F_SERVICE_RESERVED
+        WHERE ufId = #{ufId}
+    </select>
+
+    <insert id="visitServiceCancel" parameterType="Refund">
+        INSERT INTO V_CAN_REF
+        (V_CAN_REF_ID, V_CAN_REF_DATE, V_CAN_REF_AMOUNT, V_CAN_REF_ACC_NUMBER, V_CAN_REF_ACC_DEPOSITOR, BANK_ID,
+         V_RES_ID)
+        VALUES (SEQ_V_CAN_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="fosterServiceCancel" parameterType="Refund">
+        INSERT INTO F_CAN_REF
+        (F_CAN_REF_ID, F_CAN_REF_DATE, F_CAN_REF_AMOUNT, F_CAN_REF_ACC_NUMBER, F_CAN_REF_ACC_DEPOSITOR, BANK_ID,
+         F_RES_ID)
+        VALUES (SEQ_F_CAN_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="urgentVServiceCancel" parameterType="Refund">
+        INSERT INTO U_V_CAN_REF
+        (U_V_CAN_REF_ID, U_V_CAN_REF_DATE, U_V_CAN_REF_AMOUNT, U_V_CAN_REF_ACC_NUMBER, U_V_CAN_REF_ACC_DEPOSITOR,
+         BANK_ID, U_V_RES_ID)
+        VALUES (SEQ_U_V_CAN_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="urgentFServiceCancel" parameterType="Refund">
+        INSERT INTO U_F_CAN_REF
+        (U_F_CAN_REF_ID, U_F_CAN_REF_DATE, U_F_CAN_REF_AMOUNT, U_F_CAN_REF_ACC_NUMBER, U_F_CAN_REF_ACC_DEPOSITOR,
+         BANK_ID, U_F_RES_ID)
+        VALUES (SEQ_U_F_CAN_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+
+    <insert id="visitServiceNoShow" parameterType="Refund">
+        INSERT INTO V_NOS_REF
+        (V_SIT_NOS_REF_ID, V_NOS_REF_DATE, V_NOS_REF_AMOUNT, V_NOS_REF_ACC_NUMBER, V_NOS_REF_ACC_DEPOSITOR, BANK_ID,
+         V_RES_ID)
+        VALUES (SEQ_V_SIT_NOS_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="fosterServiceNoShow" parameterType="Refund">
+        INSERT INTO F_NOS_REF
+        (F_NOS_REF_ID, F_NOS_REF_DATE, F_NOS_REF_AMOUNT, F_NOS_REF_ACC_NUMBER, F_NOS_REF_ACC_DEPOSITOR, BANK_ID,
+         F_RES_ID)
+        VALUES (SEQ_F_NOS_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="uvServiceNoShow" parameterType="Refund">
+        INSERT INTO U_V_NOS_REF
+        (U_V_NOS_REF_ID, U_V_NOS_REF_DATE, U_V_NOS_REF_AMOUNT, U_V_NOS_REF_ACC_NUM, U_V_NOS_REF_ACC_DEPOSITOR, BANK_ID,
+         U_V_RES_ID)
+        VALUES (SEQ_U_V_NOS_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+    <insert id="ufServiceNoShow" parameterType="Refund">
+        INSERT INTO U_F_NOS_REF
+        (U_F_NOS_REF_ID, U_F_NOS_REF_DATE, U_F_NOS_REF_AMOUNT, U_F_NOS_REF_ACC_NUM, U_F_NOS_REF_ACC_DEPOSITOR, BANK_ID,
+         U_F_RES_ID)
+        VALUES (SEQ_V_SIT_NOS_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
+    </insert>
+
+</mapper>
