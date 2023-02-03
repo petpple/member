@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="petpple.kiwi.member.repository.member.ICalendar">
+    <select id="getThisMonthSchedule" resultType="String" parameterType="HashMap" >
+        <![CDATA[
+        SELECT (CASE WHEN VCVS.ENDORIGIN>TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN TO_NUMBER(TO_CHAR(VCVS.STAORIGIN,'DD'))
+        ||'~'||
+        TO_CHAR(TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM') ,+1),'YYYY-MM')
+        ||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')-1,'DD')
+        WHEN vcvs.STAORIGIN< TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN  '1~'|| TO_NUMBER(TO_CHAR(VCVS.ENDORIGIN,'DD'))
+        ELSE  TO_NUMBER(TO_CHAR(VCVS.STAORIGIN,'DD'))
+        ||'~'||  TO_NUMBER(TO_CHAR(VCVS.ENDORIGIN,'DD'))
+        END)
+        AS DATEA
+        FROM VIEW_NOWANDRESERVED_V vcvs
+        WHERE (vcvs.STAORIGIN >= TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND vcvs.STAORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+           OR(vcvs.ENDORIGIN >=TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            AND vcvs.ENDORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        and vcvs.TEMID = #{temId}
+        UNION ALL
+        SELECT (CASE WHEN VCfS.ENDORIGIN>TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN TO_NUMBER(TO_CHAR(VCfS.STAORIGIN,'DD'))
+        ||'~'||
+        TO_CHAR(TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM') ,+1),'YYYY-MM')
+        ||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')-1,'DD')
+        WHEN VCfS.STAORIGIN< TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN  '1~'|| TO_NUMBER(TO_CHAR(VCfS.ENDORIGIN,'DD'))
+        ELSE  TO_NUMBER(TO_CHAR(VCfS.STAORIGIN,'DD'))
+        ||'~'||  TO_NUMBER(TO_CHAR(VCfS.ENDORIGIN,'DD'))
+        END)
+        AS DATEA
+        FROM VIEW_NOWANDRESERVED_F vcfs
+        WHERE (vcfs.STAORIGIN >= TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND vcfs.STAORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        OR(vcfs.ENDORIGIN >=TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND vcfs.ENDORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        and vcfs.TEMID = #{temId}
+        UNION ALL
+        SELECT (CASE WHEN VCufS.ENDORIGIN>TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN TO_NUMBER(TO_CHAR(VCufS.STAORIGIN,'DD'))
+        ||'~'||
+        TO_CHAR(TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM') ,+1),'YYYY-MM')
+        ||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')-1,'DD')
+        WHEN VCufS.STAORIGIN< TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN  '1~'|| TO_NUMBER(TO_CHAR(VCufS.ENDORIGIN,'DD'))
+        ELSE  TO_NUMBER(TO_CHAR(VCufS.STAORIGIN,'DD'))
+        ||'~'||  TO_NUMBER(TO_CHAR(VCufS.ENDORIGIN,'DD'))
+        END)
+        AS DATEA
+        FROM VIEW_NOWANDRESERVED_UF vcufs
+        WHERE (vcufs.STAORIGIN >= TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND vcufs.STAORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+           OR(vcufs.ENDORIGIN >=TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            AND vcufs.ENDORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        and vcufs.TEMID = #{temId}
+        UNION ALL
+        SELECT (CASE WHEN VCuS.ENDORIGIN>TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN TO_NUMBER(TO_CHAR(VCuS.STAORIGIN,'DD'))
+        ||'~'||
+        TO_CHAR(TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM') ,+1),'YYYY-MM')
+        ||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')-1,'DD')
+        WHEN VCuS.STAORIGIN< TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        THEN  '1~'|| TO_NUMBER(TO_CHAR(VCuS.ENDORIGIN,'DD'))
+        ELSE  TO_NUMBER(TO_CHAR(VCuS.STAORIGIN,'DD'))
+        ||'~'||  TO_NUMBER(TO_CHAR(VCuS.ENDORIGIN,'DD'))
+        END)
+        AS DATEA
+        FROM VIEW_NOWANDRESERVED_UV vcus
+        WHERE (vcus.STAORIGIN >= TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+        AND vcus.STAORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+           OR(vcus.ENDORIGIN >=TO_DATE(TO_CHAR(TO_DATE(#{targetDate},'YYYY-MM'),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS')
+            AND vcus.ENDORIGIN < TO_DATE(TO_CHAR(ADD_MONTHS(TO_DATE(#{targetDate},'YYYY-MM'),+1),'YYYY-MM')||'-01 00:00:00','YYYY-MM-DD HH24:MI:SS'))
+        and vcus.TEMID = #{temId}
+        ]]>
+    </select>
+
+    <select id="getDetailedSchedule" resultType="Member" parameterType="HashMap">
+        <![CDATA[
+        SELECT SERVICETYPE,STARTDATE,ENDDATE,PETSITTERPROFILE,PETSITTERNICKNAME
+        FROM VIEW_NOWANDRESERVED_V V
+        WHERE TO_DATE(#{targetDate},'YYYY-MM-DD') >= TO_DATE(TO_CHAR(V.STAORIGIN,'YYYY-MM-DD'))
+        AND TO_DATE(#{targetDate},'YYYY-MM-DD') <= TO_DATE(TO_CHAR(V.ENDORIGIN,'YYYY-MM-DD'))
+        AND temId =#{temId}
+        UNION ALL
+        SELECT SERVICETYPE,STARTDATE,ENDDATE,PETSITTERPROFILE,PETSITTERNICKNAME
+        FROM VIEW_NOWANDRESERVED_F F
+        WHERE TO_DATE(#{targetDate},'YYYY-MM-DD') >= TO_DATE(TO_CHAR(F.STAORIGIN,'YYYY-MM-DD'))
+        AND TO_DATE(#{targetDate},'YYYY-MM-DD') <= TO_DATE(TO_CHAR(F.ENDORIGIN,'YYYY-MM-DD'))
+        AND temId =#{temId}
+        UNION ALL
+        SELECT SERVICETYPE,STARTDATE,ENDDATE,PETSITTERPROFILE,PETSITTERNICKNAME
+        FROM VIEW_NOWANDRESERVED_UV UV
+        WHERE TO_DATE(#{targetDate},'YYYY-MM-DD') >= TO_DATE(TO_CHAR(UV.STAORIGIN,'YYYY-MM-DD'))
+        AND TO_DATE(#{targetDate},'YYYY-MM-DD') <= TO_DATE(TO_CHAR(UV.ENDORIGIN,'YYYY-MM-DD'))
+        AND temId =#{temId}
+        UNION ALL
+        SELECT SERVICETYPE,STARTDATE,ENDDATE,PETSITTERPROFILE,PETSITTERNICKNAME
+        FROM VIEW_NOWANDRESERVED_UF UF
+        WHERE TO_DATE(#{targetDate},'YYYY-MM-DD') >= TO_DATE(TO_CHAR(UF.STAORIGIN,'YYYY-MM-DD'))
+        AND TO_DATE(#{targetDate},'YYYY-MM-DD') <= TO_DATE(TO_CHAR(UF.ENDORIGIN,'YYYY-MM-DD'))
+        AND temId =#{temId}
+        ]]>
+    </select>
+</mapper>
