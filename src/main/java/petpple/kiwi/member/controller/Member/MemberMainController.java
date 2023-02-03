@@ -1,6 +1,8 @@
 package petpple.kiwi.member.controller.Member;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,16 +10,20 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import petpple.kiwi.member.domain.member.Member;
 import petpple.kiwi.member.domain.service.Refund;
 import petpple.kiwi.member.domain.visitService.VisitService;
+import petpple.kiwi.member.repository.member.ICalendar;
 import petpple.kiwi.member.repository.member.MemberMapper;
 import petpple.kiwi.member.repository.service.IReservedService;
+import petpple.kiwi.member.service.member.Calendar;
 
 
 @Controller
@@ -99,34 +105,58 @@ public class MemberMainController {
 
     // 오른쪽 달력(일정) 화면 사이드
     @RequestMapping(value = "/member/memberCal")
-    public String memberCal() {
+    public String memberCal(HttpServletRequest request, Model model) {
+        ICalendar dao = sqlSession.getMapper(ICalendar.class);
+        HttpSession session = request.getSession();
+        String temId = (String) session.getAttribute("temId");
+        HashMap<String, Object> parmeter = new HashMap<>();
+        parmeter.put("temId", temId);
+
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formatedNow = now.format(formatter);
+        parmeter.put("targetDate", formatedNow);
+        List<String> schedule = new ArrayList<>(dao.getThisMonthSchedule(parmeter));
+        if (schedule.size() != 0) {
+            List<String> separtedSchedule = new ArrayList<>(new Calendar().seperateSchedule(schedule));
+            model.addAttribute("dateList", separtedSchedule);
+        } else {
+            model.addAttribute("dateList", schedule);
+        }
         return "member/memberCal";
     }
-	/*
-	// 왼쪽 펫시팅 정보 사이드
-	 
-	@RequestMapping(value = "/member/memberSide")
-	public String memberSide()
-	{
-		return "member/memberSide";
-	}
-	*/
 
-    // 왼쪽 펫시팅 정보 사이드
-	/*
-	@RequestMapping(value = "/member/memberSide")
-	public int memberSide(Model model)
-	{
-		// IMemberMapper 수정 필요
-		MemberMapper dao = sqlSession.getMapper(MemberMapper.class);
+    @ResponseBody
+    @RequestMapping(value = "/member/otherMonthSchedule", method = RequestMethod.POST)
+    public List<String> otherMonthSchedule(HttpServletRequest request, @RequestParam("date") String date) {
+        ICalendar dao = sqlSession.getMapper(ICalendar.class);
+        HttpSession session = request.getSession();
+        String temId = (String) session.getAttribute("temId");
+        HashMap<String, Object> parmeter = new HashMap<>();
+        parmeter.put("temId", temId);
+        parmeter.put("targetDate", date);
+        List<String> schedule = new ArrayList<>(dao.getThisMonthSchedule(parmeter));
+        if (schedule.size() != 0) {
+            List<String> separtedSchedule = new ArrayList<>(new Calendar().seperateSchedule(schedule));
+            return separtedSchedule;
+        } else {
+            return schedule;
+        }
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "/member/getDetatilSchedule", method = RequestMethod.POST)
+    public ArrayList<Member> getDetatilSchedule(HttpServletRequest request, @RequestParam("date") String date) {
+        ICalendar dao = sqlSession.getMapper(ICalendar.class);
+        HttpSession session = request.getSession();
+        String temId = (String) session.getAttribute("temId");
+        HashMap<String, Object> parmeter = new HashMap<>();
+        parmeter.put("temId", temId);
+        parmeter.put("targetDate", date);
+        ArrayList<Member> detailedList = dao.getDetailedSchedule(parmeter);
+        return detailedList;
+    }
 
-		model.addAllAttribute("result",dao.waitingAcceptance());
-
-
-		return "member/memberSide";
-	}
-	*/
 
     @RequestMapping(value = "/member/memberSide", method = RequestMethod.GET)
     public String memberSide(Model model, HttpServletRequest request) {

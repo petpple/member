@@ -1,13 +1,13 @@
 .cal_detail_div {
 	padding: 10px;
-	float: left;
+
 	text-align: center;
 }
 
 .box_cal_detail {
 	background-color: rgba(251, 238, 231, 0.636);
 	border: 1px solid rgba(227, 226, 226, 0.913);
-	height: 90px;
+
 	border-radius: 10px;
 	padding-left: 20px;
 }
@@ -40,14 +40,14 @@
 }
 
 .calendar {
-	height: 250px;
+
 	margin-top: 10px;
 }
 
 .sec_cal {
 	margin: 0 auto;
 	font-family: "pretendard";
-	height: 360px;
+
 }
 
 .sec_cal .cal_nav {

@@ -18,6 +18,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		calendarInit();
+		let dateArr = ${dateList};
+		for (let i=0;i<dateArr.length;i++){
+			$("#"+dateArr[i]).html('<div class="cal_box"></div>'+dateArr[i]);
+		}
+
 	});
 	/*
 	 달력 렌더링 할 때 필요한 정보 목록 
@@ -75,7 +80,7 @@
 			// console.log(prevDate, prevDay, nextDate, nextDay);
 
 			// 현재 월 표기
-			$('.year-month').text(currentYear + '.' + (currentMonth + 1));
+			$('.year-month').text(currentYear + '-' + (currentMonth + 1));
 
 			// 렌더링 html 요소 생성
 			calendar = document.querySelector('.dates')
@@ -88,14 +93,7 @@
 			}
 			// 이번달
 			for (var i = 1; i <= nextDate; i++) {
-				if (i == 7 || i == 12) {
-					calendar.innerHTML = calendar.innerHTML
-							+ '<div class="day current" id="' + i
-							+ '" onclick="clickAction(' + i
-							+ ')"><div class="cal_box"></div>' + i
-							+ '</div></div>';
-					continue;
-				}
+
 				calendar.innerHTML = calendar.innerHTML
 						+ '<div class="day current"id="' + i
 						+ '" onclick="clickAction(' + i + ')">' + i + '</div>'
@@ -125,20 +123,62 @@
 		}
 
 		// 이전달로 이동
+
 		$('.go-prev').on('click', function() {
 			thisMonth = new Date(currentYear, currentMonth - 1, 1);
 			renderCalender(thisMonth);
+			let month = '';
+			if (parseInt(currentMonth)<10)
+			{month+= '0'+(currentMonth+1);}
+			$.ajax({
+				url:"otherMonthSchedule",
+				data:{date:currentYear+'-'+month},
+				type:"post",
+				success: function(data){
+					for (let i=0;i<data.length;i++){
+						$("#"+data[i]).html('<div class="cal_box"></div>'+data[i]);
+					}
+				}
+			})
 		});
 
 		// 다음달로 이동
 		$('.go-next').on('click', function() {
 			thisMonth = new Date(currentYear, currentMonth + 1, 1);
 			renderCalender(thisMonth);
+			let month = '';
+			if (parseInt(currentMonth)<10)
+			{month+= '0'+(currentMonth+1);}
+
+			$.ajax({
+				url:"otherMonthSchedule",
+				data:{date:currentYear+'-'+month},
+				type:"post",
+				success: function(data){
+					for (let i=0;i<data.length;i++){
+						$("#"+data[i]).html('<div class="cal_box"></div>'+data[i]);
+					}
+				}
+			})
+
 		});
+
+
 	}
 
 	prevNum = 0;
 
+	function getServiceType(i) {
+		if(i== '1') {
+			return '방문';
+		} else if(i=='2') {
+			return '위탁';
+		} else if(i=='3') {
+			return '긴급-위탁';
+		} else if (i== '4') {
+			return  '긴급-방문';
+		}
+	}
 	function clickAction(i) {
 
 		if (prevNum != tempToday.getDate()) {
@@ -147,14 +187,43 @@
 		if (tempCurrentYear == tempToday.getFullYear()
 				&& Number(tempCurrentMonth) == Number(tempToday.getMonth())
 				&& i == tempToday.getDate()) {
-
+			ajaxSchedule(i)
 			prevNum = i;
 			return;
 		}
-
 		$("#" + i).css("background-color", "blanchedalmond");
 		prevNum = i;
+		ajaxSchedule(i)
+
 	}
+	function ajaxSchedule(i) {
+		let day = '';
+		if(parseInt(i)<10){
+			day= '0'+parseInt(i);
+		}
+		else {
+			day = parseInt(i)+ '';
+		}
+		let date = $(".year-month").text()+'-'+''+day;
+		$.ajax({
+			url:"getDetatilSchedule",
+			data:{date:date},
+			type:"post",
+			success: function(data){
+				$('.box_cal_detail').html('');
+				for(let i=0; i<data.length;i++) {
+					$('.box_cal_detail').html('<div> <div class="cal_detail_div" style="margin-top: 10px;">'
+							+ '<span class="label label-default s_font font_black"' +
+							'style="background-color: rgb(225, 199, 199);">'+getServiceType(data[i].serviceType)+'</span> <br> ' +
+							'<span class="m_font">'+data[i].startDate+'부터<br>'+data[i].endDate+'까지</span> </div> <div class="cal_detail_div"> ' +
+							'<img style="width:40px; height:40px;border-radius:30px; object-fit: cover;"src="'+data[i].petsitterProfile+'" style="width: 60px;"><br> ' +
+							'<span class="mb_font">'+data[i].petsitterNickname+'</span><br></div> </div>'
+					);
+				}
+			}
+		})
+	}
+
 </script>
 
 </head>
@@ -162,6 +231,7 @@
 	<div>
 		<img src="/images/member/calendar.svg" class="svgImg1"> <span
 			class="h_font">나의 스케쥴</span>
+
 	</div>
 	<div class="box_cal">
 		<div class="sec_cal">
@@ -185,15 +255,7 @@
 		</div>
 		<div class="cal_detail">
 			<div class="box_cal_detail">
-				<div class="cal_detail_div" style="margin-top: 10px;">
-					<span class="label label-default s_font font_black"
-						style="background-color: rgb(225, 199, 199);">긴급-방문</span> <br>
-					<span class="m_font">13:00 ~ 15:00</span>
-				</div>
-				<div class="cal_detail_div">
-					<img src="/images/member/profile.svg" style="width: 60px;"><br>
-					<span class="mb_font">루카스</span><br>
-				</div>
+
 			</div>
 		</div>
 	</div>
