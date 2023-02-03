@@ -212,7 +212,7 @@
 			success: function(data){
 				$('.box_cal_detail').html('');
 				for(let i=0; i<data.length;i++) {
-					$('.box_cal_detail').html('<div> <div class="cal_detail_div" style="margin-top: 10px;">'
+					$('.box_cal_detail').append('<div> <div class="cal_detail_div" style="margin-top: 10px;">'
 							+ '<span class="label label-default s_font font_black"' +
 							'style="background-color: rgb(225, 199, 199);">'+getServiceType(data[i].serviceType)+'</span> <br> ' +
 							'<span class="m_font">'+data[i].startDate+'부터<br>'+data[i].endDate+'까지</span> </div> <div class="cal_detail_div"> ' +
