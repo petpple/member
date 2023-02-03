@@ -14,11 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class ImgUpload {
 
-    private final String PetProfilePath = "C:\\Petpple\\member\\src\\main\\resources\\static\\images\\member\\pet";
 
-    public String getPetProfilePath() {
-        return PetProfilePath;
-    }
+
+
 
     // 단일 파일 업로드 저장이름 : id +확장자.
     public String uploadProfileImg(MultipartFile uploadFile, String path, String path2, String name) {
