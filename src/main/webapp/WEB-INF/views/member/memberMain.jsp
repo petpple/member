@@ -69,7 +69,7 @@
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
         
-        var text = '남은시간: '+ hours + '시간 '+minutes + '분 '+ seconds + '초';
+        var text = '남은시간: '+days+'일 '+ hours + '시간 '+minutes + '분 '+ seconds + '초';
         document.getElementById(id).innerHTML = text;
     }
     timer = setInterval(showRemaining, 1000);
