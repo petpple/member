@@ -151,7 +151,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <form class="form">
-                <h3 class="h_font">위탁 서비스</h3>
+                <h3 class="h_font">위탁 서비스 - 위탁 펫시터 찾기</h3>
                 <div class="row box_miInfo">
                     <div class="col-md-6 inline" style="position: relative;">
                         <label for="location" class="form-label h2_font">어디를 기준으로 찾을까요?</label>
@@ -175,8 +175,8 @@
                     <div class="col-md-6 inline">
                         <div class="row">
                             <div>
-                                <label for="location" class="col-auto form-label h2_font" style="margin-left:-15px">날짜는
-                                    언제를 원하시나요?</label>
+                                <label for="location" class="col-auto form-label h2_font" style="margin-left:-15px">
+                                날짜는 언제를 원하시나요?</label>
                             </div>
                             <input type="text" class="col-auto form-control shadow-sm" id="startDate"
                                    style="width:200px;">
@@ -191,10 +191,15 @@
             </div>
 
 
-<%-- 			<c:forEach> 반복시작 --%>
+	<c:forEach var="item" items="${list }"> 
             <div>
                 <div class="sitterList">
                     <div class="sitterImg"> <!-- carousel 시작 -->
+                    	<img src="${item.profileImg }"><br> 
+								<span class="mb_font" style="margin-top: 10px;">${item.name }</span>
+                        <a href="/member/vsitter?allowid=${item.allowId }&grade=${item.grade}" class="sitterAtag"></a>
+                        
+                        
                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -207,17 +212,17 @@
                             <div class="carousel-inner">
                                 <div class="carousel-item  active">
                                     <div class="sitterImg">
-                                        <img src="/images/member/2022102780036_0.jpg" class="" alt="...">
+                                        <img src="${item.profileImg}" class="" alt="...">
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="sitterImg">
-                                        <img src="/images/member/designtwoply-project093-3.jpg" class="" alt="...">
+                                        <img src="${item.profileImg}" class="" alt="...">
                                     </div>
                                 </div>
                                 <div class="carousel-item">
                                     <div class="sitterImg">
-                                        <img src="/images/member/designtwoply0000.png" class="" alt="...">
+                                        <img src="${item.profileImg}" class="" alt="...">
                                     </div>
                                 </div>
                             </div>
@@ -235,44 +240,50 @@
                     </div>  <!--sitter IMg  -->
                     <div>
                         <a href="#" class="sitterAtag">
-
                             <div class="locAndTitleDiv">
-                                <p style="font-size: 14px; letter-spacing: -0.1px; color: rgb(94, 99, 109);">서울 강남구 청담동
-                                </p>
-                                <p style="font-size: 20px; letter-spacing: -0.2px; color: rgb(56, 60, 72); margin-top: 9.5px;">
-                                    한강산책 프리미엄 펫시터🐶
-                                </p>
-                            </div>
+									<p
+										style="font-size: 14px; letter-spacing: -0.1px; color: rgb(94, 99, 109);">${item.addr }</p>
+									<p
+										style="font-size: 20px; letter-spacing: -0.2px; color: rgb(56, 60, 72); margin-top: 9.5px;">${item.title }</p>
+							</div>
                             <div class="underDiv">
                                 <div class="underTitle">
-                                    <p style="color: rgb(56, 60, 72); font-size: 13px; letter-spacing: -0.3px; max-width: 400px;">
-                                        빌라 · 21~30평 · 흡연 인원 없음 · 2인 이하 가구 · 반려동물 있어요
-                                    </p>
+                                    <p
+										style="color: rgb(56, 60, 72); font-size: 13px; letter-spacing: -0.3px; max-width: 400px;">
+										· ${item.smokeId == 1 ? "흡연자입니다" : "비흡연자입니다" } · 반려동물 있어요</p>
                                     <div style="display: flex; align-items: center; flex-direction: row; margin-bottom: 30px;">
                                         <div style="width:140px; display: flex; flex-direction: row; justify-content: space-between; over">
                                             <div class="starImg"
-                                                 style="display: flex; flex: 1 1 0%; justify-content: space-between;">
-                                                <img src="/images/member/pngwing.com.png">
-                                                <img src="/images/member/pngwing.com.png">
-                                                <img src="/images/member/pngwing.com.png">
-                                                <img src="/images/member/pngwing.com.png">
-                                                <img src="/images/member/pngwing.com.png">
-                                            </div>
-
-
+												style="display: flex; flex: 1 1 0%; justify-content: space-between;">
+												<c:forEach var="n" begin="1" end="${item.stars}" step="1">
+													<img src="/images/member/pngwing.com.png"> 
+												</c:forEach>
+											</div>
                                         </div>
-                                        <div style="displplay:flex; margin-left:30px;;">
-                                            <span class="mb_font">후기 (5)</span>
-                                        </div>
+                                        <div style="displplay: flex; margin-left: 10px;">
+											<span class="mb_font">후기 (${item.reviewCnt }) 건</span>
+										</div>
                                     </div>
                                 </div>
-                                <div style="text-align: center; margin-top:30px;">
-                                    <p style="font-size:13px; font-weight:bold;">등급 </p>
-                                    <div class="gradeImg">
-                                        <img src="/images/member/gold.svg">
-                                        <!--등급 image  -->
-                                    </div>
-                                </div>
+                                <div style="text-align: center; margin-top: 0px;">
+									<p style="font-size: 13px; font-weight: bold;margin-bottom:-5px;">등급</p>
+									<div class="gradeImg">
+										<c:if test="${item.grade eq '1' }">
+											<img src="/images/member/sprout.svg">
+										</c:if>
+										<c:if test="${item.grade eq '2' }">
+											<img src="/images/member/bronze.svg">
+										</c:if>
+										<c:if test="${item.grade eq '3' }">
+											<img src="/images/member/silver.svg">
+										</c:if>
+										<c:if test="${item.grade eq '4' }">
+											<img src="/images/member/gold.svg">
+										</c:if>
+										
+										<!--등급 image  -->
+									</div>
+								</div>
 
                             </div>
                         </a>
@@ -280,15 +291,15 @@
                 </div>
 			<br>
             </div>
-<%-- 			</c:forEach>  반복끝 --%>
-
-            <div>
-                <button class="btn btn-light" style="width:100%">더보기</button>
-            </div>
+			</c:forEach>
+			<!-- end forEach -->
+			
+            <div style="margin-top: 20px;">
+					<button class="btn btn-light" style="width: 100%" id="showMore">더보기</button>
+			</div>
         </div>
 
     </div>
-</div>
 </div>
 <!-- 404 End -->
 
