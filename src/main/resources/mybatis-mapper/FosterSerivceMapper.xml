@@ -12,8 +12,8 @@
 	<select id="getFSitterProfile" parameterType="String" resultType="Sitter">
 		SELECT B.ALLOWID AS allowId, B.NICKNAME AS name , B.ADDR AS addr , B.TITLE AS title, B.SMOKEID AS smokeId, B.TIME AS time, 
 		B.count AS count , B.REIVEWCNT AS reviewCnt, ROUND((NVL(V.STARS,0)+NVL(F.STARS,0))/DECODE(B.REIVEWCNT,0,1,B.REIVEWCNT)) AS STARS,B.CONTENT AS content
-		,B.lat AS lat ,B.lng AS lng, B.petSize AS petSizeId,B.PROFILE AS profileImg
-		FROM BUILDUPFORSTAR B
+		,B.lat AS lat ,B.lng AS lng, B.petSize AS petSizeId, B.PROFILE AS profileImg B.fImg1 AS fImg1, B.fImg2 AS fImg2, B.fImg3 AS fImg3
+		FROM BUILDUPFORSTARSITTER B
 		LEFT OUTER JOIN V_REVIEW_CNT V
 		ON B.TMP_MEMBER_ID = V.TMP_MEMBER_ID
 		LEFT OUTER JOIN F_REVIEW_CNT F
