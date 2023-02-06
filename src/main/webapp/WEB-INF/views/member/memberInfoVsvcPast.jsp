@@ -51,7 +51,7 @@
         <div class="container">
             <div class="row justify-content-center">
             	<div class="col-lg-2 wow fadeInUp" data-wow-delay="0.2s" id="info">
-            		<c:import url="http://localhost:8092/member/memberSide"></c:import>
+            		<c:import url="/member/memberSide"></c:import>
             	</div>
             		
             	<div class="col-lg-7" id="">
@@ -60,67 +60,62 @@
             			<div class="box_white">
             				<table class="table tab_Info m_font">
             					<tr>
-            						<th>요청번호</th>
             						<th>펫시터</th>
             						<th>내용</th>
             						<th>서비스 상태</th> <!--취소,의뢰자노쇼,펫시터 노쇼,확정,확정 대기   -->
             						<th>상세보기</th>
             					</tr>
+								<c:forEach var="member" items="${list}">
             					<tr>
-            						<td>233322</td>
             						<td>
             							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
+													<img src="${member.petsitterProfile}">
 										</div>
-										<span class="mb_font">루카스</span>
+										<span class="mb_font">${member.petsitterNickname}</span>
             						</td>
             						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
+            							<span class="m_font">주소 : </span><span class="m_font">${member.addr}</span><br>
+            							<span class="m_font">금액 : </span><span class="m_font">${member.totalPrice}원</span><br>
+            							<span class="m_font">시작일시 : </span><span class="m_font">${member.startDate}</span><br>
+            							<span class="m_font">종료일시 : </span><span class="m_font">${member.endDate}</span><br>
             						</td>
-            						<td><span class="m_font">취소</span></td>
-            						<td><a href=""><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
-            						</td>
+            						<td><span class="m_font">
+										<c:if test="${member.pastType == '1'}">펫시터 거절</c:if>
+										<c:if test="${member.pastType == '2'}">서비스 취소</c:if>
+										<c:if test="${member.pastType == '3'}">후기 미작성</c:if>
+										<c:if test="${member.pastType == '4'}">의뢰인 노쇼</c:if>
+										<c:if test="${member.pastType == '5'}">펫시터 노쇼</c:if>
+										<c:if test="${member.pastType == '6'}">서비스 확정</c:if>
+									</span></td>
+									<%--취소,펫시터노쇼, 위탁펫시터노쇼, 확정--%>
+            						<td></div><a href=""><button class="btn btn-sm btn-info" style="margin-bottom:10px;">상세 보기</button></a><br>
+										<c:if test="${member.pastType == '3'}">
+											<a href=""><button class="btn btn-sm btn-outline-primary" style="margin-bottom:10px;">후기 작성</button></a>
+										</c:if>
+									</td>
             					</tr>
-            					
-            					<tr>
-            						<td>233323</td>
-            						<td>
-            							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
-										</div>
-										<span class="mb_font">다나카 펫시터</span>
-            						</td>
-            						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2023년 2월10일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 2월 11일 14:00</span><br>
-            						</td>
-            						<td><span class="m_font">확정</span></td>
-            						<td><a href=""><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
-            						</td>
-            					</tr>
+								</c:forEach>
             				</table>
             				<div style="text-align:center">
 	            				<nav aria-label="Page navigation example"style=" display: inline-block;">
-								  <ul class="pagination " >
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Previous</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">1</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">2</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">3</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Next</a></li>
-								  </ul>
+									<c:if test="${count>5 }">
+										<ul class="pagination ">
+										<c:if test="${page>1}">
+											<li class="page-item"><a class="page-link" href="memberInfoVsvcPast?page=${page-1}" style="color:gray">Previous</a></li>
+										</c:if>
+
+										<c:if test="${count>page*5 }">
+											<li class="page-item"><a class="page-link" href="memberInfoVsvcPast?page=${page+1}" style="color:gray">Next</a></li>
+										</c:if>
+										</ul>
+									</c:if>
 								</nav>
 							</div>
             			</div>
             		</div>
             	</div>
-            	
             	<div class="col-lg-3 wow fadeInUp" data-wow-delay="0.2s" id="">
-            		<c:import url="http://localhost:8092/member/memberCal"></c:import>
+            		<c:import url="/member/memberCal"></c:import>
             	</div>
             </div>
         </div>

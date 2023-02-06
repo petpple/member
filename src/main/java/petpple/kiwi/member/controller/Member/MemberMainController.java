@@ -157,29 +157,19 @@ public class MemberMainController {
         return detailedList;
     }
 
-
-    @RequestMapping(value = "/member/memberSide", method = RequestMethod.GET)
-    public String memberSide(Model model, HttpServletRequest request) {
-        // IMemberMapper 수정 필요
+    @RequestMapping(value = "/member/serviceConfirm")
+    public String serviceConfirm(@RequestParam("serviceType") String serviceType, @RequestParam("resId") String resId) {
         MemberMapper dao = sqlSession.getMapper(MemberMapper.class);
+        if(serviceType.equals("1")){
+            dao.insertVConfirm(resId);
+        } else if (serviceType.equals("2")) {
+            dao.insertFConfirm(resId);
+        } else if (serviceType.equals("3")) {
+            dao.insertUVConfirm(resId);
+        } else if (serviceType.equals("4")) {
+            dao.insertUFConfirm(resId);
+        }
 
-//		model.addAttribute("count", dao.getCount());
-
-        HttpSession session = request.getSession();
-
-        String temId = (String) session.getAttribute("temId");
-
-
-        model.addAttribute("result1", dao.waitingAcceptance(temId));
-
-        model.addAttribute("result2", dao.sumPetsitting());
-
-        model.addAttribute("result3", dao.waitingFacceptance());
-
-        model.addAttribute("result4", dao.sumFpetsitting());
-
-
-        return "member/memberSide";
+        return "redirect:/member/memberMain";
     }
-
 }

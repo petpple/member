@@ -30,12 +30,12 @@ public interface MemberMapper {
 	public int waitingAcceptance(String temId);
 
     // 방문서비스 누적 펫시팅 횟수(펫시팅 정보)
-	public int sumPetsitting();
+	public int sumPetsitting(String temId);
 
     // 위탁 서비스
-	public int waitingFacceptance();
+	public int waitingFacceptance(String temId);
 
-	public int sumFpetsitting();
+	public int sumFpetsitting(String temId);
 
     // 모든 진행 중인 펫시팅
     public ArrayList<Member> currentPetsitting(String temId);
@@ -53,8 +53,12 @@ public interface MemberMapper {
     
     // 수락 대기 중인 리스트
     public ArrayList<Member> waitingAcceptanceList(String temId);
-    
-    
+
+    public int insertVConfirm(String resId);
+    public int insertFConfirm(String resId);
+    public int insertUVConfirm(String resId);
+    public int insertUFConfirm(String resId);
+
 
 
 }
