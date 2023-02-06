@@ -31,13 +31,13 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
-    
+
 	<link rel="stylesheet" href="/css/member/memberMain.css">
-	
+
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
+
 	 <!-- JavaScript Libraries -->
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/library/wow/wow.min.js"></script>
     <script src="/library/easing/easing.min.js"></script>
@@ -46,8 +46,8 @@
 
     <!-- Template Javascript -->
     <script src="/javascript/main.js"></script>
-    
-	
+
+
 <script type="text/javascript">
 	function CountDownTimer(dt, id) {
     var end = new Date(dt);
@@ -68,7 +68,7 @@
         var hours = Math.floor((distance % _day) / _hour);
         var minutes = Math.floor((distance % _hour) / _minute);
         var seconds = Math.floor((distance % _minute) / _second);
-        
+
         var text = '남은시간: '+days+'일 '+ hours + '시간 '+minutes + '분 '+ seconds + '초';
         document.getElementById(id).innerHTML = text;
     }
@@ -85,7 +85,7 @@
 		return endmonth+'/'+endday+'/'+endyear+' '+endtime+':00:00';
 	}
 </script>
-    
+
 </head>
 
 <body>
@@ -105,11 +105,11 @@
     <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
             <div class="row justify-content-center">
-       
+
 				<div class="row">
 				<div class="row justify-content-center">
             		<div class="col-lg-2 wow fadeInUp " data-wow-delay="0.2s">
-						<c:import url="http://localhost:8092/member/memberSide"></c:import>
+						<c:import url="/member/memberSide"></c:import>
 					</div>
 				<!-- 진행 중인 펫시팅 -->
 				<div class="col-lg-7">
@@ -187,9 +187,9 @@
 								<tr aria-rowspan="2">
 									<td colspan="2">
 										<div>
-											<button type="button" class="btn btn-danger"
+											<button type="button" class="btn btn-sm btn-danger"
 											onclick="location.href='/member/serviceNoshow?serviceType=${member.serviceType}&serviceNo=${member.serviceId}'">펫시터 노쇼</button>
-											<button type="button" class="btn"
+											<button type="button" class="btn btn-sm"
 													style="background-color: #FE5C17; color: white;">일지 보기</button>
 
 										</div>
@@ -201,13 +201,13 @@
 								</c:if>
 						</div>
 
-					
+
 					<br>
-					
-					
-					
+
+
+
 					<!-- 서비스 이용 확정 대기 -->
-					
+
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
 							class="font h_font">서비스 이용 확정 대기</span>
@@ -261,9 +261,10 @@
 										</td>
 										<td>
 											<div class="btn">
-												<a href="#" class="btn btn-primary" role="button">확정하기</a>
-												<button type="button" class="btn btn-success"
-												onclick="location.href = '/member/memberReviewForm/'">후기쓰기</button>
+												<a href="/member/serviceConfirm?serviceType=${member.serviceType}&resId=${member.resId}" class="btn btn-sm btn-primary" role="button">확정하기</a>
+												<br><br>
+												<button type="button" class="btn btn-sm btn-success"
+														onclick="location.href = '/member/memberReviewForm?serviceType=${member.serviceType}&resId=${member.resId}'">후기쓰기</button>
 											</div>
 										</td>
 									</tr>
@@ -271,21 +272,21 @@
 										</c:if>
 
 							</table>
-	
-							
+
+
 						</div>
 					</div>
-					
-					
-					
-					
+
+
+
+
 					<!-- 진행 예정인 펫시팅 -->
 					<div class="IMG1">
 						<img src="/images/member/sitting_on.svg" class="svgImg1"> <span
 							class="font h_font">진행 예정인 펫시팅</span>
 					</div>
 					<div class="box_mi">
-	
+
 						<div class="serv_on">
 
 							<c:if test="${empty petsittingSchedule}">
@@ -333,15 +334,15 @@
 											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
-									<td><button type="button" class="btn btn-danger" onclick="location.href='/member/serviceCancel?serviceType=1&serviceNo=${member.serviceId}'">취소하기</button></td>
+									<td><button type="button" class="btn btn-sm btn-danger" onclick="location.href='/member/serviceCancel?serviceType=1&serviceNo=${member.serviceId}'">취소하기</button></td>
 								</tr>
 								</c:forEach>
-								
+
 							</table>
 							</c:if>
 						</div>
-	
-	
+
+
 					</div>
 				</div>
 				<div class="col-lg-3">
@@ -350,12 +351,12 @@
 					</div>
 				</div>
 			</div>
-				
+
             </div><!-- row justify-content-center -->
         </div><!-- .container -->
     </div><!-- .container-xxl py-5 wow fadeInUp -->
 	</div>
-	
+
 	<div>
 		<c:import url="footer.jsp"></c:import>
 	</div>
