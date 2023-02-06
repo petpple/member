@@ -43,43 +43,31 @@
     <!-- 방문 서비스 수락 대기 횟수 -->
     
     <select id="waitingAcceptance" resultType="java.lang.Integer">
-       SELECT COUNT(*) AS COUNT
-      FROM MEMBER M JOIN TMP_MEM TM
-      ON M.TMP_MEMBER_ID = TM.T_MEM_ID
-      JOIN PET_SHARE PS
-      ON TM.T_MEM_ID = PS.TMP_MEMBER_ID
-      JOIN V_PET_CHO VPC
-      ON VPC.P_SHA_ID = PS.P_SHA_ID
-      JOIN V V
-      ON VPC.V_ID = V.V_ID
-      JOIN PAY P
-      ON P.P_ID = V.PAYMENT_ID
-      LEFT OUTER JOIN V_REF_REF VRR
-      ON VRR.V_ID = V.V_ID
-      LEFT OUTER JOIN V_RESERV VR
-      ON V.V_ID = VR.V_ID  
-      WHERE TM.T_MEM_ID='${temId }' 
-      AND VRR.V_REF_REF_DATE IS NULL 
-      AND VR.V_RES_DATE IS NULL
-      AND V_START_DATE <![CDATA[<]]>= SYSDATE
+        SELECT COUNT(*) AS COUNT
+        FROM VIEW_VSVC_WAITING
+        where  temId= #{temId}
     </select>
    
     <!-- 방문 서비스 누적 펫시팅 현황 -->
-    <select id="sumPetsitting" resultType="java.lang.Integer">
+    <select id="sumPetsitting" parameterType="String" resultType="java.lang.Integer">
        SELECT COUNT(*) AS COUNT
-      FROM VIEW_SUM_PETSITTING
+      FROM VIEW_VSVC_PAST
+      where  temId= #{temId}
     </select>
     
     
     <!-- 위탁 서비스 펫시팅 현황  -->
     <select id="waitingFacceptance" resultType="java.lang.Integer">
        SELECT COUNT(*) AS COUNT
-      FROM VIEW_WAITING_FACCEPTANCE
+      FROM VIEW_FSVC_WAITING
+       where  temId= #{temId}
     </select>
     
     <select id="sumFpetsitting" resultType="java.lang.Integer">
        SELECT COUNT(*) AS COUNT
-      FROM VIEW_SUM_FPETSITTING
+      FROM VIEW_FSVC_PAST
+       where  temId= #{temId}
+
     </select>
     
     <!-- 현재 진행 중 펫시팅 -->
@@ -197,6 +185,29 @@ WHERE TM.T_MEM_ID= #{temId}
 AND VRR.V_REF_REF_DATE IS NULL 
 AND VR.V_RES_DATE IS NULL
     </select>
-    
- 
+
+    <insert id="insertVConfirm" parameterType="String">
+        INSERT INTO V_CONFIRM
+        (V_CON_ID, V_CON_DATE, V_RES_ID, CT_ID)
+        VALUES(SEQ_V_CON_ID.nextval, SYSDATE,#{resId},'1')
+
+    </insert>
+
+    <insert id="insertFConfirm" parameterType="String">
+        INSERT INTO F_CONFIRM
+            (F_CON_ID, F_CON_DATE, F_RES_ID, CT_ID)
+        VALUES(SEQ_F_CON_ID.nextval, SYSDATE,#{resId},'1')
+    </insert>
+
+    <insert id="insertUVConfirm" parameterType="String">
+        INSERT INTO U_V_CONFIRM
+            (U_V_CON_ID,U_V_CON_DATE,U_V_RES_ID, CT_ID)
+        VALUES(SEQ_U_V_CONFIRM_ID.nextval,SYSDATE,#{resId},'1')
+    </insert>
+
+    <insert id="insertUFConfirm" parameterType="String">
+        INSERT INTO U_F_CONFIRM
+            (U_F_CON_ID, U_F_CON_DATE, U_F_RES_ID, CT_ID)
+        VALUES(SEQ_U_F_CON_ID.nextval, SYSDATE,#{resId},'1')
+    </insert>
 </mapper>
