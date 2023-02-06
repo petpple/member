@@ -64,13 +64,6 @@ public class MemberController {
 	{
 		return "member/memberUsvcForm";
 	}
-	// 의뢰인 시터 후기 등록 폼
-	@RequestMapping(value = "/member/memberReviewForm")
-	public String memberReviewForm()
-	{
-		return "member/memberReviewForm";
-	}
-
 
 	// ----------- 의뢰인 마이페이지 ------------------
 	//  - 의뢰인 내 정보 변경
