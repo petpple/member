@@ -51,7 +51,7 @@
         <div class="container">
             <div class="row justify-content-center">
             	<div class="col-lg-2 wow fadeInUp" data-wow-delay="0.2s" id="info">
-            		<c:import url="http://localhost:8092/member/memberSide"></c:import>
+            		<c:import url="/member/memberSide"></c:import>
             	</div>
             		
             	<div class="col-lg-7" id="">
@@ -63,12 +63,11 @@
             						<th>지원일시</th>
             						<th>펫시터</th>
             						<th>내용</th>
-            						<th>서비스 구분</th>
-            						<th>상세보기 / 취소</th>
+            						<th>상세보기</th>
             					</tr>
-            					<c:forEach var="member" items="${waitingAcceptanceList }">
+            					<c:forEach var="member" items="${list }">
            						<tr>
-            						<td>${member.endDate } </td>
+            						<td>${member.reqDate } </td>
             						<td>
             							<div class="petImg">
 													<img src="${member.petsitterProfile }">
@@ -81,74 +80,18 @@
             							<span class="m_font">시작일시 : </span><span class="m_font">${member.startDate }</span><br>
             							<span class="m_font">종료일시 : </span><span class="m_font">${member.endDate }</span><br>
             						</td>
-            						<td><span class="m_font">방문</span></td>
             						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
-            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
             						</td>
             					</tr>
             					</c:forEach>
-            					
-            					
-            					<!-- 
-            					<tr>
-            						<td>2022년 12월 1일<br> 12:30 </td>
-            						<td>
-            							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
-										</div>
-										<span class="mb_font">루카스</span>
-            						</td>
-            						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
-            						</td>
-            						<td><span class="m_font">방문</span></td>
-            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
-            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
-            						</td>
-            					</tr>
-            					
-            					<tr>
-            						<td>2022년 12월 1일<br> 12:30 </td>
-            						<td>
-            							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
-										</div>
-										<span class="mb_font">낫루카스</span>
-            						</td>
-            						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2022년 12월30일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 1일 14:00</span><br>
-            						</td>
-            						<td><span class="m_font">방문</span></td>
-            						<td><a href=""><button class="btn btn-sm btn-light" style="margin-bottom:10px;color:white">상세</button></a><br>
-            							<a href=""><button class="btn btn-sm btn-danger">취소</button></a>
-            						</td>
-            					</tr>
-            					 -->
             				</table>
-            				<div style="text-align:center">
-	            				<nav aria-label="Page navigation example"style=" display: inline-block;">
-								  <ul class="pagination " >
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Previous</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">1</a></li>
-<!-- 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">2</a></li> -->
-<!-- 								    <li class="page-item"><a class="page-link" href="#" style="color:gray">3</a></li> -->
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Next</a></li>
-								  </ul>
-								</nav>
-							</div>
             			</div>
             		
             		</div>
             	</div>
             	
             	<div class="col-lg-3 wow fadeInUp" data-wow-delay="0.2s" id="">
-            		<c:import url="http://localhost:8092/member/memberCal"></c:import>
+            		<c:import url="/member/memberCal"></c:import>
             	</div>
             </div>
         </div>
