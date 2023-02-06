@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="petpple.kiwi.member.repository.review.IReview">
+
+
+	<!-- 해당 방문서비스 펫시터 정보 출력 -->
+	<select id="vservicePetsitterInfo" resultType="Member">
+		SELECT RESID as resId, PETSITTERNICKNAME AS petsitterNickname, PETSITTERPROFILE AS petsitterProfile
+		FROM VIEW_V_REVIEW_PETSITTER_INFO
+		WHERE RESId=#{resId}
+	</select>
+	
+	<!-- 해당 위탁서비스 펫시터 정보 출력 -->
+	<select id="fservicePetsitterInfo" resultType="Member">
+		SELECT RESID as resId, PETSITTERNICKNAME AS petsitterNickname, PETSITTERPROFILE AS petsitterProfile
+		FROM VIEW_F_REVIEW_PETSITTER_INFO
+		WHERE RESId=#{resId}
+	</select>
+	<!-- 
+	<select id="uvServiceInfo" resultType="Member">
+	</select>
+	 -->
+	<!-- 
+	<select id="ufServiceInfo" resultType="Member">
+	</select>
+	 -->
+	<!-- 방문서비스 후기 작성 -->
+	<insert id="vReviewInsert">
+	INSERT INTO V_CONFIRM(V_CON_ID, V_CON_DATE, V_CON_REV_TITLE, V_CON_REV_CONTENT, V_CON_REV_DATE, V_REV_IMG1, V_REV_IMG2, V_REV_IMG3, V_RES_ID, CT_ID, STAR_RAT_ID)
+	VALUES(SEQ_V_CON_ID.NEXTVAL,SYSDATE,NULL,#{reviewContents},SYSDATE,#{revImg1},#{revImg2},#{revImg3},#{resId},'1',#{reviewStar})
+	</insert>
+	
+	<!-- 위탁서비스 후기 작성 -->
+	<insert id="fReviewInsert">
+	INSERT INTO F_CONFIRM(F_CON_ID,F_CON_DATE,F_CON_REV_TITLE,F_CON_REV_CONTENT,F_CON_REV_DATE,F_REV_IMG1,F_REV_IMG2,F_REV_IMG3,F_RES_ID,STAR_RAT_ID,CT_ID)
+	VALUES(SEQ_F_CON_ID.NEXTVAL,DEFAULT,NULL,#{reviewContent},DEFAULT,#{revImg1},#{revImg2},#{revImg3},#{resId},#{reviewStar},'1')
+	</insert>
+</mapper>
