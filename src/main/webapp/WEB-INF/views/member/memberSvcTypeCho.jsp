@@ -41,55 +41,53 @@
 	border-radius: 4px;
 	padding: 5px;
 	margin-bottom: 20px;
-}
+	}
+	
 	.btn {
 	background-color: #FE5C17;
 	color: white;
 	text-align: center;
-}
+	}
 
 	.btn-reset {
 	background-color: #cccccc;
 	color: white;
 	text-align: center;
-}
-.sss_font{
-	font-size:13px;
-	color: #FF8C5B;
-}
-.visitDiv{
-	margin: 20px;
-/* 	position: absolute; */
-width: 280px;
-height: 280px;
-left: 700px;
-top: 249px;
-
-background: #F4F4F4;
-border: 1px solid #D2D1D1;
-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-margin: 50px;
-
-}
-
-.fosDiv{
-/* 	position: absolute; */
-width: 280px;
-height: 280px;
-left: 1200px;
-top: 249px;
-
-background: #F4F4F4;
-border: 1px solid #D2D1D1;
-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-margin: 370px; 
-
-
-}
-
-
+	}
+	
+	.sss_font {
+		font-size:13px;
+		color: #FF8C5B;
+	}
+	
+	.visitDiv {
+		margin: 20px;
+	/* 	position: absolute; */
+		width: 280px;
+		height: 280px;
+		left: 700px;
+		top: 249px;
+		
+		background: #F4F4F4;
+		border: 1px solid #D2D1D1;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		margin: 50px;
+	}
+	
+	.fosDiv {
+	/* 	position: absolute; */
+		width: 280px;
+		height: 280px;
+		left: 1200px;
+		top: 249px;
+		
+		background: #F4F4F4;
+		border: 1px solid #D2D1D1;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		margin: 370px; 
+	}
 </style>
 	
 	
@@ -118,7 +116,8 @@ margin: 370px;
         document.getElementById(id).innerHTML = text;
     }
     timer = setInterval(showRemaining, 1000);
-}
+	}
+	
 	$(function(){
 		CountDownTimer('01/04/2023 16:25:00', 'remainTime');
 	});
@@ -157,15 +156,19 @@ margin: 370px;
 				</div>
 				
 					<div class="box_mi_t row">
-					
+						<div>
+							- Care Type : <span>데이</span> 케어<br>
+							<br>
+						</div>
+						
 						<div class="col-sm-6">
-							<a href="memberUsvcForm" class="visit">
+							<a href="memberUsvcPetCho" class="visit">
 								<img src="/images/member/visit.svg" class="visit" id="visit"> <br>
 							 </a>
 						</div>
 
 						<div class="col-sm-6">
-							 <a href="memberUsvcForm" class="fos">
+							 <a href="memberUsvcPetCho" class="fos">
 								<img src="/images/member/fos.svg" class="fos" id="fos"> <br>
 							 </a>
 						</div>
@@ -187,6 +190,9 @@ margin: 370px;
 					</p>
 					</div>
 					
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary" onclick="history.back();">뒤로 가기</button>
+					</div>
 					
 				</div>
 				<div class="col-lg-3">
