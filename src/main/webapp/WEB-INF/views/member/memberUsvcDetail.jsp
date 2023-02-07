@@ -50,65 +50,66 @@
     
 
 <script type="text/javascript">
-$(document).ready(function () {
-    $.datepicker.monthpicker = {
-    	minDate: 0,
-    	maxDate: 90,
-        closeText: '닫기',
-        nextText : '다음 달',
-        prevText : '이전 달',
-        currentText : "오늘",
-        changeMonth : true,
-        changeYear : true,
-        monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-        dayNames : [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
-        dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'],
-        weekHeader : "주",
-        firstDay : 0,
-        isRTL : false,
-        showMonthAfterYear : true,
-        yearSuffix : "년",
-        showOn: 'both',
-        // buttonText: "달력",
-        showButtonPanel: false,
-        dateFormat: 'yy-mm-dd',          
-        yearRange: "-10:+0",
-};
-      
-$.datepicker.setDefaults($.datepicker.monthpicker);
+	$(document).ready(function () {
+	    $.datepicker.monthpicker = {
+	    	minDate: 0,
+	    	maxDate: 90,
+	        closeText: '닫기',
+	        nextText : '다음 달',
+	        prevText : '이전 달',
+	        currentText : "오늘",
+	        changeMonth : true,
+	        changeYear : true,
+	        monthNames : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	        monthNamesShort : ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	        dayNames : [ "일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일" ],
+	        dayNamesShort : ['일', '월', '화', '수', '목', '금', '토'],
+	        dayNamesMin : ['일', '월', '화', '수', '목', '금', '토'],
+	        weekHeader : "주",
+	        firstDay : 0,
+	        isRTL : false,
+	        showMonthAfterYear : true,
+	        yearSuffix : "년",
+	        showOn: 'both',
+	        // buttonText: "달력",
+	        showButtonPanel: false,
+	        dateFormat: 'yy-mm-dd',          
+	        yearRange: "-10:+0",
+	};
+	      
+	$.datepicker.setDefaults($.datepicker.monthpicker);
+	
+	      var datepicker_default = {
+	          showOn: 'both',
+	          buttonText: "달력",
+	          currentText: "이번달",
+	          changeMonth: true,
+	          changeYear: true,
+	          showButtonPanel: true,
+	          yearRange: 'c-99:c+99',
+	          showOtherMonths: true,
+	          selectOtherMonths: true
+	      }
+	      datepicker_default.closeText = "선택";
+	      datepicker_default.dateFormat = "yy-mm-dd";
+	      datepicker_default.onClose = function (dateText, inst) {
+	          var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+	          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+	          var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
+	          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+	          $(this).datepicker('setDate', new Date(year, month, 1));
+	      }
+	      datepicker_default.beforeShow = function () {
+	          var selectDate = $("#sdate").val().split("-");
+	          var year = Number(selectDate[0]);
+	          var month = Number(selectDate[1]) - 1;
+	          var day = Number(selectDate[0]);
+	          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+	      }
+	      $(".month_picker").datepicker(datepicker_default);
+	});
 
-      var datepicker_default = {
-          showOn: 'both',
-          buttonText: "달력",
-          currentText: "이번달",
-          changeMonth: true,
-          changeYear: true,
-          showButtonPanel: true,
-          yearRange: 'c-99:c+99',
-          showOtherMonths: true,
-          selectOtherMonths: true
-      }
-      datepicker_default.closeText = "선택";
-      datepicker_default.dateFormat = "yy-mm-dd";
-      datepicker_default.onClose = function (dateText, inst) {
-          var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-          var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-          $(this).datepicker('setDate', new Date(year, month, 1));
-      }
-      datepicker_default.beforeShow = function () {
-          var selectDate = $("#sdate").val().split("-");
-          var year = Number(selectDate[0]);
-          var month = Number(selectDate[1]) - 1;
-          var day = Number(selectDate[0]);
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-      }
-      $(".month_picker").datepicker(datepicker_default);
-});
-
+	function check()
 
 </script> 
     
@@ -185,28 +186,23 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 									
 								</tr>
 							
-								
-							
-							
 								<tr>
 									<td class="l_font " style="text-align: center;">긴급 요청 서비스 일정</td>
 								</tr>
+								
 								<tr>
 									<td class="l_font">
 										
 										<span class="mb_font">시작일자: </span><span class="m_font" id="uSvcStart">2023-01-18 10:00</span><br>
 										<br> 
 										<span class="mb_font">종료일자: </span><span class="m_font" id="uSvcEnd">2023-01-18 21:00</span><br>
-										 
-									
 									</td>
-									
 								</tr>
-								
 								
 								<tr>
 									<td class="l_font " style="text-align: center;">제목</td>
 								</tr>
+								
 								<tr>
 									<td class="l_font"><p id="content">우리댕댕이 급하게 봐 주실분 구합니다!</p></p></td>
 									
@@ -215,11 +211,11 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 								<tr>
 									<td class="l_font" style="text-align: center;">요청사항</td>
 								</tr>
+								
 								<tr>
 									<td class="l_font"><p id="detail">콩이가 지금 체중 조절 중이라 12시 17시 이렇게 나눠서 밥 주시면 감사하겠습니다.  그릇의 3분의 1만큼만 채워주시면 됩니다.
 	장난감은 깃털 달린 걸 가장 좋아하니깐 한번에 20분 정도 놀아 주시면 감사해요 하루에 3번정도 놀아 주시면 될것 같아요~
 	깡이는 산책 한시간 정도 해주시면 됩니다</p></td>
-									
 								</tr>
 							
 								<tr>
@@ -230,7 +226,6 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 									<td class="l_font"><p id="total"> 30,000 <span> 원</span></p></td>
 								</tr>
 							</table>
-		
 								
 							</div>
 						</div>
@@ -239,15 +234,10 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 						<div class="text-center">
 								<button type="submit" class="btn btn-success" onclick="history.back();">확인</button>
 						</div>
-								
 					</div>
 				</div>
 				<br>
             	
-            	
-	
-						
-			
 				</div><!-- col-lg-7 -->
             </div><!-- row justify-content-center -->
         </div><!-- .container -->

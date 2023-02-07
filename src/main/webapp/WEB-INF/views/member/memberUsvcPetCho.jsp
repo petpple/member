@@ -154,17 +154,43 @@ margin: 370px;
 				<div class="col-md-7">
 				<div class="IMG1">
 					<img src="/images/member/sitting_on.svg" class="svgImg1"> 
-					<span class="font h_font">긴급 요청 서비스</span>
+					<span class="font h_font">긴급 요청 서비스 - 펫 선택</span>
 				</div>
 				
-					<div class="box_mi_t">
+				<div class="box_mi_t">
+					<div>
+						- 케어 유형 : 데이 케어<br>
+						- 서비스 유형 : 방문 서비스<br>
 						<br>
-						<span class="">현재 등록된 펫이 없습니다.</span><br>
-						<a href="memberMyPetInsert">펫 등록하러가기</a><br>
-						<br>
-					
 					</div>
-				
+					
+					<div class="row">
+						<c:if test="${empty list}">
+							<span class="h1_font">현재 등록된 펫이 없습니다.</span><br>
+							<a href="memberMyPetInsert">펫 등록하러가기</a><br>
+						</c:if>
+						<c:if test="${not empty  list }">
+				        	<c:forEach var="pet" items="${list}">
+					       
+					        <div class="col-lg-4">
+					        	<div class="card" style="margin-bottom: 20px; text-align: center; cursor: pointer;" onclick="location.href='memberUsvcForm?id=${pet.id }';">
+					            	<img src="${pet.profile }" id="petsvg1" class="card-img-top"  style="margin-top:15px; margin-left:auto;margin-right:auto; height:130px; width:130px; object-fit:cover; border-radius: 50px;"  >
+					            
+						            <div class="card-body">
+						              	<h5 class="card-title" style="text-align: center;">${pet.name}</h5>
+					              		<ul class="list-group list-group-flush">
+											<li class="list-group-item" style="text-align: center;">${pet.weight} / ${pet.gender} / ${pet.birthday}살</li>
+										</ul>
+				            		</div><!-- <div class="card-body"> -->
+					          	</div>
+					       	</div><!-- <div class="col-lg-4"> -->
+							
+							</c:forEach>
+						</c:if>
+					</div><!-- <div class="row"> -->
+				</div>
+
+					<br>				
 					<div class="IMG1">
 					<img src="/images/member/q.svg" class="svgImg1"> 
 					<span class="font h_font">긴급 요청 서비스 란? </span>
@@ -180,6 +206,9 @@ margin: 370px;
 					</p>
 					</div>
 					
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary" onclick="history.back();">뒤로 가기</button>
+					</div>
 					
 				</div>
 				<div class="col-lg-3">
