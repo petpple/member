@@ -80,16 +80,11 @@ public class MemberController {
 		return "member/memberMyInfo";
 	}
 
-
-
 	@RequestMapping(value = "/member/memberMyBlock")
 	public String memberMyBlock()
 	{
 		return "member/memberMyBlock";
 	}
-
-
-
 
 	//-------------- 의뢰인 긴급서비스 등록 디테일------------------
 	@RequestMapping(value = "member/memberUsvcDetail")
@@ -97,29 +92,6 @@ public class MemberController {
 	{
 		return "member/memberUsvcDetail";
 	}
-
-
-	// 의뢰인 긴급서비스/ 방문, 위탁 서비스 타입 선택 페이지
-	@RequestMapping(value = "/member/memberSvcTypeCho")
-	public String memberSvcTypeCho()
-	{
-		return "member/memberSvcTypeCho";
-	}
-	// 의뢰인 긴급서비스/ 데이, 타임 케어 타입 선택 페이지
-	@RequestMapping(value = "/member/memberCareTypeCho")
-	public String membeCareTypeCho()
-	{
-		return "member/memberCareTypeCho";
-	}
-
-	/* 의뢰인 긴급서비스 요청 할 펫 선택 페이지 */
-	@RequestMapping(value = "/member/memberUsvcPetCho")
-	public String memberUsvcPetCho()
-	{
-		return "member/memberUsvcPetCho";
-	}
-
-
 
 	/* 의뢰인 후기 쓸 펫 선택 */
 	@RequestMapping(value = "/member/memberReviewPetChoice")
