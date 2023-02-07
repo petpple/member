@@ -136,43 +136,292 @@ $(document).ready(function () {
         showButtonPanel: false,
         dateFormat: 'yy-mm-dd',          
         yearRange: "-10:+0",
-};
-      
-$.datepicker.setDefaults($.datepicker.monthpicker);
-
-      var datepicker_default = {
-          showOn: 'both',
-          buttonText: "달력",
-          currentText: "이번달",
-          changeMonth: true,
-          changeYear: true,
-          showButtonPanel: true,
-          yearRange: 'c-99:c+99',
-          showOtherMonths: true,
-          selectOtherMonths: true
-      }
-      datepicker_default.closeText = "선택";
-      datepicker_default.dateFormat = "yy-mm-dd";
-      datepicker_default.onClose = function (dateText, inst) {
-          var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-          var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-          var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-          $(this).datepicker('setDate', new Date(year, month, 1));
-      }
-      datepicker_default.beforeShow = function () {
-          var selectDate = $("#sdate").val().split("-");
-          var year = Number(selectDate[0]);
-          var month = Number(selectDate[1]) - 1;
-          var day = Number(selectDate[0]);
-          $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
-      }
-      $(".month_picker").datepicker(datepicker_default);
-});
-
-
-</script> 
+	};
     
+	$.datepicker.setDefaults($.datepicker.monthpicker);
+	
+	var datepicker_default = {
+	    showOn: 'both',
+	    buttonText: "달력",
+	    currentText: "이번달",
+	    changeMonth: true,
+	    changeYear: true,
+	    showButtonPanel: true,
+	    yearRange: 'c-99:c+99',
+	    showOtherMonths: true,
+	    selectOtherMonths: true
+	}
+	
+	datepicker_default.closeText = "선택";
+	datepicker_default.dateFormat = "yy-mm-dd";
+	datepicker_default.onClose = function (dateText, inst) {
+	    var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+	    var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+	    var day = $("#ui-datepicker-div .ui-datepicker-day :selected").val();
+	    $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+	    $(this).datepicker('setDate', new Date(year, month, 1));
+	}
+	
+	datepicker_default.beforeShow = function () {
+	    var selectDate = $("#sdate").val().split("-");
+	    var year = Number(selectDate[0]);
+	    var month = Number(selectDate[1]) - 1;
+	    var day = Number(selectDate[0]);
+	    $(this).datepicker("option", "defaultDate", new Date(year, month, 1));
+	}
+	
+	$(".month_picker").datepicker(datepicker_default);
+	});
+</script> 
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#checkIn").change(function () {
+			if($("#startDate").val()!='' && $("#endDate").val()!='' && ($("#startDate").val() == $("#endDate").val()) && ( parseInt($("#checkIn").val()) >= parseInt($("#checkOut").val())))
+			{
+				$("#checkOut").val('0').prop('selected','selected');
+				setBackTime();
+				removeEndTime($("#checkIn").val());
+			} 
+			else if($("#startDate").val()!='' && $("#endDate").val()!='' && ($("#startDate").val() == $("#endDate").val()) && (parseInt($("#checkIn").val()) < parseInt($("#checkOut").val())))
+			{	
+				setBackTime();
+				removeEndTime($("#checkIn").val());
+			}
+		});
+		 
+		$("#checkOut").change(function () {
+			if($("#startDate").val()!='' && $("#endDate").val()!='' && ($("#startDate").val()==$("#endDate").val()) && ( parseInt($("#checkIn").val()) >= parseInt($("#checkOut").val())))
+			{	
+				$("#checkIn").val('0').prop('selected','selected');
+				setBackTime();
+				removeStartTime($("#checkOut").val());
+			}
+			else if($("#startDate").val()!='' && $("#endDate").val()!='' && ($("#startDate").val()==$("#endDate").val()) && (parseInt($("#checkIn").val()) < parseInt($("#checkOut").val())))
+			{	
+				setBackTime();
+				removeStartTime($("#checkOut").val());
+			} 	 
+		});
+
+		$("#startDate").change(function () {
+			setBackTime();
+			$("#checkIn").val('0')
+			$("#checkOut").val('0')
+		});
+		
+		$("#endDate").change(function () {
+			setBackTime();
+			$("#checkIn").val('0')
+			$("#checkOut").val('0')	 
+		});
+		  
+		$("#payBtn").click(function () {
+			if ($("#sample4_postcode").val()=='')
+			{
+				alert("우편번호를 입력하세요");
+				$("#sample4_postcode").focus();
+				return;
+			}
+			
+			if ($("#sample4_detailAddress").val()=='')
+			{
+				alert("상세 주소를 입력하세요");
+				$("#sample4_detailAddress").focus();
+				return;
+			}
+			
+			if ($("#datepicker").val()==''){
+				alert("체크인 날짜를 입력하세요");
+				$("#datepicker").focus();
+				return;
+			}
+			
+			if ($("#datepicker2").val()==''){
+				alert("체크아웃 날짜를 입력하세요");
+				$("#datepicker2").focus();
+				return;
+			}
+
+			if ($("#checkIn").val()=='0'){
+				alert("체크인 시간을 입력하세요");
+				$("#checkIn").focus();
+				return;
+			}
+			
+			if ($("#checkOut").val()=='0'){
+				alert("체크아웃 시간을 입력하세요");
+				$("#checkOut").focus();
+				return;
+			}
+
+			if ($("#exampleFormControlInput1").val()=='')
+			{
+				alert("긴급 요청 서비스 제목을 입력하세요");
+				$("#exampleFormControlInput1").focus();
+				return;
+			}
+			
+			if ($("#exampleFormControlTextarea1").val()=='')
+			{
+				alert("요청 서비스 사항을 입력하세요");
+				$("#exampleFormControlTextarea1").focus();
+				return;
+			}
+			
+			let basicCost = 0;
+			let timeCost = 0;
+			let dayCost = 0;
+			let gradeCost = 0;
+			let petCost = 0;
+			let weightCost = 0;
+			let totalCost =0;
+			let petCount = $("#petChoice").val().length;
+			 
+			if ($('input[name=careType]:checked').val()=='1')
+			{
+				let checkInTime = parseInt($("#checkIn").val());
+				let checkOutTime = parseInt($("#checkOut").val());
+			 
+				if ($("#startDate").val()==$("#endDate").val())
+				{
+					timeCost = (checkOutTime - checkInTime - 1) *2000
+				}
+				else
+				{
+					let dateA = new Date($("#startDate").val()+" "+$("select[id='checkIn'] option:selected").text().trim()+":00");
+					let dateB = new Date($("#endDate").val()+" "+$("select[id='checkOut'] option:selected").text().trim()+":00");
+					const diffMSec = dateB.getTime() - dateA.getTime();
+					const diffHour = diffMSec / (60 * 60 * 1000);
+					timeCost = (diffHour-1) *2000
+				}
+				basicCost = 15000
+			}
+			else if ($('input[name=careType]:checked').val()=='2')
+			{
+				let date1Arr = $("#startDate").val().split("/")
+				let date2Arr = $("#endDate").val().split("/")
+				
+				const date1 = new Date(date1Arr[0], date1Arr[1], date1Arr[2]);
+				const date2 = new Date(date2Arr[0], date2Arr[1], date2Arr[2]);
+				
+				const elapsedMSec = date2.getTime() - date1.getTime(); // 172800000
+				const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24; // 2
+				
+				dayCost = (elapsedDay)*50000
+				basicCost= 50000
+			}
+			
+			if (${sitter.grade} == 1)
+			{
+				gradeCost = -5000;
+			}
+			else if (${sitter.grade} == 2)
+			{
+				gradeCost = 0;
+			}
+			else if (${sitter.grade} == 3)
+			{
+				gradeCost = 5000;
+			}
+			else if (${sitter.grade} == 4)
+			{
+				gradeCost = 10000;
+			}
+			   
+			petCost = petCount * 5000;
+			
+			let shaIdList = new Array();
+			let weightList = new Array();
+			let petList = $("#petChoice").val();
+			
+			for (let i = 0; i < petCount; i++) {
+				let shaAndWei = petList[i].split("/");
+				shaIdList.push(shaAndWei[0].trim());
+				weightList.push(shaAndWei[1].trim());
+			}
+			
+			for(let i = 0; i < weightList.length; i++)
+			{
+				if(weightList[i]=='2')
+				{
+					weightCost+=10000
+				}
+				else if(weightList[i]=='3') 
+				{
+					weightCost+=20000
+				}
+			}
+			
+			petCost= (petCount - 1) * 10000;
+			  
+			$("#basicCost").text(changeToMoneyFormat(basicCost));
+			$("#timeCost").text(changeToMoneyFormat(timeCost));
+			$("#dayCost").text(changeToMoneyFormat(dayCost));
+			$("#petCost").text(changeToMoneyFormat(petCost));
+			$("#weightCost").text(changeToMoneyFormat(weightCost));
+			$("#gradeCost").text(changeToMoneyFormat(gradeCost));
+			totalCost= basicCost+timeCost + dayCost+petCost + weightCost + gradeCost;
+			$("#totalCost").text(changeToMoneyFormat(totalCost));
+			
+			var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'), {
+				keyboard: false
+			})
+			
+			myModal.show();
+			
+			$("#payment").click(function () {
+				var regex = /[^0-9]/g;
+				
+				$("#petShaIdArr").val(shaIdList);
+				$("#pay").val($("#totalCost").text().replace(regex, ""))
+				$("#refDepositor").val($("#tmpRefName").val())
+				$("#refBank").val($("#bank").val())
+				$("#refAccNum").val($("#tmpRefAccNum").val())
+				$("#myform").submit();
+			});
+		});
+	});
+	
+	function removeEndTime(num)
+	{
+		$("#checkOut").find("option").each(function () {
+			if (parseInt(this.value) <= parseInt(num))
+			{
+				$(this).css("display","none");
+			}
+		});
+	}
+
+	function changeToMoneyFormat(money)
+	{
+		const cash = money.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+		return cash+'원';
+	}
+	
+	function removeStartTime(num)
+	{
+		$("#checkIn").find("option").each(function () {
+			if(parseInt(this.value) >= parseInt(num))
+			{
+				$(this).css("display","none");
+			}
+		});
+	}
+
+	function setBackTime()
+	{
+		$("#checkOut").find("option").each(function () {
+			$(this).css("display","inline");
+		});
+		
+		$("#checkIn").find("option").each(function () {
+			$(this).css("display","inline");
+		});
+	}
+
+</script>
+
 <style type="text/css">
 
 	.box_mi_t {
@@ -182,24 +431,27 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 	border-radius: 4px;
 	padding: 5px;
 	margin-bottom: 20px;
-}
+	}
+	
 	.btn {
 	background-color: #FE5C17;
 	color: white;
 	text-align: center;
-}
+	}
 
 	.btn-reset {
 	background-color: #cccccc;
 	color: white;
 	text-align: center;
-}
-.sss_font{
+	}
+	
+	.sss_font {
 	font-size:13px;
 	color: #FF8C5B;
-}
+	}
 
 </style>
+
 </head>
 
 <body>
@@ -215,198 +467,269 @@ $.datepicker.setDefaults($.datepicker.monthpicker);
 		<c:import url="header.jsp"></c:import>
 	</div>
 
-    <!-- 여기다가 코드 작성 -->
-    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div class="container">
-            <div class="row justify-content-center">
-            
-            		<div class="row">
-						<div class="col-lg-2" id="info">
-							<c:import url="http://localhost:8092/member/memberSide"></c:import>
+	<!-- 여기다가 코드 작성 -->
+	<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="row">
+					<div class="col-lg-2" id="info">
+						<c:import url="http://localhost:8092/member/memberSide"></c:import>
 					</div>
-					
-            
-            		<div class="col-lg-9">
+					        
+					<div class="col-lg-9">
 						<div class="IMG1">
 							<img src="/images/member/sitting_on.svg" class="svgImg1"> 
 							<span class="font h_font">긴급 요청 서비스 등록</span>
 						</div>
-					<div class="box_mi_t">
-					
-					
-					<span id="remainTime" class="s_font"></span>
-					<div class="serv_on">
-						<table class="table tab s_font">
-		
-							<tr>
-								<td>
- 									<label for="addr" class="form-label">의뢰자님의 주소를 우편번호 찾기 버튼으로 입력해주세요.<span class="sss_font"> * </span></label>
-			                     	 <input type="text" id="sample4_postcode" placeholder="우편번호">
-									<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
- 								</td>
+						
+						<div class="box_mi_t">
+							<span id="remainTime" class="s_font"></span>
+							<div class="serv_on">
+								<table class="table tab s_font">
 								
-							</tr>
-							
-
-							<tr>
-								<td class="l_font" style="text-align: center;">
-									<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-				                    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
-									</div>
-				                    
+								<tr>
+									<td>
+										<label for="addr" class="form-label">의뢰자님의 주소를 우편번호 찾기 버튼으로 입력해주세요.<span class="sss_font"> * </span></label>
+										<input type="text" id="sample4_postcode" placeholder="우편번호">
+										<input type="button" class="btn btn-primary" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="l_font" style="text-align: center;">
+										<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+											<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+										</div>
+										
 										<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
 										<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
 										<span id="guide" style="color:#999;display:none"></span>
 										<input type="text" id="sample4_detailAddress" placeholder="의뢰자님의 상세 주소를 입력해주세요.">
-<!-- 										<input type="text" id="sample4_extraAddress" placeholder="상세 참고 항목"> -->
+										<!-- <input type="text" id="sample4_extraAddress" placeholder="상세 참고 항목"> -->
+									</td>
+								</tr>
 								
-								</td>
+								<tr>
+									<td class="l_font " style="text-align: center;">긴급 요청 서비스 일정</td>
+								</tr>
 								
-							</tr>
+								<tr>
+									<td>
+										<div class ="box_mypi2">
+											<label for="addr" class="form-label">언제 펫시터가 필요한가요? 원하시는 일정을 선택 해 주세요.<span class="sss_font"> * </span></label>
+											<form class=" lg-3 row inline"> 
+												<div class="form-group col-lg-3">  
+													<input type="text"  id="datepicker" class="form-control">
+												</div> 
+												
+												<div class="form-group col-lg-1">  
+												&emsp;&emsp;▶
+												</div>	
+												
+												<div class="form-group col-lg-3">  
+													<input type="text"  id="datepicker2" class="form-control" style="margin-left: -20px;">
+												</div>
+												          
+												<!-- 체크인 datepicker  -->
+												<script type="text/javascript">
+													$("#datepicker").datepicker();
+												</script>
+												
+												<!-- 체크인 datepicker  -->
+												<script type="text/javascript">
+													$("#datepicker2").datepicker();
+												</script>
+											</form>
+											<br><br>
+											       
+											<span>체크인 시간&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;체크아웃 시간</span>
+											<form class=" lg-3 row inline"> 
+												<div class="form-group col-lg-3">  
+													<!-- <input type="text"  id="checkIn" class="form-control"> -->
+													<select class="form-control" name="checkIn" id="checkIn" style="text-align: center;">
+														<option value="0" selected>--시간 선택--</option>
+														<option value="1">09:00 </option>
+														<option value="2">10:00 </option>
+														<option value="3">11:00 </option>
+														<option value="4">12:00 </option>
+														<option value="5">13:00 </option>
+														<option value="6">14:00 </option>
+														<option value="7">15:00 </option>
+														<option value="8">16:00 </option>
+														<option value="9">17:00 </option>
+														<option value="10">18:00 </option>
+														<option value="11">19:00 </option>
+														<option value="12">20:00 </option>
+														<option value="13">21:00 </option>
+													</select>
+												</div> 
+												
+												<div class="form-group col-lg-1">  
+												&emsp;&emsp;~
+												</div>	
+														
+												<div class="form-group col-lg-3">  
+													<!-- <input type="text"  id="checkOut" class="form-control" style="margin-left: -20px;"> -->
+													<select class="form-control" name="checkOut" id="checkOut" style="margin-left: -20px; text-align: center">
+														<option value="0" selected>--시간 선택--</option>
+														<option value="1">09:00 </option>
+														<option value="2">10:00 </option>
+														<option value="3">11:00 </option>
+														<option value="4">12:00 </option>
+														<option value="5">13:00 </option>
+														<option value="6">14:00 </option>
+														<option value="7">15:00 </option>
+														<option value="8">16:00 </option>
+														<option value="9">17:00 </option>
+														<option value="10">18:00 </option>
+														<option value="11">19:00 </option>
+														<option value="12">20:00 </option>
+														<option value="13">21:00 </option>
+													</select>
+												</div><!-- <div class="form-group col-lg-5">  -->
+												<br><br>
+											</form>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="l_font" style="text-align: center;">제목</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<label for="exampleFormControlInput1" class="form-label">긴급 요청 서비스 제목을 입력 해 주세요.<span class="sss_font"> * </span></label>
+										<input type="text" class="form-control" id="exampleFormControlInput1" placeholder="예) 우리 보리 돌봐주실분 급하게 구합니다.">
+									</td>
+								</tr>
+								
+								<tr>
+									<td class="l_font" style="text-align: center;">요청사항</td>
+								</tr>
+								
+								<tr>
+									<td>
+										<label for="exampleFormControlTextarea1" class="form-label">펫시터님에게 전달할 요청 서비스 사항을 입력 해 주세요.<span class="sss_font"> * </span></label>
+										<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="예) 밥은 3번, 간식은 1번 주시면됩니다. 목욕은 제가 시킬게요 잘 부탁 드립니다."></textarea>
+									</td>
+								</tr>
+								</table>
+									
+								<div>
+									<label for="agree"><span> 내 단골들에게 현재 긴급 요청 서비스 등록 알람을 보내겠습니까?</span></label>
+									<input type="checkbox" class="form-check-input" id="agree" name="agree" />
+								</div>
+								<br>
+							</div>
+						</div>
+						<br>
+						        	
+						<div role="group" aria-label="Basic example" class="text-center">
+							<button type="submit" class="btn btn-primary" id="payBtn">결제하기</button>
+							<button type="submit" class="btn btn-secondary" onclick="history.back();">뒤로 가기</button>
+						</div>
+					</div><!-- col-lg-9 -->
+				</div><!-- row -->
+			</div><!-- row justify-content-center -->
+		</div><!-- .container -->
+	</div><!-- .container-xxl py-5 wow fadeInUp -->
 
-						
-							
-							
-						
-							<tr>
-								<td class="l_font " style="text-align: center;">긴급 요청 서비스 일정</td>
-							</tr>
-							<tr>
-								<td>
-								
-				            <div class ="box_mypi2">
-				            <label for="addr" class="form-label">언제 펫시터가 필요한가요? 원하시는 일정을 선택 해 주세요.<span class="sss_font"> * </span></label>
-					            <form class=" lg-3 row inline"> 
-					            	
-					            	<div class="form-group col-lg-3">  
-								 		<input type="text"  id="datepicker" class="form-control">
-								 	</div> 
-
-
-									<div class="form-group col-lg-1">  
-										&emsp;&emsp;▶
-								 	</div>	
-						
-			
-								 	<div class="form-group col-lg-3">  
-								 		<input type="text"  id="datepicker2" class="form-control" style="margin-left: -20px;">
-								 	</div>	
-							           
-							            <!-- 체크인 datepicker  -->
-										<script type="text/javascript">
-											$("#datepicker").datepicker();
-										</script>
-							            <!-- 체크인 datepicker  -->
-										<script type="text/javascript">
-											$("#datepicker2").datepicker();
-										</script>
-							    </form>     
-				            <br><br>
-				            
-				            <span>체크인 시간&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;체크아웃 시간</span>
-				            <form class=" lg-3 row inline"> 
-					            	<div class="form-group col-lg-3">  
-								 		<!-- <input type="text"  id="checkIn" class="form-control"> -->
-								 			<select class="form-control" name="checkIn" id="checkIn" style="text-align: center;">
-								            	<option value="0" selected>--시간 선택--</option>
-								            	<option value="1">09:00 </option>
-								            	<option value="2">10:00 </option>
-								            	<option value="3">11:00 </option>
-								            	<option value="4">12:00 </option>
-								            	<option value="5">13:00 </option>
-								            	<option value="6">14:00 </option>
-								            	<option value="7">15:00 </option>
-								            	<option value="8">16:00 </option>
-								            	<option value="9">17:00 </option>
-								            	<option value="10">18:00 </option>
-								            	<option value="11">19:00 </option>
-								            	<option value="12">20:00 </option>
-								            	<option value="13">21:00 </option>
-								            </select>
-								 	</div> 
-
-									<div class="form-group col-lg-1">  
-										&emsp;&emsp;~
-								 	</div>	
-								 		
-								 	<div class="form-group col-lg-3">  
-								 		<!-- <input type="text"  id="checkOut" class="form-control" style="margin-left: -20px;"> -->
-								 			<select class="form-control" name="checkOut" id="checkOut" style="margin-left: -20px; text-align: center">
-								            	<option value="0" selected>--시간 선택--</option>
-								            	<option value="1">09:00 </option>
-								            	<option value="2">10:00 </option>
-								            	<option value="3">11:00 </option>
-								            	<option value="4">12:00 </option>
-								            	<option value="5">13:00 </option>
-								            	<option value="6">14:00 </option>
-								            	<option value="7">15:00 </option>
-								            	<option value="8">16:00 </option>
-								            	<option value="9">17:00 </option>
-								            	<option value="10">18:00 </option>
-								            	<option value="11">19:00 </option>
-								            	<option value="12">20:00 </option>
-								            	<option value="13">21:00 </option>
-								            </select>
-								 	</div><!-- <div class="form-group col-lg-5">  -->
-				            <br><br>
-				            </form>
-				            </div>
-				            	
-								
-								
-								
-								</td>
- 								
-							</tr>
-							
-							<tr>
-								<td class="l_font" style="text-align: center;">제목</td>
-							</tr>
-							
-							<tr>
-								<td>
- 								
- 									<label for="exampleFormControlInput1" class="form-label">긴급 요청 서비스 제목을 입력 해 주세요.<span class="sss_font"> * </span></label>
-  									<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="예) 우리 보리 돌봐주실분 급하게 구합니다.">
- 								</td>
-								
-							</tr>
-
-							<tr>
-								<td class="l_font" style="text-align: center;">요청사항</td>
-							</tr>
-
-							<tr>
-								<td>
- 									<label for="exampleFormControlTextarea1" class="form-label">펫시터님에게 전달할 요청 서비스 사항을 입력 해 주세요.<span class="sss_font"> * </span></label>
-  									<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="예) 밥은 3번, 간식은 1번 주시면됩니다. 목욕은 제가 시킬게요 잘 부탁 드립니다."></textarea>
- 								</td>
-								
-							</tr>
-
-						</table>
-						
-					<div>
-					    <label for="agree"><span> 내 단골들에게 현재 긴급 요청 서비스 등록 알람을 보내겠습니까?</span></label>
-						<input type="checkbox" class="form-check-input" id="agree" name="agree" />					  
-					</div><br>
-					
-						
-					</div>
-				</div>
-				<br>
-            	
-            	<div role="group" aria-label="Basic example" class="text-center">
-						<button type="submit" class="btn btn-primary">결제하기</button>
-						<button type="reset" class="btn btn-secondary">취소</button>
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-centered" style="width:600px;">
+			<div class="modal-content pay">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">결제하기</h5>
 				</div>
 				
+				<div class="modal-body" >
+					<table class="table tab2">
+						<tr>
+							<th style="width:220px;">기본 금액</th>
+							<td><span id="basicCost"></span></td>
+						</tr>
 						
+						<tr>
+							<th>시간 당 추가요금(타임케어)</th>
+							<td><span id="timeCost"></span></td>
+						</tr>
+						
+						<tr>
+							<th>일당 추가요금(데이케어)</th>
+							<td><span id="dayCost"></span></td>       
+						</tr>
+						
+						<tr>
+							<th>등급 추가요금</th>
+							<td><span id="gradeCost"></span></td>       
+						</tr>
+						
+						<tr>
+							<th>반려동물 추가 요금</th>
+							<td><span id="petCost"></span></td>       
+						</tr>
+						
+						<tr>
+							<th>긴급요청 추가요금</th>
+							<td>0원</td>       
+						</tr>
+						
+						<tr>
+							<th>반려동물 크기별 추가 요금</th>
+							<td><span id="weightCost"></span></td>           
+						</tr>
+						
+						<tr>
+							<td> </td>
+						</tr>
+						
+						<tr>
+							<th colspan="2" class="border-bottom">결제금액 </th>
+						</tr>
+						
+						<tr>
+							<td colspan="2"><span id="totalCost"></span></td>
+						</tr>
+
+						<tr>
+							<th>환불 계좌번호('-'없이 입력)</th>
+							<td><input type="text" id="tmpRefAccNum" class="form-control"></td>
+						</tr>
+						
+						<tr>
+							<th>환불 계좌 예금주명</th>
+							<td><input type="text" id="tmpRefName" class="form-control"></td>
+						</tr>
+						
+						<tr>
+							<th>환불 계좌 은행</th>
+							<td>
+								<select name="bankId" class="m_font form-select" id="bank" >
+									<option value="0" selected> -- 은행 선택 -- </option>
+									<option value="1">신한은행</option>
+									<option value="2">NH농협은행</option>
+									<option value="3">카카오뱅크</option>
+									<option value="4">우리은행</option>
+									<option value="5">IBK기업은행</option>
+									<option value="6">하나은행</option>
+									<option value="7">케이뱅크</option>
+									<option value="8">새마을금고</option>
+									<option value="9">우체국</option>
+									<option value="10">신협은행</option>
+								</select>
+							</td>
+						</tr>
+					</table>
 				</div>
-				</div><!-- col-lg-7 -->
-            </div><!-- row justify-content-center -->
-        </div><!-- .container -->
-    </div><!-- .container-xxl py-5 wow fadeInUp -->
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary" id="payment">결제</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div>
 		<c:import url="footer.jsp"></c:import>
