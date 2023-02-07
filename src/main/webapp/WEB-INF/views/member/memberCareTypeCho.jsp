@@ -42,57 +42,54 @@
 	border-radius: 4px;
 	padding: 5px;
 	margin-bottom: 20px;
-}
-	.btn {
-	background-color: #FE5C17;
-	color: white;
-	text-align: center;
-}
-
-	.btn-reset {
-	background-color: #cccccc;
-	color: white;
-	text-align: center;
-}
-.sss_font{
-	font-size:13px;
-	color: #FF8C5B;
-}
-.visitDiv{
-	margin: 20px;
-/* 	position: absolute; */
-width: 280px;
-height: 280px;
-left: 700px;
-top: 249px;
-
-background: #F4F4F4;
-border: 1px solid #D2D1D1;
-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-margin: 50px;
-
-}
-
-.fosDiv{
-/* 	position: absolute; */
-width: 280px;
-height: 280px;
-left: 1200px;
-top: 249px;
-
-background: #F4F4F4;
-border: 1px solid #D2D1D1;
-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
-border-radius: 5px;
-margin: 370px; 
-
-
-}
-
-
-</style>
+	}
 	
+	.btn {
+		background-color: #FE5C17;
+		color: white;
+		text-align: center;
+	}
+	
+	.btn-reset {
+		background-color: #cccccc;
+		color: white;
+		text-align: center;
+	}
+	
+	.sss_font{
+		font-size:13px;
+		color: #FF8C5B;
+	}
+	
+	.visitDiv{
+		margin: 20px;
+	/* 	position: absolute; */
+		width: 280px;
+		height: 280px;
+		left: 700px;
+		top: 249px;
+		
+		background: #F4F4F4;
+		border: 1px solid #D2D1D1;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		margin: 50px;
+	}
+	
+	.fosDiv {
+	/* 	position: absolute; */
+		width: 280px;
+		height: 280px;
+		left: 1200px;
+		top: 249px;
+		
+		background: #F4F4F4;
+		border: 1px solid #D2D1D1;
+		box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+		border-radius: 5px;
+		margin: 370px; 
+	}
+</style>
 	
 <script type="text/javascript">
 	function CountDownTimer(dt, id) {
@@ -119,11 +116,11 @@ margin: 370px;
         document.getElementById(id).innerHTML = text;
     }
     timer = setInterval(showRemaining, 1000);
-}
+	}
+	
 	$(function(){
 		CountDownTimer('01/04/2023 16:25:00', 'remainTime');
 	});
-
 </script>
     
 </head>
@@ -152,17 +149,16 @@ margin: 370px;
 				</div>
 				
 				<div class="col-md-7">
-				<div class="IMG1">
-					<img src="/images/member/sitting_on.svg" class="svgImg1"> 
-					<span class="font h_font">긴급 요청 서비스</span>
-				</div>
+					<div class="IMG1">
+						<img src="/images/member/sitting_on.svg" class="svgImg1"> 
+						<span class="font h_font">긴급 요청 서비스</span>
+					</div>
 				
 					<div class="box_mi_t row">
-					
 						<div class="col-sm-6">
 							<a href="memberSvcTypeCho" class="day" id="day">
 								<img src="/images/member/careTypeDay.svg" class="day" id="day"> <br>
-							 </a>
+							</a>
 						</div>
 
 						<div class="col-sm-6">
@@ -170,26 +166,25 @@ margin: 370px;
 								<img src="/images/member/careTypeTime.svg" class="time" id="time"> <br>
 							 </a>
 						</div>
-					
 					</div>
 				
 					<div class="IMG1">
-					<img src="/images/member/q.svg" class="svgImg1"> 
-					<span class="font h_font">긴급 요청 서비스 란? </span>
-					</div>				
-					<div class="box_mi_t">
-					<p class="l_font">
-						긴급 요청 서비스는 의뢰인이 원하는 펫시팅 시작일 72시간 전부터 1시간 전까지 <br>
-						요청글을 작성해 펫시터의 지원을 받는 시스템입니다.<br>
-						일반 서비스(위탁, 방문)은 펫시팅 시작일 72시간 이후 부터 원하는 펫시터를 골라 신청하는 시스템입니다.<br>
-						긴급 요청 서비스는 20,000원의 추가금이 있습니다.<br>
-						등록된 펫 한 마리당 한 번의 서비스 요청을 할 수 있습니다.<br>
-						이 서비스 요청을 취소(삭제) 시 해당 펫은 72시간 동안 재 요청 글을 작성할 수 없습니다.<br>			
-					</p>
+						<img src="/images/member/q.svg" class="svgImg1"> 
+						<span class="font h_font">긴급 요청 서비스 란? </span>
 					</div>
 					
-					
+					<div class="box_mi_t">
+						<p class="l_font">
+							긴급 요청 서비스는 의뢰인이 원하는 펫시팅 시작일 72시간 전부터 1시간 전까지 <br>
+							요청글을 작성해 펫시터의 지원을 받는 시스템입니다.<br>
+							일반 서비스(위탁, 방문)은 펫시팅 시작일 72시간 이후 부터 원하는 펫시터를 골라 신청하는 시스템입니다.<br>
+							긴급 요청 서비스는 20,000원의 추가금이 있습니다.<br>
+							등록된 펫 한 마리당 한 번의 서비스 요청을 할 수 있습니다.<br>
+							이 서비스 요청을 취소(삭제) 시 해당 펫은 72시간 동안 재 요청 글을 작성할 수 없습니다.<br>			
+						</p>
+					</div>
 				</div>
+				
 				<div class="col-lg-3">
 					<div id="test">
 						<c:import url="/member/memberCal"></c:import>
@@ -216,10 +211,7 @@ margin: 370px;
     <!-- Template Javascript -->
     <script src="/javascript/main.js"></script>
     
-    
 </body>
-
-
 
 </html>
 
