@@ -75,7 +75,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="memberSvcTypeCho" class="nav-item nav-link">긴급 요청 서비스</a>
+                <a href="/member/memberCareTypeCho" class="nav-item nav-link">긴급 요청 서비스</a>
                 <a href="vsitterList" class="nav-item nav-link">방문 서비스</a>
                 <a href="fsitterPetSitterList" class="nav-item nav-link">위탁 서비스</a>
                 <a href="/member/memberFAQ" class="nav-item nav-link">FAQ</a>
