@@ -146,7 +146,7 @@
        
 				<div class="row">
 				<div class="col-lg-2" id="info">
-					<c:import url="http://localhost:8092/member/memberSide"></c:import>
+					<c:import url="/member/memberSide"></c:import>
 				</div>
 				
 				<div class="col-md-7">
