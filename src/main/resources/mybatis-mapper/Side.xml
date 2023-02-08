@@ -36,4 +36,35 @@
 		]]>
 	</select>
 
+	<select id="getUsvcIngList" parameterType="String" resultType="Member" >
+		SELECT *
+		FROM VIEW_UV_ING vw
+		WHERE vw.temId = #{temId}
+		UNION ALL
+		SELECT *
+		FROM VIEW_UF_ING fw
+		WHERE fw.temId = #{temId}
+	</select>
+
+	<select id="getUsvcWaitingList" parameterType="String" resultType="Member">
+		SELECT *
+		FROM VIEW_USVC_WAITING
+		WHERE temId= #{temId}
+	</select>
+
+	<select id="getUsvcApplyList" parameterType="String" resultType="Sitter">
+		select profileImg,name,allowId
+		from VIEW_UV_APPLYSITTER
+		where serviceId = #{serviceId}
+	</select>
+
+	<select id="getUsvcPast" parameterType="HashMap" resultType="Member">
+		<![CDATA[
+		SELECT *
+		FROM usvcPast
+		WHERE temId =#{temId}
+		  and num> #{start}
+		  and num <= #{end}
+		]]>
+	</select>
 </mapper>
