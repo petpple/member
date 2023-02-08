@@ -31,6 +31,43 @@
     
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Template Javascript -->
+	<script type="text/javascript">
+		function CountDownTimer(dt, id) {
+			var end = new Date(dt);
+			var _second = 1000;
+			var _minute = _second * 60;
+			var _hour = _minute * 60;
+			var _day = _hour * 24;
+			var timer;
+			function showRemaining() {
+				var now = new Date();
+				var distance = end - now;
+				if (distance < 0) {
+					clearInterval(timer);
+					$("#"+id).css('color','red');
+					return;
+				}
+				var days = Math.floor(distance / _day);
+				var hours = Math.floor((distance % _day) / _hour);
+				var minutes = Math.floor((distance % _hour) / _minute);
+				var seconds = Math.floor((distance % _minute) / _second);
+
+				var text = days+'일 '+ hours + '시간 '+minutes + '분 '+ seconds + '초';
+				document.getElementById(id).innerHTML = text;
+			}
+			timer = setInterval(showRemaining, 1000);
+		}
+
+		function dateGetter(endDate){
+			const endTime = endDate.trim();
+			const endyear = endTime.substring(0,4);
+			const endmonth = endTime.substring(6,8);
+			const endday = endTime.substring(10,12);
+			const endtime = endTime.substring(14,16);
+
+			return endmonth+'/'+endday+'/'+endyear+' '+endtime+':00:00';
+		}
+	</script>
 </head>
 
 <body>
@@ -51,81 +88,68 @@
         <div class="container">
             <div class="row justify-content-center">
             	<div class="col-lg-2 wow fadeInUp" data-wow-delay="0.2s" id="info">
-            		<c:import url="http://localhost:8092/member/memberSide"></c:import>
+					<c:import url="/member/memberSide"></c:import>
             	</div>
             		
             	<div class="col-lg-7" id="">
             		<div class="box_mi"> 
             			<span class="h2_font">긴급 요청 서비스 - 현재 의뢰중</span>
             			<div class="box_white">
-            				<table class="table tab_Info m_font">
+            				<table class="table tab_Info m_font table-borderless">
+								<tr>
+									<th>서비스 구분</th>
+									<th>요청 번호</th>
+									<th>내용</th>
+									<th>상세보기 / 취소</th>
+								</tr>
+								<c:forEach var="svc" items="${list}" varStatus="status">
+
             					<tr>
-            						<th>요청번호</th>
-            						<th>펫시터</th>
-            						<th>내용</th>
-            						<th>서비스 상태</th> <!--취소,의뢰자노쇼,펫시터 노쇼,확정,확정 대기   -->
-            						<th>상세보기 / 취소</th>
-            					</tr>
-            					<tr>
-            						<td>233322</td>
+            						<td><span class="badge font_black"
+											  style="background-color: rgb(225, 199, 199);">
+											<c:if test="${svc.serviceType == '3'}">
+												긴급-위탁
+											</c:if>
+											<c:if test="${svc.serviceType == '4'}">
+												긴급-방문
+											</c:if>
+											</span>
+									</td>
             						<td>
-            							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
-										</div>
-										<span class="mb_font">루카스</span>
+										${svc.serviceId}
             						</td>
             						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2023년 1월 18일 10:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 1월 18일 21:00</span><br>
-            						</td>
-            						<td><span class="m_font">취소</span></td>
+										<c:if test="${svc.serviceType =='3'}">
+											<span class="m_font">주소 : </span><span class="m_font">${svc.addr}</span><br>
+										</c:if>
+            							<span class="m_font">금액 : </span><span class="m_font">${svc.totalPrice}원</span><br>
+            							<span class="m_font">시작일시 : </span><span class="m_font" id="remain${status.index}">${svc.startDate}</span><br>
+            							<span class="m_font">종료일시 : </span><span class="m_font" >${svc.endDate}</span><br>
+										<span ></span>
+									</td>
             						<td><button class="btn btn-sm show_button" style="margin-bottom:10px;"
             						onclick="location.href = '/member/memberUsvcDetail/'">상세</button><br>
-            							<a href="#"><button class="btn-sm btn-danger" style="margin-bottom:10px;">취소</button></a>
             						</td>
             					</tr>
-            					
-            					<tr>
-            						<td>233323</td>
-            						<td>
-            							<div class="petImg">
-													<img src="/images/member/IMG_2087-scaled-e1634883900174.jpg">
-										</div>
-										<span class="mb_font">다나카 펫시터</span>
-            						</td>
-            						<td style="text-align:left; padding-left:30px;">
-            							<span class="m_font">주소 : </span><span class="m_font">서울특별시 강서구 화곡로</span><br>
-            							<span class="m_font">금액 : </span><span class="m_font">30,000원</span><br>
-            							<span class="m_font">시작일시 : </span><span class="m_font">2023년 2월10일 15:00</span><br>
-            							<span class="m_font">종료일시 : </span><span class="m_font">2023년 2월 11일 14:00</span><br>
-            						</td>
-            						<td><span class="m_font">확정</span></td>
-            						<td>
-            							<button class="btn btn-sm show_button" style="margin-bottom:10px;"
-            							onclick="location.href = '/member/memberUsvcDetail/'">상세</button><br>
-            							<a href="#"><button class="btn-sm btn-danger" style="margin-bottom:10px;">취소</button></a>
-            						</td>
-            					</tr>
+								<tr style="">
+									<td colspan="4" >
+									요청 만료까지 <span style="color: red" id="remainTime${status.index}"></span>남았습니다.
+									<hr>
+									<script>
+										$(function(){
+											CountDownTimer(dateGetter($("#remain${status.index}").text()), 'remainTime${status.index}');
+										});
+									</script>
+									</td>
+								</tr>
+								</c:forEach>
             				</table>
-            				<div style="text-align:center">
-	            				<nav aria-label="Page navigation example"style=" display: inline-block;">
-								  <ul class="pagination " >
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Previous</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">1</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">2</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">3</a></li>
-								    <li class="page-item"><a class="page-link" href="#" style="color:gray">Next</a></li>
-								  </ul>
-								</nav>
-							</div>
             			</div>
             		</div>
             	</div>
             	
             	<div class="col-lg-3 wow fadeInUp" data-wow-delay="0.2s" id="">
-            		<c:import url="http://localhost:8092/member/memberCal"></c:import>
+            		<c:import url="/member/memberCal"></c:import>
             	</div>
             </div>
         </div>

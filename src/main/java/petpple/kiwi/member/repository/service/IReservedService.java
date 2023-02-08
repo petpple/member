@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import petpple.kiwi.member.domain.service.Refund;
 import petpple.kiwi.member.domain.visitService.VisitService;
 
+import java.util.HashMap;
+
 @Mapper
 public interface IReservedService {
     public Refund getVServiceInfo(String vId);
@@ -21,5 +23,7 @@ public interface IReservedService {
     public int fosterServiceNoShow(Refund dto);
     public int uvServiceNoShow(Refund dto);
     public int ufServiceNoShow(Refund dto);
+
+    public int acceptUVsvc(HashMap<String,Object> map);
 
 }

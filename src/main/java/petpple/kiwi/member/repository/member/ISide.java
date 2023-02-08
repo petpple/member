@@ -1,6 +1,7 @@
 package petpple.kiwi.member.repository.member;
 
 import org.apache.ibatis.annotations.Mapper;
+import petpple.kiwi.member.domain.apply.Sitter;
 import petpple.kiwi.member.domain.member.Member;
 
 import java.util.ArrayList;
@@ -13,4 +14,11 @@ public interface ISide {
 
     public ArrayList<Member> getFsvcWaitingList(String temId);
     public ArrayList<Member> getFsvcPast(HashMap<String,Object> map);
+
+    public ArrayList<Member> getUsvcIngList(String temId);
+
+    public ArrayList<Member> getUsvcWaitingList(String temId);
+    public ArrayList<Sitter> getUsvcPast(HashMap<String,Object> map);
+
+    public ArrayList<Sitter> getUsvcApplyList(String serviceId);
 }

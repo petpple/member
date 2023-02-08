@@ -334,7 +334,7 @@
 											<span class="mb_font">${member.petsitterNickname }</span>
 										</div>
 									</td>
-									<td><button type="button" class="btn btn-sm btn-danger" onclick="location.href='/member/serviceCancel?serviceType=1&serviceNo=${member.serviceId}'">취소하기</button></td>
+									<td><button type="button" class="btn btn-sm btn-danger" onclick="location.href='/member/serviceCancel?serviceType=${member.serviceType}&serviceNo=${member.serviceId}'">취소하기</button></td>
 								</tr>
 								</c:forEach>
 

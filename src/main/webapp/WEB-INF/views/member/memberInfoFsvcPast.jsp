@@ -69,6 +69,7 @@
 								<tr>
 									<td>
 										<div class="petImg">
+
 											<img src="${member.petsitterProfile}">
 										</div>
 										<span class="mb_font">${member.petsitterNickname}</span>
@@ -90,7 +91,7 @@
 										<%--취소,펫시터노쇼, 위탁펫시터노쇼, 확정--%>
 									<td><a href=""><button class="btn btn-sm show_button" style="margin-bottom:10px;">상세</button></a><br>
 										<c:if test="${member.pastType == '3'}">
-											<a href=""><button class="btn btn-sm btn-outline-primary" style="margin-bottom:10px;">후기 작성</button></a>
+											<a href="memberReviewForm?serviceType=2&resId=${member.resId}"><button class="btn btn-sm btn-outline-primary" style="margin-bottom:10px;">후기 작성</button></a>
 										</c:if>
 									</td>
 								</tr>

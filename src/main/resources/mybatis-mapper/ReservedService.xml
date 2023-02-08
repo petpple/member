@@ -82,4 +82,10 @@
         VALUES (SEQ_V_SIT_NOS_REF_ID.NEXTVAL, SYSDATE, #{pay}, #{refAccNum}, #{refDepositor}, #{refBankId}, #{resId})
     </insert>
 
+    <insert id="acceptUVsvc" parameterType="HashMap">
+        INSERT INTO U_V_RESERV
+            (U_V_RES_ID, U_V_RES_DATE, U_V_APP_ID,U_V_ID)
+        VALUES(SEQ_U_V_RESERV_ID.nextval, SYSDATE , #{id},#{svcId})
+    </insert>
+
 </mapper>
