@@ -37,6 +37,11 @@ public interface MemberMapper {
 
 	public int sumFpetsitting(String temId);
 
+    public int ingUService(String temId);
+
+    public int waitingUService(String temId);
+    public int pastUService(String temId);
+
     // 모든 진행 중인 펫시팅
     public ArrayList<Member> currentPetsitting(String temId);
 
@@ -58,8 +63,6 @@ public interface MemberMapper {
     public int insertFConfirm(String resId);
     public int insertUVConfirm(String resId);
     public int insertUFConfirm(String resId);
-
-
 
 }
 
