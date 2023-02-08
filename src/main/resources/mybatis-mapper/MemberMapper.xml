@@ -69,6 +69,31 @@
        where  temId= #{temId}
 
     </select>
+
+    <select id="ingUService" parameterType="String" resultType="java.lang.Integer">
+        SELECT Sum(count)
+        FROM(
+                SELECT count(*) AS count
+                FROM VIEW_UV_ING vw
+                WHERE vw.temId = #{temId}
+                UNION ALL
+                SELECT count(*) AS count
+                FROM VIEW_UF_ING fw
+                WHERE fw.temId = #{temId}
+            )
+    </select>
+
+    <select id="waitingUService" parameterType="String" resultType="java.lang.Integer">
+        SELECT count(*) AS count
+        FROM VIEW_USVC_WAITING
+        WHERE temId= #{temId}
+    </select>
+
+    <select id ="pastUService" parameterType="String" resultType="java.lang.Integer">
+        SELECT count(*) AS count
+        FROM usvc_prePast
+        WHERE temId= #{temId}
+    </select>
     
     <!-- 현재 진행 중 펫시팅 -->
     <select id="currentPetsitting" resultType="Member" parameterType="String">
